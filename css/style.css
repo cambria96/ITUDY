@@ -1,9 +1,3 @@
-/*
-  Theme Name: Rapid
-  Theme URL: https://bootstrapmade.com/rapid-multipurpose-bootstrap-business-template/
-  Author: BootstrapMade.com
-  License: https://bootstrapmade.com/license/
-*/
 
 /*--------------------------------------------------------------
 # General
@@ -154,17 +148,16 @@ h6 {
 --------------------------------------------------------------*/
 
 #header {
+  background: #cac8c5;
   height: 110px;
-  transition: all 0.5s;
-  z-index: 997;
-  transition: all 0.5s;
   padding: 20px 0;
-  position: fixed;
   left: 0;
   top: 0;
   right: 0;
   transition: all 0.5s;
   z-index: 997;
+  display: flex;
+  align-items: center;
 }
 
 #header.header-scrolled,
