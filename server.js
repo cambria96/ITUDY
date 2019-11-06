@@ -1,0 +1,118 @@
+var mysql = require('mysql');
+var connection = mysql.createConnection({
+    
+    host: 'localhost',
+    port: '3306',
+    user: 'root',
+    password: 'root',
+    database: 'userinfo',
+    debug:false,
+    insecureAuth:true
+});
+
+connection.connect();
+var info;
+
+connection.query('SELECT * from userinfo',function(err,rows,fields){
+        if(!err){
+            console.log('The solution is: ',rows);
+            info = rows;
+        }
+        else{
+            console.log('Error while performing Query.',err);
+        }
+    });
+
+var http = require('http');
+
+var server = http.createServer();
+
+
+var express = require('express');
+var app = express();
+var ejs = require('ejs');
+var fs = require('fs');
+var path = require('path');
+var bodyParser = require('body-parser');
+
+app.set('port',3000);
+app.set('view engine','html');
+app.engine('html',ejs.renderFile);
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended : true}));
+app.use('/js',express.static('js'));
+app.use('/lib',express.static('lib'));
+app.use('/img',express.static('img'));
+app.use('/css',express.static('css'));
+app.use('/contactform',express.static('contactform'));
+
+console.log("asdf");
+
+
+http.createServer(app).listen(app.get('port'),function(){
+    console.log("express start: %d",app.get('port'));
+
+})
+
+
+app.get('/',function(req,res){
+    res.render("main.html");
+})
+app.get('/home',function(req,res){
+    res.render("default.html");
+})
+
+
+
+app.post('/success',function(req,res){
+    var nameAry = new Array();
+    var check = 0;
+    console.log("id: ", req.body.id);
+    console.log("password: ", req.body.password);
+    
+    for(var i=0;i<info.length;i++){
+        nameAry.push(info[i].id);
+        if(req.body.id == info[i].id){
+             if(req.body.password == info[i].password){
+                 check=1;
+             }
+        }
+    }
+    if(check){
+        res.render('success.html',{name:nameAry});
+    }
+    else{
+        res.render('login.html');
+    }
+    
+    
+})
+
+app.get('/signup',function(req,res){
+    res.render("signup.html");
+})
+
+app.post('/complete',function(req,res){
+   
+    var nameAry = new Array();
+    var sql = "INSERT INTO Persons (id, password) VALUES ('"+req.body.id+"','"+req.body.password+"')";
+    console.log(sql);
+    
+    connection.query(sql,function(err,rows,fields){
+        if(!err){
+            console.log("insert success");
+        }
+        else{
+            console.log(err);
+        }
+       
+    });
+    
+    for(var i=0;i<info.length;i++){
+        nameAry.push(info[i].id);
+    }
+    res.render('success.html',{name:nameAry});
+
+})
+
