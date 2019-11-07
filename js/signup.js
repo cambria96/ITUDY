@@ -3,6 +3,7 @@ $(document).ready(function(){
     initial()
     signupBtn()
     scrollControl()
+    checkBox();
 })
 
 var stepCount=0;
@@ -17,6 +18,7 @@ function signupBtn(){
             stepCount++;
             $(".signupWrap").children().eq(stepCount).fadeIn("fast",function(){
                 $(this).addClass("wide");
+                $(this).next().addClass("wide");
             });
         });
     });
@@ -37,4 +39,13 @@ function scrollControl(){
           $('#header').css("position","unset");
         }
       });
+}
+
+function checkBox(){
+    $("input[type='checkbox'][name='check1']").click(function(){
+        if($(this).prop('checked')){
+            $("input[type='checkbox'][name='check1']").prop('checked',false);
+            $(this).prop('checked',true);
+        }
+    })
 }
