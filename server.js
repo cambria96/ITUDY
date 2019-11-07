@@ -62,6 +62,9 @@ app.get('/',function(req,res){
 app.get('/home',function(req,res){
     res.render("default.html");
 })
+app.get('/signup',function(req,res){
+    res.render("signup.html");
+})
 
 
 
@@ -89,9 +92,7 @@ app.post('/success',function(req,res){
     
 })
 
-app.get('/signup',function(req,res){
-    res.render("signup.html");
-})
+
 
 app.post('/complete',function(req,res){
    
