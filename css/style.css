@@ -9,16 +9,14 @@ body {
   color: #444;
   font-family: "Spoqa Han Sans", sans-serif;
 }
-
-a {
-  color: #1bb1dc;
-  transition: 0.5s;
+a{
+  color:#fff;
 }
 
 a:hover,
 a:active,
 a:focus {
-  color: #0a98c0;
+  color:#fff;
   outline: none;
   text-decoration: none;
 }
