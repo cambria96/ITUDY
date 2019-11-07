@@ -65,6 +65,9 @@ app.get('/home',function(req,res){
 app.get('/signup',function(req,res){
     res.render("signup.html");
 })
+app.post('/login',function(req,res){
+    res.render("default.html");
+})
 
 
 
