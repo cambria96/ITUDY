@@ -78,7 +78,7 @@ p{
     display: flex;
     justify-content: space-between;
 }
-.homeBtn{
+.homeBtn,.submitBtn{
     padding: 15px 15px 15px 35px;
     color: #fff;
     font-size: 1.5em;

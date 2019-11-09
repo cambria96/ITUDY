@@ -35,27 +35,27 @@
         <span>ITUDY</span>
     </div> -->
  
-  
+
   <section id="intro" class="clearfix">
     <div class="container h-100 signupWrap">
       <div class="signupBox">
           <p class="signupTitle">회원가입</p>
           <ul>
-          <form  method = "post" action="/newuser"> 
               <li class="signupSubTitle">Name</li>
-              <li><input type="text" name = "name"class="signInput"></li>
+              <li><input type="text" id="name" class="signInput"></li>
               <li class="signupSubTitle">ID</li>
-              <li><input type="text" name = "id" class="signInput"></li>
+              <li><input type="text" id="id" class="signInput"></li>
               <li class="signupSubTitle">Password</li>
-              <li><input type="password" name = "password" class="signInput"></li>
+              <li><input type="password" id="password" class="signInput"></li>
+              <li class="signupSubTitle">Repeat Password</li>
+              <li><input type="password" class="signInput"></li>
               <li class="signupSubTitle">email</li>
-              <li><input type="text" class="signInput" name = "email"></li>
+              <li><input type="text" id="email" class="signInput"></li>
           </ul>
           <div class="buttonBox">
-                <a href="/"><button type="button" class="prevBtn">Home</button></a>
-              <button type="submit" class="nextBtn">Next</button>
+                <a href="/"><button type="button" class="homeBtn">Home</button></a>
+              <button type="button" class="nextBtn">Next</button>
           </div>
-          </form>
       </div>
       <div class="signupBox">
             <p class="tempTitle ">처음</p>
@@ -305,7 +305,7 @@
             <p class="tempTitle">마지막</p>
             <p class="signupTitle" style="text-align: center">회원가입이 완료되었습니다.</p>
             <div class="completeBox">
-                <a href="/"><button type="button" class="homeBtn">Home</button></a>    
+               <button type="button" class="submitBtn">Home</button>  
             </div>
         </div>
       </div>

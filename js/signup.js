@@ -3,6 +3,7 @@ $(document).ready(function(){
     initial()
     signupBtn()
     checkBox();
+    submitAll();
 })
 
 var stepCount=0;
@@ -39,6 +40,7 @@ var currentContent;
 function checkBox(){
     $(".checkSubmit").click(function(){
         var i=1;
+        totalCount=0;
         checkIndex=-1;
         checkAry=[];
         $(".categoryList").find("input[type='checkbox']:checked").each(function(){
@@ -55,11 +57,7 @@ function checkBox(){
             checkAry[checkIndex][i] = currentContent;
             i++;
         });
-        if(i==1){
-            
-        }
 
-        
     })
     $(".checkBackBtn").click(function(){
         $(".signupWrap").children().eq(stepCount).fadeOut("fast",function(){
@@ -95,8 +93,7 @@ function checkBox(){
                 }
                 if(checkAry.length==0){
                     if($(".signupWrap").children().eq(stepCount).children(".tempTitle").text()=="마지막"){
-                        $(".signupWrap").children().eq(stepCount).fadeIn("fast",function(){
-                        });
+                        $(".signupWrap").children().eq(stepCount).fadeIn("fast");
                     }      
                     continue;
                 }  
@@ -107,7 +104,7 @@ function checkBox(){
                         return;
                     } 
                     if($(".signupWrap").children().eq(stepCount).children(".tempTitle").text()=="마지막"){
-                        nextPage(m);
+                        $(".signupWrap").children().eq(stepCount).fadeIn("fast");
                         return;
                     }
                 }
@@ -124,13 +121,12 @@ function checkBox(){
     })
 }
 function prevPage(aryLength){
-    console.log(stepCount);
     $(this).removeClass("wide");
     $(".signupWrap").children().eq(stepCount).fadeIn("fast");
 }
-
+var totalCount=0;
 function nextPage(aryLength){
-    var totalCount=0;
+    
     var initialRow = '<th></th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th>';
     $(".signupWrap").children().eq(stepCount).find("tbody").html(initialRow);
     for(m=0;m<checkAry[aryLength].length-1;m++){
@@ -138,9 +134,32 @@ function nextPage(aryLength){
         $(".signupWrap").children().eq(stepCount).find("tbody").append(dynamicRow)
         totalCount++;
     }
-    console.log(stepCount);
     $(".signupWrap").children().eq(stepCount).fadeIn("fast",function(){
         $(this).addClass("wide");
         $(this).next().addClass("wide");
     });
+}
+
+function submitAll(){
+    $(".submitBtn").click(function(){
+        console.log("asdf");
+        $.ajax({
+            url: '/done',
+            type: 'POST',
+            data: {
+                name: $("#name").val(),
+                password: $("#password").val(),
+                id: $("#id").val(),
+                email: $("#email").val(),
+            },
+            
+            success: function(response) {
+                location.href='/'
+            },
+            error: function(request,error,status){
+                alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                return false;
+            }
+          });
+    })
 }
