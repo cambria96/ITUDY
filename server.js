@@ -1,14 +1,25 @@
+
+var express = require('express');
+var app = express();
+var ejs = require('ejs');
+var fs = require('fs');
+var path = require('path');
+var bodyParser = require('body-parser');
+var session = require('express-session');
 var mysql = require('mysql');
-var connection = mysql.createConnection({
-    
+var MySQLStore = require('express-mysql-session')(session);
+
+var options = {
     host: 'localhost',
     port: '3306',
     user: 'root',
     password: 'djvlslxl1',
-    database: 'userinfo',
-    debug:false,
-    insecureAuth:true
-});
+    database: 'userinfo'
+};
+
+var sessionStore = new MySQLStore(options);
+
+var connection = mysql.createConnection(options);
 
 connection.connect();
 var info;
@@ -29,13 +40,6 @@ var http = require('http');
 var server = http.createServer();
 
 
-var express = require('express');
-var app = express();
-var ejs = require('ejs');
-var fs = require('fs');
-var path = require('path');
-var bodyParser = require('body-parser');
-
 
 app.set('port',3000);
 app.set('view engine','html');
@@ -49,7 +53,7 @@ app.use('/img',express.static('img'));
 app.use('/css',express.static('css'));
 app.use('/contactform',express.static('contactform'));
 
-console.log("asdf");
+
 
 
 http.createServer(app).listen(app.get('port'),function(){
@@ -75,14 +79,19 @@ app.get('/signup',function(req,res){
 app.post('/newuser',function(req,res){
     user_id = req.body.id;
     user_password = req.body.password;
+    user_name = req.body.name;
+    console.log('req.body : ' + req.body);
+
     var user = {'id' : user_id,
-                'password' : user_password};
+                'password' : user_password,
+                'name' : user_name};
 
     console.log("new_id: ", user_id);
     console.log("new_password: ", user_password);
     
     connection.query('insert into userinfo set ?',user,function(err,result){
         if(!err){
+            console.log("사용자 등록 성공");
             console.log('The solution is: ',result);
             
         }
@@ -91,9 +100,23 @@ app.post('/newuser',function(req,res){
         }
     });
 
-})
+
+
+});
+
+app.use(session({
+    key : 'sid',
+    secret : 'secret',
+    resave : false,
+    saveUninitialized : false,
+    store : new MySQLStore(options)
+}));
+
+console.log("asdf");
 
 app.post('/success',function(req,res){
+    var session = req.session;
+    
     var nameAry = new Array();
     var check = 0;
     console.log("id: ", req.body.id);
@@ -105,12 +128,21 @@ app.post('/success',function(req,res){
         if(req.body.id == info[i].id){
              if(req.body.password == info[i].password){
                  check=1;
+                 break;
              }
         }
     }
     if(check){
         console.log('로그인 성공');
-        res.render('default.html',{name:nameAry});
+        console.log(i);
+        req.session.name = info[i].name;
+        // alert(req.session.name + "님 환영합니다.");
+        console.log("session name" + req.session.name);
+        req.session.save(()=>{
+            
+            res.render('after_login.ejs',{name:req.session.name});    
+        });
+        
     }
     else{
         console.log('로그인 실패');
@@ -118,9 +150,15 @@ app.post('/success',function(req,res){
     }
     
     
-})
+});
 
-
+app.get('/logout', function(req,res){
+    console.log("logout라우팅");
+    delete req.session.name;
+    req.session.save(()=>{
+        res.render('main.html');
+    })
+});
 
 app.post('/complete',function(req,res){
    
