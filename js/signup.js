@@ -2,14 +2,12 @@ $(document).ready(function(){
 
     initial()
     signupBtn()
-    scrollControl()
     checkBox();
 })
 
 var stepCount=0;
 function initial(){
     $(".signupWrap").children().eq(stepCount).addClass("active");
-    console.log( $(".signupWrap").children())
 }
 
 function signupBtn(){
@@ -31,17 +29,14 @@ function signupBtn(){
     });
 }
 
-function scrollControl(){
-    $(window).scroll(function() {
-        if ($(this).scrollTop() > 100) {
-          $('#header').css("position","fixed");
-        } else {
-          $('#header').css("position","unset");
-        }
-      });
-}
 
 function checkBox(){
+    $(".checkSubmit").click(function(){
+        $(".categoryList").find("input[type='checkbox']:checked").each(function(){
+            console.log($(this).parent().siblings(".colTitle").text());
+        });
+    })
+
     $("input[type='checkbox'][name='check1']").click(function(){
         if($(this).prop('checked')){
             $("input[type='checkbox'][name='check1']").prop('checked',false);
