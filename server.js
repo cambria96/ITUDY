@@ -13,7 +13,7 @@ var options = {
     host: 'localhost',
     port: '3306',
     user: 'root',
-    password: 'djvlslxl1',
+    password: 'root',
     database: 'userinfo'
 };
 
@@ -32,7 +32,7 @@ connection.query('SELECT * from userinfo',function(err,rows,fields){
         else{
             console.log('Error while performing Query.',err);
         }
-    });
+});
 
 
 var http = require('http');
@@ -160,26 +160,30 @@ app.get('/logout', function(req,res){
     })
 });
 
-app.post('/complete',function(req,res){
-   
-    var nameAry = new Array();
-    var sql = "INSERT INTO Persons (id, password) VALUES ('"+req.body.id+"','"+req.body.password+"')";
-    console.log(sql);
+app.post("/done",function(req,res){
     
-    connection.query(sql,function(err,rows,fields){
+
+    var user = req.body;
+    console.log(user);
+    
+    connection.query('insert into userinfo set ?',user,function(err,result){
         if(!err){
-            console.log("insert success");
+            console.log('The solution is: ',result);
+            
         }
         else{
-            console.log(err);
+            console.log('Error while performing Query.',err);
         }
-       
     });
-    
-    for(var i=0;i<info.length;i++){
-        nameAry.push(info[i].id);
-    }
-    res.render('success.html',{name:nameAry});
-
+    connection.query('SELECT * from userinfo',function(err,rows,fields){
+            if(!err){
+                console.log('The solution is: ',rows);
+                info = rows;
+            }
+            else{
+                console.log('Error while performing Query.',err);
+            }
+    });
+    res.render("main.html");
 })
 
