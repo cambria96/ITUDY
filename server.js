@@ -127,7 +127,7 @@ app.post("/done",function(req,res){
     
     connection.query('insert into userinfo set ?',user,function(err,result){
         if(!err){
-            console.log('The solution is: ',result);
+            console.log('회원가입 완료');
             
         }
         else{
