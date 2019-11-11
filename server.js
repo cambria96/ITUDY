@@ -168,6 +168,7 @@ app.post("/done",function(req,res){
             console.log("new user id : "+ req.body.id);
             console.log("new user password : "+req.body.password);
             console.log('The solution is: ',result);
+            console.log('회원가입 완료');
             
         }
         else{

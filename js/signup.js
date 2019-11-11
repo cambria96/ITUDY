@@ -4,22 +4,59 @@ $(document).ready(function(){
     signupBtn()
     checkBox();
     submitAll();
+    
 })
 
 var stepCount=0;
 function initial(){
     $(".signupWrap").children().eq(stepCount).addClass("active");
+    
+    $(function(){
+        var timeSet=0;
+        $(".signupBox").first().children(".signupTitle").addClass("active");
+        $(".signupBox").first().find("li").each(function(index,value){
+            
+            setTimeout(function(){
+                var item = $(".signupBox").first().find("li").eq(index);  
+                item.addClass("active");
+                item.children().addClass("active");
+            },timeSet);
+            timeSet+=30;
+        });
+    })
 }
 
 function signupBtn(){
     $(".nextBtn").click(function(){
         $(".signupWrap").children().eq(stepCount).fadeOut("fast",function(){
             stepCount++;
+            if(stepCount==1){
+                $(".signupWrap").children().eq(stepCount).fadeIn("fast",function(){
+                
+                    $(this).addClass("wide");
+                    $(this).next().addClass("wide");
+                    $(this).children(".signupTitle").addClass("active");
+                    var timeSet=0;
+                    $(this).find("ul").each(function(index){
+                        setTimeout(function(){
+                            var item = $(".signupBox").find(".colBox").eq(index);  
+                            item.addClass("active");
+                            
+                        },timeSet);
+                        timeSet+=100;
+
+
+                    });
+                });
+            }
             $(".signupWrap").children().eq(stepCount).fadeIn("fast",function(){
+                
                 $(this).addClass("wide");
                 $(this).next().addClass("wide");
+                $(this).children(".signupTitle").addClass("active");
             });
         });
+        
     });
     $(".prevBtn").click(function(){
         $(".signupWrap").children().eq(stepCount).fadeOut("fast",function(){
@@ -32,7 +69,6 @@ function signupBtn(){
 
 var checkAry =[];
 var checkIndex;
-var checkTitle;
 var currentTitle;
 var currentContent;
 
@@ -40,6 +76,7 @@ var currentContent;
 function checkBox(){
     $(".checkSubmit").click(function(){
         var i=1;
+        var checkTitle;
         totalCount=0;
         checkIndex=-1;
         checkAry=[];
@@ -114,12 +151,22 @@ function checkBox(){
         });
     })
 
+    $(document).on("click","tr input[type='checkbox'][name='check1']",function(){
+        if($(this).prop('checked')){
+            console.log();
+            $(this).parents('tr').find("input[type='checkbox'][name='check1']").prop('checked',false);
+            $(this).prop('checked',true);
+        }
+
+    })
     $("input[type='checkbox'][name='check1']").click(function(){
+        console.log("asdf");
         if($(this).prop('checked')){
             $("input[type='checkbox'][name='check1']").prop('checked',false);
             $(this).prop('checked',true);
         }
     })
+
 }
 function prevPage(aryLength){
     $(this).removeClass("wide");
@@ -131,30 +178,40 @@ function nextPage(aryLength){
     var initialRow = '<th></th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th>';
     $(".signupWrap").children().eq(stepCount).find("tbody").html(initialRow);
     for(m=0;m<checkAry[aryLength].length-1;m++){
-        var dynamicRow = '<tr><td>'+checkAry[aryLength][m+1]+'</td><td><input type="checkbox" id="box-'+totalCount+0+'" name="check1"><label for="box-'+totalCount+0+'"></label></td><td><input type="checkbox" id="box-'+totalCount+1+'" name="check1"><label for="box-'+totalCount+1+'"></label></td><td><input type="checkbox" id="box-'+totalCount+2+'" name="check1"><label for="box-'+totalCount+2+'"></label></td><td><input type="checkbox" id="box-'+totalCount+3+'" name="check1"><label for="box-'+totalCount+3+'"></label></td><td><input type="checkbox" id="box-'+totalCount+4+'" name="check1"><label for="box-'+totalCount+4+'"></label></td></tr>'
+        var dynamicRow = '<tr><td>'+checkAry[aryLength][m+1]+'</td><td><input type="checkbox" id="box-'+totalCount+0+'" name="check1" value="1"><label for="box-'+totalCount+0+'"></label></td><td><input type="checkbox" id="box-'+totalCount+1+'" name="check1" value="2"><label for="box-'+totalCount+1+'"></label></td><td><input type="checkbox" id="box-'+totalCount+2+'" name="check1"  value="3"><label for="box-'+totalCount+2+'"></label></td><td><input type="checkbox" id="box-'+totalCount+3+'" name="check1"  value="4"><label for="box-'+totalCount+3+'"></label></td><td><input type="checkbox" id="box-'+totalCount+4+'" name="check1" value="5"><label for="box-'+totalCount+4+'"></label></td></tr>'
         $(".signupWrap").children().eq(stepCount).find("tbody").append(dynamicRow)
         totalCount++;
     }
     $(".signupWrap").children().eq(stepCount).fadeIn("fast",function(){
         $(this).addClass("wide");
         $(this).next().addClass("wide");
+        $(this).children(".signupTitle").addClass("active");
     });
 }
 
+// 클릭한거 전부 디비로 보내기
 function submitAll(){
     $(".submitBtn").click(function(){
-        console.log("asdf");
-
+        var userData={};
+        var userPoint=[];
+        var i=0;
+        $("tbody").find("input[type='checkbox'][name='check1']:checked").each(function(){
+            userPoint.push($(this).val());
+        });
+        userData['name']= $("#name").val();
+        userData['password']= $("#password").val();
+        userData['id']= $("#id").val();
+        userData['email']= $("#email").val();
+        for(m=0;m<checkAry.length;m++){
+            for(n=1;n<checkAry[m].length;n++){
+                userData[checkAry[m][n]] = userPoint[i];
+                i++;
+            }
+        }
         $.ajax({
             url: '/done',
             type: 'POST',
-            data: {
-                name: $("#name").val(),
-                password: $("#password").val(),
-                id: $("#id").val(),
-                email: $("#email").val(),
-            },
-            
+            data: userData,
             success: function(response) {
                 location.href='/'
             },
@@ -163,6 +220,6 @@ function submitAll(){
                 alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
                 return false;
             }
-
-          });    })
+        });
+    })
 }
