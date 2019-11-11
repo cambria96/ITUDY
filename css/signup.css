@@ -56,7 +56,15 @@ p{
     font-size:2em;
     font-family: 'Spoqa Han Sans';
     font-weight: 600;
+    opacity: 0;
+    transition: all ease 0.5s;
+    transform: translateX(-10%);
 
+}
+.signupTitle.active{
+    opacity: 1;
+    transform: translateX(0%);
+    
 }
 
 #intro2{
@@ -64,8 +72,16 @@ p{
     background-size: cover;
 }
 
+.signFisrt ul li{
+    opacity:0;
+    transition: opacity ease 0.3s;
+}
+.signFisrt ul li.active{
+    opacity:1;
+}
+
 .signInput{
-    width:100%;
+    width:0%;
     background: transparent;
     border-color: transparent;
     border-bottom: 1px solid #fff;
@@ -73,6 +89,10 @@ p{
     outline: none;
     margin-bottom: 15px;
     padding-bottom: 10px;
+    transition: width ease 0.5s;
+}
+.signInput.active{
+    width:100%;
 }
 .buttonBox{
     display: flex;
@@ -111,7 +131,11 @@ p{
     justify-content: space-between;
 }
 .colBox{
-
+    opacity:0;
+    transition: opacity ease 0.5s;
+}
+.colBox.active{
+    opacity:1;
 }
 .colTitle{
     font-size: 2em;

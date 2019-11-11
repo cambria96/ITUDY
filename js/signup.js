@@ -4,28 +4,59 @@ $(document).ready(function(){
     signupBtn()
     checkBox();
     submitAll();
+    
 })
 
 var stepCount=0;
-var colBox=[];
 function initial(){
     $(".signupWrap").children().eq(stepCount).addClass("active");
-    $(".colBox").find(".colContent").each(function(){
-        colBox.push($(this).children().first().text());
-
+    
+    $(function(){
+        var timeSet=0;
+        $(".signupBox").first().children(".signupTitle").addClass("active");
+        $(".signupBox").first().find("li").each(function(index,value){
+            
+            setTimeout(function(){
+                var item = $(".signupBox").first().find("li").eq(index);  
+                item.addClass("active");
+                item.children().addClass("active");
+            },timeSet);
+            timeSet+=30;
+        });
     })
-
 }
 
 function signupBtn(){
     $(".nextBtn").click(function(){
         $(".signupWrap").children().eq(stepCount).fadeOut("fast",function(){
             stepCount++;
+            if(stepCount==1){
+                $(".signupWrap").children().eq(stepCount).fadeIn("fast",function(){
+                
+                    $(this).addClass("wide");
+                    $(this).next().addClass("wide");
+                    $(this).children(".signupTitle").addClass("active");
+                    var timeSet=0;
+                    $(this).find("ul").each(function(index){
+                        setTimeout(function(){
+                            var item = $(".signupBox").find(".colBox").eq(index);  
+                            item.addClass("active");
+                            
+                        },timeSet);
+                        timeSet+=100;
+
+
+                    });
+                });
+            }
             $(".signupWrap").children().eq(stepCount).fadeIn("fast",function(){
+                
                 $(this).addClass("wide");
                 $(this).next().addClass("wide");
+                $(this).children(".signupTitle").addClass("active");
             });
         });
+        
     });
     $(".prevBtn").click(function(){
         $(".signupWrap").children().eq(stepCount).fadeOut("fast",function(){
@@ -153,6 +184,7 @@ function nextPage(aryLength){
     $(".signupWrap").children().eq(stepCount).fadeIn("fast",function(){
         $(this).addClass("wide");
         $(this).next().addClass("wide");
+        $(this).children(".signupTitle").addClass("active");
     });
 }
 
