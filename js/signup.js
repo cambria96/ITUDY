@@ -4,6 +4,7 @@ $(document).ready(function(){
     signupBtn()
     checkBox();
     submitAll();
+    changeDection();
     
 })
 
@@ -15,48 +16,94 @@ function initial(){
         var timeSet=0;
         $(".signupBox").first().children(".signupTitle").addClass("active");
         $(".signupBox").first().find("li").each(function(index,value){
-            
+            var item= $(this);
             setTimeout(function(){
-                var item = $(".signupBox").first().find("li").eq(index);  
                 item.addClass("active");
                 item.children().addClass("active");
             },timeSet);
-            timeSet+=30;
+            timeSet+=50;
         });
     })
 }
-
+function changeDection(){
+    $("#name").on("keyup paste", function() {
+        $("#name").parent().next().removeClass("wrong");
+    });
+    $("#id").on("keyup paste", function() {
+        $("#id").parent().next().removeClass("wrong");
+    });
+    $("#password").on("keyup paste", function() {
+        $("#password").parent().next().removeClass("wrong");
+    });
+    $("#repeatPassword").on("keyup paste", function() {
+        if($("#password").val()==$("#repeatPassword").val()){
+            $("#repeatPassword").parent().next().addClass("right").text("비밀번호가 일치합니다.");
+        }
+        else{
+            $("#repeatPassword").parent().next().removeClass("right")
+            $("#repeatPassword").parent().next().addClass("wrong").text("비밀번호가 일치하지 않습니다.");
+        }
+    });
+    $("#email").on("keyup paste", function() {
+        $("#email").parent().next().removeClass("wrong");
+    });
+     
+}
 function signupBtn(){
+
     $(".nextBtn").click(function(){
-        $(".signupWrap").children().eq(stepCount).fadeOut("fast",function(){
-            stepCount++;
-            if(stepCount==1){
+        var validation =1;
+        if(!$("#name").val()){
+            $("#name").parent().next().addClass("wrong");
+            validation =0;
+        }
+        if(!$("#id").val()){
+            $("#id").parent().next().addClass("wrong");
+            validation =0;
+        }
+        if(!$("#password").val()){
+            $("#password").parent().next().addClass("wrong");
+            validation =0;
+        }
+
+        if($("#password").val()!=$("#repeatPassword").val()){
+            $("#repeatPassword").parent().next().addClass("wrong");
+            validation =0;
+        }
+        if(!$("#email").val()){
+            $("#email").parent().next().addClass("wrong");
+            validation =0;
+        }
+        // 다 입력시 다음
+        if(validation){
+            $(".signupWrap").children().eq(stepCount).fadeOut("fast",function(){
+                stepCount++;
+                if(stepCount==1){
+                    $(".signupWrap").children().eq(stepCount).fadeIn("fast",function(){
+                    
+                        $(this).addClass("wide");
+                        $(this).next().addClass("wide");
+                        $(this).children(".signupTitle").addClass("active");
+                        var timeSet=0;
+                        var timeliSet=0;
+                        $(this).find("ul").each(function(index){
+                            var item=$(this);
+                            setTimeout(function(){
+                                item.addClass("active");
+                                
+                            },timeSet);
+                            timeSet+=100;
+                        });
+                    });
+                }
                 $(".signupWrap").children().eq(stepCount).fadeIn("fast",function(){
-                
+                    
                     $(this).addClass("wide");
                     $(this).next().addClass("wide");
                     $(this).children(".signupTitle").addClass("active");
-                    var timeSet=0;
-                    $(this).find("ul").each(function(index){
-                        setTimeout(function(){
-                            var item = $(".signupBox").find(".colBox").eq(index);  
-                            item.addClass("active");
-                            
-                        },timeSet);
-                        timeSet+=100;
-
-
-                    });
                 });
-            }
-            $(".signupWrap").children().eq(stepCount).fadeIn("fast",function(){
-                
-                $(this).addClass("wide");
-                $(this).next().addClass("wide");
-                $(this).children(".signupTitle").addClass("active");
             });
-        });
-        
+        }
     });
     $(".prevBtn").click(function(){
         $(".signupWrap").children().eq(stepCount).fadeOut("fast",function(){
@@ -185,7 +232,6 @@ function nextPage(aryLength){
     $(".signupWrap").children().eq(stepCount).fadeIn("fast",function(){
         $(this).addClass("wide");
         $(this).next().addClass("wide");
-        $(this).children(".signupTitle").addClass("active");
     });
 }
 
