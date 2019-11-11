@@ -45,7 +45,8 @@ function checkBox(){
         checkAry=[];
         $(".categoryList").find("input[type='checkbox']:checked").each(function(){
             currentTitle=$(this).parent().siblings(".colTitle").text();
-            currentContent=$(this).siblings().first().text();       
+            currentContent=$(this).siblings().first().text();      
+            // console.log("current content"+currentContent); 
             if(checkTitle != currentTitle ){
                 i=0;
                 checkIndex++;
@@ -126,7 +127,7 @@ function prevPage(aryLength){
 }
 var totalCount=0;
 function nextPage(aryLength){
-    
+    //동적할당 체크된것만 보여주기 
     var initialRow = '<th></th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th>';
     $(".signupWrap").children().eq(stepCount).find("tbody").html(initialRow);
     for(m=0;m<checkAry[aryLength].length-1;m++){
@@ -143,6 +144,7 @@ function nextPage(aryLength){
 function submitAll(){
     $(".submitBtn").click(function(){
         console.log("asdf");
+
         $.ajax({
             url: '/done',
             type: 'POST',
@@ -156,10 +158,11 @@ function submitAll(){
             success: function(response) {
                 location.href='/'
             },
+
             error: function(request,error,status){
                 alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
                 return false;
             }
-          });
-    })
+
+          });    })
 }
