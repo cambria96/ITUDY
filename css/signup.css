@@ -51,6 +51,11 @@ p{
     font-size: 1.5em;
     font-family: 'Spoqa Han Sans';
 }
+.signupDetailTitle{
+    font-size:2em;
+    font-family: 'Spoqa Han Sans';
+    font-weight: 600;
+}
 
 .signupTitle{
     font-size:2em;
@@ -65,6 +70,11 @@ p{
     opacity: 1;
     transform: translateX(0%);
     
+}
+.signupTitleFin{
+    font-size:2em;
+    font-family: 'Spoqa Han Sans';
+    font-weight: 600;
 }
 
 #intro2{
@@ -87,12 +97,23 @@ p{
     border-bottom: 1px solid #fff;
     color: #fff;
     outline: none;
-    margin-bottom: 15px;
+    margin-bottom:15px;
     padding-bottom: 10px;
-    transition: width ease 0.5s;
+    transition: width ease 0.3s;
 }
 .signInput.active{
     width:100%;
+}
+.validText{
+    display:none;
+    color: #ff5d5d;
+    margin-bottom: 15px;
+}
+.validText.right{
+    color: #6bf9cd;
+}
+.validText.wrong{
+    display:block;
 }
 .buttonBox{
     display: flex;
@@ -106,6 +127,12 @@ p{
     border-color: transparent;
     border-bottom: 1px solid #fff;
     background: url("../img/home.png") center left no-repeat;
+    transition: all ease 0.3s;
+    
+}
+.homeBtn:hover,.submitBtn:hover{
+    background-position-x: 0%;
+    
 }
 .prevBtn, .checkBackBtn{
     padding: 15px 15px 15px 35px;
@@ -115,6 +142,11 @@ p{
     border-color: transparent;
     border-bottom: 1px solid #fff;
     background: url("../img/leftBtn.png") center left no-repeat;
+    background-position-x: 10%;
+    transition: all ease 0.3s;
+}
+.prevBtn:hover, .checkBackBtn:hover{
+    background-position-x: 0%;
 }
 .nextBtn, .checkBtn,.checkSubmit {
     padding: 15px 35px 15px 15px;
@@ -124,6 +156,11 @@ p{
     border-color: transparent;
     border-bottom: 1px solid #fff;
     background: url("../img/rightBtn.png") center right no-repeat;
+    background-position-x: 90%;
+    transition: all ease 0.3s;
+}
+.nextBtn:hover, .checkBtn:hover,.checkSubmit:hover {
+    background-position-x: 100%;
 }
 
 .categoryList{
@@ -147,6 +184,7 @@ p{
     align-items: center;
     font-size: 1.5em;
 }
+
 
 input[type="checkbox"] {
     display: none;
@@ -201,9 +239,9 @@ label {
 .qustionBox{
     padding: 10px 30px;
     margin-bottom: 15px;
-
     border: 1px solid;
 }
+
 tbody{
   font-size: 1.3em;  
 }
