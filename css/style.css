@@ -237,7 +237,7 @@ h6 {
 #intro .intro-info h2 {
   color: #fff;
   margin-bottom: 40px;
-  font-size: 48px;
+  font-size: 4em;
   font-weight: 700;
 }
 
@@ -267,40 +267,7 @@ h6 {
 }
 
 
-//로그인
-.login{
-    background-color: aliceblue;
-    padding : 25px;
-    
-}
 
-.form-signin {
-  max-width: 380px;
-  padding: 15px 35px 45px;
-  margin: 0 auto;
-  background-color: #fff;
-  border: 1px solid rgba(0,0,0,0.1);  
-}
-
-.form-signin-heading{
-    text-align: : right;
-    font-size: 36px;
-    color : black;
-    
-}
-	
-
-.form-control {
-  position: relative;
-  font-size: 16px;
-  height: auto;
-  padding: 10px;
-    @include box-sizing(border-box);
-
-    &:focus {
-      z-index: 2;
-    }
-}
 /*--------------------------------------------------------------
 # Navigation Menu
 --------------------------------------------------------------*/
@@ -1518,9 +1485,7 @@ text-decoration: none;
 }
 
 @media (min-width: 992px) {
-  #intro .intro-info {
-    padding-top: 80px;
-  }
+
 
   #testimonials .testimonial-item p {
     width: 80%;
