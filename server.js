@@ -114,6 +114,7 @@ app.use(session({
 console.log("asdf");
 
 app.post('/success',function(req,res){
+    
     var session = req.session;
     
     var nameAry = new Array();
@@ -145,10 +146,10 @@ app.post('/success',function(req,res){
     else{
         console.log('로그인 실패');
         res.render('main.html');
-    }
-    
-    
+    }    
 });
+
+
 
 app.get('/logout', function(req,res){
     console.log("logout라우팅");
