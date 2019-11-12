@@ -1,0 +1,30 @@
+.headerContainer{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: 30px;
+}
+
+.coverBox{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, black -50%, transparent);
+}
+
+
+.bannerTitle{
+    position: absolute;
+    color: #fff;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 4em;
+    font-family: "sans-serif";
+}
+.centerBar{
+
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}

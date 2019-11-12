@@ -26,6 +26,7 @@
 
   <!-- Main Stylesheet File -->
   <link href="css/style.css" rel="stylesheet">
+  <link href="css/header.css" rel="stylesheet">
   <link href="../css/custom.css" rel="stylesheet">
 
 </head>
@@ -36,43 +37,51 @@
   <!--==========================
   Header
   ============================-->
-  <div class="bannerBox"> </div>
+  <div class="bannerBox"> 
+    <div class="coverBox">
+      <p class="bannerTitle">클래스/스터디 찾기</p>
+    </div>
+  </div>
   <header id="header">
     
-    <div class="container">
+    <div class="headerContainer">
 
-      <div class="logo float-left">
+      <div class="logo ">
         <!-- Uncomment below if you prefer to use an image logo -->
         <h1 class="text-light"><a href="#intro" class="scrollto"><span>ITUDY</span></a></h1>
         <!-- <a href="#header" class="scrollto"><img src="img/logo.png" alt="" class="img-fluid"></a> -->
       </div>
+      <nav class="main-nav d-none d-lg-block centerBar" >
+          <ul>
+            <li><a href="#about">About Us</a></li>
+            <li class="drop-down"><a href="">Drop Down</a>
+              <ul>
+                <li><a href="#">Drop Down 1</a></li>
+                <li class="drop-down"><a href="#">Drop Down 2</a>
+                  <ul>
+                    <li><a href="#">Deep Drop Down 1</a></li>
+                    <li><a href="#">Deep Drop Down 2</a></li>
+                    <li><a href="#">Deep Drop Down 3</a></li>
+                    <li><a href="#">Deep Drop Down 4</a></li>
+                    <li><a href="#">Deep Drop Down 5</a></li>
+                  </ul>
+                </li>
+                <li><a href="#">Drop Down 3</a></li>
+                <li><a href="#">Drop Down 4</a></li>
+                <li><a href="#">Drop Down 5</a></li>
+              </ul>
+            </li>
+            <li><a href="#footer">Contact Us</a></li>
+          </ul>
+        </nav><!-- .main-nav -->
 
-      <nav class="main-nav float-right d-none d-lg-block" >
+      <nav class="main-nav d-none d-lg-block" >
         <ul>
           
-          <li class="active"><a href="#intro">Home</a></li>
-          <li><div><a href = #services><%= name %> 님 환영합니다.</a></div></li>
-          <li><div><a href="#about">About Us</a></div></li>
-          <li><div><a href="#portfolio">CREDIT</a></div></li>
-          <li><div><a href='/logout'>Log Out</a></div></li>
-          <li class="drop-down"><a href="">Drop Down</a>
-            <ul>
-              <li><a href="#">Drop Down 1</a></li>
-              <li class="drop-down"><a href="#">Drop Down 2</a>
-                <ul>
-                  <li><a href="#">Deep Drop Down 1</a></li>
-                  <li><a href="#">Deep Drop Down 2</a></li>
-                  <li><a href="#">Deep Drop Down 3</a></li>
-                  <li><a href="#">Deep Drop Down 4</a></li>
-                  <li><a href="#">Deep Drop Down 5</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Drop Down 3</a></li>
-              <li><a href="#">Drop Down 4</a></li>
-              <li><a href="#">Drop Down 5</a></li>
-            </ul>
-          </li>
-          <li><a href="#footer">Contact Us</a></li>
+          <li><a href = #services><span class="accoutName"><%= name %></span> 님 환영합니다.</a></li>
+          <li><a href="#portfolio">CREDIT</a></li>
+          <li><a href='/logout'>Log Out</a></li>
+          
         </ul>
       </nav><!-- .main-nav -->
       
@@ -121,6 +130,8 @@
 
   <!-- Template Main Javascript File -->
   <script src="js/main.js"></script>
+  <script src="js/header.js"></script>
+
 
 </body>
 </html>
