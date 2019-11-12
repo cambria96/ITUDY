@@ -151,7 +151,8 @@ h6 {
 --------------------------------------------------------------*/
 
 #header {
-  background: #cac8c5;
+
+  background: rgba(127, 137, 161, 0);
   height: 110px;
   padding: 20px 0;
   left: 0;
@@ -161,6 +162,11 @@ h6 {
   z-index: 997;
   display: flex;
   align-items: center;
+}
+#header:hover{
+  background:  rgba(127, 137, 161, 1);
+  color : white;
+  
 }
 
 #header.header-scrolled,
