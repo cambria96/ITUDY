@@ -78,6 +78,9 @@ p{
 }
 
 #intro2{
+    width: 100%;
+    height: 100vh;
+    position: relative;
     background: #f5f8fd url("../img/signup-bg.png") center top no-repeat;
     background-size: cover;
 }

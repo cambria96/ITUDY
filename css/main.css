@@ -1,14 +1,12 @@
 
 .login{
+    width: 450px;
     background-color: rgba(0, 0, 0, 0);
-    padding : 25px;
-    align-items: center;
 
-    display: flex;
 }
 
 .login_btn{
-    background-color : rgb(58, 209, 255);
+    background: transparent;
     color : white;
     font-family: Georgia, "굴림", serif; 
     border-radius: 4px;
@@ -20,29 +18,47 @@
   max-width: 380px;
   padding: 15px 35px 45px;
   margin: 0 auto;
-  background-color: #fff;
-  border: 1px solid rgba(0,0,0,0.1);  
-  vertical-align: center;
+  background-color: #0000007d;
+  border: 3px solid #ababab;  
+  border-radius: 15px;
+
+  color:#fff;
 }
 
 .form-signin-heading{
-    text-align: : right;
-    font-size: 36px;
-    color : black;
+    font-size: 3em;
     
 }
-	
+.mainWrapper{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+
+}
+.loginBtn{
+  background: #1bb1dc;
+  border: none;
+  padding: 10px;
+}
+.loginBtn:hover{
+  background: #4bccf0;
+}
+.loginBtn:active{
+  background: #4bccf0 !important;
+  border:none !important;
+}
+
 
 .form-control {
   position: relative;
   font-size: 16px;
   height: auto;
   padding: 10px;
-    @include box-sizing(border-box);
-
-    &:focus {
-      z-index: 2;
-    }
+  transition: all ease 0.5s;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #fff;
+  color: #fff;
 }
 .happy {
     display: -ms-flexbox !important;
@@ -50,3 +66,16 @@
     align-items : center!important;
     justify-content: space-evenly!important;
   }
+.manageBox{
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 15px;
+
+}
+
+@media (max-width: 768px){
+
+    .login{
+      width: 350px;
+  }
+}
