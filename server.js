@@ -187,3 +187,7 @@ app.post("/done",function(req,res){
     });
     res.render("main.html");
 })
+
+app.get("/class",function(req,res){
+    res.render('default.html');
+})
