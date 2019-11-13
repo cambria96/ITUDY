@@ -1,7 +1,7 @@
 
 .login{
-    width: 450px;
-    background-color: rgba(0, 0, 0, 0);
+  width: 300px;
+  background-color: rgba(0, 0, 0, 0);
 
 }
 
@@ -12,6 +12,8 @@
     border-radius: 4px;
     border : 0;
     outline : 0;
+    font-size: 0.8em;
+
 }
 
 .form-signin {
@@ -26,19 +28,23 @@
 }
 
 .form-signin-heading{
-    font-size: 3em;
+    font-size: 2em;
     
 }
 .mainWrapper{
-  width: 100%;
+  width: 80%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+
 
 }
 .loginBtn{
   background: #1bb1dc;
   border: none;
   padding: 10px;
+  font-size: 1em;
+
 }
 .loginBtn:hover{
   background: #4bccf0;
@@ -51,7 +57,7 @@
 
 .form-control {
   position: relative;
-  font-size: 16px;
+  font-size: 0.8em;
   height: auto;
   padding: 10px;
   transition: all ease 0.5s;

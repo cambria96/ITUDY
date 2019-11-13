@@ -29,13 +29,13 @@ p{
 
 .signupBox{
     display: none;
-    width:500px;
+    width:400px;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
     background: #0000007d;
-    padding: 50px;
+    padding: 20px 40px 40px;
     color: #fff;
     border-radius: 15px;
     
@@ -44,21 +44,21 @@ p{
     display:block;
 }
 .signupBox.wide{
-    width: 80%;
+    width: 60%;
     transition: width ease 0.5s;
 }
 .signupSubTitle{
-    font-size: 1.5em;
+    font-size: 1em;
     font-family: 'Spoqa Han Sans';
 }
 .signupDetailTitle{
-    font-size:2em;
+    font-size:1.2em;
     font-family: 'Spoqa Han Sans';
     font-weight: 600;
 }
 
 .signupTitle{
-    font-size:2em;
+    font-size:1.2em;
     font-family: 'Spoqa Han Sans';
     font-weight: 600;
     opacity: 0;
@@ -72,7 +72,7 @@ p{
     
 }
 .signupTitleFin{
-    font-size:2em;
+    font-size:1.2em;
     font-family: 'Spoqa Han Sans';
     font-weight: 600;
 }
@@ -95,12 +95,13 @@ p{
 
 .signInput{
     width:0%;
+    font-size: 0.9em;
     background: transparent;
     border-color: transparent;
     border-bottom: 1px solid #fff;
     color: #fff;
     outline: none;
-    margin-bottom:15px;
+    margin-bottom:5px;
     padding-bottom: 10px;
     transition: width ease 0.3s;
 }
@@ -110,7 +111,8 @@ p{
 .validText{
     display:none;
     color: #ff5d5d;
-    margin-bottom: 15px;
+    font-size: 0.7em;
+
 }
 .validText.right{
     color: #6bf9cd;
@@ -123,9 +125,9 @@ p{
     justify-content: space-between;
 }
 .homeBtn,.submitBtn{
-    padding: 15px 15px 15px 35px;
+    padding: 10px 15px 10px 35px;
     color: #fff;
-    font-size: 1.5em;
+    font-size: 1em;
     outline: none !important;
     border-color: transparent;
     border-bottom: 1px solid #fff;
@@ -138,9 +140,9 @@ p{
     
 }
 .prevBtn, .checkBackBtn{
-    padding: 15px 15px 15px 35px;
+    padding: 10px 15px 10px 35px;
     color: #fff;
-    font-size: 1.5em;
+    font-size: 1em;
     outline: none !important;
     border-color: transparent;
     border-bottom: 1px solid #fff;
@@ -152,9 +154,9 @@ p{
     background-position-x: 0%;
 }
 .nextBtn, .checkBtn,.checkSubmit {
-    padding: 15px 35px 15px 15px;
+    padding: 10px 35px 10px 15px;
     color: #fff;
-    font-size: 1.5em;
+    font-size: 1em;
     outline: none !important;
     border-color: transparent;
     border-bottom: 1px solid #fff;
@@ -178,14 +180,14 @@ p{
     opacity:1;
 }
 .colTitle{
-    font-size: 2em;
+    font-size: 1.2em;
     font-weight: bold;
     margin-bottom: 15px;
 }
 .colContent{
     display: flex;
     align-items: center;
-    font-size: 1.5em;
+    font-size: 1em;
 }
 
 
@@ -246,7 +248,7 @@ label {
 }
 
 tbody{
-  font-size: 1.3em;  
+  font-size: 1em;  
 }
 td{
     padding: 10px 0px;
@@ -255,7 +257,7 @@ th{
     width:16%;
 }
 .qustionBox p{
-    font-size: 1.5em;
+    font-size: 1em;
 }
 .qustiontable{
     width:100%;
@@ -281,8 +283,8 @@ th{
 .qustiontable tr td input[type="checkbox"] + label:before {
   content: '';
   display: block;
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
   transform: translateX(-2px);
   border-radius: 15px;
   border: 1px solid #fff;
@@ -312,6 +314,6 @@ th{
 
     .colContent{
       
-        font-size: 1.2em;
+        font-size: 0.8em;
     }
 }

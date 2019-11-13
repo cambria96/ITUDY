@@ -238,8 +238,11 @@ h6 {
 #intro .intro-info h2 {
   color: #fff;
   margin-bottom: 40px;
-  font-size: 4em;
+  font-size: 3em;
   font-weight: 700;
+}
+#intro .intro-info h2:last-child {
+  margin-bottom: 0px;
 }
 
 #intro .intro-info h2 span {
@@ -299,7 +302,7 @@ h6 {
   color: #ffffff;
   padding: 10px 15px;
   transition: 0.3s;
-  font-size: 1.3em;
+  font-size: 1em;
   font-family: "Open Sans", sans-serif;
   text-transform: uppercase;
   font-weight: 600;
