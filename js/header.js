@@ -5,4 +5,8 @@ $(document).ready(function(){
     },function(){
         $(".main-nav a").removeClass("active");
     })
+    $(".logo").click(function(){
+        location.href='/home';
+    })
+    
 })
