@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:900i');
+@import url('//cdn.rawgit.com/young-ha/webfont-archive/master/css/Godo.css');
 
 * {
   box-sizing: border-box;
@@ -121,5 +122,5 @@ path.two {
 }
 #classsub{
     font-size : 30px;
-    font-family: 'DX방탄고딕';
+    font-family: 'Godo';
 }

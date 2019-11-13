@@ -1,0 +1,32 @@
+@import url('//cdn.rawgit.com/young-ha/webfont-archive/master/css/Godo.css');
+.mypageWrapper{
+    width:100%;
+    padding: 50px 0px;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Godo';
+}
+.sideBar{
+    border: 3px solid #dfaa32;
+    border-radius: 15px;
+    width: 20%;
+    padding: 25px;
+
+}
+.contextBox{
+    width: 75%;
+    border: 3px solid #dfaa32;
+    border-radius: 15px;
+}
+
+.sideBar p{
+    font-size: 1.2em;
+    border-bottom: 1px solid #dfaa32;
+}
+.sideBar ul{
+
+}
+.sideContent{
+    margin-bottom: 10px;
+
+}

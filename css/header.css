@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/earlyaccess/hanna.css);
+@import url('//cdn.rawgit.com/young-ha/webfont-archive/master/css/Godo.css');
 .headerContainer{
     display: flex;
     justify-content: space-between;
@@ -21,7 +21,7 @@
     left: 50%;
     transform: translateX(-50%);
     font-size: 3em;
-    font-family: 'Hanna', serif;
+    font-family: 'Godo', serif;
 }
 .centerBar{
 
@@ -45,6 +45,8 @@
     height: 40vh;
     background: url("../img/banner.jpg") center no-repeat;
     background-size : 100%;
+    box-shadow: 0px 5px 15px 0px;
+
   }
 .logo{
     cursor: pointer;
