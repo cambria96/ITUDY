@@ -23,7 +23,7 @@ a:focus {
 
 p {
   padding: 0;
-  margin: 0 0 30px 0;
+  margin: 0 0 15px 0;
 }
 ul {
   list-style: none;
@@ -168,6 +168,8 @@ h6 {
 }
 #header:hover {
   background:  #fff;
+  opacity: 0.9;
+
   
 }
 #header:hover  .main-nav li div a {
@@ -214,14 +216,12 @@ h6 {
 .main-pages {
   margin-top: 60px;
 }
-
-.bannerBox{
-  position: relative;
-  width: 100%;
-  height: 40vh;
-  background: url("../img/banner1-bg.png") center no-repeat;
-  background-size : 100%;
+#mainContainer{
+  width:90%;
+  margin: auto;
+  background:#fff;
 }
+
 /*--------------------------------------------------------------
 # Intro Section
 --------------------------------------------------------------*/
@@ -312,7 +312,6 @@ h6 {
 .main-nav a :hover,
 .main-nav .active > a,
 .main-nav li:hover > div > a {
-color: #1bb1dc;
 text-decoration: none;
 }
 

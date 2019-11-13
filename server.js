@@ -65,9 +65,6 @@ http.createServer(app).listen(app.get('port'),function(){
 app.get('/',function(req,res){
     res.render("main.html");
 })
-app.get('/home',function(req,res){
-    res.render("default.html");
-})
 app.get('/signup',function(req,res){
     res.render("signup.html");
 })
@@ -111,18 +108,13 @@ app.use(session({
     store : new MySQLStore(options)
 }));
 
-console.log("asdf");
 
 app.post('/success',function(req,res){
     
     var session = req.session;
     
     var nameAry = new Array();
-    var check = 0;
-    console.log("id: ", req.body.id);
-    console.log("password: ", req.body.password);
-    
-    
+    var check = 0;    
     for(var i=0;i<info.length;i++){
         nameAry.push(info[i].id);
         if(req.body.id == info[i].id){
@@ -133,13 +125,13 @@ app.post('/success',function(req,res){
         }
     }
     if(check){
-        console.log('로그인 성공');
-        console.log(i);
         req.session.name = info[i].name;
+        req.session.credit = info[i].credit;
         // alert(req.session.name + "님 환영합니다.");
         console.log("session name" + req.session.name);
+        console.log("credit"+req.session.credit);
         req.session.save(()=>{
-            res.render('after_login.ejs',{name:req.session.name});    
+            res.render('after_login.ejs',{name:req.session.name,credit:req.session.credit});    
         });
         
     }
@@ -149,11 +141,26 @@ app.post('/success',function(req,res){
     }    
 });
 
+app.get('/home',function(req,res){
+    
+    if(req.session.name){
+        console.log("asdddf");
+        req.session.save(()=>{
+            res.render('after_login.ejs',{name:req.session.name,credit:req.session.credit});    
+        });
+        
+    }
+    else{
+        console.log("af");
+        res.render("main.html");
+    }
+})
 
 
 app.get('/logout', function(req,res){
-    console.log("logout라우팅");
+    console.log(req.session.name)
     delete req.session.name;
+    console.log(req.session.name)
     req.session.save(()=>{
         res.render('main.html');
     })
