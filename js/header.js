@@ -1,12 +1,19 @@
 $(document).ready(function(){
 
+    
+
     $("#header").hover(function(){
-        $(".main-nav a").addClass("active");
+        if($(window).scrollTop()<=100){
+            $(".main-nav a").addClass("active");
+        }       
     },function(){
-        $(".main-nav a").removeClass("active");
+        if($(window).scrollTop()<=100){
+            $(".main-nav a").removeClass("active");
+        }    
     })
     $(".logo").click(function(){
         location.href='/home';
     })
+        
     
 })

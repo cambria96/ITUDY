@@ -31,6 +31,9 @@
   <link href="css/header.css" rel="stylesheet">
   <link href="../css/custom.css" rel="stylesheet">
   <link href="../css/footer.css" rel="stylesheet">
+  <link href="../css/mypage.css" rel="stylesheet">
+
+  
 
 
 </head>
@@ -43,7 +46,7 @@
   ============================-->
   <div class="bannerBox"> 
     <div class="coverBox">
-      <p class="bannerTitle">클래스/스터디 찾기</p>
+      <p class="bannerTitle">마이페이지</p>
     </div>
   </div>
   <header id="header">
@@ -56,8 +59,8 @@
             <li><a href="#about">About Us</a></li>
             <li class="drop-down"><a href="/home">그룹 찾기</a>
               <ul>
-                <li><a href="/class">클래스</a></li>
-                <li><a href="/study">스터디</a></li>
+                <li><a href="#">클래스</a></li>
+                <li><a href="#">스터디</a></li>
 
               </ul>
             </li>
@@ -68,8 +71,8 @@
       <nav class="main-nav d-none d-lg-block" >
         <ul>
           
-          <li><a href = "/mypage"><span class="accoutName"><%= name %></span> 님 환영합니다.</a></li>
-          <li><a href="#credit"><img src="../img/coin.png">  <span><%= credit %></span></a></li>
+        <li><a href = "/mypage"><span class="accoutName"><%= name %></span> 님 환영합니다.</a></li>
+        <li><a href="#credit"><img src="../img/coin.png">  <span><%= credit %></span></a></li>
           <li><a href='/logout'>Log Out</a></li>
           
         </ul>
@@ -79,14 +82,34 @@
   </header><!-- #header -->
 
   <main>
-    <section class="topBanner">
-
-
-    </section>
 
     <section id="mainContainer">
 
-        여기에 내용 추가
+        <div class="mypageWrapper">
+
+            <div class="sideBar">
+                <p>마이페이지</p>
+                <ul>
+                    <li class="sideContent">기본정보</li>
+                    <li class="sideContent">역량 확인/수정</li>
+                    <li class="sideContent">내가올린그룹</li>
+                    <li class="sideContent">스터디참여이력</li>
+                    <li class="sideContent">회원탈퇴</li>
+                </ul>
+            </div>
+            <div class="contextBox">
+                <ul>
+                    <li class="categoryList"></li>
+                    <li class="dbContent"></li>
+                    <li class="categoryList"></li>
+                    <li class="dbContent"></li>
+                    <li class="categoryList"></li>
+                    <li class="dbContent"></li>
+
+                </ul>
+            </div>
+        </div>
+
     </section>
       
   </main>
@@ -175,12 +198,9 @@
   <script src="contactform/contactform.js"></script>
 
   <!-- Template Main Javascript File -->
-  <script src="js/main.js"></script>
   <script src="js/header.js"></script>
   <script src="js/footer.js"></script>
-
-
-
+  <script src="js/mypage.js"></script>
 
 
 </body>

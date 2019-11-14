@@ -68,37 +68,9 @@ app.get('/',function(req,res){
 app.get('/signup',function(req,res){
     res.render("signup.html");
 })
-// app.post('/login',function(req,res){
-//     res.render("default.html");
-//     console.log("뭐가들었게"+ req.body.id);
-// })
-
-// app.post('/newuser',function(req,res){
-//     user_id = req.body.id;
-//     user_password = req.body.password;
-//     user_name = req.body.name;
-//     console.log('req.body : ' + req.body);
-
-//     var user = {'id' : user_id,
-//                 'password' : user_password,
-//                 'name' : user_name};
-
-//     console.log("new_id: ", user_id);
-//     console.log("new_password: ", user_password);
-//     console.log("new_name", user_name);
-    
-//     connection.query('insert into userinfo set ?',user,function(err,result){
-//         if(!err){
-//             console.log("사용자 등록 성공");
-//             console.log('The solution is: ',result);
-            
-//         }
-//         else{
-//             console.log('Error while performing Query.',err);
-//         }
-//     });
-
-// });
+app.get('/mypage',function(req,res){
+    res.render("mypage.ejs",{name:loginUser.name,credit:loginUser.credit});
+})
 
 app.use(session({
     key : 'sid',
@@ -108,7 +80,7 @@ app.use(session({
     store : new MySQLStore(options)
 }));
 
-
+var loginUser;
 app.post('/success',function(req,res){
     
     var session = req.session;
@@ -125,8 +97,9 @@ app.post('/success',function(req,res){
         }
     }
     if(check){
-        req.session.name = info[i].name;
-        req.session.credit = info[i].credit;
+        loginUser=info[i];
+        req.session.name = loginUser.name
+        req.session.credit = loginUser.credit;
         // alert(req.session.name + "님 환영합니다.");
         console.log("session name" + req.session.name);
         console.log("credit"+req.session.credit);
@@ -195,6 +168,25 @@ app.post("/done",function(req,res){
     res.render("main.html");
 })
 
-app.get("/class",function(req,res){
-    res.render('default.html');
-})
+// app.get("/class",function(req,res){
+//     res.render('class.html');
+// })
+//
+// app.get("/study",function(req,res){
+//     res.render('study.html');
+// })
+///////////////////////////// 게시판 구현 ////////////////////////
+
+//클래스 게시판
+var classRouter = require('./routes/class.js')
+app.use(classRouter)
+
+var studyRouter = require('./routes/study.js')
+app.use(studyRouter)
+
+//세션 삭제
+var cookieParser = require('cookie-parser');
+
+app.use(cookieParser());
+
+///////////////////////////////////////////////////////////////////
