@@ -6,12 +6,13 @@
 
 .buttomBox{
     display : flex;
-    padding-bottom : 100px;
+    padding-bottom : 20px;
 }
 
 .btnwrapper {
   display: flex;
   justify-content: center;
+  padding-bottom: 100px;
 }
 
 .cta {
@@ -123,4 +124,15 @@ path.two {
 #classsub{
     font-size : 30px;
     font-family: 'DX방탄고딕';
+}
+
+.explain{
+    font-size : 17px;
+    font-family: '메이플스토리';
+}
+.explain_buttom{
+    border: 2px solid black;
+    width : 80%;
+    margin : auto;
+    font-family: '메이플스토리';
 }
