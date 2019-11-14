@@ -109,59 +109,60 @@ router.get("/study", function (req, res) {
 });
 
 //삭제
-router.get("/delete/:id", function (req, res) {
+router.get("/delete_study/:id", function (req, res) {
     console.log("삭제 진행")
 
     getConnection().query('delete from study where id = ?', [req.params.id], function () {
-        res.redirect('/main')
+        res.redirect('/study')
     });
 
 })
 //삽입 페이지
-router.get("/insert", function (req, res) {
+router.get("/insert_study", function (req, res) {
     console.log("삽입 페이지 나와라")
 
-    fs.readFile('views/insert.html', 'utf-8', function (error, data) {
+    fs.readFile('views/insert_study.html', 'utf-8', function (error, data) {
         res.send(data)
     })
 
 })
 //삽입 포스터 데이터
-router.post("/insert", function (req, res) {
+router.post("/insert_study", function (req, res) {
     console.log("삽입 포스트 데이터 진행")
     var body = req.body;
     getConnection().query('insert into study(id,title,author,body) values (?,?,?,?)', [body.id, body.title, body.author, body.body], function () {
 //응답
-        res.redirect('/main');
+        res.redirect('study');
     })
 
 })
 //수정 페이지
-router.get("/edit/:id", function (req, res) {
+router.get("/edit_study/:id", function (req, res) {
     console.log("수정 진행")
 
-    fs.readFile('views/edit.html', 'utf-8', function (error, data) {
+    fs.readFile('views/edit_study.html', 'utf-8', function (error, data) {
         getConnection().query('select * from study where id = ?', [req.params.id], function (error, result) {
             res.send(ejs.render(data, {
-                data: result[0]
+                data: result[0],
+                id: req.params.id
             }))
         })
     });
 
 })
 //수정 포스터 데이터
-router.post("/edit/:id", function (req, res) {
+router.post("/edit_study/:id", function (req, res) {
     console.log("수정 포스트 진행")
     var body = req.body;
-    getConnection().query('update study set name = ?, modelnumber = ?, series = ? where id = ?',
-        [body.name, body.num, body.section, req.params.id], function () {
-            res.redirect('/main')
+    getConnection().query('update study set title = ?, author = ?, body = ? where id = ?',
+        [body.title, body.author, body.body, body.id], function () {
+            res.redirect('/study')
         })
 })
 
 
 //글상세보기
-router.get("/detail/:id", function (req, res) {
+router.get("/detail_study/:id", function (req, res) {
     console.log("수정 진행")
 
     fs.readFile('views/detail.html', 'utf-8', function (error, data) {
