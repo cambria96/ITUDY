@@ -194,3 +194,19 @@ app.post("/done",function(req,res){
     });
     res.render("main.html");
 })
+
+///////////////////////////// 게시판 구현 ////////////////////////
+
+//클래스 게시판
+var classRouter = require('./routes/class.js')
+app.use(classRouter)
+
+var studyRouter = require('./routes/study.js')
+app.use(studyRouter)
+
+//세션 삭제
+var cookieParser = require('cookie-parser');
+
+app.use(cookieParser());
+
+///////////////////////////////////////////////////////////////////
