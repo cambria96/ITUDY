@@ -168,10 +168,13 @@ app.post("/done",function(req,res){
     res.render("main.html");
 })
 
-app.get("/class",function(req,res){
-    res.render('default.html');
-})
-
+// app.get("/class",function(req,res){
+//     res.render('class.html');
+// })
+//
+// app.get("/study",function(req,res){
+//     res.render('study.html');
+// })
 ///////////////////////////// 게시판 구현 ////////////////////////
 
 //클래스 게시판
