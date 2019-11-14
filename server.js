@@ -169,11 +169,11 @@ app.post("/done",function(req,res){
 })
 
 // app.get("/class",function(req,res){
-//     res.render('class.html');
+//     res.render('class.ejs');
 // })
 //
 // app.get("/study",function(req,res){
-//     res.render('study.html');
+//     res.render('study.ejs');
 // })
 ///////////////////////////// 게시판 구현 ////////////////////////
 
@@ -184,9 +184,7 @@ app.use(classRouter)
 var studyRouter = require('./routes/study.js')
 app.use(studyRouter)
 
-//세션 삭제
-var cookieParser = require('cookie-parser');
 
-app.use(cookieParser());
 
 ///////////////////////////////////////////////////////////////////
+

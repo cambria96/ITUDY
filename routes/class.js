@@ -6,11 +6,9 @@ var ejs = require('ejs')
 var bodyParser = require('body-parser');
 
 
-
 router.use(bodyParser.urlencoded({ extended: false }))
 
 //게시판 페이징
-
 router.get("/classes/:cur", function (req, res) {
 
 //페이지당 게시물 수 : 한 페이지 당 10개 게시물
@@ -71,7 +69,7 @@ router.get("/classes/:cur", function (req, res) {
         };
 
 
-        fs.readFile('views/class.html', 'utf-8', function (error, data) {
+        fs.readFile('views/class.ejs', 'utf-8', function (error, data) {
 
             if (error) {
                 console.log("ejs오류" + error);
@@ -87,7 +85,9 @@ router.get("/classes/:cur", function (req, res) {
                 }
                 res.send(ejs.render(data, {
                     data: result,
-                    classes: result2
+                    classes: result2,
+                    name:req.session.name,
+                    credit:req.session.credit
                 }));
             });
         });

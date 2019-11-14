@@ -71,7 +71,7 @@ router.get("/study/:cur", function (req, res) {
         };
 
 
-        fs.readFile('views/study.html', 'utf-8', function (error, data) {
+        fs.readFile('views/study.ejs', 'utf-8', function (error, data) {
 
             if (error) {
                 console.log("ejs오류" + error);
@@ -87,7 +87,9 @@ router.get("/study/:cur", function (req, res) {
                 }
                 res.send(ejs.render(data, {
                     data: result,
-                    study: result2
+                    studies: result2,
+                    name:req.session.name,
+                    credit:req.session.credit
                 }));
             });
         });
@@ -169,8 +171,6 @@ router.get("/detail/:id", function (req, res) {
             }))
         })
     });
-
-
 })
 //mysql db 연결 함수
 
