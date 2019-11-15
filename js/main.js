@@ -1,14 +1,15 @@
 (function ($) {
   "use strict";
-
-  // Preloader (if the #preloader div exists)
-  $(window).on('load', function () {
-    if ($('#preloader').length) {
-      $('#preloader').delay(100).fadeOut('slow', function () {
-        $(this).remove();
-      });
-    }
-  });
+  $(function(){
+    var timeSet=0;
+    $(".intro-info").find("h2").each(function(index,value){
+        var item= $(this);
+        setTimeout(function(){
+            item.addClass("active");
+        },timeSet);
+        timeSet+=500;
+    });
+})
 
   // Back to top button
   $(window).scroll(function() {
@@ -23,8 +24,6 @@
     return false;
   });
 
-  // Initiate the wowjs animation library
-  new WOW().init();
 
   // Header scroll class
   $(window).scroll(function() {
@@ -94,11 +93,6 @@
     });
   });
 
-  // jQuery counterUp (used in Whu Us section)
-  $('[data-toggle="counter-up"]').counterUp({
-    delay: 10,
-    time: 1000
-  });
 
 
 })(jQuery);

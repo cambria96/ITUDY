@@ -71,8 +71,8 @@
       <nav class="main-nav d-none d-lg-block" >
         <ul>
           
-        <li><a href = "/mypage"><span class="accoutName"><%= name %></span> 님 환영합니다.</a></li>
-        <li><a href="#credit"><img src="../img/coin.png">  <span><%= credit %></span></a></li>
+        <li><a href = "/mypage"><span class="accoutName"><%= loginInfo.name %></span> 님 환영합니다.</a></li>
+        <li><a href="#credit"><img src="../img/coin.png">  <span><%= loginInfo.credit %></span></a></li>
           <li><a href='/logout'>Log Out</a></li>
           
         </ul>
@@ -99,14 +99,14 @@
             </div>
             <div class="contextBox">
                 <ul>
-                    <li class="categoryList"></li>
-                    <li class="dbContent"></li>
-                    <li class="categoryList"></li>
-                    <li class="dbContent"></li>
-                    <li class="categoryList"></li>
-                    <li class="dbContent"></li>
-
+                    <li class="categoryList"><p class="categoryTitle">아이디</p><p class="dbContent"><%= loginInfo.id %></p></li>
+                    <li class="categoryList"><p class="categoryTitle">이름</p><p class="dbContent"><%= loginInfo.name %></p></li>
+                    <li class="categoryList"><p class="categoryTitle">이메일</p><p class="dbContent"><%= loginInfo.email %></p></li>
+                    <li class="categoryList"><p class="categoryTitle">크레딧</p><p class="dbContent"><%= loginInfo.credit %></p></li>
                 </ul>
+                <div class="buttonBox">
+                  <button type="button" class="modifyBtn">수정하기</button>
+                </div>
             </div>
         </div>
 
@@ -188,7 +188,6 @@
   <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="lib/easing/easing.min.js"></script>
   <script src="lib/mobile-nav/mobile-nav.js"></script>
-  <script src="lib/wow/wow.min.js"></script>
   <script src="lib/waypoints/waypoints.min.js"></script>
   <script src="lib/counterup/counterup.min.js"></script>
   <script src="lib/owlcarousel/owl.carousel.min.js"></script>

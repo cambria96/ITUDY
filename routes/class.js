@@ -4,6 +4,8 @@ var mysql = require('mysql')
 var fs = require('fs')
 var ejs = require('ejs')
 var bodyParser = require('body-parser');
+var user = require("../server.js");
+
 
 
 
@@ -12,6 +14,9 @@ router.use(bodyParser.urlencoded({ extended: false }))
 //게시판 페이징
 
 router.get("/classes/:cur", function (req, res) {
+
+    var loginUser = user.user;
+    console.log("asdfasfsefasef" +loginUser);
 
 //페이지당 게시물 수 : 한 페이지 당 10개 게시물
     var page_size = 10;
@@ -77,7 +82,7 @@ router.get("/classes/:cur", function (req, res) {
                 console.log("ejs오류" + error);
                 return
             }
-            console.log("몇번부터 몇번까지냐~~~~~~~" + no)
+            
 
             var queryString = 'select * from classes order by id desc limit ?,?';
             getConnection().query(queryString, [no, page_size], function (error, result) {
@@ -91,8 +96,6 @@ router.get("/classes/:cur", function (req, res) {
                 }));
             });
         });
-
-
     })
 
 })
@@ -179,7 +182,7 @@ var pool = mysql.createPool({
     host: 'localhost',
     user: 'root',
     database: 'userinfo',
-    password: 'hwang261!'
+    password: 'root'
 })
 
 
