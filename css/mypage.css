@@ -3,7 +3,7 @@
     width:100%;
     padding: 50px 0px;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     font-family: 'Godo';
 }
 .sideBar{
@@ -11,64 +11,157 @@
     border-radius: 15px;
     width: 20%;
     padding: 25px;
+    max-width: 300px;
+
 
 }
 .contextBox{
     width: 75%;
     border: 3px solid #dfaa32;
     border-radius: 15px;
+    padding: 25px;
+    max-width: 1200px;
+
+
+}
+.contextBox ul{
+    margin-bottom: 0px;
+
 }
 
 .sideBar p{
     font-size: 1.2em;
     border-bottom: 1px solid #dfaa32;
 }
-.sideBar ul{
 
-}
 .sideContent{
     margin-bottom: 10px;
+    cursor: pointer;
+}
 
+.sideContent span:hover{
+    padding-bottom:5px;
+    border-bottom: 1px solid;
 }
 
 .categoryList{
     display: flex;
-    width: 90%;
-    justify-content: space-between;
-    margin: auto;
     padding: 20px 0px;
 
 }
+.categoryList:first-child{
+    padding-top:0px;
+
+}
 .categoryTitle{
-    width: 10%;
+    width: 8%;
     margin: unset;
-    padding: 10px 0px;
     border-right: 1px solid #dfaa32;
 }
 .dbContent{
-    width: 85%;
+    width: 10%;
     margin: unset;
-    padding: 10px 0px;
+    padding-left: 10p;
+    margin-left: 10px;
 
+}
+.dbContentInput{
+    width: 30%;
+    margin: unset;
+    padding-left: 10p;
+    margin-left: 10px;
 }
 
 .buttonBox{
-    margin-bottom: 10px;
+    padding: 10px 0px;
     text-align: center;
+    border-top: 1px solid #dfaa32;
 }
 
-.modifyBtn{
+.modifyBtn,.modifyCheckedBtn{
     transition: 0.25s;
-    border: 1px solid #dfaa32;
-    color: #dfaa32;
+    border: 1px solid;
+    color: #000000;
     background: transparent;
     padding: 5px 15px;
-    border-radius: 25px;
+    border-radius: 10px;
 }
-
+.modifyCheckedBtn:hover,
+.modifyCheckedBtn:focus,
 .modifyBtn:hover,
 .modifyBtn:focus {
   box-shadow: inset 0 0 0 2em #dfaa32;
   color: #fff;
+  border-color: #dfaa32;
 
+}
+.contentTitle{
+    border-bottom: 1px solid #dfaa32;
+    font-size: 1.2em;
+}
+
+.contentWrap{
+    display:none;
+}
+
+.contentWrap.active{
+    display:block;
+}
+
+
+/* 역량 카테고리 css */
+.categoryLists{
+    display: flex;
+    justify-content: space-between;
+}
+.colTitle{
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+.colContent{
+    display: flex;
+    align-items: center;
+    font-size: 1em;
+}
+.checkbox-container .checkbox:after {
+    content: "";
+    position: absolute;
+    width: 0px;
+    height: 3px;
+    background: #3498db;
+    -webkit-transform: translate(4px, 11px) rotate(-45deg);
+    transform: translate(17px, 6px) rotate(-45deg);
+    -webkit-transform-origin: left;
+    transform-origin: left;
+    transition: all 150ms;
+    transition-delay: 0ms;
+}
+.checkbox-container .checkbox:before {
+    content: "";
+    position: absolute;
+    width: 0px;
+    height: 3px;
+    background: #3498db;
+    -webkit-transform: translate(1px, 6px) rotate(45deg);
+    transform: translate(10px, -1px) rotate(45deg);
+    -webkit-transform-origin: left;
+    transform-origin: left;
+    transition: all 150ms;
+    transition-delay: 150ms;
+}
+.checkbox-container input[type="checkbox"]:checked ~ .checkbox:after {
+    width: 18px;
+    transition-delay: 150ms;
+}
+.checkbox-container input[type="checkbox"]:checked ~ .checkbox:before {
+    width:11px;
+			transition-delay: 0ms;
+}
+input[type="checkbox"] {
+    display: none;
+}
+
+label {
+    cursor: pointer;
 }

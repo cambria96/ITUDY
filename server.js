@@ -101,8 +101,6 @@ app.post('/success',function(req,res){
         req.session.name = loginUser.name
         req.session.credit = loginUser.credit;
         // alert(req.session.name + "님 환영합니다.");
-        console.log("session name" + req.session.name);
-        console.log("credit"+req.session.credit);
         req.session.save(()=>{
             res.render('after_login.ejs',{loginInfo:loginUser});    
         });
@@ -131,9 +129,7 @@ app.get('/home',function(req,res){
 
 
 app.get('/logout', function(req,res){
-    console.log(req.session.name)
     delete req.session.name;
-    console.log(req.session.name)
     req.session.save(()=>{
         res.render('main.html');
     })
@@ -171,9 +167,6 @@ app.post("/done",function(req,res){
 app.get('/credit', function(req,res){
     req.session.name = loginUser.name
         req.session.credit = loginUser.credit;
-        // alert(req.session.name + "님 환영합니다.");
-        console.log("session name" + req.session.name);
-        console.log("credit"+req.session.credit);
         req.session.save(()=>{
             res.render('credit.ejs',{name:req.session.name,credit:req.session.credit});    
         });
@@ -181,6 +174,50 @@ app.get('/credit', function(req,res){
         
     
 });
+// // 기본정보 수정
+// app.post("/modify",function(req,res){
+//     var userName = req.body.name;
+//     var userPhone = req.body.phone;
+//     connection.query("UPDATE `userinfo`.`userinfo` SET `name` = '"+userName+"',`phone` = '"+userPhone+"' WHERE (`id` = '"+loginUser.id+"');",function(err,result){
+//         if(!err){
+//             console.log("수정완료");    
+//         }
+//         else{
+//             console.log('Error while performing Query.',err);
+//         }
+//     });
+//     loginUser.name = userName;
+//     loginUser.phone = userPhone;
+//     res.send();
+// })
+// 분야 수정
+app.post("/modify",function(req,res){
+    var user = req.body
+    console.log(user);
+    connection.query("UPDATE `userinfo`.`userinfo` SET ? WHERE (`id` = '"+loginUser.id+"');",user,function(err,result){
+        if(!err){
+            console.log("수정완료");    
+        }
+        else{
+            console.log('Error while performing Query.',err);
+        }
+    });
+    connection.query("SELECT * from userinfo WHERE (`id` = '"+loginUser.id+"');",user,function(err,rows,result){
+        if(!err){
+            console.log("수정완료");   
+            loginUser =  rows[0];
+        }
+        else{
+            console.log('Error while performing Query.',err);
+        }
+    });
+    res.send();
+});
+
+
+app.post("/request",function(req,res){
+    res.send({loginUser: loginUser})
+})
 // app.get("/class",function(req,res){
 //     res.render('class.ejs');
 // })
