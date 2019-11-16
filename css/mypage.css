@@ -30,3 +30,45 @@
     margin-bottom: 10px;
 
 }
+
+.categoryList{
+    display: flex;
+    width: 90%;
+    justify-content: space-between;
+    margin: auto;
+    padding: 20px 0px;
+
+}
+.categoryTitle{
+    width: 10%;
+    margin: unset;
+    padding: 10px 0px;
+    border-right: 1px solid #dfaa32;
+}
+.dbContent{
+    width: 85%;
+    margin: unset;
+    padding: 10px 0px;
+
+}
+
+.buttonBox{
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.modifyBtn{
+    transition: 0.25s;
+    border: 1px solid #dfaa32;
+    color: #dfaa32;
+    background: transparent;
+    padding: 5px 15px;
+    border-radius: 25px;
+}
+
+.modifyBtn:hover,
+.modifyBtn:focus {
+  box-shadow: inset 0 0 0 2em #dfaa32;
+  color: #fff;
+
+}

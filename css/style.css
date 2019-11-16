@@ -241,13 +241,23 @@ h6 {
   margin-bottom: 40px;
   font-size: 3em;
   font-weight: 700;
+  opacity: 0;
+  transform: translateY(-50px);
+  transition: all ease 1s;
 }
+#intro .intro-info h2.active {
+  opacity: 1;
+  transform: translateY(0px);
+  
+}
+
+
 #intro .intro-info h2:last-child {
   margin-bottom: 0px;
 }
 
 #intro .intro-info h2 span {
-  color: #1bb1dc;
+  color: #ffa737;
 }
 
 #intro .intro-info .btn-get-started,

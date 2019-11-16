@@ -4,6 +4,10 @@
 * {
   box-sizing: border-box;
 }
+body{
+    font-family: 'Godo', serif;
+
+}
 
 .buttomBox{
     display : flex;
@@ -123,16 +127,13 @@ path.two {
 }
 #classsub{
     font-size : 30px;
-    font-family: 'DX방탄고딕';
 }
 
 .explain{
     font-size : 17px;
-    font-family: '메이플스토리';
 }
 .explain_buttom{
     border: 2px solid black;
     width : 80%;
     margin : auto;
-    font-family: '메이플스토리';
 }

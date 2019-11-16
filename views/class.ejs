@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Study Together</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+
+  <!-- Favicons -->
+  <link href="img/favicon.png" rel="icon">
+  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,500,600,700,700i|Montserrat:300,400,500,600,700" rel="stylesheet">
+
+  <!-- Bootstrap CSS File -->
+  <link href="../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Libraries CSS Files -->
+  <link href="../lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="../lib/animate/animate.min.css" rel="stylesheet">
+  <link href="../lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+  <link href="../lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="../lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+
+  <!-- Main Stylesheet File -->
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/header.css" rel="stylesheet">
+    <link href="../css/custom.css" rel="stylesheet">
+    <link href="../css/after_login.css" rel="stylesheet">
+    <link href="../css/footer.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+
+</head>
+
+<body>
+
+ 
+  <!--==========================
+  Header
+  ============================-->
+  <div class="bannerBox"> 
+    <div class="coverBox">
+      <p class="bannerTitle">클래스 찾기</p>
+    </div>
+  </div>
+  <header id="header">
+    
+    <div class="headerContainer">
+     
+      <div class="logo "></div>
+      <nav class="main-nav d-none d-lg-block centerBar" >
+          <ul>
+            <li><a href="#about">About Us</a></li>
+            <li class="drop-down"><a href="/home">그룹 찾기</a>
+              <ul>
+                <li><a href="/class">클래스</a></li>
+                <li><a href="/study">스터디</a></li>
+
+              </ul>
+            </li>
+            <li><a href="#footer">Contact Us</a></li>
+          </ul>
+        </nav><!-- .main-nav -->
+
+      <nav class="main-nav d-none d-lg-block" >
+        <ul>
+          
+          <li><a href = "/mypage"><span class="accoutName"><%= name %></span> 님 환영합니다.</a></li>
+          <li><a href="#credit"><img src="../img/coin.png">  <span><%= credit %></span></a></li>
+          <li><a href='/logout'>Log Out</a></li>
+          
+        </ul>
+      </nav><!-- .main-nav -->
+      
+    </div>
+  </header><!-- #header -->
+
+  <main>
+    <section class="topBanner">
+
+
+    </section>
+
+    <section id="mainContainer">
+                <div class="container">
+                    <br>
+                    <br>
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>제목</th>
+                            <th>게시자</th>
+                            <th>삭제</th>
+                            <th>수정</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        <% data.forEach(function (item,index){ %>
+                            <tr>
+                                <td>
+                                    <%= item.title %>
+                                </td>
+                                <td>
+                                    <a href='/detail_class/<%= item.id %>'><%= item.author %></a>
+                                </td>
+                                <td>
+                                    <a href="/delete_class/<%= item.id %>">삭제</a>
+                                </td>
+                                <td>
+                                    <a href="/edit_class/<%= item.id %>">수정</a>
+                                </td>
+                            </tr>
+                        <% })%>
+                        </tbody>
+                    </table>
+                </div>
+
+
+                <br>
+                <br>
+
+
+                <div class="container" style="text-align: center;">
+                    <br>
+                    <br>
+                    <a href="/insert_class">클래스 등록하기</a>
+                    <ul class="pager">
+
+
+                        <%
+                        var curSet = classes.curSet
+                        var endPage = classes.endPage
+                        var startPage = classes.startPage
+                        var totalSet = classes.totalSet
+                        var totalPage = classes.totalPage
+                        var page_list_size = classes.page_list_size
+                        var page_size = classes.page_size
+                        var curPage = Number(classes.curPage)
+                        %>
+
+
+
+
+                        <%
+                        if(curPage > 1){
+                        %>
+                            <li value=(curPage -1) class="previous">
+                                <a href='/classes/<%= ( curPage - 1) %>'>이전페이지</a>
+                            </li>
+
+                        <%
+                        }
+                        %>
+
+
+                        <%
+                        for(var i = startPage; i <= endPage; i++){
+                            if(i > totalPage){break;}
+
+                        if(i == curPage){
+                        %>
+                            <li value=<%= i %> class='' >
+                                <a href='/classes/<%= i %>'>
+                                    <%= i %>
+                                </a>
+                            </li>
+
+                        <%
+                        }else{
+                        %>
+
+                            <li value=<%= i %> class='active' >
+                                <a href='/classes/<%= i %>'>
+                                    <%= i %>
+                                </a>
+                            </li>
+
+
+                        <%
+                        }
+                        %>
+
+                        <%
+                        }
+                        %>
+
+                        <%
+                        if(curPage < totalPage){
+                        %>
+                            <li value=( curPage + 1) class="next">
+                                <a href='/classes/<%= ( curPage + 1) %>'>다음페이지</a>
+                            </li>
+                        <%
+                        }
+                        %>
+
+                    </ul>
+                </div>
+
+    </section>
+      
+  </main>
+  <!-- FOOTER -->
+    <footer>
+        <div class="footer-bottom-area bg-dark-light section-padding-sm">
+            <div class="footerBox">
+                <div class="row widgets footer-widgets">
+
+                    <div class="col-lg-3 col-md-6 col-12 footerCol">
+                        <div class="single-widget widget-about">
+                            <p class="serviceName">ITUDY</p>
+                            <p>We are a team of designers and developers that create high quality <a href="www.dkstudio.in">Readmore...</a></p>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 col-12 footerCol">
+                        <div class="single-widget widget-quick-links">
+                            <h5 class="widget-title">About This</h5>
+                            <ul>
+                                <li><a href="#">Sitemap</a></li>
+                                <li><a href="#">Privacy Policy</a></li>
+                                <li><a href="#">Your Account</a></li>
+                                <li><a href="#">Advanced Search</a></li>
+                                <li><a href="#">Contact Us</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 col-12 footerCol">
+                        <div class="single-widget widget-quick-links">
+                            <h5 class="widget-title">Developers</h5>
+                            <ul>
+                                <li>Lee Eeun Chang</li>
+                                <li>Yeo In Hyeok</li>
+                                <li>Hwang Jae Wan</li>
+                                <li>jipjung</li>
+                                <li>hahaha</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 col-12 footerCol">
+                        <div class="single-widget widget-contact">
+                            <h5 class="widget-title">Contact Us</h5>
+                            <ul>
+                                <li class="address">
+                                    <span class="icon"><i class="fa fa-map-marker"></i></span>
+                                    <p>집교동</p>
+                                </li>
+                                <li class="phone">
+                                    <span class="icon"><i class="fa fa-phone"></i></span>
+                                    <p><a href="#">010 2222 2222</a></p>
+                                </li>
+                                <li class="email">
+                                    <span class="icon"><i class="fa fa-envelope-o"></i></span>
+                                    <p><a href="#">wlqwndrydbr@gmail.com</a></p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </footer>  
+  
+
+  <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+  <!-- Uncomment below i you want to use a preloader -->
+  <!-- <div id="preloader"></div> -->
+
+  <!-- JavaScript Libraries -->
+  <script src="../lib/jquery/jquery.min.js"></script>
+  <script src="../lib/jquery/jquery-migrate.min.js"></script>
+  <script src="../lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../lib/easing/easing.min.js"></script>
+  <script src="../lib/mobile-nav/mobile-nav.js"></script>
+  <script src="../lib/waypoints/waypoints.min.js"></script>
+  <script src="../lib/owlcarousel/owl.carousel.min.js"></script>
+  <script src="../lib/isotope/isotope.pkgd.min.js"></script>
+  <script src="../lib/lightbox/js/lightbox.min.js"></script>
+  <!-- Contact Form JavaScript File -->
+  <script src="../contactform/contactform.js"></script>
+
+  <!-- Template Main Javascript File -->
+  <script src="../js/main.js"></script>
+  <script src="../js/header.js"></script>
+  <script src="../js/footer.js"></script>
+
+
+
+
+
+</body>
+</html>

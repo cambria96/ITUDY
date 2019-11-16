@@ -69,7 +69,7 @@ app.get('/signup',function(req,res){
     res.render("signup.html");
 })
 app.get('/mypage',function(req,res){
-    res.render("mypage.ejs",{name:loginUser.name,credit:loginUser.credit});
+    res.render("mypage.ejs",{loginInfo:loginUser});
 })
 
 app.use(session({
@@ -104,7 +104,7 @@ app.post('/success',function(req,res){
         console.log("session name" + req.session.name);
         console.log("credit"+req.session.credit);
         req.session.save(()=>{
-            res.render('after_login.ejs',{name:req.session.name,credit:req.session.credit});    
+            res.render('after_login.ejs',{loginInfo:loginUser});    
         });
         
     }
@@ -119,7 +119,7 @@ app.get('/home',function(req,res){
     if(req.session.name){
         console.log("asdddf");
         req.session.save(()=>{
-            res.render('after_login.ejs',{name:req.session.name,credit:req.session.credit});    
+            res.render('after_login.ejs',{loginInfo:loginUser});    
         });
         
     }
@@ -182,11 +182,11 @@ app.get('/credit', function(req,res){
     
 });
 // app.get("/class",function(req,res){
-//     res.render('class.html');
+//     res.render('class.ejs');
 // })
 //
 // app.get("/study",function(req,res){
-//     res.render('study.html');
+//     res.render('study.ejs');
 // })
 ///////////////////////////// 게시판 구현 ////////////////////////
 
@@ -196,3 +196,8 @@ app.use(classRouter)
 
 var studyRouter = require('./routes/study.js')
 app.use(studyRouter)
+
+
+
+///////////////////////////////////////////////////////////////////
+

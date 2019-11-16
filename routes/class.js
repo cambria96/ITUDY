@@ -4,14 +4,17 @@ var mysql = require('mysql')
 var fs = require('fs')
 var ejs = require('ejs')
 var bodyParser = require('body-parser');
+var user = require("../server.js");
 
 
 
 router.use(bodyParser.urlencoded({ extended: false }))
 
 //게시판 페이징
-
 router.get("/classes/:cur", function (req, res) {
+
+    var loginUser = user.user;
+    console.log("asdfasfsefasef" +loginUser);
 
 //페이지당 게시물 수 : 한 페이지 당 10개 게시물
     var page_size = 10;
@@ -71,13 +74,13 @@ router.get("/classes/:cur", function (req, res) {
         };
 
 
-        fs.readFile('views/class.html', 'utf-8', function (error, data) {
+        fs.readFile('views/class.ejs', 'utf-8', function (error, data) {
 
             if (error) {
                 console.log("ejs오류" + error);
                 return
             }
-            console.log("몇번부터 몇번까지냐~~~~~~~" + no)
+            
 
             var queryString = 'select * from classes order by id desc limit ?,?';
             getConnection().query(queryString, [no, page_size], function (error, result) {
@@ -87,12 +90,12 @@ router.get("/classes/:cur", function (req, res) {
                 }
                 res.send(ejs.render(data, {
                     data: result,
-                    classes: result2
+                    classes: result2,
+                    name:req.session.name,
+                    credit:req.session.credit
                 }));
             });
         });
-
-
     })
 
 })
@@ -107,25 +110,25 @@ router.get("/class", function (req, res) {
 });
 
 //삭제
-router.get("/delete/:id", function (req, res) {
+router.get("/delete_class/:id", function (req, res) {
     console.log("삭제 진행")
 
     getConnection().query('delete from classes where id = ?', [req.params.id], function () {
-        res.redirect('class')
+        res.redirect('/class')
     });
 
 })
 //삽입 페이지
-router.get("/insert", function (req, res) {
+router.get("/insert_class", function (req, res) {
     console.log("삽입 페이지 나와라")
 
-    fs.readFile('views/insert.html', 'utf-8', function (error, data) {
+    fs.readFile('views/insert_class.html', 'utf-8', function (error, data) {
         res.send(data)
     })
 
 })
 //삽입 포스터 데이터
-router.post("/insert", function (req, res) {
+router.post("/insert_class", function (req, res) {
     console.log("삽입 포스트 데이터 진행")
     var body = req.body;
     getConnection().query('insert into classes(id,title,author,body) values (?,?,?,?)', [body.id, body.title, body.author, body.body], function () {
@@ -135,31 +138,32 @@ router.post("/insert", function (req, res) {
 
 })
 //수정 페이지
-router.get("/edit/:id", function (req, res) {
+router.get("/edit_class/:id", function (req, res) {
     console.log("수정 진행")
 
-    fs.readFile('views/edit.html', 'utf-8', function (error, data) {
+    fs.readFile('views/edit_class.html', 'utf-8', function (error, data) {
         getConnection().query('select * from classes where id = ?', [req.params.id], function (error, result) {
             res.send(ejs.render(data, {
-                data: result[0]
+                data: result[0],
+                id: req.params.id
             }))
         })
     });
 
 })
 //수정 포스터 데이터
-router.post("/edit/:id", function (req, res) {
+router.post("/edit_class/:id", function (req, res) {
     console.log("수정 포스트 진행")
     var body = req.body;
-    getConnection().query('update classes set name = ?, modelnumber = ?, series = ? where id = ?',
-        [body.title, body.author, body.body, req.params.id], function () {
-            res.redirect('class')
+    getConnection().query('update classes set title = ?, author = ?, body = ? where id = ?',
+        [body.title, body.author, body.body, body.id], function () {
+            res.redirect('/class')
         })
 })
 
 
 //글상세보기
-router.get("/detail/:id", function (req, res) {
+router.get("/detail_class/:id", function (req, res) {
     console.log("수정 진행")
 
     fs.readFile('views/detail.html', 'utf-8', function (error, data) {

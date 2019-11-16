@@ -40,19 +40,42 @@
 
 }
 .loginBtn{
-  background: #1bb1dc;
-  border: none;
-  padding: 10px;
+  background: #dfaa32 ;
+  border: 1px solid #dfaa32;
+  padding: 5px;
   font-size: 1em;
+  transition: 0.5s;
 
 }
-.loginBtn:hover{
-  background: #4bccf0;
+.signupBtn{
+  background: #dfaa32 ;
+  border: 1px solid #dfaa32;
+  padding: 5px;
+  font-size: 1em;
+  transition: 0.5s;
+  border-radius: .3rem;
 }
-.loginBtn:active{
-  background: #4bccf0 !important;
-  border:none !important;
+@keyframes pulse
+{
+  0% {
+    box-shadow: 0 0 0 0px rgba(223,170,32,1);
+  }
+
 }
+.signupBtn:hover,
+.signupBtn:focus,
+.signupBtn:active,
+.loginBtn:hover,
+.loginBtn:focus,
+.loginBtn:active {
+  background: #dfaa32 !important;
+  border: 1px solid #dfaa32 !important;
+  box-shadow:  0 0 0 1em rgba(223,170,32,0) !important;
+  color: #fff;
+  animation: pulse 1s;
+
+}
+
 
 
 .form-control {
