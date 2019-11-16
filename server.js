@@ -168,6 +168,19 @@ app.post("/done",function(req,res){
     res.render("main.html");
 })
 
+app.get('/credit', function(req,res){
+    req.session.name = loginUser.name
+        req.session.credit = loginUser.credit;
+        // alert(req.session.name + "님 환영합니다.");
+        console.log("session name" + req.session.name);
+        console.log("credit"+req.session.credit);
+        req.session.save(()=>{
+            res.render('credit.ejs',{name:req.session.name,credit:req.session.credit});    
+        });
+
+        
+    
+});
 // app.get("/class",function(req,res){
 //     res.render('class.html');
 // })
@@ -183,10 +196,3 @@ app.use(classRouter)
 
 var studyRouter = require('./routes/study.js')
 app.use(studyRouter)
-
-//세션 삭제
-var cookieParser = require('cookie-parser');
-
-app.use(cookieParser());
-
-///////////////////////////////////////////////////////////////////
