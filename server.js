@@ -214,9 +214,33 @@ app.post("/modify",function(req,res){
     res.send();
 });
 
+var userClass =[];
+var userStudy=[];
 
 app.post("/request",function(req,res){
-    res.send({loginUser: loginUser})
+    
+    connection.query("SELECT * from classes WHERE (`author` = '"+loginUser.name+"');",function(err,rows,result){
+        if(!err){
+            console.log("클래스 로드 완료");
+            userClass=rows;
+            
+        }
+        else{
+            console.log('Error while performing Query.',err);
+        }
+    });
+    connection.query("SELECT * from study WHERE (`author` = '"+loginUser.name+"');",function(err,rows,result){
+        if(!err){
+            console.log("스터디 로드 완료");
+            for(var m=0;m<rows.length;m++){
+                userStudy.push(rows[m]);
+            }   
+        }
+        else{
+            console.log('Error while performing Query.',err);
+        }
+    });
+    res.send({loginUser: loginUser,userClass: userClass, userStudy:userStudy})
 })
 // app.get("/class",function(req,res){
 //     res.render('class.ejs');

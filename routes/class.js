@@ -14,7 +14,6 @@ router.use(bodyParser.urlencoded({ extended: false }))
 router.get("/classes/:cur", function (req, res) {
 
     var loginUser = user.user;
-    console.log("asdfasfsefasef" +loginUser);
 
 //페이지당 게시물 수 : 한 페이지 당 10개 게시물
     var page_size = 10;
@@ -37,9 +36,6 @@ router.get("/classes/:cur", function (req, res) {
 //현제 페이지
         var curPage = req.params.cur;
 
-        console.log("현재 페이지 : " + curPage, "전체 페이지 : " + totalPageCount);
-
-
 //전체 페이지 갯수
         if (totalPageCount < 0) {
             totalPageCount = 0
@@ -60,7 +56,6 @@ router.get("/classes/:cur", function (req, res) {
             no = (curPage - 1) * 10
         }
 
-        console.log('[0] curPage : ' + curPage + ' | [1] page_list_size : ' + page_list_size + ' | [2] page_size : ' + page_size + ' | [3] totalPage : ' + totalPage + ' | [4] totalSet : ' + totalSet + ' | [5] curSet : ' + curSet + ' | [6] startPage : ' + startPage + ' | [7] endPage : ' + endPage)
 
         var result2 = {
             "curPage": curPage,
@@ -131,10 +126,17 @@ router.get("/insert_class", function (req, res) {
 router.post("/insert_class", function (req, res) {
     console.log("삽입 포스트 데이터 진행")
     var body = req.body;
-    getConnection().query('insert into classes(id,title,author,body) values (?,?,?,?)', [body.id, body.title, body.author, body.body], function () {
-//응답
+    getConnection().query('insert into classes set ?', body, function (err,result) {
+        //응답  
+        if(!err){
+            console.log("추가성공");
+        }
+        else{
+            console.log('Error while performing Query.',err);
+        }
         res.redirect('class');
     })
+    
 
 })
 //수정 페이지

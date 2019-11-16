@@ -58,15 +58,9 @@
     margin: unset;
     border-right: 1px solid #dfaa32;
 }
-.dbContent{
-    width: 10%;
-    margin: unset;
-    padding-left: 10p;
-    margin-left: 10px;
 
-}
-.dbContentInput{
-    width: 30%;
+.dbContent{
+    width: 150px;
     margin: unset;
     padding-left: 10p;
     margin-left: 10px;
@@ -131,7 +125,7 @@
     height: 3px;
     background: #3498db;
     -webkit-transform: translate(4px, 11px) rotate(-45deg);
-    transform: translate(17px, 6px) rotate(-45deg);
+    transform: translate(17px, 3px) rotate(-45deg);
     -webkit-transform-origin: left;
     transform-origin: left;
     transition: all 150ms;
@@ -144,7 +138,7 @@
     height: 3px;
     background: #3498db;
     -webkit-transform: translate(1px, 6px) rotate(45deg);
-    transform: translate(10px, -1px) rotate(45deg);
+    transform: translate(10px, -4px) rotate(45deg);
     -webkit-transform-origin: left;
     transform-origin: left;
     transition: all 150ms;
@@ -164,4 +158,25 @@ input[type="checkbox"] {
 
 label {
     cursor: pointer;
+}
+
+.classList{
+
+}
+.specificTitle{
+    border: 1px solid;
+}
+
+.specificContent{
+    display:none;
+    border: 1px solid;
+    border-top: none;
+
+
+}
+.groupMember{
+
+}
+.memberName{
+
 }

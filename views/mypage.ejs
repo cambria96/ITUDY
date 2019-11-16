@@ -103,7 +103,7 @@
                     <ul>
                         <li class="categoryList"><p class="categoryTitle">아이디</p><p class="dbContent"><%= loginInfo.id %></p></li>
                         <li class="categoryList"><p class="categoryTitle">이름</p><input type="text" id="userName" value='<%= loginInfo.name %>' class="dbContent"></li>
-                        <li class="categoryList"><p class="categoryTitle">전화번호</p><input type="text" id="userPhone" value='<%= loginInfo.phone %>' class="dbContentInput"></li>
+                        <li class="categoryList"><p class="categoryTitle">전화번호</p><input type="text" id="userPhone" value='<%= loginInfo.phone %>' class="dbContent"></li>
                         <li class="categoryList"><p class="categoryTitle">크레딧</p><p class="dbContent"><%= loginInfo.credit %></p></li>
                     </ul>
                     <div class="buttonBox">
@@ -258,12 +258,28 @@
                 </div>
                 <div class="contentWrap">
                     <p class="contentTitle">내가올린그룹</p>
-                    <ul>
-                        <li class="categoryList"><p class="categoryTitle">아이디</p><p class="dbContent"><%= loginInfo.id %></p></li>
-                        <li class="categoryList"><p class="categoryTitle">이름</p><input type="text" id="userName" value='<%= loginInfo.name %>' class="dbContent"></li>
-                        <li class="categoryList"><p class="categoryTitle">전화번호</p><input type="text" id="userPhone" value='<%= loginInfo.phone %>' class="dbContentInput"></li>
-                        <li class="categoryList"><p class="categoryTitle">크레딧</p><p class="dbContent"><%= loginInfo.credit %></p></li>
-                    </ul>
+                    <div class="classList">
+                        <!-- <p>Class</p> -->
+                        <!-- <div class="specificTitle">할사람?</div>
+                          <div class="specificContent">
+                            <p>상세정보</p>
+                            asdfasdfasdfasdfsdf
+                            <p>모집현황</p>
+                            <ul>
+                              <li class="groupMember">
+                                <p class="memberName">이름</p>
+                              </li>
+                              <li class="groupMember">
+                                <p class="memberName">이름</p>
+                              </li>
+                            </ul>
+                          </div> -->
+                      </div>
+                    <div class="studyList">
+                        <p>Study</p>
+                        <div class="specificTitle"></div>
+                        <div class="specificContent"></div>
+                    </div>
                     <div class="buttonBox">
                       <button type="button" class="modifyBtn">수정하기</button>
                     </div>

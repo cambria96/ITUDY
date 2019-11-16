@@ -2,17 +2,34 @@ $(document).ready(function(){
     initial();
     sectionControl();
     modifyData();
+    groupList();
 });
 var loginUser;
+var userClass;
+var userStudy;
 function initial(){
     $(".contentWrap").first().addClass("active");
-    console.log("start");
     $.ajax({
-        
+
         url:'/request',
         type:'POST',
         success:function(data){
+            console.log(data.userClass);
             loginUser = data.loginUser;
+            userClass = data.userClass;
+            userStudy = data.userStudy;
+            var initialClass='<p>Class</p>'
+            $(".classList").html(initialClass);
+            if(userClass){
+                for(var m=0; m<userClass.length;m++){
+                    var dynamicList = '<div class="specificTitle">'+userClass[m].title+'</div><div class="specificContent"><p>상세정보</p>'+userClass[m].body+'<p>모집현황</p><ul><li class="groupMember"><p class="memberName">이름</p></li><li class="groupMember"><p class="memberName">이름</p></li></ul></div>'
+                    $(".classList").append(dynamicList);
+                }
+                    
+            }
+            if(userStudy){
+            }
+
             $(".checkbox-container").each(function(){
                 var currentTitle= $(this).children().first().text();
                 if(loginUser[currentTitle]=='1'){
@@ -89,4 +106,12 @@ function sectionControl(){
         $(".contentWrap").removeClass("active");
         $(".contentWrap").eq(menuPos).addClass("active");
     })
+}
+
+function groupList(){
+
+    $(document).on("click",".specificTitle",function(){
+        $(this).next().slideToggle();
+    })
+
 }
