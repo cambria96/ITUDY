@@ -177,7 +177,7 @@ app.get('/ranking', function(req,res){
         console.log("session name" + req.session.name);
         console.log("credit"+req.session.credit);
         // req.session.save(()=>{
-        //     res.render('ranking.ejs',{name:req.session.name,credit:req.session.credit});    
+        //     res.render('ranking.ejs',{name:req.session.name,credit:req.session.credit});
         // });
 
        
@@ -207,7 +207,7 @@ app.get('/ranking', function(req,res){
         }
         console.log("현재 로그인 유지" + loginUser.id);
         console.log("현재 랭킹: " + req.session.ranking);
-        res.render('ranking.ejs',{name:req.session.name,credit:req.session.credit, 
+        res.render('ranking.ejs',{name:req.session.name,credit:req.session.credit,
             id:loginUser.id, ranking : loginUser.ranking, 
             id1:info[0].id, id2:info[1].id, id3: info[2].id, id4: info[3].id, id5: info[4].id,
             credit1:info[0].credit, credit2 : info[1].credit, credit3: info[2].credit, credit4 : info[3].credit,credit5 : info[4].credit});

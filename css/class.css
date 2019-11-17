@@ -89,3 +89,21 @@
     color: #666;
     justify-content: space-between;
 }
+.float{
+
+    position: fixed;
+    display: none;
+    background: #1bb1dc;
+    color: #fff;
+    width: 44px;
+    height: 44px;
+    text-align: center;
+    line-height: 1;
+    font-size: 20px;
+    border-radius: 50%;
+    right: 15px;
+    bottom: 65px;
+    transition: background 0.5s;
+    padding-top: 12px;
+    color: #fff;
+}

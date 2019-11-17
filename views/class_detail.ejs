@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>클래스 상세설명</title>
+    <meta charset="utf-8">
+    <meta title="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+    <h2><%= data.title %></h2>
+    <p></p>
+
+    <div class="form-group">
+        <label for="author">작성자</label>
+        <input type="text" class="form-control" id="id" title="id" value="<%= data.author %>" disabled>
+    </div>
+
+    <div class="form-group">
+        <label for="period">시간</label>
+        <input type="text" class="form-control" id="title" title="title" value="<%= data.period %>" disabled>
+    </div>
+    <div class="form-group">
+        <label for="role">모집구분</label>
+        <input type="text" class="form-control" id="author" title="author" value="<%= data.role %>" disabled>
+    </div>
+    <div class="form-group">
+        <label for="credit">크레딧</label>
+        <input type="text" class="form-control" id="body" title="credit" value="<%= data.credit %>" disabled>
+    </div>
+    <div class="form-group">
+        <label for="total_participant">참가자</label>
+        <input type="text" class="form-control" id="body" title="total_participant" value="<%= data.total_participant %>" disabled>
+    </div>
+    <div class="form-group">
+        <label for="description">설명</label>
+        <input type="text" class="form-control" id="body" title="description" value="<%= data.description%>" disabled>
+    </div>
+
+
+</div>
+
+</body>
+</html>

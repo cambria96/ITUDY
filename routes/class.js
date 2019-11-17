@@ -122,7 +122,7 @@ router.post("/insert_class", function (req, res) {
     var body = req.body;
     content_id++;
 
-    getConnection().query('insert into classes(id,author,author_id,title,period,role,credit,description,datetime,icon) values (?,?,?,?,?,?,?,?,?,?)', [content_id,  req.session.name, req.session.id, body.title,body.period,body.role,body.credit,body.description,now,body.icon], function (error) {
+    getConnection().query('insert into classes(id,author,author_id,title,period,role,credit,description,datetime,icon,total_participant) values (?,?,?,?,?,?,?,?,?,?,?)', [content_id,  req.session.name, req.session.id, body.title,body.period,body.role,body.credit,body.description,now,body.icon,body.total_participant], function (error) {
 //응답
         if (error) {
             console.log("페이징 에러" + error);
@@ -131,7 +131,6 @@ router.post("/insert_class", function (req, res) {
         res.redirect('class');
     })
 
-
 })
 
 
@@ -139,7 +138,7 @@ router.post("/insert_class", function (req, res) {
 router.get("/detail_class/:id", function (req, res) {
     console.log("수정 진행")
 
-    fs.readFile('views/detail.html', 'utf-8', function (error, data) {
+    fs.readFile('views/class_detail.ejs', 'utf-8', function (error, data) {
         getConnection().query('select * from classes where id = ?', [req.params.id], function (error, result) {
             res.send(ejs.render(data, {
                 data: result[0]

@@ -165,7 +165,7 @@ router.post("/edit_study/:id", function (req, res) {
 router.get("/detail_study/:id", function (req, res) {
     console.log("수정 진행")
 
-    fs.readFile('views/detail.html', 'utf-8', function (error, data) {
+    fs.readFile('views/class_detail.ejs', 'utf-8', function (error, data) {
         getConnection().query('select * from study where id = ?', [req.params.id], function (error, result) {
             res.send(ejs.render(data, {
                 data: result[0]
