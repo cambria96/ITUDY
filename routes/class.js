@@ -58,7 +58,6 @@ router.get("/classes/:cur", function (req, res) {
             no = (curPage - 1) * 5
         }
 
-        console.log('[0] curPage : ' + curPage + ' | [1] page_list_size : ' + page_list_size + ' | [2] page_size : ' + page_size + ' | [3] totalPage : ' + totalPage + ' | [4] totalSet : ' + totalSet + ' | [5] curSet : ' + curSet + ' | [6] startPage : ' + startPage + ' | [7] endPage : ' + endPage)
 
         var result2 = {
             "curPage": curPage,
@@ -131,6 +130,7 @@ router.post("/insert_class", function (req, res) {
         }
         res.redirect('class');
     })
+
 
 })
 

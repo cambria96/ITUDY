@@ -33,6 +33,7 @@
   <link href="../css/footer.css" rel="stylesheet">
   <link href="../css/mypage.css" rel="stylesheet">
 
+
   
 
 
@@ -56,16 +57,16 @@
       <div class="logo "></div>
       <nav class="main-nav d-none d-lg-block centerBar" >
           <ul>
-            <li><a href="#about">About Us</a></li>
-            <li class="drop-down"><a href="/home">그룹 찾기</a>
-              <ul>
-                <li><a href="#">클래스</a></li>
-                <li><a href="#">스터디</a></li>
-
-              </ul>
-            </li>
-            <li><a href="#footer">Contact Us</a></li>
-          </ul>
+              <li><a href="#about">서비스 소개</a></li>
+              <li class="drop-down"><a href="/home">그룹 찾기</a>
+                <ul>
+                  <li><a href="/class">클래스</a></li>
+                  <li><a href="/study">스터디</a></li>
+  
+                </ul>
+              </li>
+              <li><a href="#footer">랭킹</a></li>
+            </ul>
         </nav><!-- .main-nav -->
 
       <nav class="main-nav d-none d-lg-block" >
@@ -90,22 +91,210 @@
             <div class="sideBar">
                 <p>마이페이지</p>
                 <ul>
-                    <li class="sideContent">기본정보</li>
-                    <li class="sideContent">역량 확인/수정</li>
-                    <li class="sideContent">내가올린그룹</li>
-                    <li class="sideContent">스터디참여이력</li>
-                    <li class="sideContent">회원탈퇴</li>
+                    <li class="sideContent"><span>기본정보</span></li>
+                    <li class="sideContent"><span>분야 확인/수정</span></li>
+                    <li class="sideContent"><span>내가올린그룹</span></li>
+                    <li class="sideContent"><span>참여중인그룹</span></li>
                 </ul>
             </div>
             <div class="contextBox">
-                <ul>
-                    <li class="categoryList"><p class="categoryTitle">아이디</p><p class="dbContent"><%= loginInfo.id %></p></li>
-                    <li class="categoryList"><p class="categoryTitle">이름</p><p class="dbContent"><%= loginInfo.name %></p></li>
-                    <li class="categoryList"><p class="categoryTitle">이메일</p><p class="dbContent"><%= loginInfo.email %></p></li>
-                    <li class="categoryList"><p class="categoryTitle">크레딧</p><p class="dbContent"><%= loginInfo.credit %></p></li>
-                </ul>
-                <div class="buttonBox">
-                  <button type="button" class="modifyBtn">수정하기</button>
+                <div class="contentWrap">
+                    <p class="contentTitle">기본정보</p>
+                    <ul>
+                        <li class="categoryList"><p class="categoryTitle">아이디</p><p class="dbContent"><%= loginInfo.id %></p></li>
+                        <li class="categoryList"><p class="categoryTitle">이름</p><input type="text" id="userName" value='<%= loginInfo.name %>' class="dbContent"></li>
+                        <li class="categoryList"><p class="categoryTitle">전화번호</p><input type="text" id="userPhone" value='<%= loginInfo.phone %>' class="dbContent"></li>
+                        <li class="categoryList"><p class="categoryTitle">크레딧</p><p class="dbContent"><%= loginInfo.credit %></p></li>
+                    </ul>
+                    <div class="buttonBox">
+                      <button type="button" class="modifyBtn">수정하기</button>
+                    </div>
+                </div>
+                <div class="contentWrap">
+                    <p class="contentTitle">분야 확인/수정</p>
+                    <div class="categoryLists">
+                        <ul class="colBox">
+                            <li class="colTitle">언어</li>
+                            <li class="colContent checkbox-container">
+                                <label for="list_c">C</label>
+                                <input type="checkbox" id="list_c">
+                                <label class="checkbox" for="list_c"></label>  
+                            </li>
+                            <li class="colContent checkbox-container">
+                                <label for="list_cpp">C++</label>
+                                <input type="checkbox" id="list_cpp">
+                                <label class="checkbox" for="list_cpp"></label>  
+                            </li>
+                            <li class="colContent checkbox-container">
+                                <label for="list_cs">C#</label>
+                                <input type="checkbox" id="list_cs">
+                                <label class="checkbox" for="list_cs"></label>  
+                            </li>
+                            <li class="colContent checkbox-container">
+                                <label for="list_java">Java</label>
+                                <input type="checkbox" id="list_java">
+                                <label class="checkbox" for="list_java"></label>  
+                            </li>
+                            <li class="colContent checkbox-container">
+                                <label for="list_ruby">Ruby</label>
+                                <input type="checkbox" id="list_ruby">
+                                <label class="checkbox" for="list_ruby"></label>  
+                            </li>
+                            <li class="colContent checkbox-container">
+                                <label for="list_python">Python</label>
+                                <input type="checkbox" id="list_python">
+                                <label class="checkbox" for="list_python"></label>  
+                            </li>
+                            <li class="colContent checkbox-container">
+                                <label for="list_r">R</label>
+                                <input type="checkbox" id="list_r">
+                                <label class="checkbox" for="list_r"></label>  
+                            </li>
+                            <li class="colContent checkbox-container">
+                                <label for="list_go">Go</label>
+                                <input type="checkbox" id="list_go">
+                                <label class="checkbox" for="list_go"></label>  
+                            </li>
+                        </ul>
+                        <ul class="colBox">
+                            <li class="colTitle">웹 개발</li>
+                            <li class="colContent checkbox-container">
+                                <label for="list_html">html/css</label>
+                                <input type="checkbox" id="list_html">
+                                <label class="checkbox" for="list_html"></label>  
+                            </li>
+                            <li class="colContent checkbox-container">
+                                <label for="list_js">Javascript</label>
+                                <input type="checkbox" id="list_js">
+                                <label class="checkbox" for="list_js"></label>  
+                            </li>
+                            <li class="colContent checkbox-container">
+                                <label for="list_spring">Spring</label>
+                                <input type="checkbox" id="list_spring">
+                                <label class="checkbox" for="list_spring"></label>  
+                            </li>
+                            <li class="colContent checkbox-container">
+                                <label for="list_nodejs">Nodejs</label>
+                                <input type="checkbox" id="list_nodejs">
+                                <label class="checkbox" for="list_nodejs"></label>  
+                            </li>
+                            <li class="colContent checkbox-container">
+                                <label for="list_ang">Angular</label>
+                                <input type="checkbox" id="list_ang">
+                                <label class="checkbox" for="list_ang"></label>  
+                            </li>
+                            <li class="colContent checkbox-container">
+                                <label for="list_vue">Vuejs</label>
+                                <input type="checkbox" id="list_vue">
+                                <label class="checkbox" for="list_vue"></label>  
+                            </li>
+                            <li class="colContent checkbox-container">
+                                <label for="list_react">React</label>
+                                <input type="checkbox" id="list_react">
+                                <label class="checkbox" for="list_react"></label>  
+                            </li>
+                            <li class="colContent checkbox-container">
+                                <label for="list_php">PHP</label>
+                                <input type="checkbox" id="list_php">
+                                <label class="checkbox" for="list_php"></label>  
+                            </li>
+                        </ul>
+                        <ul class="colBox">
+                            <li class="colTitle">모바일 앱</li>
+                            <li class="colContent checkbox-container">
+                                <label for="list_android">Android</label>
+                                <input type="checkbox" id="list_android">
+                                <label class="checkbox" for="list_android"></label>  
+                            </li>
+                            <li class="colContent checkbox-container">
+                                <label for="list_ios">IOS</label>
+                                <input type="checkbox" id="list_ios">
+                                <label class="checkbox" for="list_ios"></label>  
+                            </li>
+                            <li class="colContent checkbox-container">
+                                <label for="list_swift">Swift</label>
+                                <input type="checkbox" id="list_swift">
+                                <label class="checkbox" for="list_swift"></label>  
+                            </li>
+                            <li class="colContent checkbox-container">
+                                <label for="list_kotilin">Kotilin</label>
+                                <input type="checkbox" id="list_kotilin">
+                                <label class="checkbox" for="list_kotilin"></label>  
+                            </li>
+                            <li class="colContent checkbox-container">
+                                <label for="list_oc">Objective-C</label>
+                                <input type="checkbox" id="list_oc">
+                                <label class="checkbox" for="list_oc"></label>  
+                            </li>
+                            
+                        </ul>
+                        <ul class="colBox">
+                            <li class="colTitle">데이터베이스</li>
+                            <li class="colContent checkbox-container">
+                                <label for="list_sql">MYSQL</label>
+                                <input type="checkbox" id="list_sql">
+                                <label class="checkbox" for="list_sql"></label>  
+                            </li>
+                            <li class="colContent checkbox-container">
+                                <label for="list_mongo">MongoDB</label>
+                                <input type="checkbox" id="list_mongo">
+                                <label class="checkbox" for="list_mongo"></label>  
+                            </li>
+                            <li class="colContent checkbox-container">
+                                <label for="list_springboot">SpringBoot</label>
+                                <input type="checkbox" id="list_springboot">
+                                <label class="checkbox" for="list_springboot"></label>  
+                            </li>
+                            <li class="colContent checkbox-container">
+                                <label for="list_oracle">Oracle</label>
+                                <input type="checkbox" id="list_oracle">
+                                <label class="checkbox" for="list_oracle"></label>  
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="buttonBox">
+                      <button type="button" class="modifyCheckedBtn">수정하기</button>
+                    </div>
+                </div>
+                <div class="contentWrap">
+                    <p class="contentTitle">내가올린그룹</p>
+                    <div class="classList">
+                        <!-- <p>Class</p> -->
+                        <!-- <div class="specificTitle">할사람?</div>
+                          <div class="specificContent">
+                            <p>상세정보</p>
+                            asdfasdfasdfasdfsdf
+                            <p>모집현황</p>
+                            <ul>
+                              <li class="groupMember">
+                                <p class="memberName">이름</p>
+                              </li>
+                              <li class="groupMember">
+                                <p class="memberName">이름</p>
+                              </li>
+                            </ul>
+                          </div> -->
+                      </div>
+                    <div class="studyList">
+                        <p>Study</p>
+                        <div class="specificTitle"></div>
+                        <div class="specificContent"></div>
+                    </div>
+                    <div class="buttonBox">
+                      <button type="button" class="modifyBtn">수정하기</button>
+                    </div>
+                </div>
+                <div class="contentWrap">
+                    <p class="contentTitle">참여중인 그룹</p>
+                    <ul>
+                        <li class="categoryList"><p class="categoryTitle">아이디</p><p class="dbContent"><%= loginInfo.id %></p></li>
+                        <li class="categoryList"><p class="categoryTitle">이름</p><input type="text" id="userName" value='<%= loginInfo.name %>' class="dbContent"></li>
+                        <li class="categoryList"><p class="categoryTitle">전화번호</p><input type="text" id="userPhone" value='<%= loginInfo.phone %>' class="dbContentInput"></li>
+                        <li class="categoryList"><p class="categoryTitle">크레딧</p><p class="dbContent"><%= loginInfo.credit %></p></li>
+                    </ul>
+                    <div class="buttonBox">
+                      <button type="button" class="modifyBtn">수정하기</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -189,7 +378,6 @@
   <script src="lib/easing/easing.min.js"></script>
   <script src="lib/mobile-nav/mobile-nav.js"></script>
   <script src="lib/waypoints/waypoints.min.js"></script>
-  <script src="lib/counterup/counterup.min.js"></script>
   <script src="lib/owlcarousel/owl.carousel.min.js"></script>
   <script src="lib/isotope/isotope.pkgd.min.js"></script>
   <script src="lib/lightbox/js/lightbox.min.js"></script>
