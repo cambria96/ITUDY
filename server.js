@@ -133,9 +133,7 @@ app.get('/home',function(req,res){
 
 
 app.get('/logout', function(req,res){
-    console.log(req.session.name)
     delete req.session.name;
-    console.log(req.session.name)
     req.session.save(()=>{
         res.render('main.html');
     })
@@ -182,19 +180,16 @@ app.get('/ranking', function(req,res){
         //     res.render('ranking.ejs',{name:req.session.name,credit:req.session.credit});    
         // });
 
-        for(var j=0;j<info.length;j++){
-            console.log(info[j].credit);
-        }
+       
 
         info.sort(function(a,b){
             return a.credit > b.credit ? -1 : a.credit < b.credit? 1:0;
         });
 
         for(var k=0;k<info.length;k++){
-            console.log(info[k].credit);
-            console.log(info[k].name);
+            
             user_id = info[k].id;
-            console.log("어아다" + user_id);
+            
             var template = `update userinfo set ranking = ${k+1} where id="${user_id}"`;
             connection.query(template,function(err,rows,fields){
                 if(!err){
@@ -208,18 +203,85 @@ app.get('/ranking', function(req,res){
                 }
         });
        
-
+        
         }
+        console.log("현재 로그인 유지" + loginUser.id);
         console.log("현재 랭킹: " + req.session.ranking);
         res.render('ranking.ejs',{name:req.session.name,credit:req.session.credit, 
-            id:loginUser.id, ranking : req.session.ranking, 
+            id:loginUser.id, ranking : loginUser.ranking, 
             id1:info[0].id, id2:info[1].id, id3: info[2].id, id4: info[3].id, id5: info[4].id,
             credit1:info[0].credit, credit2 : info[1].credit, credit3: info[2].credit, credit4 : info[3].credit,credit5 : info[4].credit});
         
         
 });
+// // 기본정보 수정
+// app.post("/modify",function(req,res){
+//     var userName = req.body.name;
+//     var userPhone = req.body.phone;
+//     connection.query("UPDATE `userinfo`.`userinfo` SET `name` = '"+userName+"',`phone` = '"+userPhone+"' WHERE (`id` = '"+loginUser.id+"');",function(err,result){
+//         if(!err){
+//             console.log("수정완료");    
+//         }
+//         else{
+//             console.log('Error while performing Query.',err);
+//         }
+//     });
+//     loginUser.name = userName;
+//     loginUser.phone = userPhone;
+//     res.send();
+// })
+// 분야 수정
+app.post("/modify",function(req,res){
+    var user = req.body
+    console.log(user);
+    connection.query("UPDATE `userinfo`.`userinfo` SET ? WHERE (`id` = '"+loginUser.id+"');",user,function(err,result){
+        if(!err){
+            console.log("수정완료");    
+        }
+        else{
+            console.log('Error while performing Query.',err);
+        }
+    });
+    connection.query("SELECT * from userinfo WHERE (`id` = '"+loginUser.id+"');",user,function(err,rows,result){
+        if(!err){
+            console.log("수정완료");   
+            loginUser =  rows[0];
+        }
+        else{
+            console.log('Error while performing Query.',err);
+        }
+    });
+    res.send();
+});
 
+var userClass =[];
+var userStudy=[];
 
+app.post("/request",function(req,res){
+    
+    connection.query("SELECT * from classes WHERE (`author` = '"+loginUser.name+"');",function(err,rows,result){
+        if(!err){
+            console.log("클래스 로드 완료");
+            userClass=rows;
+            
+        }
+        else{
+            console.log('Error while performing Query.',err);
+        }
+    });
+    connection.query("SELECT * from study WHERE (`author` = '"+loginUser.name+"');",function(err,rows,result){
+        if(!err){
+            console.log("스터디 로드 완료");
+            for(var m=0;m<rows.length;m++){
+                userStudy.push(rows[m]);
+            }   
+        }
+        else{
+            console.log('Error while performing Query.',err);
+        }
+    });
+    res.send({loginUser: loginUser,userClass: userClass, userStudy:userStudy})
+})
 // app.get("/class",function(req,res){
 //     res.render('class.ejs');
 // })
