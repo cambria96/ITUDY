@@ -100,9 +100,11 @@ app.post('/success',function(req,res){
         loginUser=info[i];
         req.session.name = loginUser.name
         req.session.credit = loginUser.credit;
+        req.session.id = loginUser.id;
         // alert(req.session.name + "님 환영합니다.");
         console.log("session name" + req.session.name);
-        console.log("credit"+req.session.credit);
+        console.log("credit"+ req.session.credit);
+        console.log("??"+  req.session.id);
         req.session.save(()=>{
             res.render('after_login.ejs',{loginInfo:loginUser});    
         });
@@ -168,19 +170,56 @@ app.post("/done",function(req,res){
     res.render("main.html");
 })
 
-app.get('/credit', function(req,res){
-    req.session.name = loginUser.name
+app.get('/ranking', function(req,res){
+        req.session.name = loginUser.name;
         req.session.credit = loginUser.credit;
+        req.session.id = loginUser.id;
+        req.session.ranking = loginUser.ranking;
         // alert(req.session.name + "님 환영합니다.");
         console.log("session name" + req.session.name);
         console.log("credit"+req.session.credit);
-        req.session.save(()=>{
-            res.render('credit.ejs',{name:req.session.name,credit:req.session.credit});    
+        // req.session.save(()=>{
+        //     res.render('ranking.ejs',{name:req.session.name,credit:req.session.credit});    
+        // });
+
+        for(var j=0;j<info.length;j++){
+            console.log(info[j].credit);
+        }
+
+        info.sort(function(a,b){
+            return a.credit > b.credit ? -1 : a.credit < b.credit? 1:0;
         });
 
+        for(var k=0;k<info.length;k++){
+            console.log(info[k].credit);
+            console.log(info[k].name);
+            user_id = info[k].id;
+            console.log("어아다" + user_id);
+            var template = `update userinfo set ranking = ${k+1} where id="${user_id}"`;
+            connection.query(template,function(err,rows,fields){
+                if(!err){
+                    console.log('The solution is: ',rows);
+                    
+                    
+                    
+                }
+                else{
+                    console.log('Error while performing Query.',err);
+                }
+        });
+       
+
+        }
+        console.log("현재 랭킹: " + req.session.ranking);
+        res.render('ranking.ejs',{name:req.session.name,credit:req.session.credit, 
+            id:loginUser.id, ranking : req.session.ranking, 
+            id1:info[0].id, id2:info[1].id, id3: info[2].id, id4: info[3].id, id5: info[4].id,
+            credit1:info[0].credit, credit2 : info[1].credit, credit3: info[2].credit, credit4 : info[3].credit,credit5 : info[4].credit});
         
-    
+        
 });
+
+
 // app.get("/class",function(req,res){
 //     res.render('class.ejs');
 // })

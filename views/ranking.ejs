@@ -31,6 +31,7 @@
   <link href="css/header.css" rel="stylesheet">
   <link href="../css/custom.css" rel="stylesheet">
   <link href="../css/footer.css" rel="stylesheet">
+  <link href="../css/ranking.css" rel="stylesheet">
 
 
 </head>
@@ -43,7 +44,7 @@
   ============================-->
   <div class="bannerBox"> 
     <div class="coverBox">
-      <p class="bannerTitle">클래스/스터디 찾기</p>
+      <p class="bannerTitle">랭킹</p>
     </div>
   </div>
   <header id="header">
@@ -86,7 +87,68 @@
 
     <section id="mainContainer">
 
-        여기에 내용 추가
+        <div class="rank_container">
+            <header>
+              <h1>Top 5</h1>
+            </header>
+            <div class="wrapper">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Rank</th>
+                    <th>ID</th>
+                    <th>CREDIT</th>
+                    
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr id = "rank1">
+                      <td class="rank" >1</td>
+                      <td class="team"><%= id1 %> </td>
+                      <td class="points"><%= credit1 %></td>
+                      
+                    </tr>
+                  <tr id = "rank2">
+                      <td class="rank" >2</td>
+                      <td class="team"><%= id2 %></td>
+                      <td class="points"><%= credit2 %></td>
+                     
+                    </tr>
+                    <tr id = "rank3">
+                      <td class="rank"  >3</td>
+                      <td class="team"><%= id3 %> </td>
+                      <td class="points"><%= credit3 %></td>
+                      
+                    </tr>
+                    <tr>
+                      <td class="rank">4</td>
+                      <td class="team"><%= id4 %> </td>
+                      <td class="points"><%= credit4 %></td>
+                     
+                    </tr>
+                    <tr>
+                      <td class="rank">5</td>
+                      <td class="team"><%= id5 %> </td>
+                      <td class="points"><%= credit5 %></td>
+                      
+                    </tr>
+                    <tr>
+                        <td ></td>
+                        <td class="team"></td>
+                        <td class="points"></td>
+                        
+                      </tr>
+                    
+                    <tr>
+                      <td class="rank"><%= ranking %></td>
+                      <td class="team"><%= id %></td>
+                      <td class="points"><%= credit %></td>
+                      
+                    </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
     </section>
       
   </main>
