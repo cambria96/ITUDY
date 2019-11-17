@@ -5,7 +5,7 @@ var fs = require('fs')
 var ejs = require('ejs')
 var bodyParser = require('body-parser');
 var user = require("../server.js");
-
+var content_id = 0;
 
 
 router.use(bodyParser.urlencoded({ extended: false }))
@@ -13,11 +13,9 @@ router.use(bodyParser.urlencoded({ extended: false }))
 //게시판 페이징
 router.get("/classes/:cur", function (req, res) {
 
-    var loginUser = user.user;
-    console.log("asdfasfsefasef" +loginUser);
 
 //페이지당 게시물 수 : 한 페이지 당 10개 게시물
-    var page_size = 10;
+    var page_size = 5;
 //페이지의 갯수 : 1 ~ 10개 페이지
     var page_list_size = 10;
 //limit 변수
@@ -37,7 +35,7 @@ router.get("/classes/:cur", function (req, res) {
 //현제 페이지
         var curPage = req.params.cur;
 
-        console.log("현재 페이지 : " + curPage, "전체 페이지 : " + totalPageCount);
+        console.log("현재 페이지 : " + curPage, "전체 게시물 : " + totalPageCount);
 
 
 //전체 페이지 갯수
@@ -57,7 +55,7 @@ router.get("/classes/:cur", function (req, res) {
             no = 0
         } else {
 //0보다 크면 limit 함수에 들어갈 첫번째 인자 값 구하기
-            no = (curPage - 1) * 10
+            no = (curPage - 1) * 5
         }
 
         console.log('[0] curPage : ' + curPage + ' | [1] page_list_size : ' + page_list_size + ' | [2] page_size : ' + page_size + ' | [3] totalPage : ' + totalPage + ' | [4] totalSet : ' + totalSet + ' | [5] curSet : ' + curSet + ' | [6] startPage : ' + startPage + ' | [7] endPage : ' + endPage)
@@ -82,7 +80,7 @@ router.get("/classes/:cur", function (req, res) {
             }
             
 
-            var queryString = 'select * from classes order by id desc limit ?,?';
+            var queryString = 'select * from classes order by datetime desc limit ?,?';
             getConnection().query(queryString, [no, page_size], function (error, result) {
                 if (error) {
                     console.log("페이징 에러" + error);
@@ -109,19 +107,10 @@ router.get("/class", function (req, res) {
 
 });
 
-//삭제
-router.get("/delete_class/:id", function (req, res) {
-    console.log("삭제 진행")
 
-    getConnection().query('delete from classes where id = ?', [req.params.id], function () {
-        res.redirect('/class')
-    });
-
-})
 //삽입 페이지
 router.get("/insert_class", function (req, res) {
     console.log("삽입 페이지 나와라")
-
     fs.readFile('views/insert_class.html', 'utf-8', function (error, data) {
         res.send(data)
     })
@@ -130,35 +119,19 @@ router.get("/insert_class", function (req, res) {
 //삽입 포스터 데이터
 router.post("/insert_class", function (req, res) {
     console.log("삽입 포스트 데이터 진행")
+    var now = new Date();
     var body = req.body;
-    getConnection().query('insert into classes(id,title,author,body) values (?,?,?,?)', [body.id, body.title, body.author, body.body], function () {
+    content_id++;
+
+    getConnection().query('insert into classes(id,author,author_id,title,period,role,credit,description,datetime,icon) values (?,?,?,?,?,?,?,?,?,?)', [content_id,  req.session.name, req.session.id, body.title,body.period,body.role,body.credit,body.description,now,body.icon], function (error) {
 //응답
+        if (error) {
+            console.log("페이징 에러" + error);
+            return
+        }
         res.redirect('class');
     })
 
-})
-//수정 페이지
-router.get("/edit_class/:id", function (req, res) {
-    console.log("수정 진행")
-
-    fs.readFile('views/edit_class.html', 'utf-8', function (error, data) {
-        getConnection().query('select * from classes where id = ?', [req.params.id], function (error, result) {
-            res.send(ejs.render(data, {
-                data: result[0],
-                id: req.params.id
-            }))
-        })
-    });
-
-})
-//수정 포스터 데이터
-router.post("/edit_class/:id", function (req, res) {
-    console.log("수정 포스트 진행")
-    var body = req.body;
-    getConnection().query('update classes set title = ?, author = ?, body = ? where id = ?',
-        [body.title, body.author, body.body, body.id], function () {
-            res.redirect('/class')
-        })
 })
 
 
