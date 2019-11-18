@@ -186,29 +186,34 @@ app.get('/ranking', function(req,res){
             return a.credit > b.credit ? -1 : a.credit < b.credit? 1:0;
         });
 
-        for(var k=0;k<info.length;k++){
+        for (var k=0; k<info.length; k++){
+            if(info[k].id == loginUser.id){
+                break;
+            }
+        }
+        // DB에 랭킹 저장
+        // for(var k=0;k<info.length;k++){
             
-            user_id = info[k].id;
+        //     user_id = info[k].id;
             
-            var template = `update userinfo set ranking = ${k+1} where id="${user_id}"`;
-            connection.query(template,function(err,rows,fields){
-                if(!err){
-                    console.log('The solution is: ',rows);
+        //     var template = `update userinfo set ranking = ${k+1} where id="${user_id}"`;
+        //     connection.query(template,function(err,rows,fields){
+        //         if(!err){
+        //             console.log('The solution is: ',rows);
                     
                     
                     
-                }
-                else{
-                    console.log('Error while performing Query.',err);
-                }
-        });
+        //         }
+        //         else{
+        //             console.log('Error while performing Query.',err);
+        //         }
+        // });
        
         
-        }
-        console.log("현재 로그인 유지" + loginUser.id);
-        console.log("현재 랭킹: " + req.session.ranking);
+        //}
+
         res.render('ranking.ejs',{name:req.session.name,credit:req.session.credit, 
-            id:loginUser.id, ranking : loginUser.ranking, 
+            id:loginUser.id, ranking : k+1, 
             id1:info[0].id, id2:info[1].id, id3: info[2].id, id4: info[3].id, id5: info[4].id,
             credit1:info[0].credit, credit2 : info[1].credit, credit3: info[2].credit, credit4 : info[3].credit,credit5 : info[4].credit});
         
