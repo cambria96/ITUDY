@@ -78,7 +78,7 @@
     color: #000000;
     background: transparent;
     padding: 5px 15px;
-    border-radius: 10px;
+    border-radius: 25px;
 }
 .modifyCheckedBtn:hover,
 .modifyCheckedBtn:focus,
@@ -87,7 +87,7 @@
   box-shadow: inset 0 0 0 2em #dfaa32;
   color: #fff;
   border-color: #dfaa32;
-
+    outline:none;
 }
 .contentTitle{
     border-bottom: 1px solid #dfaa32;

@@ -67,7 +67,7 @@
 
               </ul>
             </li>
-            <li><a href="#footer">랭킹</a></li>
+            <li><a href="/ranking">랭킹</a></li>
           </ul>
         </nav><!-- .main-nav -->
 
@@ -907,7 +907,7 @@
                 <li class="listBox">
                     <p>크레딧</p>
                     <img src="../img/coin.png">
-                    <input type="number" class="submitControl creditLine"" id="credit" name= "credit" min="0" max="9999" maxlength="4">
+                    <input type="text" class="submitControl creditLine numberOnly" id="credit" name= "credit" maxlength="5">
                 </li>
                 <li class="listBox"">
                     <p>상세 내용</p>
@@ -916,15 +916,17 @@
                 <li class="listBox"">
                     <div class="roleControlBox">
                         <span>참가 인원</span> <button type="button" class="roleAddBtn fa-plus"></button>
+                        
                     </div>
-                    <ul class="roleBox">
-                        <li class="roleList">
-                            세부 분야: <input id="searchInput">
-                        </li>
+                    <ul class="participantBox">
+ 
                     </ul>
                 </li>
-            </ul> 
-            <button type="button" class="submitBtn">삽입하기</button>
+            </ul>
+            <div class="btnBox">
+                <button type="button" class="submitBtn">삽입하기</button>
+            </div>
+            
         </div>
     </section>
       

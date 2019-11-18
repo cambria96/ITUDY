@@ -2,13 +2,13 @@ $(document).ready(function(){
     clickEvnet();
     selectBox();
     autoComplete();
+    numberInput();
 })
 
 function clickEvnet(){
 
     $(".dateBtn").click(function(){
         var index=$(this).index()-7;
-        console.log(index);
         if($(this).hasClass("active")){  
             $(this).removeClass("active");
             $(".timeList").children().eq(index).removeClass("active");
@@ -16,10 +16,33 @@ function clickEvnet(){
         else{
             $(this).addClass("active");
             $(".timeList").children().eq(index).find(".dynamicDate").text($(this).text());
-            console.log($(".timeList").children().eq(index));
             $(".timeList").children().eq(index).addClass("active");
         }
         
+    })
+    $(document).on("click",".deleteRoleBtn",function(){
+      $(this).parent().hide("fast",function(){
+        $(this).remove();
+      })
+    })
+    $(".roleAddBtn").click(function(){
+      var dynamicList = '<li class="participantList"><span class ="roleList firstLine">자격 요건: </span><input class="roleListInput searchInput"><br><span class ="roleList">모집 인원: </span><input type="text" class="roleListInput howMany numberOnly" maxlength="3"><span> 명</span><br><span class ="roleList">요건 상세 설명: </span><input type="text" class="roleListInput detailInput"></li>'
+      $(".participantBox").append(dynamicList);
+    })
+
+    $(".submitBtn").click(function(){
+      var title = $("#title").val();
+      var date =[];
+      var time =[];
+      $(".hideCheckBox:checked").each(function(){
+        date.push($(this).next().next().next().next().next().next().next().text());
+      })
+      $(".dynamicTime").each(function(){
+        if($(this).hasClass("active")){
+          console.log($(this).children().eq(2).find("select"));
+        }
+        
+      })
     })
 }
 
@@ -75,27 +98,37 @@ function selectBox(){
 }
 
 function autoComplete(){
-  var searchSource = ["C","C++","C#","Java","Ruby","Python","R","Go","html/css","Javascript","Spring","Nodejs","Angular","Vue","React","PHP","Andriod","IOS","Swift","Kotlin","Objective-c","MYSQL","MongoDB","SpringBoot","Oracle"]; 
-  $("#searchInput").autocomplete({  //오토 컴플릿트 시작
-    source : searchSource,	// source 는 자동 완성 대상
-    select : function(event, ui) {	//아이템 선택시
-      console.log(ui.item);
-    },
-    focus : function(event, ui) {	//포커스 가면
-      return false;//한글 에러 잡기용도로 사용됨
-    },
-    minLength: 1,// 최소 글자수
-    autoFocus: true, //첫번째 항목 자동 포커스 기본값 false
-    classes: {	//잘 모르겠음
-        "ui-autocomplete": "highlight"
-    },
-    delay: 500,	//검색창에 글자 써지고 나서 autocomplete 창 뜰 때 까지 딜레이 시간(ms)
-//			disabled: true, //자동완성 기능 끄기
-    position: { my : "right top", at: "right bottom" },	//잘 모르겠음
-    close : function(event){	//자동완성창 닫아질때 호출
-      console.log(event);
-    }
+
+  $(document).on('keydown.autocomplete', ".searchInput", function() {
+    var searchSource = ["C","C++","C#","Java","Ruby","Python","R","Go","HTML/CSS","Javascript","Spring","Nodejs","Angularjs","Vuejs","Reactjs","PHP","Andriod","IOS","Swift","Kotlin","Objective-c","MYSQL","MongoDB","SpringBoot","OracleDB"]; 
+    $(".searchInput").autocomplete({  //오토 컴플릿트 시작
+      source : searchSource,	// source 는 자동 완성 대상
+      select : function(event, ui) {	//아이템 선택시
+        var dynamicRole = '<div class="roleItemBox"><span class="roleItem">'+ui.item.value +' </span><button class="deleteRoleBtn"></button></div>'
+        $(this).siblings(".firstLine").append(dynamicRole);
+        ui.item.value="";
+      },
+      focus : function(event, ui) {	//포커스 가면
+        return false;//한글 에러 잡기용도로 사용됨
+      },
+      minLength: 1,// 최소 글자수
+      autoFocus: true, //첫번째 항목 자동 포커스 기본값 false
+      classes: {	//잘 모르겠음
+          "ui-autocomplete": "highlight"
+      },
+      delay: 100,	//검색창에 글자 써지고 나서 autocomplete 창 뜰 때 까지 딜레이 시간(ms)
+      position: { my : "right top", at: "right bottom" },	//잘 모르겠음
+      close : function(event){	//자동완성창 닫아질때 호출
+      }
+    });
   });
+}
+
+function numberInput(){
+
+    $(".numberOnly").on("keyup", function() {
+      $(this).val($(this).val().replace(/[^0-9]/g,""));
+    });
 
 
 }
