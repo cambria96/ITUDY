@@ -9,6 +9,7 @@ body{
 
 }
 
+
 .buttomBox{
     display : flex;
     padding-bottom : 20px;
@@ -136,4 +137,9 @@ path.two {
     border: 2px solid black;
     width : 80%;
     margin : auto;
+    
+    padding : 2em;
+}
+h2{
+    font-family: 'Godo', serif;
 }

@@ -2,24 +2,38 @@ body {
 	font-family: 'Lato', Arial, sans-serif;
 	color: #121312;
 }
+.bottombox{
+    display : flex;
+    padding-bottom : 20px;
+}
+.level_container{
+    width : 50%;
+    text-align : center;
+}
 
-.rank_container > header {
+.rank_container{
+    width:50%
+}
+.wrapper > header {
 	margin: 0 auto;
 	padding: 1em;
 	text-align: center;
 }
 
-.rank_container > header h1 {
+.wrapper > header h1 {
   font-weight: 600;
 	font-size: 3em;
 	margin: 0;
 }
 
+.level_container > .wrapper{
+    width: 50%;
+}
 .wrapper {
-	line-height: 1.5em;
+	line-height: 0.8em;
 	margin: 0 auto;
 	padding: 2em 0 3em;
-	width: 50%;
+	width: 70%;
 	max-width: 2000px;
 	overflow: hidden;
 }
@@ -31,7 +45,10 @@ table {
     
 
 }
-
+.level_container > .wrapper > td, th{
+    padding: 0.5em 0.5em;
+    text-align: center;
+} 
 #rank1 {
     background : #f3b427;
 }
@@ -41,11 +58,15 @@ table {
 #rank3{
     background : #f9e6ca;
 }
-th {
+ th {
     background-color: #50360c;
     font-weight: bold;
     color: #fff;
     white-space: nowrap;
+}
+.level_container > .wrapper > table> tbody> tr >td {
+     padding: 1.5em 0em; 
+    text-align: center;
 }
 
 td, th {
@@ -53,17 +74,20 @@ td, th {
     text-align: center;
 }
 
-tbody th {
-	background-color: #2ea879;
-}
+
 tbody tr:nth-child(2n-1) {
     background-color: #f5f5f5;
     transition: all .125s ease-in-out;
 }
-tbody tr:hover {
+/* tbody tr:hover {
     background-color: rgba(50,98,149,.3);
-}
+} */
 
 td.rank {
 	text-transform: capitalize;
 }
+.rankimg{
+    width : 2.5em;
+    height : auto;
+}
+

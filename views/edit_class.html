@@ -16,22 +16,30 @@
     <form action="/edit_class/<%= id%>" method="POST">
 
         <div class="form-group">
-            <label for="id">ID</label>
-            <input type="text" class="form-control" id="id" name= "id" value = "<%= data.id%>">
-        </div>
-
-        <div class="form-group">
             <label for="title">제목</label>
             <input type="text" class="form-control" id="title" name= "title" value = "<%= data.title%>">
         </div>
         <div class="form-group">
-            <label for="author">게시자</label>
-            <input type="text" class="form-control" id="author" name="author" value = "<%= data.author%>">
+            <label for="author">시간</label>
+            <input type="text" class="form-control" id="period" name="period" value = "<%= data.author%>">
         </div>
         <div class="form-group">
-            <label for="body">내용</label>
-            <input type="text" class="form-control" id="body" name="body" value = "<%= data.body%>">
+            <label for="body">역할</label>
+            <input type="text" class="form-control" id="role" name="role" value = "<%= data.body%>">
         </div>
+        <div class="form-group">
+            <label for="body">크레딧</label>
+            <input type="text" class="form-control" id="credit" name="credit" value = "<%= data.body%>">
+        </div>
+        <div class="form-group">
+            <label for="body">아이콘</label>
+            <input type="text" class="form-control" id="icon" name="icon" value = "<%= data.icon%>">
+        </div>
+        <div class="form-group">
+            <label for="body">설명</label>
+            <input type="text" class="form-control" id="description" name="description" value = "<%= data.description%>">
+        </div>
+
         <button type="submit" class="btn btn-success">수정하기</button>
     </form>
 </div>

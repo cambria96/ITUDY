@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Study Together</title>
+  <title>ITUDY</title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
   <meta content="" name="description">
@@ -27,11 +27,11 @@
   <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
 
   <!-- Main Stylesheet File -->
-  <link href="../css/style.css" rel="stylesheet">
-  <link href="../css/header.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <link href="css/header.css" rel="stylesheet">
   <link href="../css/custom.css" rel="stylesheet">
   <link href="../css/footer.css" rel="stylesheet">
-  <link href="../css/ranking.css" rel="stylesheet">
+  <link href="../css/introduction.css" rel="stylesheet">
 
 
 </head>
@@ -44,7 +44,7 @@
   ============================-->
   <div class="bannerBox"> 
     <div class="coverBox">
-      <p class="bannerTitle">랭킹</p>
+      <p class="bannerTitle">서비스 소개</p>
     </div>
   </div>
   <header id="header">
@@ -54,7 +54,7 @@
       <div class="logo "></div>
       <nav class="main-nav d-none d-lg-block centerBar" >
           <ul>
-            <li><a href="#about">서비스 소개</a></li>
+            <li><a href="/introduction">서비스 소개</a></li>
             <li class="drop-down"><a href="/home">그룹 찾기</a>
               <ul>
                 <li><a href="/class">클래스</a></li>
@@ -62,7 +62,7 @@
 
               </ul>
             </li>
-            <li><a href="#footer">랭킹</a></li>
+            <li><a href="/ranking">랭킹</a></li>
           </ul>
         </nav><!-- .main-nav -->
 
@@ -72,7 +72,7 @@
           <li><a href = "/mypage"><span class="accoutName"><%= name %></span> 님 환영합니다.</a></li>
           <li><a href="#credit"><img src="../img/coin.png">  <span><%= credit %></span></a></li>
           <li><a href='/logout'>Log Out</a></li>
-          
+        
         </ul>
       </nav><!-- .main-nav -->
       
@@ -86,124 +86,40 @@
     </section>
 
     <section id="mainContainer">
-      <div class = "bottombox">
-          <div class ="rank_container">
-              <div class = "wrapper">
-                  <header>
-                    <h1>Top 5</h1>
-                  </header>
-                  
-                  <table>
-                      <thead>
-                        <tr>
-                          <th>Rank</th>
-                          <th>ID</th>
-                          <th>CREDIT</th>
-                          
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr id = "rank1">
-                            <td class="rank" ><img src="../img/gold.png" class="rankimg"> </td>
-                            <td class="team"><%= id1 %> </td>
-                            <td class="points"><%= credit1 %></td>
-                            
-                          </tr>
-                        <tr id = "rank2">
-                            <td class="rank" ><img src="../img/silver.png" class="rankimg"></td>
-                            <td class="team"><%= id2 %></td>
-                            <td class="points"><%= credit2 %></td>
-                            
-                          </tr>
-                          <tr id = "rank3">
-                            <td class="rank"  ><img src="../img/bronze.png" class="rankimg"></td>
-                            <td class="team"><%= id3 %> </td>
-                            <td class="points"><%= credit3 %></td>
-                            
-                          </tr>
-                          <tr>
-                            <td class="rank"><img src="../img/four.png" class="rankimg"></td>
-                            <td class="team"><%= id4 %> </td>
-                            <td class="points"><%= credit4 %></td>
-                            
-                          </tr>
-                          <tr>
-                            <td class="rank"><img src="../img/five.png" class="rankimg"></td>
-                            <td class="team"><%= id5 %> </td>
-                            <td class="points"><%= credit5 %></td>
-                            
-                          </tr>
-                          <tr>
-                              <td ></td>
-                              <td class="team"></td>
-                              <td class="points"></td>
-                              
-                            </tr>
-                          
-                          <tr>
-                            <td class="rank"><%= ranking %></td>
-                            <td class="team"><%= id %></td>
-                            <td class="points"><%= credit %></td>
-                            
-                          </tr>
-                      </tbody>
-                    </table>
-                  </div>  
-          </div>
-
-          <div class="level_container">
-            <div class = "wrapper" id ="level_wrapper">
-                  <header>
-                    <h1>칭호</h1>
-                  </header>
-                  
-                  <table>
-                      <thead>
-                        <tr>
-                          <th>아이콘</th>
-                          <th>칭호</th>
-                          <th>필요 CREDIT</th>
-                          
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr id = "rank1">
-                            <td class="rank" ></td>
-                            <td class="team">테라바이트 </td>
-                            <td class="points">10000</td>
-                        </tr>
-                        <tr id = "rank2">
-                            <td class="rank" ></td>
-                            <td class="team">기가바이트</td>
-                            <td class="points">8000</td>    
-                        </tr>
-                        <tr id = "rank3">
-                            <td class="rank"  ></td>
-                            <td class="team">메가바이트</td>
-                            <td class="points">6000</td>
-                            
-                        </tr>
-                        <tr>
-                            <td class="rank"></td>
-                            <td class="team">바이트 </td>
-                            <td class="points">2000</td>
-                            
-                        </tr>
-                        <tr>
-                            <td class="rank"></td>
-                            <td class="team">비트 </td>
-                            <td class="points">0</td>
-                            
-                        </tr>
-                        
-                      </tbody>
-                    </table>
-              </div>
-             
+        <section class="introduction">
+            
+            <div class="n1">혼자라서 힘들 땐,   <br><br>  함께라서 더 좋은, 
+                <br>
+                .
+                <br>
+                .
+                <br>
+                .
+                <br>
+                <br>
+                <div >ITUDY </div>
             </div>
-      </div>
+            
+
+            <div class="n2">
+                <div class = "leftbox">헤ㅐㅎ해</div>
+                <div class = "rightbox">
+
+                    컴퓨터 공학과 신입생이 C언어를 처음 접했을 때,
+                    <br>
+                    사회학과 수업에서 R프로그래밍을 처음 공부할 때,
+                    <br>
+                    도통 무슨소린지도 모르겠고 혼자서 낑낑댈 때,
+                    <br>
+                    <br>
+                    <br>
+                    우리는 누군가 가르쳐주고 함께 공부했으면 좋겠습니다.
+
+                </div>
+            </div>
+                
+        </section>
         
-          
     </section>
       
   </main>
@@ -239,7 +155,7 @@
                             <ul>
                                 <li>Lee Eeun Chang</li>
                                 <li>Yeo In Hyeok</li>
-                                <li>Hwang Jae Whan</li>
+                                <li>Hwang Jae Wan</li>
                                 <li>jipjung</li>
                                 <li>hahaha</li>
                             </ul>
@@ -282,9 +198,7 @@
   <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="lib/easing/easing.min.js"></script>
   <script src="lib/mobile-nav/mobile-nav.js"></script>
-  <script src="lib/wow/wow.min.js"></script>
   <script src="lib/waypoints/waypoints.min.js"></script>
-  <script src="lib/counterup/counterup.min.js"></script>
   <script src="lib/owlcarousel/owl.carousel.min.js"></script>
   <script src="lib/isotope/isotope.pkgd.min.js"></script>
   <script src="lib/lightbox/js/lightbox.min.js"></script>

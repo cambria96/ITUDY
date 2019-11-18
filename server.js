@@ -177,7 +177,7 @@ app.get('/ranking', function(req,res){
         console.log("session name" + req.session.name);
         console.log("credit"+req.session.credit);
         // req.session.save(()=>{
-        //     res.render('ranking.ejs',{name:req.session.name,credit:req.session.credit});    
+        //     res.render('ranking.ejs',{name:req.session.name,credit:req.session.credit});
         // });
 
        
@@ -262,6 +262,9 @@ app.post("/modify",function(req,res){
 var userClass =[];
 var userStudy=[];
 
+app.get("/introduction", function(req,res){
+    res.render('introduction.ejs',{name:req.session.name,credit:req.session.credit});
+})
 app.post("/request",function(req,res){
     
     connection.query("SELECT * from classes WHERE (`author` = '"+loginUser.name+"');",function(err,rows,result){
