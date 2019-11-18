@@ -7,39 +7,48 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="../js/participate_class.js"></script>
 </head>
 <body>
 
 <div class="container">
-    <h2><%= data.title %></h2>
+    <h2><%= class_info.title %></h2>
     <p></p>
 
-    <div class="form-group">
+    <div class="">
         <label for="author">작성자</label>
-        <input type="text" class="form-control" id="id" title="id" value="<%= data.author %>" disabled>
+        <input type="text" class="form-control" id="author" title="author" value="<%= class_info.author %>" disabled>
     </div>
 
-    <div class="form-group">
+    <div class="">
         <label for="period">시간</label>
-        <input type="text" class="form-control" id="title" title="title" value="<%= data.period %>" disabled>
+        <input type="text" class="form-control" id="period" title="period" value="<%= class_info.time %> <%= class_info.date%>" disabled>
     </div>
-    <div class="form-group">
+    <div class="">
         <label for="role">모집구분</label>
-        <input type="text" class="form-control" id="author" title="author" value="<%= data.role %>" disabled>
+        <input type="text" class="form-control" id="role" title="role" value="<%= class_info.role %>" disabled>
     </div>
-    <div class="form-group">
+    <div class="">
         <label for="credit">크레딧</label>
-        <input type="text" class="form-control" id="body" title="credit" value="<%= data.credit %>" disabled>
+        <input type="text" class="form-control" id="credit" title="credit" value="<%= class_info.credit %>" disabled>
     </div>
-    <div class="form-group">
+    <div class="">
         <label for="total_participant">참가자</label>
-        <input type="text" class="form-control" id="body" title="total_participant" value="<%= data.total_participant %>" disabled>
+        <input type="text" class="form-control" id="total_participant" title="total_participant" value="<%= class_info.total_participant %>" disabled>
     </div>
-    <div class="form-group">
+    <div class="">
         <label for="description">설명</label>
-        <input type="text" class="form-control" id="body" title="description" value="<%= data.description%>" disabled>
+        <input type="text" class="form-control" id="description" title="description" value="<%= class_info.description%>" disabled>
     </div>
-
+    <div class="">
+        <label for="position">모집 역할</label>
+        <input type="text" class="form-control" id="position" title="position" value="<%= positions[0].position_id%>" disabled>
+    </div>
+    <div class="content_id" id="content_id" value="<%=class_info.id%>">
+    </div>
+    <div class="participate_button" id="">
+        참가하기
+    </div>
 
 </div>
 

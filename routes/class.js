@@ -117,7 +117,7 @@ router.get("/insert_class", function (req, res) {
     })
 
 })
-//삽입 포스터 데이터
+//클래스 삽입
 router.post("/insert_class", function (req, res) {
 
     var now = new Date();
@@ -148,15 +148,39 @@ router.post("/insert_class", function (req, res) {
 router.get("/detail_class/:id", function (req, res) {
 
     fs.readFile('views/class_detail.ejs', 'utf-8', function (error, data) {
-        getConnection().query('select * from classes where id = ?', [req.params.id], function (error, result) {
-            res.send(ejs.render(data, {
-                data: result[0]
-            }))
+        getConnection().query('select * from classes where id = ?', [req.params.id], function (error, class_info) {
+            getConnection().query('select * from positions where content_id = ?', [req.params.id], function (error, positions) {
+
+                res.send(ejs.render(data, {
+                    class_info: class_info[0],
+                    positions: positions
+                }))
+            })
+
         })
     });
 
 
 })
+
+// 클래스 참
+router.post("/participate_class", function (req, res) {
+
+    getConnection().query('insert into participants(content_id,position_id,participant_id) values (?,?,?)', [req.body.content_id, req.body.position_id, loginUser.id], function (error) {
+
+        if (error) {
+            console.log("페이징 에러" + error);
+            return
+        }
+        else{
+            res.send();
+        }
+    })
+})
+
+
+
+
 //mysql db 연결 함수
 
 var pool = mysql.createPool({
