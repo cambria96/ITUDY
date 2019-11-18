@@ -121,7 +121,6 @@ app.post('/success',function(req,res){
 app.get('/home',function(req,res){
     
     if(req.session.name){
-        console.log("asdddf");
         req.session.save(()=>{
             res.render('after_login.ejs',{loginInfo:loginUser});    
         });

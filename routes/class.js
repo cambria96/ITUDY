@@ -112,9 +112,7 @@ router.get("/class", function (req, res) {
 //삽입 페이지
 router.get("/insert_class", function (req, res) {
 
-    fs.readFile('views/insert_class.html', 'utf-8', function (error, data) {
-        res.send(data)
-    })
+    res.render('insert_class.ejs',{loginInfo:user.loginUser});   
 
 })
 //삽입 포스터 데이터

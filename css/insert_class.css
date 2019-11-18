@@ -2,6 +2,7 @@
 ul{
     font-family: "Godo";
 }
+
 .container{
     margin: 50px 0px;
     border: 3px solid #dfaa32;
@@ -14,8 +15,25 @@ ul{
 
 }
 .submitControl{
-    width:100%;
+    width: 100%;
+    border-color: #dfaa32;
 }
+.submitControl:focus{
+    outline: none;
+}
+.titleLine{
+    width: 70%;
+    border: none;
+    border-bottom: 1px solid #dfaa32;
+}
+.creditLine{
+    width: 80px;
+    border: none;
+    border-bottom: 1px solid #dfaa32;
+}
+.detailLine{
+  height: 400px;
+  }
 .divBox{
     width:50%;
 }
@@ -40,8 +58,7 @@ ul{
     color: #fff;
 }
 .dynamicDate{
-    display: flex;
-    align-items: center;
+
 }
 .dynamicTime{
     display: none;
@@ -49,6 +66,7 @@ ul{
 .dynamicTime.active{
     
     display: flex;
+    align-items: center;
 }
 
 
@@ -64,11 +82,11 @@ ul{
   
   .sel::before {
     position: absolute;
-    content: '\f063';
+    content: '\f107';
     font-family: 'FontAwesome';
     color: #000;
-    right: 20px;
-    top: calc(50% - 0.5em);
+    right: 5px;
+    top: calc(50% - 0.65em);
   }
   
   .sel.active::before {
@@ -114,6 +132,7 @@ ul{
     background-color: #FFF;
     width: calc(100%);
     box-sizing: border-box;
+    z-index: 1;
   }
   
   .sel.active .sel__box {
@@ -127,7 +146,7 @@ ul{
     display: list-item;
     font-family: 'Godo';
     color: #838e95;
-    padding: 0.5em 1em;
+    padding: 0.1em 0.5em;
     user-select: none;
   }
   
@@ -150,17 +169,14 @@ ul{
   /* ----- Select Box Black Panther ----- */
   .sel {
     border-bottom: 2px solid #dfaa32;
+    min-width: 130px;
+    margin-left: 20px;
+    margin-right: 20px;
   }
-  
-  .sel--black-panther {
-    z-index: 3;
-  }
+
   
   /* ----- Select Box Superman ----- */
-  .sel--superman {
-  /*   display: none; */
-    z-index: 2;
-  }
+
   
   /* ===== Keyframes ===== */
   @keyframes fadeInUp {
@@ -183,4 +199,34 @@ ul{
     to {
       opacity: 0;
     }
+  }
+  .roleControlBox{
+    display: flex;
+    align-items: center;
+  }
+  .roleAddBtn{
+    display: inline-block;
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    background: #fff;
+    color: #dfaa32;
+    width: 25px;
+    height: 25px;
+    border: none;
+    border-radius: 15px;
+    margin-left: 10px;
+    transition: all ease 0.3s;
+  }
+  .roleAddBtn:focus{
+    outline:none;
+  }
+  .roleAddBtn:hover{
+    box-shadow: inset 0 0 0 2em #dfaa32;
+    color: #fff;
+  }
+  .roleBox{
+
   }
