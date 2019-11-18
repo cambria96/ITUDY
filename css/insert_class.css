@@ -1,0 +1,186 @@
+
+ul{
+    font-family: "Godo";
+}
+.container{
+    margin: 50px 0px;
+    border: 3px solid #dfaa32;
+    border-radius: 15px;
+    padding: 25px;
+    max-width: 1200px;
+}
+.listBox{
+    margin-bottom: 10px;
+
+}
+.submitControl{
+    width:100%;
+}
+.divBox{
+    width:50%;
+}
+.divWrap{
+
+}
+.hideCheckBox{
+    display:none;
+}
+.dateBtn{
+    border-radius: 15px;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    margin-right: 30px;
+
+    transition: all ease 0.25s;
+}
+.dateBtn.active{
+    background: #dfaa32;
+    text-align: center;
+    color: #fff;
+}
+.dynamicDate{
+    display: flex;
+    align-items: center;
+}
+.dynamicTime{
+    display: none;
+}
+.dynamicTime.active{
+    
+    display: flex;
+}
+
+
+
+/* 선택창 */
+.sel {
+    display: inline-block;
+    width: 25%;
+    background-color: transparent;
+    position: relative;
+    cursor: pointer;
+  }
+  
+  .sel::before {
+    position: absolute;
+    content: '\f063';
+    font-family: 'FontAwesome';
+    color: #000;
+    right: 20px;
+    top: calc(50% - 0.5em);
+  }
+  
+  .sel.active::before {
+    transform: rotateX(-180deg);
+  }
+  
+  .sel__placeholder {
+    display: block;
+    font-family: 'Quicksand';
+    color: #838e95;
+    padding: 0.2em 0.5em;
+    text-align: left;
+    pointer-events: none;
+    user-select: none;
+    visibility: visible;
+  }
+  
+  .sel.active .sel__placeholder {
+    visibility: hidden;
+  }
+  
+  .sel__placeholder::before {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 0.2em 0.5em;
+    content: attr(data-placeholder);
+    visibility: hidden;
+  }
+  
+  .sel.active .sel__placeholder::before {
+    visibility: visible;
+  }
+  
+  .sel__box {
+    position: absolute;
+    top: calc(100% + 2px);
+    display: none;
+    list-style-type: none;
+    text-align: left;
+    background-color: #FFF;
+    width: calc(100%);
+    box-sizing: border-box;
+  }
+  
+  .sel.active .sel__box {
+    display: block;
+    animation: fadeInUp 500ms;
+    max-height: 250px;
+    overflow: auto;
+  }
+  
+  .sel__box__options {
+    display: list-item;
+    font-family: 'Godo';
+    color: #838e95;
+    padding: 0.5em 1em;
+    user-select: none;
+  }
+  
+  .sel__box__options::after {
+    content: '\f00c';
+    font-family: 'FontAwesome';
+    font-size: 0.5em;
+    margin-left: 5px;
+    display: none;
+  }
+  
+  .sel__box__options.selected::after {
+    display: inline;
+  }
+  
+  .sel__box__options:hover {
+    background-color: #ebedef;
+  }
+  
+  /* ----- Select Box Black Panther ----- */
+  .sel {
+    border-bottom: 2px solid #dfaa32;
+  }
+  
+  .sel--black-panther {
+    z-index: 3;
+  }
+  
+  /* ----- Select Box Superman ----- */
+  .sel--superman {
+  /*   display: none; */
+    z-index: 2;
+  }
+  
+  /* ===== Keyframes ===== */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translate3d(0, 20px, 0);
+    }
+  
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+  
+    to {
+      opacity: 0;
+    }
+  }

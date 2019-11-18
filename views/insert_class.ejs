@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>ITUDY</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+
+  <!-- Favicons -->
+  <link href="img/favicon.png" rel="icon">
+  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,500,600,700,700i|Montserrat:300,400,500,600,700" rel="stylesheet">
+
+  <!-- Bootstrap CSS File -->
+  <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Libraries CSS Files -->
+  <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="lib/animate/animate.min.css" rel="stylesheet">
+  <link href="lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+  <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+
+  <!-- Main Stylesheet File -->
+  <link href="css/style.css" rel="stylesheet">
+  <link href="css/header.css" rel="stylesheet">
+  <link href="css/custom.css" rel="stylesheet">
+  <link href="css/footer.css" rel="stylesheet">
+  <link href="css/insert_class.css" rel="stylesheet">
+
+
+
+
+</head>
+
+<body>
+
+ 
+  <!--==========================
+  Header
+  ============================-->
+  <div class="bannerBox"> 
+    <div class="coverBox">
+      <p class="bannerTitle">Class 등록</p>
+    </div>
+  </div>
+  <header id="header">
+    
+    <div class="headerContainer">
+     
+      <div class="logo "></div>
+      <nav class="main-nav d-none d-lg-block centerBar" >
+          <ul>
+            <li><a href="#about">서비스 소개</a></li>
+            <li class="drop-down"><a href="/home">그룹 찾기</a>
+              <ul>
+                <li><a href="/class">클래스</a></li>
+                <li><a href="/study">스터디</a></li>
+
+              </ul>
+            </li>
+            <li><a href="#footer">랭킹</a></li>
+          </ul>
+        </nav><!-- .main-nav -->
+
+      <nav class="main-nav d-none d-lg-block" >
+        <ul>
+          
+          <li><a href = "/mypage"><span class="accoutName"><%= loginInfo.name %></span> 님 환영합니다.</a></li>
+          <li><a href="#credit"><img src="../img/coin.png">  <span><%= loginInfo.credit %></span></a></li>
+          <li><a href='/logout'>Log Out</a></li>
+        
+        </ul>
+      </nav><!-- .main-nav -->
+      
+    </div>
+  </header><!-- #header -->
+
+  <main>
+    <section class="topBanner">
+
+
+    </section>
+
+    <section id="mainContainer">
+
+        <div class="container">
+            <ul>
+                <li class="listBox">
+                    <p>제목</p>
+                    <input type="text" class="submitControl"" id="title" name= "title">
+                </li>
+                <li class="listBox">
+                    <div class="divWrap">
+                        <p>시간</p>
+                        <div class="divBox">
+                            
+                            <input type="checkbox" id="monday" class="hideCheckBox">
+                            <input type="checkbox" id="tuesday" class="hideCheckBox">
+                            <input type="checkbox" id="wednesday" class="hideCheckBox">
+                            <input type="checkbox" id="thursday" class="hideCheckBox">
+                            <input type="checkbox" id="friday" class="hideCheckBox">
+                            <input type="checkbox" id="saturday" class="hideCheckBox">
+                            <input type="checkbox" id="sunday" class="hideCheckBox">
+                            <label class="mondayBtn dateBtn" for="monday">월</label>
+                            <label class="mondayBtn dateBtn" for="tuesday">화</label>
+                            <label class="mondayBtn dateBtn" for="wednesday">수</label>
+                            <label class="mondayBtn dateBtn" for="thursday">목</label>
+                            <label class="mondayBtn dateBtn" for="friday">금</label>
+                            <label class="mondayBtn dateBtn" for="saturday">토</label>
+                            <label class="mondayBtn dateBtn" for="sunday">일</label>
+                        </div>
+                        <div class="divBox">
+                            <ul class="timeList">
+                                <li class="dynamicTime">
+                                    <div class="dynamicDate"></div>
+                                    <div class="sel sel--black-panther">
+                                        <select name="select-end" id="select-start">
+                                            <option value="" disabled>시작시간</option>
+                                            <option value="0000">오전 12:00</option>
+                                            <option value="0030">오전 12:30</option>
+                                            <option value="0100">오전 1:00</option>
+                                            <option value="0130">오전 1:30</option>
+                                            <option value="0200">오전 2:00</option>
+                                            <option value="0230">오전 2:30</option>
+                                            <option value="0300">오전 3:00</option>
+                                            <option value="0330">오전 3:30</option>
+                                            <option value="0400">오전 4:00</option>
+                                            <option value="0430">오전 4:30</option>
+                                            <option value="0500">오전 5:00</option>
+                                            <option value="0530">오전 5:30</option>
+                                            <option value="0600">오전 6:00</option>
+                                            <option value="0630">오전 6:30</option>
+                                            <option value="0700">오전 7:00</option>
+                                            <option value="0730">오전 7:30</option>
+                                            <option value="0800">오전 8:00</option>
+                                            <option value="0830">오전 8:30</option>
+                                            <option value="0900">오전 9:00</option>
+                                            <option value="0930">오전 9:30</option>
+                                            <option value="1000">오전 10:00</option>
+                                            <option value="1030">오전 10:30</option>
+                                            <option value="1100">오전 11:00</option>
+                                            <option value="1130">오전 11:30</option>
+                                            <option value="1200">오후 12:00</option>
+                                            <option value="1230">오후 12:30</option>
+                                            <option value="1300">오후 1:00</option>
+                                            <option value="1330">오후 1:30</option>
+                                            <option value="1400">오후 2:00</option>
+                                            <option value="1430">오후 2:30</option>
+                                            <option value="1500">오후 3:00</option>
+                                            <option value="1530">오후 3:30</option>
+                                            <option value="1600">오후 4:00</option>
+                                            <option value="1630">오후 4:30</option>
+                                            <option value="1700">오후 5:00</option>
+                                            <option value="1730">오후 5:30</option>
+                                            <option value="1800">오후 6:00</option>
+                                            <option value="1830">오후 6:30</option>
+                                            <option value="1900">오후 7:00</option>
+                                            <option value="1930">오후 7:30</option>
+                                            <option value="2000">오후 8:00</option>
+                                            <option value="2030">오후 8:30</option>
+                                            <option value="2100">오후 9:00</option>
+                                            <option value="2130">오후 9:30</option>
+                                            <option value="2200">오후 10:00</option>
+                                            <option value="2230">오후 10:30</option>
+                                            <option value="2300">오후 11:00</option>
+                                            <option value="2330">오후 11:30</option>
+                                        </select>
+                                    </div>
+                                    <div class="sel sel--black-superman">
+                                        <select name="select-end" id="select-end">
+                                            <option value="" disabled>종료시간</option>
+                                            <option value="0000">오전 12:00</option>
+                                            <option value="0030">오전 12:30</option>
+                                            <option value="0100">오전 1:00</option>
+                                            <option value="0130">오전 1:30</option>
+                                            <option value="0200">오전 2:00</option>
+                                            <option value="0230">오전 2:30</option>
+                                            <option value="0300">오전 3:00</option>
+                                            <option value="0330">오전 3:30</option>
+                                            <option value="0400">오전 4:00</option>
+                                            <option value="0430">오전 4:30</option>
+                                            <option value="0500">오전 5:00</option>
+                                            <option value="0530">오전 5:30</option>
+                                            <option value="0600">오전 6:00</option>
+                                            <option value="0630">오전 6:30</option>
+                                            <option value="0700">오전 7:00</option>
+                                            <option value="0730">오전 7:30</option>
+                                            <option value="0800">오전 8:00</option>
+                                            <option value="0830">오전 8:30</option>
+                                            <option value="0900">오전 9:00</option>
+                                            <option value="0930">오전 9:30</option>
+                                            <option value="1000">오전 10:00</option>
+                                            <option value="1030">오전 10:30</option>
+                                            <option value="1100">오전 11:00</option>
+                                            <option value="1130">오전 11:30</option>
+                                            <option value="1200">오후 12:00</option>
+                                            <option value="1230">오후 12:30</option>
+                                            <option value="1300">오후 1:00</option>
+                                            <option value="1330">오후 1:30</option>
+                                            <option value="1400">오후 2:00</option>
+                                            <option value="1430">오후 2:30</option>
+                                            <option value="1500">오후 3:00</option>
+                                            <option value="1530">오후 3:30</option>
+                                            <option value="1600">오후 4:00</option>
+                                            <option value="1630">오후 4:30</option>
+                                            <option value="1700">오후 5:00</option>
+                                            <option value="1730">오후 5:30</option>
+                                            <option value="1800">오후 6:00</option>
+                                            <option value="1830">오후 6:30</option>
+                                            <option value="1900">오후 7:00</option>
+                                            <option value="1930">오후 7:30</option>
+                                            <option value="2000">오후 8:00</option>
+                                            <option value="2030">오후 8:30</option>
+                                            <option value="2100">오후 9:00</option>
+                                            <option value="2130">오후 9:30</option>
+                                            <option value="2200">오후 10:00</option>
+                                            <option value="2230">오후 10:30</option>
+                                            <option value="2300">오후 11:00</option>
+                                            <option value="2330">오후 11:30</option>
+                                        </select>
+                                    </div>
+                                </li>
+                                <li class="dynamicTime">
+                                    dd
+                                </li>
+                                <li class="dynamicTime">
+                                    dd
+                                </li>
+                                <li class="dynamicTime">
+                                    dd
+                                </li>
+                                <li class="dynamicTime">
+                                    dd
+                                </li>
+                                <li class="dynamicTime">
+                                    dd
+                                </li>
+                                <li class="dynamicTime">
+                                    dd
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+                <li class="listBox">
+                    <p>역할</p>
+                    <input type="text" class="submitControl"" id="title" name= "title">
+                </li>
+                <li class="listBox">
+                    <p>크레딧</p>
+                    <input type="text" class="submitControl"" id="title" name= "title">
+                </li>
+                <li class="listBox"">
+                    <p>제목</p>
+                    <input type="text" class="submitControl"" id="title" name= "title">
+                </li>
+                <li class="listBox"">
+                    <p>상세 내용</p>
+                    <input type="text" class="submitControl"" id="title" name= "title">
+                </li>
+                <li class="listBox"">
+                    <p>참가 인원</p>
+                    <input type="text" class="submitControl"" id="title" name= "title">
+                </li>
+            </ul> 
+            <button type="button" class="submitBtn">삽입하기</button>
+        </div>
+    </section>
+      
+  </main>
+  <!-- FOOTER -->
+    <footer>
+        <div class="footer-bottom-area bg-dark-light section-padding-sm">
+            <div class="footerBox">
+                <div class="row widgets footer-widgets">
+
+                    <div class="col-lg-3 col-md-6 col-12 footerCol">
+                        <div class="single-widget widget-about">
+                            <p class="serviceName">ITUDY</p>
+                            <p>We are a team of designers and developers that create high quality <a href="www.dkstudio.in">Readmore...</a></p>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 col-12 footerCol">
+                        <div class="single-widget widget-quick-links">
+                            <h5 class="widget-title">About This</h5>
+                            <ul>
+                                <li><a href="#">Sitemap</a></li>
+                                <li><a href="#">Privacy Policy</a></li>
+                                <li><a href="#">Your Account</a></li>
+                                <li><a href="#">Advanced Search</a></li>
+                                <li><a href="#">Contact Us</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 col-12 footerCol">
+                        <div class="single-widget widget-quick-links">
+                            <h5 class="widget-title">Developers</h5>
+                            <ul>
+                                <li>Lee Eeun Chang</li>
+                                <li>Yeo In Hyeok</li>
+                                <li>Hwang Jae Wan</li>
+                                <li>jipjung</li>
+                                <li>hahaha</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 col-12 footerCol">
+                        <div class="single-widget widget-contact">
+                            <h5 class="widget-title">Contact Us</h5>
+                            <ul>
+                                <li class="address">
+                                    <span class="icon"><i class="fa fa-map-marker"></i></span>
+                                    <p>집교동</p>
+                                </li>
+                                <li class="phone">
+                                    <span class="icon"><i class="fa fa-phone"></i></span>
+                                    <p><a href="#">010 2222 2222</a></p>
+                                </li>
+                                <li class="email">
+                                    <span class="icon"><i class="fa fa-envelope-o"></i></span>
+                                    <p><a href="#">wlqwndrydbr@gmail.com</a></p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </footer>  
+  
+
+  <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+  <!-- Uncomment below i you want to use a preloader -->
+  <!-- <div id="preloader"></div> -->
+
+  <!-- JavaScript Libraries -->
+  <script src="lib/jquery/jquery.min.js"></script>
+  <script src="lib/jquery/jquery-migrate.min.js"></script>
+  <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="lib/easing/easing.min.js"></script>
+  <script src="lib/mobile-nav/mobile-nav.js"></script>
+  <script src="lib/waypoints/waypoints.min.js"></script>
+  <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+  <script src="lib/isotope/isotope.pkgd.min.js"></script>
+  <script src="lib/lightbox/js/lightbox.min.js"></script>
+  <!-- Contact Form JavaScript File -->
+  <script src="contactform/contactform.js"></script>
+
+  <!-- Template Main Javascript File -->
+  <script src="js/main.js"></script>
+  <script src="js/header.js"></script>
+  <script src="js/footer.js"></script>
+  <script src="js/insert_class.js"></script>
+
+
+
+
+</body>
+</html>
+
+
