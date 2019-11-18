@@ -34,15 +34,26 @@ function clickEvnet(){
       var title = $("#title").val();
       var date =[];
       var time =[];
-      $(".hideCheckBox:checked").each(function(){
-        date.push($(this).next().next().next().next().next().next().next().text());
-      })
+      var role = $("input[type=radio]:checked").val();
+      var credit= $(".creditLine").val();
+      var decription = $(".detailLine").val();
+      var participants = [];
+      var participant = [];
       $(".dynamicTime").each(function(){
         if($(this).hasClass("active")){
-          console.log($(this).children().eq(2).find("select"));
+          date.push($(this).children(".dynamicDate").text());
+          var startDate = $(this).find("#select-start").val();
+          var endDate = $(this).find("#select-end").val();
+          time.push(startDate+"~"+endDate);
         }
         
       })
+      $(".participantList").each(function(){
+        console.log($(this));
+        
+      })
+      
+
     })
 }
 
