@@ -108,12 +108,13 @@ app.post('/success',function(req,res){
         req.session.save(()=>{
             res.render('after_login.ejs',{loginInfo:loginUser});    
         });
-        
+        exports.loginUser = loginUser;
     }
     else{
         console.log('로그인 실패');
         res.render('main.html');
-    }    
+    }
+
 });
 
 app.get('/home',function(req,res){

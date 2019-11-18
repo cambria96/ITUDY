@@ -13,7 +13,6 @@ router.use(bodyParser.urlencoded({ extended: false }))
 //게시판 페이징
 router.get("/classes/:cur", function (req, res) {
 
-
 //페이지당 게시물 수 : 한 페이지 당 10개 게시물
     var page_size = 5;
 //페이지의 갯수 : 1 ~ 10개 페이지
@@ -110,10 +109,7 @@ router.get("/class", function (req, res) {
 //삽입 페이지
 router.get("/insert_class", function (req, res) {
     console.log("삽입 페이지 나와라")
-    fs.readFile('views/insert_class.html', 'utf-8', function (error, data) {
-        res.send(data)
-    })
-
+    res.render('insert_class.ejs',{loginInfo:user.loginUser});
 })
 //삽입 포스터 데이터
 router.post("/insert_class", function (req, res) {
@@ -122,7 +118,7 @@ router.post("/insert_class", function (req, res) {
     var body = req.body;
     content_id++;
 
-    getConnection().query('insert into classes(id,author,author_id,title,period,role,credit,description,datetime,icon,total_participant) values (?,?,?,?,?,?,?,?,?,?,?)', [content_id,  req.session.name, req.session.id, body.title,body.period,body.role,body.credit,body.description,now,body.icon,body.total_participant], function (error) {
+    getConnection().query('insert into classes(id,author,author_id,title,period,role,credit,description,datetime,icon,total_participant) values (?,?,?,?,?,?,?,?,?,?,?)', [content_id,  user.loginUser.name, user.loginUser.id, body.title,body.period,body.role,body.credit,body.description,now,body.icon,body.total_participant], function (error) {
 //응답
         if (error) {
             console.log("페이징 에러" + error);
