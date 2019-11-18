@@ -6,13 +6,15 @@ var ejs = require('ejs')
 var bodyParser = require('body-parser');
 var user = require("../server.js");
 var content_id = 0;
+var loginUser;
 
 
 router.use(bodyParser.urlencoded({ extended: false }))
 
 //게시판 페이징
 router.get("/classes/:cur", function (req, res) {
-
+    loginUser = require('../server').loginUser
+    console.log(loginUser)
 //페이지당 게시물 수 : 한 페이지 당 10개 게시물
     var page_size = 5;
 //페이지의 갯수 : 1 ~ 10개 페이지
@@ -100,6 +102,7 @@ router.get("/classes/:cur", function (req, res) {
 //메인화면
 router.get("/class", function (req, res) {
     console.log("메인화면")
+
 //class 으로 들어오면 바로 페이징 처리
     res.redirect('/classes/' + 1)
 
@@ -108,31 +111,41 @@ router.get("/class", function (req, res) {
 
 //삽입 페이지
 router.get("/insert_class", function (req, res) {
-    console.log("삽입 페이지 나와라")
-    res.render('insert_class.ejs',{loginInfo:user.loginUser});
+
+    fs.readFile('views/insert_class.html', 'utf-8', function (error, data) {
+        res.send(data)
+    })
+
 })
 //삽입 포스터 데이터
 router.post("/insert_class", function (req, res) {
-    console.log("삽입 포스트 데이터 진행")
+
     var now = new Date();
     var body = req.body;
-    content_id++;
-
-    getConnection().query('insert into classes(id,author,author_id,title,period,role,credit,description,datetime,icon,total_participant) values (?,?,?,?,?,?,?,?,?,?,?)', [content_id,  user.loginUser.name, user.loginUser.id, body.title,body.period,body.role,body.credit,body.description,now,body.icon,body.total_participant], function (error) {
-//응답
-        if (error) {
-            console.log("페이징 에러" + error);
+    // content_id++; //
+    var queryString = 'select count(*) as cnt from classes'
+    getConnection().query(queryString, function (error2, data) {
+        if (error2) {
+            console.log(error2 + "메인 화면 mysql 조회 실패");
             return
         }
-        res.redirect('class');
+        content_id = data[0].cnt + 1;
+        getConnection().query('insert into classes(id,author,author_id,title,period,role,credit,description,datetime,icon,total_participant) values (?,?,?,?,?,?,?,?,?,?,?)', [content_id, req.session.name, loginUser.id, body.title, body.period, body.role, body.credit, body.description, now, body.icon, body.total_participant], function (error) {
+//응답
+            if (error) {
+                console.log("페이징 에러" + error);
+                return
+            }
+            res.redirect('class');
+        })
     })
+
 
 })
 
 
 //글상세보기
 router.get("/detail_class/:id", function (req, res) {
-    console.log("수정 진행")
 
     fs.readFile('views/class_detail.ejs', 'utf-8', function (error, data) {
         getConnection().query('select * from classes where id = ?', [req.params.id], function (error, result) {

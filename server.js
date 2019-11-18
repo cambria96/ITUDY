@@ -58,7 +58,6 @@ app.use('/contactform',express.static('contactform'));
 
 http.createServer(app).listen(app.get('port'),function(){
     console.log("express start: %d",app.get('port'));
-
 })
 
 
@@ -81,6 +80,7 @@ app.use(session({
 }));
 
 var loginUser;
+
 app.post('/success',function(req,res){
     
     var session = req.session;
@@ -105,6 +105,7 @@ app.post('/success',function(req,res){
         console.log("session name" + req.session.name);
         console.log("credit"+ req.session.credit);
         console.log("??"+  req.session.id);
+        exports.loginUser = loginUser;
         req.session.save(()=>{
             res.render('after_login.ejs',{loginInfo:loginUser});    
         });
@@ -298,8 +299,6 @@ app.use(classRouter)
 
 var studyRouter = require('./routes/study.js')
 app.use(studyRouter)
-
-
 
 ///////////////////////////////////////////////////////////////////
 
