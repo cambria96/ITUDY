@@ -169,14 +169,20 @@ router.post("/insert_class", function (req, res) {
 
 //글상세보기
 router.get("/detail_class/:id", function (req, res) {
-
     fs.readFile('views/class_detail.ejs', 'utf-8', function (error, data) {
+        
         getConnection().query('select * from classes where id = ?', [req.params.id], function (error, class_info) {
+            if(error){
+                console.log(error);
+            }
             getConnection().query('select * from positions where content_id = ?', [req.params.id], function (error, positions) {
-
+                if(error){
+                    console.log(error);
+                }
+                console.log(positions);
                 res.send(ejs.render(data, {
-                    class_info: class_info[0],
-                    positions: positions
+                    "class_info": class_info[0],
+                    "positions": positions
                 }))
             })
 

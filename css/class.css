@@ -2,6 +2,11 @@
     margin-bottom: 16px;
 }
 
+.close{
+    position: absolute;
+    right: 0;
+}
+
 .item{
     height:auto;
     background-color: #fff;
