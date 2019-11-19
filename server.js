@@ -281,9 +281,7 @@ app.post("/request",function(req,res){
     connection.query("SELECT * from study WHERE (`author_id` = '"+loginUser.id+"');",function(err,rows,result){
         if(!err){
             console.log("스터디 로드 완료");
-            for(var m=0;m<rows.length;m++){
                 userStudy=rows;
-            }   
         }
         else{
             console.log('Error while performing Query.',err);

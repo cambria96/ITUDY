@@ -178,39 +178,71 @@ router.get("/insert_class", function (req, res) {
 //클래스 삽입
 router.post("/insert_class", function (req, res) {
 
+
     var now = new Date();
-    var body = req.body;
+    var positionList = req.body.positionList;
+    var body = req.body.classInfo;
+    var content_id;
     body["author"] = user.loginUser.name;
     body["author_id"] = user.loginUser.id;
     body["datetime"] = now;
-    console.log(body);
     // content_id++; //
     var queryString = 'insert into classes set ?'
-
-    getConnection().query(queryString,body, function (error) {
+    getConnection().query(queryString,body, function (error,result) {
         //응답
         if (error) {
             console.log("페이징 에러" + error);
             return
         }
-        res.send();
-        res.redirect('class');
+        content_id =result.insertId;
+        for(var m=0;m<positionList.length;m++){
+            var condition = positionList[m].condition;
+            var number = positionList[m].number;
+            var description = positionList[m].description;
+            var position = {};
+            for(var n=0;n<condition.length;n++){
+                position[condition[n]] = 1;
+            }
+            position["type"] = 1;
+            position["content_id"] =content_id;
+            position["position_id"] = m;
+            position["number"] = number;
+            position["description"] = description;
+    
+            var queryString2 = 'insert into positions set ?'
+            getConnection().query(queryString2,position, function (error,result) {
+                //응답
+                if (error) {
+                    console.log("페이징 에러" + error);
+                    return
+                }
+                
+            })
+        }
     })
 
 
+    
+    res.send();
 })
 
 
 //글상세보기
 router.get("/detail_class/:id", function (req, res) {
-
     fs.readFile('views/class_detail.ejs', 'utf-8', function (error, data) {
+        
         getConnection().query('select * from classes where id = ?', [req.params.id], function (error, class_info) {
+            if(error){
+                console.log(error);
+            }
             getConnection().query('select * from positions where content_id = ?', [req.params.id], function (error, positions) {
-
+                if(error){
+                    console.log(error);
+                }
+                console.log(positions);
                 res.send(ejs.render(data, {
-                    class_info: class_info[0],
-                    positions: positions
+                    "class_info": class_info[0],
+                    "positions": positions
                 }))
             })
 

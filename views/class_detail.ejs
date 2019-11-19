@@ -5,52 +5,35 @@
     <meta charset="utf-8">
     <meta title="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="../js/participate_class.js"></script>
+    <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <!-- Main Stylesheet File -->
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/custom.css" rel="stylesheet">
+    <link href="../css/class_detail.css" rel="stylesheet">
+
+    
+    
 </head>
 <body>
 
-<div class="container">
-    <h2><%= class_info.title %></h2>
-    <p></p>
-
-    <div class="">
-        <label for="author">작성자</label>
-        <input type="text" class="form-control" id="author" title="author" value="<%= class_info.author %>" disabled>
+    <div class="container">
+            
+            
     </div>
-
-    <div class="">
-        <label for="period">시간</label>
-        <input type="text" class="form-control" id="period" title="period" value="<%= class_info.time %> <%= class_info.date%>" disabled>
-    </div>
-    <div class="">
-        <label for="role">모집구분</label>
-        <input type="text" class="form-control" id="role" title="role" value="<%= class_info.role %>" disabled>
-    </div>
-    <div class="">
-        <label for="credit">크레딧</label>
-        <input type="text" class="form-control" id="credit" title="credit" value="<%= class_info.credit %>" disabled>
-    </div>
-    <div class="">
-        <label for="total_participant">참가자</label>
-        <input type="text" class="form-control" id="total_participant" title="total_participant" value="<%= class_info.total_participant %>" disabled>
-    </div>
-    <div class="">
-        <label for="description">설명</label>
-        <input type="text" class="form-control" id="description" title="description" value="<%= class_info.description%>" disabled>
-    </div>
-    <div class="">
-        <label for="position">모집 역할</label>
-        <input type="text" class="form-control" id="position" title="position" value="<%= positions[0].position_id%>" disabled>
-    </div>
-    <div class="content_id" id="content_id" value="<%=class_info.id%>">
-    </div>
-    <div class="participate_button" id="">
-        참가하기
-    </div>
-
-</div>
 
 </body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+   
+ 
+
+    <!-- Template Main Javascript File -->
+    <script src="../js/main.js"></script>
+    <script src="../js/class_detail.js"></script>
 </html>

@@ -65,6 +65,10 @@
     padding-left: 10p;
     margin-left: 10px;
 }
+input[type="text"]{
+    border: none;
+    border-bottom: 1px solid #dfaa32;
+}
 
 .buttonBox{
     padding: 10px 0px;

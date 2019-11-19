@@ -1,9 +1,9 @@
 $(function() {
 
     $(document).ready(function() {
-
         $(".item-container").click(function() {
             var src = $(this).attr('value')
+            console.log(src);
             $("#content-detail").prop('src',src)
             $("#myModal").css({
                 "display": "block"
