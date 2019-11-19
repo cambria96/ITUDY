@@ -267,8 +267,8 @@ app.get("/introduction", function(req,res){
     res.render('introduction.ejs',{name:req.session.name,credit:req.session.credit});
 })
 app.post("/request",function(req,res){
-    
-    connection.query("SELECT * from classes WHERE (`author` = '"+loginUser.name+"');",function(err,rows,result){
+    console.log("로깅유저"+loginUser.id);
+    connection.query("SELECT * from classes WHERE (`author_id` = '"+loginUser.id+"');",function(err,rows,result){
         if(!err){
             console.log("클래스 로드 완료");
             userClass=rows;
@@ -278,11 +278,11 @@ app.post("/request",function(req,res){
             console.log('Error while performing Query.',err);
         }
     });
-    connection.query("SELECT * from study WHERE (`author` = '"+loginUser.name+"');",function(err,rows,result){
+    connection.query("SELECT * from study WHERE (`author_id` = '"+loginUser.id+"');",function(err,rows,result){
         if(!err){
             console.log("스터디 로드 완료");
             for(var m=0;m<rows.length;m++){
-                userStudy.push(rows[m]);
+                userStudy=rows;
             }   
         }
         else{
