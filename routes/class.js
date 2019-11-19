@@ -90,7 +90,7 @@ router.get("/classes/:cur", function (req, res) {
                 var can = new Array(rows1.length)
                 var queryString = 'select * from positions where '
                 for(var i=0; i<rows1.length; i++){
-                    queryString = queryString+"content_id=? AND type=0"
+                    queryString = queryString+"content_id=? AND type=1"
                     if(i+1!=rows1.length){
                         queryString = queryString +" OR "
                     }
