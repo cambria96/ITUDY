@@ -38,8 +38,6 @@ function clickEvnet(){
         var role = $("input[type=radio]:checked").val();
         var credit= $(".creditLine").val();
         var description = $(".detailLine").val();
-        var participants = [];
-        var participant = [];
         var total_participant =1;
         var current_participant=1;
         $(".dynamicTime").each(function(){
@@ -65,10 +63,34 @@ function clickEvnet(){
         classInfo["total_participant"] = total_participant;
         classInfo["current_participant"] = current_participant;
         classInfo["description"] = description;
+
+        //position table 값 형성
+        
+        var positionList=[];
+        var onePerson={};
+        var i=0;
+        $(".participantList").each(function(){
+            var conditionDetail;
+            var condition = [];
+            var number=$(this).find(".howMany").val();
+            $(this).find(".roleItem").each(function(){
+                condition.push($(this).text())
+            });
+            console.log(condition);
+            conditionDetail = $(this).find(".detailInput").val();
+            onePerson = {"condition":condition,"number":number,"description": conditionDetail}; 
+            positionList.push(onePerson);
+        })
+        console.log(positionList);
+        
         $.ajax({
             url: '/insert_class',
             type: 'POST',
-            data: classInfo,
+            data: 
+            {
+                "classInfo" :classInfo,
+                "positionList":positionList
+            },
             success: function(response) {
                 alert("클래스 등록이 완료되었습니다.");
                 location.href="/classes/1"
@@ -141,7 +163,7 @@ function autoComplete(){
     $(".searchInput").autocomplete({  //오토 컴플릿트 시작
       source : searchSource,	// source 는 자동 완성 대상
       select : function(event, ui) {	//아이템 선택시
-        var dynamicRole = '<div class="roleItemBox"><span class="roleItem">'+ui.item.value +' </span><button class="deleteRoleBtn"></button></div>'
+        var dynamicRole = '<div class="roleItemBox"><span class="roleItem">'+ui.item.value+'</span><button class="deleteRoleBtn"></button></div>'
         $(this).siblings(".firstLine").append(dynamicRole);
         ui.item.value="";
       },
@@ -163,9 +185,8 @@ function autoComplete(){
 
 function numberInput(){
 
-    $(".numberOnly").on("keyup", function() {
-      $(this).val($(this).val().replace(/[^0-9]/g,""));
-    });
-
+    $(document).on("keyup",".numberOnly",function(){
+        $(this).val($(this).val().replace(/[^0-9]/g,""));
+      })
 
 }
