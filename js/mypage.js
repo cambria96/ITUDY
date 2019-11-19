@@ -19,6 +19,7 @@ function initial(){
             userClass = data.userClass;
             userStudy = data.userStudy;
             var initialClass='<p>Class</p>'
+            var initialStudy='<p>Study</p>'
             $(".classList").html(initialClass);
             if(userClass){
                 for(var m=0; m<userClass.length;m++){
@@ -27,7 +28,12 @@ function initial(){
                 }
                     
             }
+            $(".studyList").html(initialStudy);
             if(userStudy){
+                for(var n=0; n<userStudy.length;n++){
+                    var dynamicList = '<div class="specificTitle">'+userStudy[n].title+'</div><div class="specificContent"><p>상세정보</p>'+userStudy[n].body+'<p>모집현황</p><ul><li class="groupMember"><p class="memberName">이름</p></li><li class="groupMember"><p class="memberName">이름</p></li></ul></div>'
+                    $(".studyList").append(dynamicList);
+                }
             }
 
             $(".checkbox-container").each(function(){

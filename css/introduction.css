@@ -3,7 +3,7 @@
 @import url('https://fonts.googleapis.com/css?family=Black+Han+Sans|Jua|Nanum+Brush+Script|Nanum+Myeongjo:400,700,800|Noto+Serif+KR:200,300,400,500,600,700,900|Song+Myung&display=swap&subset=korean');
 
 .introduction{
-    padding : 5em;
+    padding : 3em;
     text-align: center;
     font-size : 36px;
     font-family: 'Godo', serif; 
@@ -14,9 +14,9 @@
     padding-bottom : 5em;
 }
 .n2{
-    font-family: 'Song Myung', serif;
+    font-family: 'Noto Serif KR', serif;
     text-align: left;
-    font-size : 20px;
+    font-size : 21px;
     display : flex;
     margin : auto;
 }
@@ -32,4 +32,12 @@
     width : 50%;
     padding-top: 70px;
    
+}
+.notfound{
+    
+    overflow : hidden;
+}
+.notfound > img{
+    width : 85%;
+    height: auto;
 }
