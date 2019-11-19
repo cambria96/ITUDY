@@ -78,20 +78,80 @@ router.get("/classes/:cur", function (req, res) {
                 console.log("ejs오류" + error);
                 return
             }
-            
+
 
             var queryString = 'select * from classes order by datetime desc limit ?,?';
-            getConnection().query(queryString, [no, page_size], function (error, result) {
+            getConnection().query(queryString, [no, page_size], function (error, rows1) {
                 if (error) {
                     console.log("페이징 에러" + error);
                     return
                 }
-                res.send(ejs.render(data, {
-                    data: result,
-                    classes: result2,
-                    name:req.session.name,
-                    credit:req.session.credit
-                }));
+                var params = []
+                var can = new Array(rows1.length)
+                var queryString = 'select * from positions where '
+                for(var i=0; i<rows1.length; i++){
+                    queryString = queryString+"content_id=? AND type=0"
+                    if(i+1!=rows1.length){
+                        queryString = queryString +" OR "
+                    }
+                    can[i]=0;
+                    params.push(rows1[i].id)
+                }
+
+
+                getConnection().query(queryString,params,function(error,rows2) {
+
+                    var index = ["C","C++","C#","Java","Ruby","Python","R","Go","HTML/CSS","Javascript","Spring","Nodejs","Angularjs","Vuejs","Reactjs","PHP","Andriod","IOS","Swift","Kotlin","Objective-c","MYSQL","MongoDB","SpringBoot","OracleDB"];
+                    for(var i=0;i<rows2.length;i++){
+                        for(var m=0;m<rows1.length;m++){
+                            if( params[m]==rows2[i].content_id&&can[m]==1){
+                                break;
+                            }
+                        }
+
+                        if(m!==rows1.length) {
+                            continue;
+                        }
+
+
+                        for(var j=0;j<index.length;j++) {
+                            var column = index[j]
+                            if (rows2[i][column] === '1') {
+                                if (loginUser[column] == '1') {
+                                    for (var l = 0; l < rows1.length; l++) {
+                                        if (rows2[i].content_id === params[l]) {
+                                            can[l] = 1;
+                                            break;
+                                        }
+                                    }
+                                }
+                                else {
+                                    for (var k = 0; k < rows1.length; k++) {
+                                        if (rows2[i].content_id === params[k]) {
+                                            can[k] = 0;
+                                            break;
+                                        }
+
+                                    }
+                                    break
+                                }
+                            }
+                        }
+                    }
+
+                    res.send(ejs.render(data, {
+                        can: can,
+                        data: rows1,
+                        classes: result2,
+                        name:req.session.name,
+                        credit:req.session.credit
+                    }));
+
+                })
+
+
+
+
             });
         });
     })
@@ -156,7 +216,6 @@ router.get("/detail_class/:id", function (req, res) {
 
         })
     });
-
 
 })
 

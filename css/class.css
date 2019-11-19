@@ -11,6 +11,15 @@
     box-shadow: 0 4px 8px 0 rgba(0,0,0,.12);
     overflow: hidden;
 }
+.item-not-allowed{
+    height: auto;
+    background-color: red;
+    border: 1px solid #ddd;
+    border-radius: .5rem;
+    cursor: pointer;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,.12);
+    overflow: hidden;
+}
 
 .item-link{
     display:block;
