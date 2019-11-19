@@ -45,7 +45,7 @@ function clickEvnet(){
                 date.push($(this).children(".dynamicDate").text());     
                 var startTime = $(this).find("#select-start").val();
                 var endTime = $(this).find("#select-end").val();
-                time.push(startTime+"~"+endTime);
+                time.push(startTime+" ~ "+endTime);
             }
             
         })
@@ -159,7 +159,7 @@ function selectBox(){
 function autoComplete(){
 
   $(document).on('keydown.autocomplete', ".searchInput", function() {
-    var searchSource = ["C","C++","C#","Java","Ruby","Python","R","Go","HTML/CSS","Javascript","Spring","Nodejs","Angularjs","Vuejs","Reactjs","PHP","Andriod","IOS","Swift","Kotlin","Objective-c","MYSQL","MongoDB","SpringBoot","OracleDB"]; 
+    var searchSource = ["C","C++","C#","Java","Ruby","Python","R","Go","HTML/CSS","Javascript","Spring","Nodejs","Angularjs","Vuejs","Reactjs","PHP","Android","IOS","Swift","Kotlin","Objective-C","MYSQL","MongoDB","SpringBoot","OracleDB"]; 
     $(".searchInput").autocomplete({  //오토 컴플릿트 시작
       source : searchSource,	// source 는 자동 완성 대상
       select : function(event, ui) {	//아이템 선택시

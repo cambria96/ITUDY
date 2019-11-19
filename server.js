@@ -16,7 +16,6 @@ var options = {
     password: 'root',
     database: 'userinfo'
 };
-
 var sessionStore = new MySQLStore(options);
 
 var connection = mysql.createConnection(options);
