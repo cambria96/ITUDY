@@ -26,34 +26,60 @@ function clickEvnet(){
       })
     })
     $(".roleAddBtn").click(function(){
-      var dynamicList = '<li class="participantList"><span class ="roleList firstLine">자격 요건: </span><input class="roleListInput searchInput"><br><span class ="roleList">모집 인원: </span><input type="text" class="roleListInput howMany numberOnly" maxlength="3"><span> 명</span><br><span class ="roleList">요건 상세 설명: </span><input type="text" class="roleListInput detailInput"></li>'
+      var dynamicList = '<li class="participantList"><span class ="roleList firstLine">자격 요건: </span><input class="roleListInput searchInput"><br><span class ="roleList">모집 인원: </span><input type="text" class="roleListInput howMany numberOnly" value="1" maxlength="3"><span> 명</span><br><span class ="roleList">요건 상세 설명: </span><input type="text" class="roleListInput detailInput"></li>'
       $(".participantBox").append(dynamicList);
     })
 
     $(".submitBtn").click(function(){
-      var title = $("#title").val();
-      var date =[];
-      var time =[];
-      var role = $("input[type=radio]:checked").val();
-      var credit= $(".creditLine").val();
-      var decription = $(".detailLine").val();
-      var participants = [];
-      var participant = [];
-      $(".dynamicTime").each(function(){
-        if($(this).hasClass("active")){
-          date.push($(this).children(".dynamicDate").text());
-          var startDate = $(this).find("#select-start").val();
-          var endDate = $(this).find("#select-end").val();
-          time.push(startDate+"~"+endDate);
-        }
-        
-      })
-      $(".participantList").each(function(){
-        console.log($(this));
-        
-      })
-      
+        var classInfo={};
+        var title = $("#title").val();
+        var date =[];
+        var time =[];
+        var role = $("input[type=radio]:checked").val();
+        var credit= $(".creditLine").val();
+        var description = $(".detailLine").val();
+        var participants = [];
+        var participant = [];
+        var total_participant =1;
+        var current_participant=1;
+        $(".dynamicTime").each(function(){
+            if($(this).hasClass("active")){
+                date.push($(this).children(".dynamicDate").text());     
+                var startTime = $(this).find("#select-start").val();
+                var endTime = $(this).find("#select-end").val();
+                time.push(startTime+"~"+endTime);
+            }
+            
+        })
+        date = date.toString();
+        time = time.toString();
+        $(".participantList").each(function(){
+            total_participant += Number($(this).find(".howMany").val());
+            
+        })
+        classInfo["title"] = title;
+        classInfo["date"] = date;
+        classInfo["time"] = time;
+        classInfo["role"] = role;
+        classInfo["credit"] = credit;
+        classInfo["total_participant"] = total_participant;
+        classInfo["current_participant"] = current_participant;
+        classInfo["description"] = description;
+        $.ajax({
+            url: '/insert_class',
+            type: 'POST',
+            data: classInfo,
+            success: function(response) {
+                alert("클래스 등록이 완료되었습니다.");
+                location.href="/classes/1"
+            },
 
+            error: function(request,error,status){
+                alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                return false;
+            }
+        })
+      
     })
 }
 
