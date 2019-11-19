@@ -95,7 +95,10 @@ Header
             <div class="content-all" style="flex: 11 0%;">
                 <div class="card-list">
                     <% data.forEach(function (item, index){ %>
-                    <%if(can[index]==1){%>
+                    <%
+                    <!-- 테스트해볼려고 하나 1로 바꿔봤어요 지워도됩니다 -->
+                    can[2]=1; 
+                    if(can[index]==1){%>
                         <div class="item-container" value="/detail_class/<%=item.id%>">
                                 <div class="item">
                                     <div class="item-content">
@@ -108,10 +111,16 @@ Header
                                         <div class="item-description">
                                             <div class="content-title-number">
                                                 <div class="content-title"><%= item.title %></div>
-                                                <div class="content-number">현재인원 1/<%= item.total_number %></div>
+                                                <div class="content-number">현재인원 <%= item.current_participant %>/<%= item.total_participant %></div>
                                             </div>
-                                            <div class="content-author">
-                                                <%= item.author%></div>
+                                            <div class="content-author-possible">
+                                                    <div class="content-author">
+                                                        <%= item.author%>
+                                                    </div>
+                                                    <div class="content-possible">
+                                                        참가 가능
+                                                    </div>
+                                            </div>
                                             <div class="content-period">
                                                 <div class="" style="display: flex;">
                                                     <div class="" style="background-image: url('../img/icons/calendar.svg');width: 2rem;height: 2rem;margin-right: 0.5rem;">
@@ -141,10 +150,17 @@ Header
                                 <div class="item-description">
                                     <div class="content-title-number">
                                         <div class="content-title"><%= item.title %></div>
-                                        <div class="content-number">현재인원 1/<%= item.total_number %></div>
+                                        <div class="content-number">현재인원 <%= item.current_participant %>/<%= item.total_participant %></div>
                                     </div>
-                                    <div class="content-author">
-                                        <%= item.author%></div>
+                                    <div class="content-author-possible">
+                                            <div class="content-author">
+                                                <%= item.author%>
+                                            </div>
+                                            <div class="content-impossible">
+                                                참가 불가
+                                            </div>
+                                    </div>
+                                    
                                     <div class="content-period">
                                         <div class="" style="display: flex;">
                                             <div class="" style="background-image: url('../img/icons/calendar.svg');width: 2rem;height: 2rem;margin-right: 0.5rem;">

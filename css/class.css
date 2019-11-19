@@ -18,7 +18,6 @@
 }
 .item-not-allowed{
     height: auto;
-    background-color: red;
     border: 1px solid #ddd;
     border-radius: .5rem;
     cursor: pointer;
@@ -60,13 +59,13 @@
     flex-basis: 0%;
     padding-left: 2rem;
 }
-.content-title-number{
+.content-title-number,.content-author-possible{
     box-sizing: border-box;
     justify-content: space-between;
     display: flex;
     padding: 0px;
-    font-size: 100%;
-
+    font-size: 1.2em;
+    
 }
 .content-title{
     font-size: 3rem;
@@ -94,6 +93,12 @@
     color: #666;
     font-weight: 700;
     font-size: 1.5rem;
+}
+.content-impossible{
+    color:#f00;
+}
+.content-possible{
+    color:#1cb912;
 }
 .content-period{
     position: relative;
