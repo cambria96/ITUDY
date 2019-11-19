@@ -95,11 +95,9 @@ Header
             <div class="content-all" style="flex: 11 0%;">
                 <div class="card-list">
                     <% data.forEach(function (item, index){ %>
+                    <%if(can[index]==1){%>
                         <div class="item-container" value="/detail_class/<%=item.id%>">
-
-
                                 <div class="item">
-
                                     <div class="item-content">
                                         <div class="icon-container">
                                             <div class="icon"
@@ -110,7 +108,7 @@ Header
                                         <div class="item-description">
                                             <div class="content-title-number">
                                                 <div class="content-title"><%= item.title %></div>
-                                                <div class="content-number">현재인원 1/5</div>
+                                                <div class="content-number">현재인원 1/<%= item.total_number %></div>
                                             </div>
                                             <div class="content-author">
                                                 <%= item.author%></div>
@@ -130,7 +128,40 @@ Header
 <!--                            </a>-->
 
                         </div>
+                    <%} else{%>
+                    <div class="item-container" value="/detail_class/<%=item.id%>">
+                        <div class="item-not-allowed">
+                            <div class="item-content">
+                                <div class="icon-container">
+                                    <div class="icon"
+                                         style="background-image: url('../img/icons/git-logo.png');">
 
+                                    </div>
+                                </div>
+                                <div class="item-description">
+                                    <div class="content-title-number">
+                                        <div class="content-title"><%= item.title %></div>
+                                        <div class="content-number">현재인원 1/<%= item.total_number %></div>
+                                    </div>
+                                    <div class="content-author">
+                                        <%= item.author%></div>
+                                    <div class="content-period">
+                                        <div class="" style="display: flex;">
+                                            <div class="" style="background-image: url('../img/icons/calendar.svg');width: 2rem;height: 2rem;margin-right: 0.5rem;">
+                                            </div>
+                                            <div><%=item.period%></div>
+
+                                        </div>
+                                        <div><img src="../img/coin.png"> <%=item.credit%></div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!--                            </a>-->
+
+                    </div>
+                        <%}%>
                     <% }) %>
                 </div>
             </div>
