@@ -1,6 +1,7 @@
 $(function() {
 
     $(document).ready(function() {
+
         $(".item-container").click(function() {
             var src = $(this).attr('value')
             console.log(src);
@@ -13,6 +14,7 @@ $(function() {
 
         $("html").click(function(event) {
             if (event.target.id === "myModal") {
+                $("#content-detail").prop('src',"")
                 $(".modal").css({
                     "display":"none"
                 });

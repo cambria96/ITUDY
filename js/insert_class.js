@@ -40,6 +40,10 @@ function clickEvnet(){
         var description = $(".detailLine").val();
         var total_participant =1;
         var current_participant=1;
+        if($(".dynamicTime.active").length ==0){
+            alert("시간을 설정해주세요");
+            return;
+        }
         $(".dynamicTime").each(function(){
             if($(this).hasClass("active")){
                 date.push($(this).children(".dynamicDate").text());     
@@ -51,6 +55,10 @@ function clickEvnet(){
         })
         date = date.toString();
         time = time.toString();
+        if($(".participantList").length ==0){
+            alert("참가 인원은 1명 이상이어야 합니다.")
+            return;
+        };
         $(".participantList").each(function(){
             total_participant += Number($(this).find(".howMany").val());
             
@@ -73,10 +81,13 @@ function clickEvnet(){
             var conditionDetail;
             var condition = [];
             var number=$(this).find(".howMany").val();
+            if($(this).find(".roleItem").length ==0){
+                alert("참가인원의 자격요건을 설정해주세요");
+                return;
+            }
             $(this).find(".roleItem").each(function(){
                 condition.push($(this).text())
             });
-            console.log(condition);
             conditionDetail = $(this).find(".detailInput").val();
             onePerson = {"condition":condition,"number":number,"description": conditionDetail}; 
             positionList.push(onePerson);

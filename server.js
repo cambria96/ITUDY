@@ -108,7 +108,7 @@ app.post('/success',function(req,res){
         req.session.save(()=>{
             res.render('after_login.ejs',{loginInfo:loginUser});    
         });
-        exports.loginUser = loginUser;
+    
     }
     else{
         console.log('로그인 실패');
@@ -251,6 +251,7 @@ app.post("/modify",function(req,res){
         if(!err){
             console.log("수정완료");   
             loginUser =  rows[0];
+            exports.loginUser = loginUser;
         }
         else{
             console.log('Error while performing Query.',err);
