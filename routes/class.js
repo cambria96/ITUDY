@@ -280,7 +280,6 @@ var pool = mysql.createPool({
 })
 
 
-
 //디비 연결 함수
 function getConnection() {
     return pool

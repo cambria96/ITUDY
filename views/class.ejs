@@ -89,7 +89,7 @@ Header
 
     </section>
 
-    <section id="mainContainer">
+    <section id="mainContainer" style="font-family: 'Godo', serif;">
         <div class="container">
             <div class="" style="margin-top: 4rem;"></div>
             <div class="content-all" style="flex: 11 0%;">
@@ -108,15 +108,39 @@ Header
                                         <div class="item-description">
                                             <div class="content-title-number">
                                                 <div class="content-title"><%= item.title %></div>
-                                                <div class="content-number">현재인원 1/<%= item.total_number %></div>
+                                                <div class="content-number">현재인원 <%=item.current_participant%>/<%= item.total_participant %></div>
                                             </div>
                                             <div class="content-author">
-                                                <%= item.author%></div>
+                                                <div class="author"><i class="fas fa-user-tie"></i>
+                                                    <%if(item.role=="멘토"){%>
+                                                        <%= item.author%> 멘토
+                                                    <%}else if(item.role=="멘티"){%>
+                                                        <%= item.author%> 멘티
+                                                    <%}%>
+                                                </div>
+                                                <div class="content-possible  blink-possible">
+                                                    참가가능
+                                                </div>
+                                            </div>
                                             <div class="content-period">
                                                 <div class="" style="display: flex;">
                                                     <div class="" style="background-image: url('../img/icons/calendar.svg');width: 2rem;height: 2rem;margin-right: 0.5rem;">
                                                     </div>
-                                                    <div><%=item.period%></div>
+                                                    <%
+                                                        var dateString = item.date.toString();
+                                                        var timeString = item.time.toString();
+                                                        var date = dateString.split(',');
+                                                        var time = timeString.split(',');
+                                                    %>
+                                                    <%
+                                                    date.forEach(function(dateToken,index){%>
+                                                    <div>
+                                                        <%=dateToken%>: <%=time[index]%>
+                                                    </div>
+                                                    <% if(date.length-1!=index){%>
+                                                        <div>&nbsp|&nbsp</div>
+                                                    <%}%>
+                                                    <%})%>
 
                                                 </div>
                                                 <div><img src="../img/coin.png"> <%=item.credit%></div>
@@ -141,16 +165,39 @@ Header
                                 <div class="item-description">
                                     <div class="content-title-number">
                                         <div class="content-title"><%= item.title %></div>
-                                        <div class="content-number">현재인원 1/<%= item.total_number %></div>
+                                        <div class="content-number">현재인원 <%=item.current_participant%>/<%= item.total_participant %></div>
                                     </div>
                                     <div class="content-author">
-                                        <%= item.author%></div>
+                                        <div class="author"><i class="fas fa-user-tie"></i>
+                                            <%if(item.role=="멘토"){%>
+                                                <%= item.author%> 멘토
+                                            <%}else if(item.role=="멘티"){%>
+                                                <%= item.author%> 멘티
+                                            <%}%>
+                                        </div>
+                                        <div class="content-impossible blink-impossible">
+                                            참가불가
+                                        </div>
+                                    </div>
                                     <div class="content-period">
                                         <div class="" style="display: flex;">
                                             <div class="" style="background-image: url('../img/icons/calendar.svg');width: 2rem;height: 2rem;margin-right: 0.5rem;">
                                             </div>
-                                            <div><%=item.period%></div>
-
+                                            <%
+                                            var dateString = item.date.toString();
+                                            var timeString = item.time.toString();
+                                            var date = dateString.split(',');
+                                            var time = timeString.split(',');
+                                            %>
+                                            <%
+                                            date.forEach(function(dateToken,index){%>
+                                            <div>
+                                                <%=dateToken%>: <%=time[index]%>
+                                            </div>
+                                            <% if(date.length-1!=index){%>
+                                                <div>&nbsp|&nbsp</div>
+                                            <%}%>
+                                            <%})%>
                                         </div>
                                         <div><img src="../img/coin.png"> <%=item.credit%></div>
                                     </div>
@@ -335,14 +382,15 @@ Header
     </div>
 </footer>
 
-<a href="/insert_class"class="float"style="display: inline;">
+<a href="/insert_class"class="float1"style="display: inline;">
     <i class="fa fa-plus my-float"></i>
 </a>
-<a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+<a href="#" class="float2 back-to-top"><i class="fa fa-chevron-up"></i></a>
 <!-- Uncomment below i you want to use a preloader -->
 <!-- <div id="preloader"></div> -->
 
 <!-- JavaScript Libraries -->
+<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <script src="../lib/jquery/jquery.min.js"></script>
 <script src="../lib/jquery/jquery-migrate.min.js"></script>
 <script src="../lib/bootstrap/js/bootstrap.bundle.min.js"></script>
