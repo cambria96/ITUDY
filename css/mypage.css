@@ -7,7 +7,7 @@
     font-family: 'Godo';
 }
 .sideBar{
-    border: 3px solid #dfaa32;
+    border: 3px double  #dfaa32;
     border-radius: 15px;
     width: 20%;
     padding: 25px;
@@ -17,7 +17,7 @@
 }
 .contextBox{
     width: 75%;
-    border: 3px solid #dfaa32;
+    border: 3px double  #dfaa32;
     border-radius: 15px;
     padding: 25px;
     max-width: 1200px;

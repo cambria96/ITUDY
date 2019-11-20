@@ -10,6 +10,10 @@ var loginUser;
 
 
 router.use(bodyParser.urlencoded({ extended: false }))
+router.use('../js',express.static('js'));
+router.use('../lib',express.static('lib'));
+router.use('../img',express.static('img'));
+router.use('../css',express.static('css'));
 
 //게시판 페이징
 router.get("/classes/:cur", function (req, res) {
