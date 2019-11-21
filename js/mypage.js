@@ -23,7 +23,14 @@ function initial(){
             $(".classList").html(initialClass);
             if(userClass){
                 for(var m=0; m<userClass.length;m++){
-                    var dynamicList = '<div class="specificTitle">'+userClass[m].title+'</div><div class="specificContent"><p>상세정보</p>'+userClass[m].body+'<p>모집현황</p><ul><li class="groupMember"><p class="memberName">이름</p></li><li class="groupMember"><p class="memberName">이름</p></li></ul></div>'
+                    var dynamicList = '<div class="specificTitle">'+
+                                        '<h3>'+userClass[m].title+'</h3>'
+                                    +'</div>'
+                                    +'<div class="specificContent">'
+                                    +'작성자id : ' +userClass[m].author_id
+                                    +'<p>모집현황</p>'
+                                    +'역할 : '+userClass[m].role
+                                    +' <ul><li class="groupMember"><p class="memberName">이름</p></li><li class="groupMember"><p class="memberName">이름</p></li></ul></div>';
                     $(".classList").append(dynamicList);
                 }
                     

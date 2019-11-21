@@ -150,7 +150,7 @@
 }
 .checkbox-container input[type="checkbox"]:checked ~ .checkbox:before {
     width:11px;
-			transition-delay: 0ms;
+	transition-delay: 0ms;
 }
 input[type="checkbox"] {
     display: none;
