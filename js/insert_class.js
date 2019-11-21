@@ -83,41 +83,52 @@ function clickEvnet(){
         var positionList=[];
         var onePerson={};
         var i=0;
+        var checkBit =1;
         $(".participantList").each(function(){
             var conditionDetail;
             var condition = [];
             var number=$(this).find(".howMany").val();
             if($(this).find(".roleItem").length ==0){
-                alert("참가인원의 자격요건을 설정해주세요");
+                alert("참가인원의 자격요건을 설정해주세요\n없다면 '없음'으로 설정해주세요 ...^^*");
+                checkBit =0;
                 return;
             }
             $(this).find(".roleItem").each(function(){
-                condition.push($(this).text())
+                if($(this).text() =="없음"){
+                  condition = ["none"];
+                  return false;
+                }
+                else{
+                  condition.push($(this).text());
+                }
+                
             });
+            console.log(condition);
             conditionDetail = $(this).find(".detailInput").val();
             onePerson = {"condition":condition,"number":number,"description": conditionDetail}; 
             positionList.push(onePerson);
         })
-        console.log(positionList);
-        
-        $.ajax({
-            url: '/insert_class',
-            type: 'POST',
-            data: 
-            {
-                "classInfo" :classInfo,
-                "positionList":positionList
-            },
-            success: function(response) {
-                alert("클래스 등록이 완료되었습니다.");
-                location.href="/classes/1"
-            },
+        if(checkBit ==0){
+          return;
+        }
+          $.ajax({
+              url: '/insert_class',
+              type: 'POST',
+              data: 
+              {
+                  "classInfo" :classInfo,
+                  "positionList":positionList
+              },
+              success: function(response) {
+                  alert("클래스 등록이 완료되었습니다.");
+                  location.href="/classes/1"
+              },
 
-            error: function(request,error,status){
-                alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-                return false;
-            }
-        })
+              error: function(request,error,status){
+                  alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                  return false;
+              }
+          })
       
     })
 }
@@ -176,7 +187,7 @@ function selectBox(){
 function autoComplete(){
 
   $(document).on('keydown.autocomplete', ".searchInput", function() {
-    var searchSource = ["C","C++","C#","Java","Ruby","Python","R","Go","HTML/CSS","Javascript","Spring","Nodejs","Angularjs","Vuejs","Reactjs","PHP","Android","IOS","Swift","Kotlin","Objective-C","MYSQL","MongoDB","SpringBoot","OracleDB"]; 
+    var searchSource = ["C","C++","C#","Java","Ruby","Python","R","Go","HTML/CSS","Javascript","Spring","Nodejs","Angularjs","Vuejs","Reactjs","PHP","Android","IOS","Swift","Kotlin","Objective-C","MYSQL","MongoDB","SpringBoot","OracleDB","없음"]; 
     $(".searchInput").autocomplete({  //오토 컴플릿트 시작
       source : searchSource,	// source 는 자동 완성 대상
       select : function(event, ui) {	//아이템 선택시

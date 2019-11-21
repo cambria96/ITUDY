@@ -190,6 +190,7 @@ label {
 .partyContent{
     display: flex;
     justify-content: space-between;
+    align-items: center;
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: .5rem;
@@ -215,4 +216,10 @@ label {
     margin:unset;
     font-size: 0.8em;
 
+}
+.subContentBox{
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+    align-items: center;
 }
