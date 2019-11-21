@@ -187,3 +187,32 @@ label {
 .memberName{
 
 }
+.partyContent{
+    display: flex;
+    justify-content: space-between;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: .5rem;
+    cursor: pointer;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,.12);
+    overflow: hidden;
+    padding:10px;
+}
+.cancelBtn{
+    background: none;
+    border: none;
+    border-radius: 25px;
+    transition: all ease 0.25s;
+}
+
+.cancelBtn:hover{
+    box-shadow: inset 0 0 0 2em #dfaa32;
+    color: #fff;
+    border-color: #dfaa32;
+    outline:none;
+}
+.partyTime p{
+    margin:unset;
+    font-size: 0.8em;
+
+}
