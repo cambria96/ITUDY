@@ -29,15 +29,23 @@
                 var time =class_info.time.split(",")
                 
                 var conditionList =[];
-                var typeAry = ["C","C++","C#","Java","Ruby","Python","R","Go","HTML/CSS","Javascript","Spring","Nodejs","Angularjs","Vuejs","Reactjs","PHP","Android","IOS","Swift","Kotlin","Objective-C","MYSQL","MongoDB","SpringBoot","OracleDB"];
+                var typeAry = ["C","C++","C#","Java","Ruby","Python","R","Go","HTML/CSS","Javascript","Spring","Nodejs","Angularjs","Vuejs","Reactjs","PHP","Android","IOS","Swift","Kotlin","Objective-C","MYSQL","MongoDB","SpringBoot","OracleDB","none"];
                 
                 for(var n =0;n<positions.length;n++){
                     var i=0;
                     var conditionAry =[];
                     for(var m=0;m<typeAry.length;m++){
                         if(positions[n][typeAry[m]] == 1){
-                            conditionAry[i]=typeAry[m];
-                            i++;
+                            if(typeAry[m]=="none"){
+                                conditionAry[i]="없음";
+                                i++;
+                            }
+                            else{
+                                conditionAry[i]=typeAry[m];
+                                i++;
+                            }
+                            
+                            
                         };
                      }
                     
@@ -97,7 +105,7 @@
                         <% for (var m=0;m<positions.length;m++){%>
                             <tr>
                                 <th><%=m+1%>.</th>
-                                <td class="condition"><%=conditionList[m]%></td>
+                                <td class="condition"><%console.log(conditionList[m])%><%=conditionList[m]%></td>
                                 <td><%=positions[m].description%></td>
                                 <td class="totalNumber"><%=positions[m].number%> 명</td>
                                 <% var checkbit=0;

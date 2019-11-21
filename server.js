@@ -67,8 +67,35 @@ app.get('/signup',function(req,res){
     res.render("signup.html");
 })
 app.get('/mypage',function(req,res){
-    console.log("asdf");
-    res.render("mypage.ejs",{loginInfo:loginUser});
+    connection.query("SELECT * from participants WHERE (`participant_id` = '"+loginUser.id+"');",function(err,rows,result){
+        if(!err){
+            console.log("참가 목록 완료");
+            partyList=rows;
+            var contentList =[];
+            if(partyList.length==0){
+                res.render("mypage.ejs",{loginInfo:loginUser,"contentList":contentList});
+            }
+            for(var m=0;m<partyList.length;m++){
+                var n=0;
+                connection.query("SELECT * from classes WHERE (`id` = '"+partyList[n].content_id+"');",function(err,rows,result){
+                    if(!err){
+                        contentList.push(rows[0]);
+                        if(n==partyList.length-1){
+                            res.render("mypage.ejs",{loginInfo:loginUser,"contentList":contentList});
+                        }
+                        n++;
+                    }
+                    else{
+                        console.log('Error while performing Query.',err);
+                    }
+                });
+            }
+        }
+        else{
+            console.log('Error while performing Query.',err);
+            res.send();
+        }
+    });
 })
 
 app.use(session({
@@ -272,58 +299,28 @@ app.post("/requestContent",function(req,res){
         if(!err){
             console.log("클래스 로드 완료");
             userClass=rows;
+            connection.query("SELECT * from study WHERE (`author_id` = '"+loginUser.id+"');",function(err,rows,result){
+                if(!err){
+                    console.log("스터디 로드 완료");
+                    userStudy=rows;
+                    res.send({loginUser: loginUser,userClass: userClass, userStudy:userStudy})
+                }
+                else{
+                    console.log('Error while performing Query.',err);
+                }
+            });
         }
         else{
             console.log('Error while performing Query.',err);
         }
     });
-    
-    connection.query("SELECT * from study WHERE (`author_id` = '"+loginUser.id+"');",function(err,rows,result){
-        if(!err){
-            console.log("스터디 로드 완료");
-                userStudy=rows;
-        }
-        else{
-            console.log('Error while performing Query.',err);
-        }
-    });
-    res.send({loginUser: loginUser,userClass: userClass, userStudy:userStudy})
+ 
 })
 
 // 신청목록 로드
 var partyList;
 app.post("/requestParty",function(req,res){
-    connection.query("SELECT * from participants WHERE (`participant_id` = '"+loginUser.id+"');",function(err,rows,result){
-        if(!err){
-            console.log("참가 목록 완료");
-            partyList=rows;
-            var contentList =[];
-            if(partyList.length==0){
-                res.send({"contentList":contentList})
-            }
-            for(var m=0;m<partyList.length;m++){
-                var n=0;
-                connection.query("SELECT * from classes WHERE (`id` = '"+partyList[m].content_id+"');",function(err,rows,result){
-                    if(!err){
-                        contentList.push(rows);
-                        if(n==partyList.length-1){
-                            console.log(contentList);
-                            res.send({"contentList":contentList});
-                        }
-                        n++;
-                    }
-                    else{
-                        console.log('Error while performing Query.',err);
-                    }
-                });
-            }
-        }
-        else{
-            console.log('Error while performing Query.',err);
-            res.send();
-        }
-        
-    });
+    
 })
 // app.get("/class",function(req,res){
 //     res.render('class.ejs');

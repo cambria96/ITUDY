@@ -9,17 +9,7 @@ var userClass;
 var userStudy;
 var partyClass;
 function initial_mypage(){
-    $.ajax({
-        url:'/requestParty',
-        type:"POST",
-        success:function(data){
-            partyClass = data.contentList;
-        },
-        error: function(request,error,status){
-            alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-            return false;
-        }
-    })
+    
     $(".contentWrap").first().addClass("active");
     $.ajax({
 
@@ -45,7 +35,6 @@ function initial_mypage(){
                                     +' <ul><li class="groupMember"><p class="memberName">이름</p></li><li class="groupMember"><p class="memberName">이름</p></li></ul></div>';
                     $(".classList").append(dynamicList);
                 }
-                    
             }
             $(".studyList").html(initialStudy);
             if(userStudy){

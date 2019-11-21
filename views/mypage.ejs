@@ -288,11 +288,23 @@
                     <p class="contentTitle">신청중인 그룹</p>
                     <div class="partyList">
                         <div class="partyContent">
-                            <div class="partyTitle">sdf</div>
-                            <div class="partyCredit"><img src="../img/coin.png">sdf</div>
-                            <div class="partyTime"><p>sadfs</p><p>sadfs</p><p>sadfs</p></div>
-                            <div class="partyNumber">1/5</div>
-                             <button class="cancelBtn">취소</button>
+                            <div class="partyTitle"><%=contentList[0].title%></div>
+                            <div class="subContentBox">
+                                <div class="partyTime">
+                                    <% 
+                                        var timeList = contentList[0].time.split(",");
+                                        var dateList = contentList[0].date.split(",");
+                                        console.log(timeList,dateList);
+                                        for(var m=0;m<dateList.length;m++){%>
+                                            <p><span><%=dateList[m]%>&nbsp|&nbsp<%=timeList[m]%></span> </p>
+                                        <%}
+                                    %>
+                                </div>
+                                <div class="partyCredit"><img src="../img/coin.png"> <%=contentList[0].credit%></div>
+                                <div class="partyNumber"><%=contentList[0].current_participant%>/<%=contentList[0].total_participant%></div>
+                                <button class="cancelBtn">취소</button>
+                            </div>
+                            
                         </div>
                        
                     </div>
