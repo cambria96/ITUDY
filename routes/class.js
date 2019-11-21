@@ -303,7 +303,7 @@ var pool = mysql.createPool({
     host: 'localhost',
     user: 'root',
     database: 'userinfo',
-    password: 'root'
+    password: 'hwang261!'
 })
 
 
