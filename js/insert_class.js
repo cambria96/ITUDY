@@ -26,34 +26,99 @@ function clickEvnet(){
       })
     })
     $(".roleAddBtn").click(function(){
-      var dynamicList = '<li class="participantList"><span class ="roleList firstLine">자격 요건: </span><input class="roleListInput searchInput"><br><span class ="roleList">모집 인원: </span><input type="text" class="roleListInput howMany numberOnly" maxlength="3"><span> 명</span><br><span class ="roleList">요건 상세 설명: </span><input type="text" class="roleListInput detailInput"></li>'
+      var dynamicList = '<li class="participantList"><span class ="roleList firstLine">자격 요건: </span><input class="roleListInput searchInput"><br><span class ="roleList">모집 인원: </span><input type="text" class="roleListInput howMany numberOnly" value="1" maxlength="3"><span> 명</span><br><span class ="roleList">요건 상세 설명: </span><input type="text" class="roleListInput detailInput"></li>'
       $(".participantBox").append(dynamicList);
     })
 
     $(".submitBtn").click(function(){
-      var title = $("#title").val();
-      var date =[];
-      var time =[];
-      var role = $("input[type=radio]:checked").val();
-      var credit= $(".creditLine").val();
-      var decription = $(".detailLine").val();
-      var participants = [];
-      var participant = [];
-      $(".dynamicTime").each(function(){
-        if($(this).hasClass("active")){
-          date.push($(this).children(".dynamicDate").text());
-          var startDate = $(this).find("#select-start").val();
-          var endDate = $(this).find("#select-end").val();
-          time.push(startDate+"~"+endDate);
+        var classInfo={};
+        var title = $("#title").val();
+        var date =[];
+        var time =[];
+        var role = $("input[type=radio]:checked").val();
+        var credit= $(".creditLine").val();
+        var description = $(".detailLine").val();
+        var total_participant =1;
+        var current_participant=1;
+        if($(".dynamicTime.active").length ==0){
+            alert("시간을 설정해주세요");
+            return;
         }
-        
-      })
-      $(".participantList").each(function(){
-        console.log($(this));
-        
-      })
-      
+        $(".dynamicTime").each(function(){
+            if($(this).hasClass("active")){
+                date.push($(this).children(".dynamicDate").text());     
+                var startTime = $(this).find("#select-start").val();
+                var endTime = $(this).find("#select-end").val();
+                if(startTime=="미설정" || endTime=="미설정"){
+                    time.push("미설정");
+                }
+                else{
+                    time.push(startTime+" ~ "+endTime);
+                }
+                
+            }
+            
+        })
+        date = date.toString();
+        time = time.toString();
+        if($(".participantList").length ==0){
+            alert("참가 인원은 1명 이상이어야 합니다.")
+            return;
+        };
+        $(".participantList").each(function(){
+            total_participant += Number($(this).find(".howMany").val());
+            
+        })
+        classInfo["title"] = title;
+        classInfo["date"] = date;
+        classInfo["time"] = time;
+        classInfo["role"] = role;
+        classInfo["credit"] = credit;
+        classInfo["total_participant"] = total_participant;
+        classInfo["current_participant"] = current_participant;
+        classInfo["description"] = description;
 
+        //position table 값 형성
+        
+        var positionList=[];
+        var onePerson={};
+        var i=0;
+        $(".participantList").each(function(){
+            var conditionDetail;
+            var condition = [];
+            var number=$(this).find(".howMany").val();
+            if($(this).find(".roleItem").length ==0){
+                alert("참가인원의 자격요건을 설정해주세요");
+                return;
+            }
+            $(this).find(".roleItem").each(function(){
+                condition.push($(this).text())
+            });
+            conditionDetail = $(this).find(".detailInput").val();
+            onePerson = {"condition":condition,"number":number,"description": conditionDetail}; 
+            positionList.push(onePerson);
+        })
+        console.log(positionList);
+        
+        $.ajax({
+            url: '/insert_class',
+            type: 'POST',
+            data: 
+            {
+                "classInfo" :classInfo,
+                "positionList":positionList
+            },
+            success: function(response) {
+                alert("클래스 등록이 완료되었습니다.");
+                location.href="/classes/1"
+            },
+
+            error: function(request,error,status){
+                alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                return false;
+            }
+        })
+      
     })
 }
 
@@ -111,11 +176,11 @@ function selectBox(){
 function autoComplete(){
 
   $(document).on('keydown.autocomplete', ".searchInput", function() {
-    var searchSource = ["C","C++","C#","Java","Ruby","Python","R","Go","HTML/CSS","Javascript","Spring","Nodejs","Angularjs","Vuejs","Reactjs","PHP","Andriod","IOS","Swift","Kotlin","Objective-c","MYSQL","MongoDB","SpringBoot","OracleDB"]; 
+    var searchSource = ["C","C++","C#","Java","Ruby","Python","R","Go","HTML/CSS","Javascript","Spring","Nodejs","Angularjs","Vuejs","Reactjs","PHP","Android","IOS","Swift","Kotlin","Objective-C","MYSQL","MongoDB","SpringBoot","OracleDB"]; 
     $(".searchInput").autocomplete({  //오토 컴플릿트 시작
       source : searchSource,	// source 는 자동 완성 대상
       select : function(event, ui) {	//아이템 선택시
-        var dynamicRole = '<div class="roleItemBox"><span class="roleItem">'+ui.item.value +' </span><button class="deleteRoleBtn"></button></div>'
+        var dynamicRole = '<div class="roleItemBox"><span class="roleItem">'+ui.item.value+'</span><button class="deleteRoleBtn"></button></div>'
         $(this).siblings(".firstLine").append(dynamicRole);
         ui.item.value="";
       },
@@ -137,9 +202,8 @@ function autoComplete(){
 
 function numberInput(){
 
-    $(".numberOnly").on("keyup", function() {
-      $(this).val($(this).val().replace(/[^0-9]/g,""));
-    });
-
+    $(document).on("keyup",".numberOnly",function(){
+        $(this).val($(this).val().replace(/[^0-9]/g,""));
+      })
 
 }

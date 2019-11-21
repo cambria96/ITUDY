@@ -352,7 +352,7 @@ text-decoration: none;
 }
 
 .main-nav .drop-down li {
-  min-width: 180px;
+  min-width: 120px;
   position: relative;
 }
 

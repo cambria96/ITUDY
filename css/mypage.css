@@ -7,7 +7,7 @@
     font-family: 'Godo';
 }
 .sideBar{
-    border: 3px solid #dfaa32;
+    border: 3px double  #dfaa32;
     border-radius: 15px;
     width: 20%;
     padding: 25px;
@@ -17,7 +17,7 @@
 }
 .contextBox{
     width: 75%;
-    border: 3px solid #dfaa32;
+    border: 3px double  #dfaa32;
     border-radius: 15px;
     padding: 25px;
     max-width: 1200px;
@@ -64,6 +64,10 @@
     margin: unset;
     padding-left: 10p;
     margin-left: 10px;
+}
+input[type="text"]{
+    border: none;
+    border-bottom: 1px solid #dfaa32;
 }
 
 .buttonBox{
@@ -181,5 +185,34 @@ label {
 
 }
 .memberName{
+
+}
+.partyContent{
+    display: flex;
+    justify-content: space-between;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: .5rem;
+    cursor: pointer;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,.12);
+    overflow: hidden;
+    padding:10px;
+}
+.cancelBtn{
+    background: none;
+    border: none;
+    border-radius: 25px;
+    transition: all ease 0.25s;
+}
+
+.cancelBtn:hover{
+    box-shadow: inset 0 0 0 2em #dfaa32;
+    color: #fff;
+    border-color: #dfaa32;
+    outline:none;
+}
+.partyTime p{
+    margin:unset;
+    font-size: 0.8em;
 
 }

@@ -10,26 +10,25 @@
   <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
 
   <!-- Favicons -->
-  <link href="img/favicon.png" rel="icon">
-  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="../img/favicon.png" rel="icon">
+  <link href="../img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,500,600,700,700i|Montserrat:300,400,500,600,700" rel="stylesheet">
 
   <!-- Bootstrap CSS File -->
-  <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- Libraries CSS Files -->
-  <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-  <link href="lib/animate/animate.min.css" rel="stylesheet">
-  <link href="lib/ionicons/css/ionicons.min.css" rel="stylesheet">
-  <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-  <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+  <link href="../lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="../lib/animate/animate.min.css" rel="stylesheet">
+  <link href="../lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+  <link href="../lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="../lib/lightbox/css/lightbox.min.css" rel="stylesheet">
 
   <!-- Main Stylesheet File -->
-  <link href="css/style.css" rel="stylesheet">
-  <link href="css/header.css" rel="stylesheet">
-  <link href="../css/custom.css" rel="stylesheet">
+  <link href="../css/style.css" rel="stylesheet">
+  <link href="../css/header.css" rel="stylesheet">
   <link href="../css/footer.css" rel="stylesheet">
   <link href="../css/mypage.css" rel="stylesheet">
 
@@ -72,7 +71,7 @@
       <nav class="main-nav d-none d-lg-block" >
         <ul>
           
-        <li><a href = "/mypage"><span class="accoutName"><%= loginInfo.name %></span> 님 환영합니다.</a></li>
+        <li><a href = "/mypage" class="mypageLink"><span class="accoutName"><%= loginInfo.name %></span> 님 환영합니다.</a></li>
         <li><a href="#credit"><img src="../img/coin.png">  <span><%= loginInfo.credit %></span></a></li>
           <li><a href='/logout'>Log Out</a></li>
           
@@ -94,6 +93,7 @@
                     <li class="sideContent"><span>기본정보</span></li>
                     <li class="sideContent"><span>분야 확인/수정</span></li>
                     <li class="sideContent"><span>내가올린그룹</span></li>
+                    <li class="sideContent"><span>신청중인그룹</span></li>
                     <li class="sideContent"><span>참여중인그룹</span></li>
                 </ul>
             </div>
@@ -282,6 +282,19 @@
                     </div>
                     <div class="buttonBox">
                       <button type="button" class="modifyBtn">수정하기</button>
+                    </div>
+                </div>
+                <div class="contentWrap">
+                    <p class="contentTitle">신청중인 그룹</p>
+                    <div class="partyList">
+                        <div class="partyContent">
+                            <div class="partyTitle">sdf</div>
+                            <div class="partyCredit"><img src="../img/coin.png">sdf</div>
+                            <div class="partyTime"><p>sadfs</p><p>sadfs</p><p>sadfs</p></div>
+                            <div class="partyNumber">1/5</div>
+                             <button class="cancelBtn">취소</button>
+                        </div>
+                       
                     </div>
                 </div>
                 <div class="contentWrap">

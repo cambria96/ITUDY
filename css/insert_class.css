@@ -5,7 +5,7 @@ ul{
 
 .container{
     margin: 50px 0px;
-    border: 3px solid #dfaa32;
+    border: 3px dashed #dfaa32;
     border-radius: 15px;
     padding: 25px;
     max-width: 1200px;
@@ -30,6 +30,8 @@ ul{
     width: 80px;
     border: none;
     border-bottom: 1px solid #dfaa32;
+    text-align: center;
+
 }
 .detailLine{
   height: 400px;
@@ -254,6 +256,8 @@ ul{
 }
 .roleItem{
   padding-left: 10px;
+  margin-right: 5px;
+
 }
 .roleItemBox{
   display: inline-block;
@@ -276,6 +280,8 @@ ul{
 .howMany{
   width: 50px;
   min-width: 50px;
+  text-align: center;
+
 }
 .roleControlBox{
   margin-bottom:10px;

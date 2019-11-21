@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    initial();
+    initial_mypage();
     sectionControl();
     modifyData();
     groupList();
@@ -7,11 +7,23 @@ $(document).ready(function(){
 var loginUser;
 var userClass;
 var userStudy;
-function initial(){
+var partyClass;
+function initial_mypage(){
+    $.ajax({
+        url:'/requestParty',
+        type:"POST",
+        success:function(data){
+            partyClass = data.contentList;
+        },
+        error: function(request,error,status){
+            alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+            return false;
+        }
+    })
     $(".contentWrap").first().addClass("active");
     $.ajax({
 
-        url:'/request',
+        url:'/requestContent',
         type:'POST',
         success:function(data){
             console.log(data.userClass);

@@ -2,8 +2,22 @@
     margin-bottom: 16px;
 }
 
+.close{
+    position: absolute;
+    right: 0;
+}
+
 .item{
     height:auto;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: .5rem;
+    cursor: pointer;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,.12);
+    overflow: hidden;
+}
+.item-not-allowed{
+    height: auto;
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: .5rem;
@@ -77,9 +91,12 @@
 }
 
 .content-author{
+    padding-left: 0.1rem;
     color: #666;
     font-weight: 700;
     font-size: 1.5rem;
+    justify-content: space-between;
+    display: flex;
 }
 .content-period{
     position: relative;
@@ -89,8 +106,7 @@
     color: #666;
     justify-content: space-between;
 }
-.float{
-
+.float1{
     position: fixed;
     display: none;
     background: #1bb1dc;
@@ -104,6 +120,76 @@
     right: 15px;
     bottom: 65px;
     transition: background 0.5s;
-    padding-top: 12px;
+    padding-top: 10px;
+    color: #fff;
+}
+
+.fa-user-tie:before {
+    content: "\f508";
+}
+.fa, .fas {
+    font-family: "Font Awesome 5 Pro";
+    font-weight: 900;
+}
+.author{
+    width:50%
+}
+.content-possible{
+    border-radius: 2px;
+    padding: 0 6px;
+    height: 2.2rem;
+    font-size: 12px;
+    font-weight: 700;
+    background-color: hsla(0,0%,40%,.12);
+    border-color: #666;
+    color: darkgreen;
+    border: 1px solid transparent;
+    font-size: 15px;
+    text-align: center;
+    align-items: center;
+}
+.content-impossible{
+    border-radius: 2px;
+    padding: 0 6px;
+    height: 2.2rem;
+    font-size: 12px;
+    font-weight: 700;
+    background-color: hsla(0,0%,40%,.12);
+    border-color: #666;
+    color: darkred;
+    border: 1px solid transparent;
+    font-size: 15px;
+    text-align: center;
+    align-items: center;
+}
+ .blink-possible {
+     -webkit-animation: blink-possible 3s linear infinite;
+ }
+@-webkit-keyframes blink-possible {
+    50% { background-color: forestgreen; }
+}
+
+.blink-impossible {
+    -webkit-animation: blink-impossible 3s linear infinite;
+}
+@-webkit-keyframes blink-impossible {
+    50% { background-color: orangered; }
+}
+
+.float2{
+    position: fixed;
+    display: none;
+    background: #1bb1dc;
+    color: #fff;
+    width: 44px;
+    height: 44px;
+    text-align: center;
+    line-height: 1;
+    font-size: 20px;
+    border-radius: 50%;
+    right: 15px;
+    bottom: 10px;
+    transition: background 0.5s;
+    padding-top: 10px;
     color: #fff;
 }

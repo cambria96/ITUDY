@@ -10,6 +10,10 @@ var loginUser;
 
 
 router.use(bodyParser.urlencoded({ extended: false }))
+router.use('../js',express.static('js'));
+router.use('../lib',express.static('lib'));
+router.use('../img',express.static('img'));
+router.use('../css',express.static('css'));
 
 //게시판 페이징
 router.get("/classes/:cur", function (req, res) {
@@ -78,20 +82,80 @@ router.get("/classes/:cur", function (req, res) {
                 console.log("ejs오류" + error);
                 return
             }
-            
+
 
             var queryString = 'select * from classes order by datetime desc limit ?,?';
-            getConnection().query(queryString, [no, page_size], function (error, result) {
+            getConnection().query(queryString, [no, page_size], function (error, rows1) {
                 if (error) {
                     console.log("페이징 에러" + error);
                     return
                 }
-                res.send(ejs.render(data, {
-                    data: result,
-                    classes: result2,
-                    name:req.session.name,
-                    credit:req.session.credit
-                }));
+                var params = []
+                var can = new Array(rows1.length)
+                var queryString = 'select * from positions where '
+                for(var i=0; i<rows1.length; i++){
+                    queryString = queryString+"content_id=? AND type=1"
+                    if(i+1!=rows1.length){
+                        queryString = queryString +" OR "
+                    }
+                    can[i]=0;
+                    params.push(rows1[i].id)
+                }
+
+
+                getConnection().query(queryString,params,function(error,rows2) {
+
+                    var index = ["C","C++","C#","Java","Ruby","Python","R","Go","HTML/CSS","Javascript","Spring","Nodejs","Angularjs","Vuejs","Reactjs","PHP","Andriod","IOS","Swift","Kotlin","Objective-c","MYSQL","MongoDB","SpringBoot","OracleDB"];
+                    for(var i=0;i<rows2.length;i++){
+                        for(var m=0;m<rows1.length;m++){
+                            if( params[m]==rows2[i].content_id&&can[m]==1){
+                                break;
+                            }
+                        }
+
+                        if(m!==rows1.length) {
+                            continue;
+                        }
+
+
+                        for(var j=0;j<index.length;j++) {
+                            var column = index[j]
+                            if (rows2[i][column] === '1') {
+                                if (loginUser[column] == '1') {
+                                    for (var l = 0; l < rows1.length; l++) {
+                                        if (rows2[i].content_id === params[l]) {
+                                            can[l] = 1;
+                                            break;
+                                        }
+                                    }
+                                }
+                                else {
+                                    for (var k = 0; k < rows1.length; k++) {
+                                        if (rows2[i].content_id === params[k]) {
+                                            can[k] = 0;
+                                            break;
+                                        }
+
+                                    }
+                                    break
+                                }
+                            }
+                        }
+                    }
+
+                    res.send(ejs.render(data, {
+                        can: can,
+                        data: rows1,
+                        classes: result2,
+                        name:req.session.name,
+                        credit:req.session.credit
+                    }));
+
+                })
+
+
+
+
             });
         });
     })
@@ -118,59 +182,112 @@ router.get("/insert_class", function (req, res) {
 //클래스 삽입
 router.post("/insert_class", function (req, res) {
 
+
     var now = new Date();
-    var body = req.body;
+    var positionList = req.body.positionList;
+    var body = req.body.classInfo;
+    var content_id;
+    body["author"] = user.loginUser.name;
+    body["author_id"] = user.loginUser.id;
+    body["datetime"] = now;
     // content_id++; //
-    var queryString = 'select count(*) as cnt from classes'
-    getConnection().query(queryString, function (error2, data) {
-        if (error2) {
-            console.log(error2 + "메인 화면 mysql 조회 실패");
+    var queryString = 'insert into classes set ?'
+    getConnection().query(queryString,body, function (error,result) {
+        //응답
+        if (error) {
+            console.log("페이징 에러" + error);
             return
         }
-        content_id = data[0].cnt + 1;
-        getConnection().query('insert into classes(id,author,author_id,title,period,role,credit,description,datetime,icon,total_participant) values (?,?,?,?,?,?,?,?,?,?,?)', [content_id, req.session.name, loginUser.id, body.title, body.period, body.role, body.credit, body.description, now, body.icon, body.total_participant], function (error) {
-//응답
-            if (error) {
-                console.log("페이징 에러" + error);
-                return
+        content_id =result.insertId;
+        for(var m=0;m<positionList.length;m++){
+            var condition = positionList[m].condition;
+            var number = positionList[m].number;
+            var description = positionList[m].description;
+            var position = {};
+            for(var n=0;n<condition.length;n++){
+                position[condition[n]] = 1;
             }
-            res.redirect('class');
-        })
+            position["type"] = 1;
+            position["content_id"] =content_id;
+            position["position_id"] = m;
+            position["number"] = number;
+            position["description"] = description;
+    
+            var queryString2 = 'insert into positions set ?'
+            getConnection().query(queryString2,position, function (error,result) {
+                //응답
+                if (error) {
+                    console.log("페이징 에러" + error);
+                    return
+                }
+                
+            })
+        }
     })
 
 
+    
+    res.send();
 })
 
 
 //글상세보기
 router.get("/detail_class/:id", function (req, res) {
-
     fs.readFile('views/class_detail.ejs', 'utf-8', function (error, data) {
+        
         getConnection().query('select * from classes where id = ?', [req.params.id], function (error, class_info) {
-            getConnection().query('select * from positions where content_id = ?', [req.params.id], function (error, positions) {
-
-                res.send(ejs.render(data, {
-                    class_info: class_info[0],
-                    positions: positions
-                }))
+            if(error){
+                console.log(error);
+            }
+            getConnection().query('select * from positions where content_id = ? and type=1', [req.params.id], function (error, positions) {
+                if(error){
+                    console.log(error);
+                }
+                getConnection().query('select * from participants where content_id = ? and type=1', [req.params.id], function (error, participants) {
+                    if(error){
+                        console.log(error);
+                    }
+                    res.send(ejs.render(data, {
+                        "class_info": class_info[0],
+                        "positions": positions,
+                        "loginUser" : user.loginUser,
+                        "participants":participants
+                    }))
+                })
+                
             })
 
         })
     });
 
-
 })
 
 // 클래스 참
 router.post("/participate_class", function (req, res) {
-
-    getConnection().query('insert into participants(content_id,position_id,participant_id) values (?,?,?)', [req.body.content_id, req.body.position_id, loginUser.id], function (error) {
-
+    var participant = req.body;
+    console.log("참가신청완료");
+    getConnection().query('insert into participants set ?', participant, function (error) {
         if (error) {
             console.log("페이징 에러" + error);
             return
         }
         else{
+            res.send();
+        }
+    })
+})
+
+router.post("/delete_participant", function (req, res) {
+    var cancelInfo = req.body;
+    
+    getConnection().query('delete from participants where type = ? and content_id = ? and position_id = ? and participant_id =?' , [cancelInfo.type,cancelInfo.content_id,cancelInfo.position_id,cancelInfo.participant_id], function (error) {
+        if (error) {
+            console.log("페이징 에러" + error);
+            
+            return
+        }
+        else{
+            console.log("취소완료");
             res.send();
         }
     })
@@ -188,7 +305,6 @@ var pool = mysql.createPool({
     database: 'userinfo',
     password: 'root'
 })
-
 
 
 //디비 연결 함수

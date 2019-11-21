@@ -16,7 +16,6 @@ var options = {
     password: 'root',
     database: 'userinfo'
 };
-
 var sessionStore = new MySQLStore(options);
 
 var connection = mysql.createConnection(options);
@@ -68,6 +67,7 @@ app.get('/signup',function(req,res){
     res.render("signup.html");
 })
 app.get('/mypage',function(req,res){
+    console.log("asdf");
     res.render("mypage.ejs",{loginInfo:loginUser});
 })
 
@@ -102,14 +102,11 @@ app.post('/success',function(req,res){
         req.session.credit = loginUser.credit;
         req.session.id = loginUser.id;
         // alert(req.session.name + "님 환영합니다.");
-        console.log("session name" + req.session.name);
-        console.log("credit"+ req.session.credit);
-        console.log("??"+  req.session.id);
         exports.loginUser = loginUser;
         req.session.save(()=>{
             res.render('after_login.ejs',{loginInfo:loginUser});    
         });
-        exports.loginUser = loginUser;
+    
     }
     else{
         console.log('로그인 실패');
@@ -252,6 +249,7 @@ app.post("/modify",function(req,res){
         if(!err){
             console.log("수정완료");   
             loginUser =  rows[0];
+            exports.loginUser = loginUser;
         }
         else{
             console.log('Error while performing Query.',err);
@@ -266,8 +264,10 @@ var userStudy=[];
 app.get("/introduction", function(req,res){
     res.render('introduction.ejs',{name:req.session.name,credit:req.session.credit});
 })
-app.post("/request",function(req,res){
-    console.log("로깅유저"+loginUser.id);
+app.post("/requestUserInfo",function(req,res){
+    res.send({"loginUser":loginUser})
+})
+app.post("/requestContent",function(req,res){
     connection.query("SELECT * from classes WHERE (`author_id` = '"+loginUser.id+"');",function(err,rows,result){
         if(!err){
             console.log("클래스 로드 완료");
@@ -288,6 +288,42 @@ app.post("/request",function(req,res){
         }
     });
     res.send({loginUser: loginUser,userClass: userClass, userStudy:userStudy})
+})
+
+// 신청목록 로드
+var partyList;
+app.post("/requestParty",function(req,res){
+    connection.query("SELECT * from participants WHERE (`participant_id` = '"+loginUser.id+"');",function(err,rows,result){
+        if(!err){
+            console.log("참가 목록 완료");
+            partyList=rows;
+            var contentList =[];
+            if(partyList.length==0){
+                res.send({"contentList":contentList})
+            }
+            for(var m=0;m<partyList.length;m++){
+                var n=0;
+                connection.query("SELECT * from classes WHERE (`id` = '"+partyList[m].content_id+"');",function(err,rows,result){
+                    if(!err){
+                        contentList.push(rows);
+                        if(n==partyList.length-1){
+                            console.log(contentList);
+                            res.send({"contentList":contentList});
+                        }
+                        n++;
+                    }
+                    else{
+                        console.log('Error while performing Query.',err);
+                    }
+                });
+            }
+        }
+        else{
+            console.log('Error while performing Query.',err);
+            res.send();
+        }
+        
+    });
 })
 // app.get("/class",function(req,res){
 //     res.render('class.ejs');

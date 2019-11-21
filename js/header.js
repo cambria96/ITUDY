@@ -1,6 +1,5 @@
 $(document).ready(function(){
 
-    
 
     $("#header").hover(function(){
         if($(window).scrollTop()<=100){
@@ -15,5 +14,8 @@ $(document).ready(function(){
         location.href='/home';
     })
         
-    
+    $(".mypageLink").click(function(e){
+        
+    })
 })
+

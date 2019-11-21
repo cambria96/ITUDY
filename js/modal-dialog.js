@@ -13,6 +13,7 @@ $(function() {
 
         $("html").click(function(event) {
             if (event.target.id === "myModal") {
+                $("#content-detail").prop('src',"")
                 $(".modal").css({
                     "display":"none"
                 });

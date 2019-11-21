@@ -5,52 +5,151 @@
     <meta charset="utf-8">
     <meta title="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="../js/participate_class.js"></script>
+    <link href="../lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../lib/animate/animate.min.css" rel="stylesheet">
+    <link href="../lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+    <link href="../lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="../lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <!-- Main Stylesheet File -->
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/class_detail.css" rel="stylesheet">
+
+    
+    
 </head>
+
 <body>
 
-<div class="container">
-    <h2><%= class_info.title %></h2>
-    <p></p>
+    <div class="container">
+            <p class="content_id" style="display:none"><%=class_info.id%></p>
+            <p class="groupTitle"><%=class_info.title%></p>
+            <%
+                var date =class_info.date.split(",");
+                var time =class_info.time.split(",")
+                
+                var conditionList =[];
+                var typeAry = ["C","C++","C#","Java","Ruby","Python","R","Go","HTML/CSS","Javascript","Spring","Nodejs","Angularjs","Vuejs","Reactjs","PHP","Android","IOS","Swift","Kotlin","Objective-C","MYSQL","MongoDB","SpringBoot","OracleDB"];
+                
+                for(var n =0;n<positions.length;n++){
+                    var i=0;
+                    var conditionAry =[];
+                    for(var m=0;m<typeAry.length;m++){
+                        if(positions[n][typeAry[m]] == 1){
+                            conditionAry[i]=typeAry[m];
+                            i++;
+                        };
+                     }
+                    
+                    conditionList[n] = conditionAry.toString();
+                    
+                }
+            %>
+            <div class="divideWrap">
+                <div class="divideBox">
+                    <p class="groupSubTitle">작성자</p>
+                    <span class ="groupContent"><%=class_info.author%></span>
+                </div>
+                <div class="divideBox">
+                    <p class="groupSubTitle">모집자 역할</p>
+                    <span class ="groupContent"><%=class_info.role%></span>
+                </div>
+            </div>
+            <div class="middleLine"></div>
+            <div class="divideWrap">
+                <div class="divideBox">
+                    <p class="groupSubTitle">클래스 시간</p>
+                    <ul>
+                        <% for (var m=0;m<date.length;m++){%>
+                            <li class="groupContent">
+                                <span class="date"><%=date[m]%> : </span><span class="time"><%=time[m]%></span>
+                            </li>
+                        <% } %>               
+                    </ul>
+                </div>
+                <div class="divideBox">
+                    <p class="groupSubTitle">필요 크레딧</p>
+                    <span class ="groupContent"><img src="../img/coin.png">  <%=class_info.credit%></span>
+                </div>
+            </div>
+            <div class="middleLine"></div>
+            <div class="divideWrap">
+                <div class="fullBox">
+                    <p class="groupSubTitle">상세 정보</p>
+                    <div class="textBox">
+                        <p class="groupContent detailContent"> <%=class_info.description%></p>
+                    </div>
+                </div>
+            </div>
+            <div class="middleLine">모집 인원</div>
+            <div class="divideWrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>필요 분야</th>
+                            <th>상세 역량</th>
+                            <th>모집 인원</th>
+                            <th>가능 여부<button class="fakeBtn">취소</button></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for (var m=0;m<positions.length;m++){%>
+                            <tr>
+                                <th><%=m+1%>.</th>
+                                <td class="condition"><%=conditionList[m]%></td>
+                                <td><%=positions[m].description%></td>
+                                <td class="totalNumber"><%=positions[m].number%> 명</td>
+                                <% var checkbit=0;
+                                   var applyCheckBit=0;
+                                   
+                                %>
+                                <% 
+                                    var conditionCheck = [];
+                                    conditionCheck = conditionList[m].split(",");
+                                    for(var i=0;i<conditionCheck.length;i++){
+                                        if (loginUser[conditionCheck[i]] ==1){
+                                            checkbit=1;
+                                        }else{ 
+                                            checkbit=0;
+                                            break;
+                                        }
+                                    }
+                                    
+                                    for(var h=0;h<participants.length;h++){
+                                        if(participants[h].position_id == m){
+                                            if(participants[h].participant_id==loginUser.id){
+                                                checkbit=2;
+                                            }
+                                        }
+                                    }
+                                  %>
+                                <% if (checkbit ==1){%>
+                                    <td><button class="partyBtn">신청 하기</button><button class="fakeBtn">취소</button></td>
+                                <% }else if(checkbit==2){ %>
+                                    <td><button class="completeBtn">신청 완료</button><button class="cancelBtn">취소</button></td>
+                                <% }else{ %>
+                                    <td><button class="partyBtnNot">신청 불가</button><button class="fakeBtn">취소</button></td>
+                                <% } %>
+                            </tr>
+                        <% } %>   
+                        
 
-    <div class="">
-        <label for="author">작성자</label>
-        <input type="text" class="form-control" id="author" title="author" value="<%= class_info.author %>" disabled>
+                    </tbody>
+                    </table>
+            </div>
+            
+            
     </div>
-
-    <div class="">
-        <label for="period">시간</label>
-        <input type="text" class="form-control" id="period" title="period" value="<%= class_info.time %> <%= class_info.date%>" disabled>
-    </div>
-    <div class="">
-        <label for="role">모집구분</label>
-        <input type="text" class="form-control" id="role" title="role" value="<%= class_info.role %>" disabled>
-    </div>
-    <div class="">
-        <label for="credit">크레딧</label>
-        <input type="text" class="form-control" id="credit" title="credit" value="<%= class_info.credit %>" disabled>
-    </div>
-    <div class="">
-        <label for="total_participant">참가자</label>
-        <input type="text" class="form-control" id="total_participant" title="total_participant" value="<%= class_info.total_participant %>" disabled>
-    </div>
-    <div class="">
-        <label for="description">설명</label>
-        <input type="text" class="form-control" id="description" title="description" value="<%= class_info.description%>" disabled>
-    </div>
-    <div class="">
-        <label for="position">모집 역할</label>
-        <input type="text" class="form-control" id="position" title="position" value="<%= positions[0].position_id%>" disabled>
-    </div>
-    <div class="content_id" id="content_id" value="<%=class_info.id%>">
-    </div>
-    <div class="participate_button" id="">
-        참가하기
-    </div>
-
-</div>
 
 </body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+   
+ 
+
+    <!-- Template Main Javascript File -->
+    <script src="../js/main.js"></script>
+    <script src="../js/class_detail.js"></script>
 </html>
