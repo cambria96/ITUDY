@@ -95,64 +95,14 @@
             <div class="content-all" style="flex: 11 0%;">
                 <div class="card-list">
                     <% data.forEach(function (item, index){ %>
-                    <% if(can[index] == 1){ %>
-                    <div class="item-container" value="/detail_study/<%= item.id %>">
-                        <div class="item">
-                            <div class="item-content">
-                                <div class="icon-container">
-                                    <div class="icon"
-                                         style="background-image: url('../img/icons/git.png');">
-
-                                    </div>
-                                </div>
-                                <div class="item-description">
-                                    <div class="content-title-number">
-                                        <div class="content-title"><%= item.title %></div>
-                                        <div class="content-number">현재인원 <%= item.current_participant %>
-                                            /<%= item.total_participant %></div>
-                                    </div>
-                                    <div class="content-author">
-                                        <div class="author"><i class="fas fa-user-tie"></i>
-                                            모집자 <%= item.author_id %>
-                                        </div>
-                                        <div class="content-possible  blink-possible">
-                                            참가가능
-                                        </div>
-                                    </div>
-                                    <div class="content-period">
-                                        <div class="" style="display: flex;">
-                                            <div class=""
-                                                 style="background-image: url('../img/icons/calendar.svg');width: 2rem;height: 2rem;margin-right: 0.5rem;">
-                                            </div>
-                                            <%
-                                                var dateString = item.date.toString();
-                                                var timeString = item.time.toString();
-                                                var date = dateString.split(',');
-                                                var time = timeString.split(',');
-                                            %>
-                                            <%
-                                            date.forEach(function(dateToken, index){ %>
-                                            <div>
-                                                <%= dateToken %>: <%= time[index] %>
-                                            </div>
-                                            <% if(date.length - 1 != index){ %>
-                                                <div>&nbsp|&nbsp</div>
-                                            <% } %>
-                                            <% }) %>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--                            </a>-->
-
-                            </div>
-                            <% } else{ %>
+                        <% if(can[index] == 1){ %>
                             <div class="item-container" value="/detail_study/<%= item.id %>">
-                                <div class="item-not-allowed">
+                                <div class="item">
                                     <div class="item-content">
                                         <div class="icon-container">
                                             <div class="icon"
                                                  style="background-image: url('../img/icons/git.png');">
+
                                             </div>
                                         </div>
                                         <div class="item-description">
@@ -163,7 +113,45 @@
                                             </div>
                                             <div class="content-author">
                                                 <div class="author"><i class="fas fa-user-tie"></i>
-                                                    모집자 <%= item.author_id %>
+                                                    모집자 <%=item.author_id%>
+                                                </div>
+                                                <div class="content-possible  blink-possible">
+                                                    참가가능
+                                                </div>
+                                            </div>
+                                            <div class="content-period">
+                                                <div class="" style="display: flex;">
+                                                    <div class=""
+                                                         style="background-image: url('../img/icons/calendar.svg');width: 2rem;height: 2rem;margin-right: 0.5rem;">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--                            </a>-->
+
+                            </div>
+                        <% } else{ %>
+                            <div class="item-container" value="/detail_study/<%= item.id %>">
+                                <div class="item-not-allowed">
+                                    <div class="item-content">
+                                        <div class="icon-container">
+                                            <div class="icon"
+                                                 style="background-image: url('../img/icons/git.png');">
+
+                                            </div>
+                                        </div>
+                                        <div class="item-description">
+                                            <div class="content-title-number">
+                                                <div class="content-title"><%= item.title %></div>
+                                                <div class="content-number">현재인원 <%= item.current_participant %>
+                                                    /<%= item.total_participant %></div>
+                                            </div>
+                                            <div class="content-author">
+                                                <div class="author"><i class="fas fa-user-tie"></i>
+                                                  모집자 <%=item.author_id%>
                                                 </div>
                                                 <div class="content-impossible blink-impossible">
                                                     참가불가
@@ -182,12 +170,12 @@
                                                     %>
                                                     <%
                                                     date.forEach(function(dateToken, index){ %>
-                                                    <div>
-                                                        <%= dateToken %>: <%= time[index] %>
-                                                    </div>
-                                                    <% if(date.length - 1 != index){ %>
-                                                        <div>&nbsp|&nbsp</div>
-                                                    <% } %>
+                                                        <div>
+                                                            <%= dateToken %>: <%= time[index] %>
+                                                        </div>
+                                                        <% if(date.length - 1 != index){ %>
+                                                            <div>&nbsp|&nbsp</div>
+                                                        <% } %>
                                                     <% }) %>
                                                 </div>
                                             </div>
@@ -198,151 +186,149 @@
                                 <!--                            </a>-->
 
                             </div>
-                            <% } %>
-                            <% }) %>
-                            <a href="/insert_class">
-                                <div class="item-container">
-                                    <div class="item">
+                        <% } %>
+                    <% }) %>
+                    <a href="/insert_study">
+                        <div class="item-container">
+                            <div class="item">
 
-                                        <div class="item-content">
-                                            <div class="icon-container">
-                                                <div class="icon">
-                                                </div>
+                                <div class="item-content">
+                                    <div class="icon-container">
+                                        <div class="icon">
+                                        </div>
+                                    </div>
+                                    <div class="item-description">
+                                        <div class="content-title-number">
+                                            <div class="content-title content-number"
+                                                 style="width: 15rem; height: 3rem; margin-bottom:1rem;"></div>
+                                            <div class="content-number"
+                                                 style="width: 7rem; height: 2rem; margin-bottom:1rem;"></div>
+                                        </div>
+                                        <div class="content-author">
+                                            <div class="author content-number" style="width: 7rem; height: 2rem;">
                                             </div>
-                                            <div class="item-description">
-                                                <div class="content-title-number">
-                                                    <div class="content-title content-number"
-                                                         style="width: 15rem; height: 3rem; margin-bottom:1rem;"></div>
-                                                    <div class="content-number"
-                                                         style="width: 7rem; height: 2rem; margin-bottom:1rem;"></div>
-                                                </div>
-                                                <div class="content-author">
-                                                    <div class="author content-number" style="width: 7rem; height: 2rem;">
-                                                    </div>
-                                                    <div style="margin-right: 15%;">
-                                                        <i class="fa fa-plus my-float" style="font-size:2rem; color:#dfaa32;"></i>
-                                                    </div>
+                                            <div style="margin-right: 15%;">
+                                                <i class="fa fa-plus my-float" style="font-size:2rem; color:#dfaa32;"></i>
+                                            </div>
 
-                                                    <div class="content-possible content-number"
-                                                         style="width: 5rem; height: 2rem;">
-                                                    </div>
-                                                </div>
-                                                <div class="content-period">
-                                                    <div class="content-number"
-                                                         style="display: flex; width: 5rem; height: 2rem;">
-                                                    </div>
-                                                    <div class="content-number"
-                                                         style="display: flex; width: 3rem; height: 2rem;">
-                                                    </div>
-
-                                                </div>
+                                            <div class="content-possible content-number"
+                                                 style="width: 5rem; height: 2rem;">
                                             </div>
                                         </div>
-                                        <!--                            </a>-->
-
+                                        <div class="content-period">
+                                            <div class="content-number"
+                                                 style="display: flex; width: 5rem; height: 2rem;">
+                                            </div>
+                                            <div class="content-number"
+                                                 style="display: flex; width: 3rem; height: 2rem;">
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </a>
+                                <!--                            </a>-->
+
+                            </div>
                         </div>
+                    </a>
 
-                    </div>
-
-
-                </div>
-
-
-                <br>
-                <br>
-
-
-                <div class="container" style="text-align: center;">
-                    <ul class="pager">
-
-                        <%
-                        var curSet = classes.curSet
-                        var endPage = classes.endPage
-                        var startPage = classes.startPage
-                        var totalSet = classes.totalSet
-                        var totalPage = classes.totalPage
-                        var page_list_size = classes.page_list_size
-                        var page_size = classes.page_size
-                        var curPage = Number(classes.curPage)
-                        %>
-
-                        <% if(curPage == 1){ %>
-                            <li value=(curPage) class="previous">
-                                <a href='/studies/<%= (curPage) %>'>첫번째페이지</a>
-                            </li>
-
-                        <% }else if(curPage > 1){
-                        %>
-                            <li value=(curPage -1) class="previous">
-                                <a href='/studies/<%= (curPage - 1) %>'>이전페이지</a>
-                            </li>
-
-                        <%
-                        }
-                        %>
-
-                        <%
-                        for(var i = startPage; i <= endPage; i++){
-                            if (i > totalPage) {
-                                break;
-                            }
-
-                        if(i == curPage){
-                        %>
-                            <li value=<%= i %> class=''>
-                                <a href='/stuides/<%= i %>'>
-                                    <%= i %>
-                                </a>
-                            </li>
-
-                        <%
-                        }else{
-                        %>
-
-                            <li value=<%= i %> class='active'>
-                                <a href='/studies/<%= i %>'>
-                                    <%= i %>
-                                </a>
-                            </li>
-
-                        <%
-                        }
-                        %>
-
-                        <%
-                        }
-                        %>
-
-                        <%
-                        if(curPage < totalPage){
-                        %>
-                            <li value=( curPage + 1) class="next">
-                                <a href='/studies/<%= (curPage + 1) %>'>다음페이지</a>
-                            </li>
-                        <%
-                        }else if(curPage == totalPage){
-                        %>
-                            <li value=( curPage) class="next">
-                                <a href='/studies/<%= (curPage) %>'>마지막페이지</a>
-                            </li>
-                        <% } %>
-
-                    </ul>
-
-                </div>
-                <!--        상세보기(모달)-->
-                <div id="myModal" class="modal">
-                    <div id="modal-content" class="modal-content">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        <iframe id="content-detail" src="" style="height: 80vh;border:0;">
-                        </iframe>
-                    </div>
                 </div>
             </div>
+
+
         </div>
+
+
+        <br>
+        <br>
+
+
+        <div class="container" style="text-align: center;">
+            <ul class="pager">
+
+                <%
+                var curSet = classes.curSet
+                var endPage = classes.endPage
+                var startPage = classes.startPage
+                var totalSet = classes.totalSet
+                var totalPage = classes.totalPage
+                var page_list_size = classes.page_list_size
+                var page_size = classes.page_size
+                var curPage = Number(classes.curPage)
+                %>
+
+                <% if(curPage == 1){ %>
+                    <li value=(curPage) class="previous">
+                        <a href='/classes/<%= (curPage) %>'>첫번째페이지</a>
+                    </li>
+
+                <% }else if(curPage > 1){
+                %>
+                    <li value=(curPage -1) class="previous">
+                        <a href='/classes/<%= (curPage - 1) %>'>이전페이지</a>
+                    </li>
+
+                <%
+                }
+                %>
+
+                <%
+                for(var i = startPage; i <= endPage; i++){
+                    if (i > totalPage) {
+                        break;
+                    }
+
+                if(i == curPage){
+                %>
+                    <li value=<%= i %> class=''>
+                        <a href='/classes/<%= i %>'>
+                            <%= i %>
+                        </a>
+                    </li>
+
+                <%
+                }else{
+                %>
+
+                    <li value=<%= i %> class='active'>
+                        <a href='/classes/<%= i %>'>
+                            <%= i %>
+                        </a>
+                    </li>
+
+                <%
+                }
+                %>
+
+                <%
+                }
+                %>
+
+                <%
+                if(curPage < totalPage){
+                %>
+                    <li value=( curPage + 1) class="next">
+                        <a href='/classes/<%= (curPage + 1) %>'>다음페이지</a>
+                    </li>
+                <%
+                }else if(curPage == totalPage){
+                %>
+                    <li value=( curPage) class="next">
+                        <a href='/classes/<%= (curPage) %>'>마지막페이지</a>
+                    </li>
+                <% } %>
+
+            </ul>
+
+        </div>
+        <!--        상세보기(모달)-->
+        <div id="myModal" class="modal">
+            <div id="modal-content" class="modal-content">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <iframe id="content-detail" src="" style="height: 80vh;border:0;">
+                </iframe>
+            </div>
+        </div>
+
 
     </section>
 
@@ -412,6 +398,9 @@
     </div>
 </footer>
 
+<!--<a href="/insert_class"class="float1"style="display: inline;">-->
+<!--    <i class="fa fa-plus my-float"></i>-->
+<!--</a>-->
 <a href="#" class="float2 back-to-top"><i class="fa fa-chevron-up"></i></a>
 <!-- Uncomment below i you want to use a preloader -->
 <!-- <div id="preloader"></div> -->
