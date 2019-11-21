@@ -108,6 +108,10 @@ router.get("/studies/:cur", function (req, res) {
                     var index = ["C","C++","C#","Java","Ruby","Python","R","Go","HTML/CSS","Javascript","Spring","Nodejs","Angularjs","Vuejs","Reactjs","PHP","Andriod","IOS","Swift","Kotlin","Objective-c","MYSQL","MongoDB","SpringBoot","OracleDB"];
                     for(var i=0;i<rows2.length;i++){
                         for(var m=0;m<rows1.length;m++){
+                            if(params[m]==rows2[i].content_id&&rows2[i].none=='1') {
+                                can[m]=1;
+                                break;
+                            }
                             if( params[m]==rows2[i].content_id&&can[m]==1){
                                 break;
                             }
