@@ -266,8 +266,10 @@ var userStudy=[];
 app.get("/introduction", function(req,res){
     res.render('introduction.ejs',{name:req.session.name,credit:req.session.credit});
 })
+app.post("/requestUserInfo",function(req,res){
+    res.send({"loginUser":loginUser})
+})
 app.post("/request",function(req,res){
-    console.log("로깅유저"+loginUser.id);
     connection.query("SELECT * from classes WHERE (`author_id` = '"+loginUser.id+"');",function(err,rows,result){
         if(!err){
             console.log("클래스 로드 완료");
@@ -289,6 +291,8 @@ app.post("/request",function(req,res){
     });
     res.send({loginUser: loginUser,userClass: userClass, userStudy:userStudy})
 })
+
+
 // app.get("/class",function(req,res){
 //     res.render('class.ejs');
 // })

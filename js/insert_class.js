@@ -49,7 +49,13 @@ function clickEvnet(){
                 date.push($(this).children(".dynamicDate").text());     
                 var startTime = $(this).find("#select-start").val();
                 var endTime = $(this).find("#select-end").val();
-                time.push(startTime+" ~ "+endTime);
+                if(startTime=="미설정" || endTime=="미설정"){
+                    time.push("미설정");
+                }
+                else{
+                    time.push(startTime+" ~ "+endTime);
+                }
+                
             }
             
         })

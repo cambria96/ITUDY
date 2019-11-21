@@ -239,15 +239,22 @@ router.get("/detail_class/:id", function (req, res) {
             if(error){
                 console.log(error);
             }
-            getConnection().query('select * from positions where content_id = ?', [req.params.id], function (error, positions) {
+            getConnection().query('select * from positions where content_id = ? and type=1', [req.params.id], function (error, positions) {
                 if(error){
                     console.log(error);
                 }
-                console.log(positions);
-                res.send(ejs.render(data, {
-                    "class_info": class_info[0],
-                    "positions": positions
-                }))
+                getConnection().query('select * from participants where content_id = ? and type=1', [req.params.id], function (error, participants) {
+                    if(error){
+                        console.log(error);
+                    }
+                    res.send(ejs.render(data, {
+                        "class_info": class_info[0],
+                        "positions": positions,
+                        "loginUser" : user.loginUser,
+                        "participants":participants
+                    }))
+                })
+                
             })
 
         })
@@ -257,14 +264,30 @@ router.get("/detail_class/:id", function (req, res) {
 
 // 클래스 참
 router.post("/participate_class", function (req, res) {
-
-    getConnection().query('insert into participants(content_id,position_id,participant_id) values (?,?,?)', [req.body.content_id, req.body.position_id, loginUser.id], function (error) {
-
+    var participant = req.body;
+    console.log("참가신청완료");
+    getConnection().query('insert into participants set ?', participant, function (error) {
         if (error) {
             console.log("페이징 에러" + error);
             return
         }
         else{
+            res.send();
+        }
+    })
+})
+
+router.post("/delete_participant", function (req, res) {
+    var cancelInfo = req.body;
+    
+    getConnection().query('delete from participants where type = ? and content_id = ? and position_id = ? and participant_id =?' , [cancelInfo.type,cancelInfo.content_id,cancelInfo.position_id,cancelInfo.participant_id], function (error) {
+        if (error) {
+            console.log("페이징 에러" + error);
+            
+            return
+        }
+        else{
+            console.log("취소완료");
             res.send();
         }
     })

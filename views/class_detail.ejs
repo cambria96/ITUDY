@@ -22,6 +22,7 @@
 <body>
 
     <div class="container">
+            <p class="content_id" style="display:none"><%=class_info.id%></p>
             <p class="groupTitle"><%=class_info.title%></p>
             <%
                 var date =class_info.date.split(",");
@@ -89,17 +90,47 @@
                             <th>필요 분야</th>
                             <th>상세 역량</th>
                             <th>모집 인원</th>
-                            <th>신청</th>
+                            <th>가능 여부<button class="fakeBtn">취소</button></th>
                         </tr>
                     </thead>
                     <tbody>
                         <% for (var m=0;m<positions.length;m++){%>
                             <tr>
                                 <th><%=m+1%>.</th>
-                                <td><%=conditionList[m]%></td>
+                                <td class="condition"><%=conditionList[m]%></td>
                                 <td><%=positions[m].description%></td>
-                                <td><%=positions[m].number%> 명</td>
-                                <td><button class="partyBtn">참가하기</button></td>
+                                <td class="totalNumber"><%=positions[m].number%> 명</td>
+                                <% var checkbit=0;
+                                   var applyCheckBit=0;
+                                   
+                                %>
+                                <% 
+                                    var conditionCheck = [];
+                                    conditionCheck = conditionList[m].split(",");
+                                    for(var i=0;i<conditionCheck.length;i++){
+                                        if (loginUser[conditionCheck[i]] ==1){
+                                            checkbit=1;
+                                        }else{ 
+                                            checkbit=0;
+                                            break;
+                                        }
+                                    }
+                                    
+                                    for(var h=0;h<participants.length;h++){
+                                        if(participants[h].position_id == m){
+                                            if(participants[h].participant_id==loginUser.id){
+                                                checkbit=2;
+                                            }
+                                        }
+                                    }
+                                  %>
+                                <% if (checkbit ==1){%>
+                                    <td><button class="partyBtn">신청 하기</button><button class="fakeBtn">취소</button></td>
+                                <% }else if(checkbit==2){ %>
+                                    <td><button class="completeBtn">신청 완료</button><button class="cancelBtn">취소</button></td>
+                                <% }else{ %>
+                                    <td><button class="partyBtnNot">신청 불가</button><button class="fakeBtn">취소</button></td>
+                                <% } %>
                             </tr>
                         <% } %>   
                         
