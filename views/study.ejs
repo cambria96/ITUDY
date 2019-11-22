@@ -48,7 +48,7 @@
  ============================-->
 <div class="bannerBox">
     <div class="coverBox">
-        <p class="bannerTitle">클래스/스터디 찾기</p>
+        <p class="bannerTitle">스터디 찾기</p>
     </div>
 </div>
 <header id="header">
@@ -99,10 +99,9 @@
                                 <div class="item">
                                     <div class="item-content">
                                         <div class="icon-container">
-                                            <div class="icon"
-                                                 style="background-image: url('../img/icons/git.png');">
-
-                                            </div>
+                                                <div class="icon-container">
+                                                    <img src="../img/icons/git.png" class="myThumbnail">
+                                                </div>
                                         </div>
                                         <div class="item-description">
                                             <div class="content-title-number">
@@ -137,9 +136,8 @@
                                 <div class="item-not-allowed">
                                     <div class="item-content">
                                         <div class="icon-container">
-                                            <div class="icon"
-                                                 style="background-image: url('../img/icons/git.png');">
-
+                                            <<div class="icon-container">
+                                                <img src="../img/icons/git.png" class="myThumbnail">
                                             </div>
                                         </div>
                                         <div class="item-description">
@@ -188,12 +186,13 @@
                         <% } %>
                     <% }) %>
                     <a href="/insert_study">
-                        <div class="item-container addItem">
-                            <div class="item">
-
+                        <div class="item-container addItem" >
+                            <div class="item" style="position :relative">
+                                <i class="fa fa-plus addPlusBtn"></i>
                                 <div class="item-content">
                                     <div class="icon-container">
-                                        <div class="icon">
+                                        <div class="iconBox">
+                                            
                                         </div>
                                     </div>
                                     <div class="item-description">
@@ -207,7 +206,6 @@
                                             <div class="author content-number" style="width: 7rem; height: 2rem;">
                                             </div>
                                             <div style="margin-right: 15%;">
-                                                <i class="fa fa-plus my-float" style="font-size:2rem; color:#dfaa32;"></i>
                                             </div>
 
                                             <div class="content-possible content-number"
@@ -406,7 +404,6 @@
 <!-- <div id="preloader"></div> -->
 
 <!-- JavaScript Libraries -->
-<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <script src="../lib/jquery/jquery.min.js"></script>
 <script src="../lib/jquery/jquery-migrate.min.js"></script>
 <script src="../lib/bootstrap/js/bootstrap.bundle.min.js"></script>

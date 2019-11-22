@@ -2,6 +2,12 @@ $(function() {
 
     $(document).ready(function() {
 
+        $(".addItem").hover(function(){
+            $(this).find(".addPlusBtn").addClass("active");
+        },function(){
+            $(this).find(".addPlusBtn").removeClass("active");
+        })
+
         $(".item-container").click(function() {
             if($(this).hasClass("addItem")){
 
