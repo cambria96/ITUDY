@@ -148,6 +148,18 @@
  .blink-possible {
      -webkit-animation: blink-possible 3s linear infinite;
  }
+ .thumbnail{
+    width: 10rem;
+    height: 10rem;
+    min-width: 5.5rem;
+    border-radius: 0.5rem;
+    background-color: rgb(251, 251, 251);
+    background-size: contain;
+    background-position: center center;
+    background-repeat: no-repeat;
+    border: 1px solid rgb(238, 238, 238);
+
+ }
 @-webkit-keyframes blink-possible {
     50% { background-color: forestgreen; }
 }
