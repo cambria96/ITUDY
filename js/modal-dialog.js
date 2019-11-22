@@ -3,11 +3,16 @@ $(function() {
     $(document).ready(function() {
 
         $(".item-container").click(function() {
-            var src = $(this).attr('value')
-            $("#content-detail").prop('src',src)
-            $("#myModal").css({
-                "display": "block"
-            });
+            if($(this).hasClass("addItem")){
+
+            }else{
+                var src = $(this).attr('value')
+                $("#content-detail").prop('src',src)
+                $("#myModal").css({
+                    "display": "block"
+                });
+            }
+            
         });
 
 
