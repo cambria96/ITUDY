@@ -292,6 +292,7 @@
                                 <div class="partyContent typeClass" >
                                     <div class="partyTitle"><%=classList[n].title%></div>
                                     <div class="subContentBox">
+                                        <div class="partyCredit"><img src="../img/coin.png"> <%=classList[n].credit%></div>
                                         <div class="partyTime">
                                             <%       
                                                 var timeList = classList[n].time.split(",");
@@ -301,7 +302,6 @@
                                                 <%}
                                             %>
                                         </div>
-                                        <div class="partyCredit"><img src="../img/coin.png"> <%=classList[n].credit%></div>
                                         <div class="partyNumber"><%=classList[n].current_participant%>/<%=classList[n].total_participant%></div>
                                         <button class="cancelBtn classCancelBtn" position=<%=position_id_class[n]%> value=<%=classList[n].id %> >취소</button>
                                     </div>
@@ -314,6 +314,7 @@
                                 <div class="partyContent typeStudy" >
                                     <div class="partyTitle"><%=studyList[n].title%></div>
                                     <div class="subContentBox">
+                                        <div class="partyCredit studyCredit"><img src="../img/coin.png"> <%=studyList[n].credit%></div>
                                         <div class="partyTime">
                                             <% 
                                                 var timeList = studyList[n].time.split(",");
@@ -323,7 +324,6 @@
                                                 <%}
                                             %>
                                         </div>
-                                        <div class="partyCredit"><img src="../img/coin.png"> <%=studyList[n].credit%></div>
                                         <div class="partyNumber"><%=studyList[n].current_participant%>/<%=studyList[n].total_participant%></div>
                                         <button class="cancelBtn studyCancelBtn" position=<%=position_id_study[n]%> value=<%=studyList[n].id %>>취소</button>
                                     </div>

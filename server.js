@@ -13,7 +13,7 @@ var options = {
     host: 'localhost',
     port: '3306',
     user: 'root',
-    password: 'hwang261!',
+    password: 'root',
     database: 'userinfo'
 };
 var sessionStore = new MySQLStore(options);
@@ -77,7 +77,13 @@ app.get('/mypage',function(req,res){
             var position_id_class=[];
             var position_id_study=[];
             if(partyList.length==0){
-                res.render("mypage.ejs",{loginInfo:loginUser,"contentList":contentList});
+                res.render("mypage.ejs",{
+                    "loginInfo":loginUser,
+                    "contentList":contentList,
+                    "classList":classList,
+                    "studyList":studyList,
+                    "position_id_class":""
+                });
             }
             for(var m=0;m<partyList.length;m++){
                 var n=0;

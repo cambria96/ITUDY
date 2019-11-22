@@ -106,6 +106,7 @@ router.get("/classes/:cur", function (req, res) {
                 getConnection().query(queryString,params,function(error,rows2) {
 
                     var index = ["C","C++","C#","Java","Ruby","Python","R","Go","HTML/CSS","Javascript","Spring","Nodejs","Angularjs","Vuejs","Reactjs","PHP","Andriod","IOS","Swift","Kotlin","Objective-c","MYSQL","MongoDB","SpringBoot","OracleDB"];
+                   
                     for(var i=0;i<rows2.length;i++){
 
                         for(var m=0;m<rows1.length;m++){
@@ -307,7 +308,7 @@ var pool = mysql.createPool({
     host: 'localhost',
     user: 'root',
     database: 'userinfo',
-    password: 'hwang261!'
+    password: 'root'
 })
 
 

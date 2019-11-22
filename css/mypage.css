@@ -27,6 +27,10 @@
 .contextBox ul{
     margin-bottom: 0px;
 
+    
+}
+.studyCredit{
+    opacity: 0;
 }
 
 .sideBar p{
@@ -220,11 +224,9 @@ label {
 }
 .partyTime{
     width:33%;
-    min-width: 110px;
 }
 .partyCredit{
     width: 20%;
-    min-width: 80px;
 }
 .partyTime p{
     margin:unset;

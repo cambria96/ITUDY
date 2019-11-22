@@ -106,46 +106,49 @@ router.get("/studies/:cur", function (req, res) {
                 getConnection().query(queryString,params,function(error,rows2) {
 
                     var index = ["C","C++","C#","Java","Ruby","Python","R","Go","HTML/CSS","Javascript","Spring","Nodejs","Angularjs","Vuejs","Reactjs","PHP","Andriod","IOS","Swift","Kotlin","Objective-c","MYSQL","MongoDB","SpringBoot","OracleDB"];
-                    for(var i=0;i<rows2.length;i++){
-                        for(var m=0;m<rows1.length;m++){
-                            if(params[m]==rows2[i].content_id&&rows2[i].none=='1') {
-                                can[m]=1;
-                                break;
-                            }
-                            if( params[m]==rows2[i].content_id&&can[m]==1){
-                                break;
-                            }
-                        }
-
-                        if(m!==rows1.length) {
-                            continue;
-                        }
-
-
-                        for(var j=0;j<index.length;j++) {
-                            var column = index[j]
-                            if (rows2[i][column] === '1') {
-                                if (loginUser[column] == '1') {
-                                    for (var l = 0; l < rows1.length; l++) {
-                                        if (rows2[i].content_id === params[l]) {
-                                            can[l] = 1;
-                                            break;
-                                        }
-                                    }
+                    if(rows2!=undefined){
+                        for(var i=0;i<rows2.length;i++){
+                            for(var m=0;m<rows1.length;m++){
+                                if(params[m]==rows2[i].content_id&&rows2[i].none=='1') {
+                                    can[m]=1;
+                                    break;
                                 }
-                                else {
-                                    for (var k = 0; k < rows1.length; k++) {
-                                        if (rows2[i].content_id === params[k]) {
-                                            can[k] = 0;
-                                            break;
+                                if( params[m]==rows2[i].content_id&&can[m]==1){
+                                    break;
+                                }
+                            }
+    
+                            if(m!==rows1.length) {
+                                continue;
+                            }
+    
+    
+                            for(var j=0;j<index.length;j++) {
+                                var column = index[j]
+                                if (rows2[i][column] === '1') {
+                                    if (loginUser[column] == '1') {
+                                        for (var l = 0; l < rows1.length; l++) {
+                                            if (rows2[i].content_id === params[l]) {
+                                                can[l] = 1;
+                                                break;
+                                            }
                                         }
-
                                     }
-                                    break
+                                    else {
+                                        for (var k = 0; k < rows1.length; k++) {
+                                            if (rows2[i].content_id === params[k]) {
+                                                can[k] = 0;
+                                                break;
+                                            }
+    
+                                        }
+                                        break
+                                    }
                                 }
                             }
                         }
                     }
+                    
 
                     res.send(ejs.render(data, {
                         can: can,
@@ -305,7 +308,7 @@ var pool = mysql.createPool({
     host: 'localhost',
     user: 'root',
     database: 'userinfo',
-    password: 'hwang261!'
+    password: 'root'
 })
 
 

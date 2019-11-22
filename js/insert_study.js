@@ -92,7 +92,13 @@ function clickEvnet(){
                 return;
             }
             $(this).find(".roleItem").each(function(){
-                condition.push($(this).text())
+              if($(this).text() =="없음"){
+                condition = ["none"];
+                return false;
+              }
+              else{
+                condition.push($(this).text());
+              }
             });
             conditionDetail = $(this).find(".detailInput").val();
             onePerson = {"condition":condition,"number":number,"description": conditionDetail}; 
@@ -176,7 +182,7 @@ function selectBox(){
 function autoComplete(){
 
   $(document).on('keydown.autocomplete', ".searchInput", function() {
-    var searchSource = ["C","C++","C#","Java","Ruby","Python","R","Go","HTML/CSS","Javascript","Spring","Nodejs","Angularjs","Vuejs","Reactjs","PHP","Android","IOS","Swift","Kotlin","Objective-C","MYSQL","MongoDB","SpringBoot","OracleDB"]; 
+    var searchSource = ["C","C++","C#","Java","Ruby","Python","R","Go","HTML/CSS","Javascript","Spring","Nodejs","Angularjs","Vuejs","Reactjs","PHP","Android","IOS","Swift","Kotlin","Objective-C","MYSQL","MongoDB","SpringBoot","OracleDB","없음"]; 
     $(".searchInput").autocomplete({  //오토 컴플릿트 시작
       source : searchSource,	// source 는 자동 완성 대상
       select : function(event, ui) {	//아이템 선택시
