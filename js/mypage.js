@@ -137,7 +137,8 @@ function cancelParticipant(){
         if(result){
             
             cancelInfo["content_id"] = $(this).val();
-            cancelInfo["position_id"] = $(this).attr("position");
+            console.log($(this).siblings(".partyNumber"));
+            cancelInfo["position_id"] = $(this).siblings(".posNum").val();
             cancelInfo["participant_id"] = loginUser.id;
             if($(this).hasClass("classCancelBtn")){
                 cancelInfo["type"]=1;      
@@ -152,7 +153,6 @@ function cancelParticipant(){
                 type:"POST",
                 data: cancelInfo,
                 success:function(){
-                    alert("삭제");
                     content.remove();
                 },
                 error: function(request,error,status){

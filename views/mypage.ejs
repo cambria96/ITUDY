@@ -300,10 +300,15 @@
                                                 for(var m=0;m<dateList.length;m++){%>
                                                     <p><span><%=dateList[m]%>&nbsp|&nbsp<%=timeList[m]%></span> </p>
                                                 <%}
+                                                console.log(position_id_class[n]);
+
                                             %>
                                         </div>
+                                        
+                                        
                                         <div class="partyNumber"><%=classList[n].current_participant%>/<%=classList[n].total_participant%></div>
-                                        <button class="cancelBtn classCancelBtn" position=<%=position_id_class[n]%> value=<%=classList[n].id %> >취소</button>
+                                        <input class="posNum" style="display:none" value=<%=position_id_class[n]%> >
+                                        <button class="cancelBtn classCancelBtn" value =<%=classList[n].id %> >취소</button>
                                     </div>
                                 </div>
                             <%}%>
@@ -322,10 +327,12 @@
                                                 for(var m=0;m<dateList.length;m++){%>
                                                     <p><span><%=dateList[m]%>&nbsp|&nbsp<%=timeList[m]%></span> </p>
                                                 <%}
+                                                
                                             %>
                                         </div>
-                                        <div class="partyNumber"><%=studyList[n].current_participant%>/<%=studyList[n].total_participant%></div>
-                                        <button class="cancelBtn studyCancelBtn" position=<%=position_id_study[n]%> value=<%=studyList[n].id %>>취소</button>
+                                        <div class="partyNumber" ><%=studyList[n].current_participant%>/<%=studyList[n].total_participant%></div>
+                                        <input class="posNum" style="display:none" value=<%=position_id_study[n]%>>
+                                        <button class="cancelBtn studyCancelBtn"  value=<%=studyList[n].id %>>취소</button>
                                     </div>
                                 </div>
                             <%}%>

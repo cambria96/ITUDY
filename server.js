@@ -77,6 +77,7 @@ app.get('/mypage',function(req,res){
             var position_id_class=[];
             var position_id_study=[];
             if(partyList.length==0){
+                console.log("dsffsfddf");
                 res.render("mypage.ejs",{
                     "loginInfo":loginUser,
                     "contentList":contentList,
@@ -93,6 +94,7 @@ app.get('/mypage',function(req,res){
                             contentList.push(rows[0]);
                             classList.push(rows[0]);
                             position_id_class.push(partyList[n].position_id);
+                            
                         }
                         else{
                             var a=0;
@@ -128,7 +130,8 @@ app.get('/mypage',function(req,res){
                             "contentList":contentList,
                             "classList":classList,
                             "studyList":studyList,
-                            "position_id_class":partyList[n].position_id
+                            "position_id_class":position_id_class,
+                            "position_id_study":position_id_study
                         });
                     }
                     n++;
