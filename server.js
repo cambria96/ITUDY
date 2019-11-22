@@ -13,7 +13,7 @@ var options = {
     host: 'localhost',
     port: '3306',
     user: 'root',
-    password: 'root',
+    password: 'hwang261!',
     database: 'userinfo'
 };
 var sessionStore = new MySQLStore(options);

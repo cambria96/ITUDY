@@ -4,22 +4,28 @@ var mysql = require('mysql')
 var fs = require('fs')
 var ejs = require('ejs')
 var bodyParser = require('body-parser');
-
+var user = require("../server.js");
+var content_id = 0;
+var loginUser;
 
 
 router.use(bodyParser.urlencoded({ extended: false }))
+router.use('../js',express.static('js'));
+router.use('../lib',express.static('lib'));
+router.use('../img',express.static('img'));
+router.use('../css',express.static('css'));
 
 //게시판 페이징
-
-router.get("/study/:cur", function (req, res) {
-
+router.get("/studies/:cur", function (req, res) {
+    loginUser = require('../server').loginUser
+    console.log(loginUser)
 //페이지당 게시물 수 : 한 페이지 당 10개 게시물
-    var page_size = 10;
+    var page_size = 5;
 //페이지의 갯수 : 1 ~ 10개 페이지
     var page_list_size = 10;
 //limit 변수
     var no = "";
-//전체 게시물의 숫자
+// 게시물의 숫자
     var totalPageCount = 0;
 
     var queryString = 'select count(*) as cnt from study'
@@ -34,7 +40,7 @@ router.get("/study/:cur", function (req, res) {
 //현제 페이지
         var curPage = req.params.cur;
 
-        console.log("현재 페이지 : " + curPage, "전체 페이지 : " + totalPageCount);
+        console.log("현재 페이지 : " + curPage, "전체 게시물 : " + totalPageCount);
 
 
 //전체 페이지 갯수
@@ -54,10 +60,9 @@ router.get("/study/:cur", function (req, res) {
             no = 0
         } else {
 //0보다 크면 limit 함수에 들어갈 첫번째 인자 값 구하기
-            no = (curPage - 1) * 10
+            no = (curPage - 1) * 5
         }
 
-        console.log('[0] curPage : ' + curPage + ' | [1] page_list_size : ' + page_list_size + ' | [2] page_size : ' + page_size + ' | [3] totalPage : ' + totalPage + ' | [4] totalSet : ' + totalSet + ' | [5] curSet : ' + curSet + ' | [6] startPage : ' + startPage + ' | [7] endPage : ' + endPage)
 
         var result2 = {
             "curPage": curPage,
@@ -77,24 +82,86 @@ router.get("/study/:cur", function (req, res) {
                 console.log("ejs오류" + error);
                 return
             }
-            console.log("몇번부터 몇번까지냐~~~~~~~" + no)
 
-            var queryString = 'select * from study order by id desc limit ?,?';
-            getConnection().query(queryString, [no, page_size], function (error, result) {
+
+            var queryString = 'select * from study order by datetime desc limit ?,?';
+            getConnection().query(queryString, [no, page_size], function (error, rows1) {
                 if (error) {
                     console.log("페이징 에러" + error);
                     return
                 }
-                res.send(ejs.render(data, {
-                    data: result,
-                    studies: result2,
-                    name:req.session.name,
-                    credit:req.session.credit
-                }));
+                var params = []
+                var can = new Array(rows1.length)
+                var queryString = 'select * from positions where '
+                for(var i=0; i<rows1.length; i++){
+                    queryString = queryString+"content_id=? AND type=0"
+                    if(i+1!=rows1.length){
+                        queryString = queryString +" OR "
+                    }
+                    can[i]=0;
+                    params.push(rows1[i].id)
+                }
+
+
+                getConnection().query(queryString,params,function(error,rows2) {
+
+                    var index = ["C","C++","C#","Java","Ruby","Python","R","Go","HTML/CSS","Javascript","Spring","Nodejs","Angularjs","Vuejs","Reactjs","PHP","Andriod","IOS","Swift","Kotlin","Objective-c","MYSQL","MongoDB","SpringBoot","OracleDB"];
+                    for(var i=0;i<rows2.length;i++){
+                        for(var m=0;m<rows1.length;m++){
+                            if(params[m]==rows2[i].content_id&&rows2[i].none=='1') {
+                                can[m]=1;
+                                break;
+                            }
+                            if( params[m]==rows2[i].content_id&&can[m]==1){
+                                break;
+                            }
+                        }
+
+                        if(m!==rows1.length) {
+                            continue;
+                        }
+
+
+                        for(var j=0;j<index.length;j++) {
+                            var column = index[j]
+                            if (rows2[i][column] === '1') {
+                                if (loginUser[column] == '1') {
+                                    for (var l = 0; l < rows1.length; l++) {
+                                        if (rows2[i].content_id === params[l]) {
+                                            can[l] = 1;
+                                            break;
+                                        }
+                                    }
+                                }
+                                else {
+                                    for (var k = 0; k < rows1.length; k++) {
+                                        if (rows2[i].content_id === params[k]) {
+                                            can[k] = 0;
+                                            break;
+                                        }
+
+                                    }
+                                    break
+                                }
+                            }
+                        }
+                    }
+
+                    res.send(ejs.render(data, {
+                        can: can,
+                        data: rows1,
+                        classes: result2,
+                        name:req.session.name,
+                        credit:req.session.credit
+                    }));
+
+                })
+
+
+
+
             });
         });
-
-
     })
 
 })
@@ -103,76 +170,134 @@ router.get("/study/:cur", function (req, res) {
 //메인화면
 router.get("/study", function (req, res) {
     console.log("메인화면")
-//main 으로 들어오면 바로 페이징 처리
-    res.redirect('/study/' + 1)
+
+//class 으로 들어오면 바로 페이징 처리
+    res.redirect('/studies/' + 1)
 
 });
 
-//삭제
-router.get("/delete_study/:id", function (req, res) {
-    console.log("삭제 진행")
 
-    getConnection().query('delete from study where id = ?', [req.params.id], function () {
-        res.redirect('/study')
-    });
-
-})
 //삽입 페이지
 router.get("/insert_study", function (req, res) {
-    console.log("삽입 페이지 나와라")
 
-    fs.readFile('views/insert_study.html', 'utf-8', function (error, data) {
-        res.send(data)
-    })
+    res.render('insert_study.ejs',{loginInfo:user.loginUser});
 
 })
-//삽입 포스터 데이터
+//클래스 삽입
 router.post("/insert_study", function (req, res) {
-    console.log("삽입 포스트 데이터 진행")
-    var body = req.body;
-    getConnection().query('insert into study(id,title,author,body) values (?,?,?,?)', [body.id, body.title, body.author, body.body], function () {
-//응답
-        res.redirect('study');
+
+
+    var now = new Date();
+    var positionList = req.body.positionList;
+    var body = req.body.study_info;
+    var content_id;
+    body["author"] = user.loginUser.name;
+    body["author_id"] = user.loginUser.id;
+    body["datetime"] = now;
+    // content_id++; //
+    var queryString = 'insert into study set ?'
+    getConnection().query(queryString,body, function (error,result) {
+        //응답
+        if (error) {
+            console.log("페이징 에러" + error);
+            return
+        }
+        content_id =result.insertId;
+        for(var m=0;m<positionList.length;m++){
+            var condition = positionList[m].condition;
+            var number = positionList[m].number;
+            var description = positionList[m].description;
+            var position = {};
+            for(var n=0;n<condition.length;n++){
+                position[condition[n]] = 1;
+            }
+            position["type"] = 0;
+            position["content_id"] =content_id;
+            position["position_id"] = m;
+            position["number"] = number;
+            position["description"] = description;
+
+            var queryString2 = 'insert into positions set ?'
+            getConnection().query(queryString2,position, function (error,result) {
+                //응답
+                if (error) {
+                    console.log("페이징 에러" + error);
+                    return
+                }
+
+            })
+        }
     })
-
-})
-//수정 페이지
-router.get("/edit_study/:id", function (req, res) {
-    console.log("수정 진행")
-
-    fs.readFile('views/edit_study.html', 'utf-8', function (error, data) {
-        getConnection().query('select * from study where id = ?', [req.params.id], function (error, result) {
-            res.send(ejs.render(data, {
-                data: result[0],
-                id: req.params.id
-            }))
-        })
-    });
-
-})
-//수정 포스터 데이터
-router.post("/edit_study/:id", function (req, res) {
-    console.log("수정 포스트 진행")
-    var body = req.body;
-    getConnection().query('update study set title = ?, author = ?, body = ? where id = ?',
-        [body.title, body.author, body.body, body.id], function () {
-            res.redirect('/study')
-        })
+    
+    res.send();
 })
 
 
 //글상세보기
 router.get("/detail_study/:id", function (req, res) {
-    console.log("수정 진행")
+    fs.readFile('views/study_detail.ejs', 'utf-8', function (error, data) {
 
-    fs.readFile('views/class_detail.ejs', 'utf-8', function (error, data) {
-        getConnection().query('select * from study where id = ?', [req.params.id], function (error, result) {
-            res.send(ejs.render(data, {
-                data: result[0]
-            }))
+        getConnection().query('select * from study where id = ?', [req.params.id], function (error, study_info) {
+            if(error){
+                console.log(error);
+            }
+            getConnection().query('select * from positions where content_id = ? and type=0', [req.params.id], function (error, positions) {
+                if(error){
+                    console.log(error);
+                }
+                getConnection().query('select * from participants where content_id = ? and type=0', [req.params.id], function (error, participants) {
+                    if(error){
+                        console.log(error);
+                    }
+                    res.send(ejs.render(data, {
+                        "study_info": study_info[0],
+                        "positions": positions,
+                        "loginUser" : user.loginUser,
+                        "participants":participants
+                    }))
+                })
+
+            })
+
         })
     });
+
 })
+
+//스터디 참여
+router.post("/participate_study", function (req, res) {
+    var participant = req.body;
+    console.log("참가신청완료");
+    getConnection().query('insert into participants set ?', participant, function (error) {
+        if (error) {
+            console.log("페이징 에러" + error);
+            return
+        }
+        else{
+            res.send();
+        }
+    })
+})
+
+router.post("/delete_participant", function (req, res) {
+    var cancelInfo = req.body;
+
+    getConnection().query('delete from participants where type = ? and content_id = ? and position_id = ? and participant_id =?' , [cancelInfo.type,cancelInfo.content_id,cancelInfo.position_id,cancelInfo.participant_id], function (error) {
+        if (error) {
+            console.log("페이징 에러" + error);
+
+            return
+        }
+        else{
+            console.log("취소완료");
+            res.send();
+        }
+    })
+})
+
+
+
+
 //mysql db 연결 함수
 
 var pool = mysql.createPool({
@@ -180,9 +305,8 @@ var pool = mysql.createPool({
     host: 'localhost',
     user: 'root',
     database: 'userinfo',
-    password: 'root'
+    password: 'hwang261!'
 })
-
 
 
 //디비 연결 함수

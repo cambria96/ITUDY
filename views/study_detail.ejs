@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>클래스 상세설명</title>
+    <meta charset="utf-8">
+    <meta title="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="../lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../lib/animate/animate.min.css" rel="stylesheet">
+    <link href="../lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+    <link href="../lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="../lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <!-- Main Stylesheet File -->
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/class_detail.css" rel="stylesheet">
+
+    
+    
+</head>
+
+<body>
+
+    <div class="container">
+            <p class="content_id" style="display:none"><%=study_info.id%></p>
+            <p class="groupTitle"><%=study_info.title%></p>
+            <%
+                var date =study_info.date.split(",");
+                var time =study_info.time.split(",")
+                
+                var conditionList =[];
+                var typeAry = ["C","C++","C#","Java","Ruby","Python","R","Go","HTML/CSS","Javascript","Spring","Nodejs","Angularjs","Vuejs","Reactjs","PHP","Android","IOS","Swift","Kotlin","Objective-C","MYSQL","MongoDB","SpringBoot","OracleDB"];
+                
+                for(var n =0;n<positions.length;n++){
+                    var i=0;
+                    var conditionAry =[];
+                    for(var m=0;m<typeAry.length;m++){
+                        if(positions[n][typeAry[m]] == 1){
+                            conditionAry[i]=typeAry[m];
+                            i++;
+                        };
+                     }
+                    
+                    conditionList[n] = conditionAry.toString();
+                    
+                }
+            %>
+            <div class="divideWrap">
+                <div class="divideBox">
+                    <p class="groupSubTitle">작성자</p>
+                    <span class ="groupContent"><%=study_info.author%></span>
+                </div>
+                <div class="divideBox">
+
+                </div>
+            </div>
+            <div class="middleLine"></div>
+            <div class="divideWrap">
+                <div class="divideBox">
+                    <p class="groupSubTitle">스터디 시간</p>
+                    <ul>
+                        <% for (var m=0;m<date.length;m++){%>
+                            <li class="groupContent">
+                                <span class="date"><%=date[m]%> : </span><span class="time"><%=time[m]%></span>
+                            </li>
+                        <% } %>               
+                    </ul>
+                </div>
+                <div class="divideBox">
+
+                </div>
+            </div>
+            <div class="middleLine"></div>
+            <div class="divideWrap">
+                <div class="fullBox">
+                    <p class="groupSubTitle">상세 정보</p>
+                    <div class="textBox">
+                        <p class="groupContent detailContent"> <%=study_info.description%></p>
+                    </div>
+                </div>
+            </div>
+            <div class="middleLine">모집 인원</div>
+            <div class="divideWrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>필요 분야</th>
+                            <th>상세 역량</th>
+                            <th>모집 인원</th>
+                            <th>가능 여부<button class="fakeBtn">취소</button></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for (var m=0;m<positions.length;m++){%>
+                            <tr>
+                                <th><%=m+1%>.</th>
+                                <td class="condition"><%=conditionList[m]%></td>
+                                <td><%=positions[m].description%></td>
+                                <td class="totalNumber"><%=positions[m].number%> 명</td>
+                                <% var checkbit=0;
+                                   var applyCheckBit=0;
+                                   
+                                %>
+                                <% 
+                                    var conditionCheck = [];
+                                    conditionCheck = conditionList[m].split(",");
+                                    for(var i=0;i<conditionCheck.length;i++){
+                                        if (loginUser[conditionCheck[i]] ==1){
+                                            checkbit=1;
+                                        }else{ 
+                                            checkbit=0;
+                                            break;
+                                        }
+                                    }
+                                    
+                                    for(var h=0;h<participants.length;h++){
+                                        if(participants[h].position_id == m){
+                                            if(participants[h].participant_id==loginUser.id){
+                                                checkbit=2;
+                                            }
+                                        }
+                                    }
+                                  %>
+                                <% if (checkbit ==1){%>
+                                    <td><button class="partyBtn">신청 하기</button><button class="fakeBtn">취소</button></td>
+                                <% }else if(checkbit==2){ %>
+                                    <td><button class="completeBtn">신청 완료</button><button class="cancelBtn">취소</button></td>
+                                <% }else{ %>
+                                    <td><button class="partyBtnNot">신청 불가</button><button class="fakeBtn">취소</button></td>
+                                <% } %>
+                            </tr>
+                        <% } %>   
+                        
+
+                    </tbody>
+                    </table>
+            </div>
+            
+            
+    </div>
+
+</body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+   
+ 
+
+    <!-- Template Main Javascript File -->
+    <script src="../js/main.js"></script>
+    <script src="../js/class_detail.js"></script>
+</html>
