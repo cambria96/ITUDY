@@ -3,11 +3,11 @@ $(document).ready(function(){
     sectionControl();
     modifyData();
     groupList();
+    cancelParticipant();
 });
 var loginUser;
 var userClass;
 var userStudy;
-var partyClass;
 function initial_mypage(){
     
     $(".contentWrap").first().addClass("active");
@@ -16,7 +16,6 @@ function initial_mypage(){
         url:'/requestContent',
         type:'POST',
         success:function(data){
-            console.log(data.userClass);
             loginUser = data.loginUser;
             userClass = data.userClass;
             userStudy = data.userStudy;
@@ -128,5 +127,43 @@ function groupList(){
         $(this).next().slideToggle();
     })
 
+}
+function cancelParticipant(){
+    $(".cancelBtn").click(function(){
+        var content=$(this).parents(".partyContent");
+        var result = confirm('취소 하시겠습니까?'); 
+        var cancelInfo={};
+
+        if(result){
+            
+            cancelInfo["content_id"] = $(this).val();
+            cancelInfo["position_id"] = $(this).attr("position");
+            cancelInfo["participant_id"] = loginUser.id;
+            if($(this).hasClass("classCancelBtn")){
+                cancelInfo["type"]=1;      
+
+            }   
+            else{
+                cancelInfo["type"]=0;
+            }
+            console.log(cancelInfo);
+            $.ajax({
+                url: "/delete_participant_both",
+                type:"POST",
+                data: cancelInfo,
+                success:function(){
+                    alert("삭제");
+                    content.remove();
+                },
+                error: function(request,error,status){
+                    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                    return false;
+                }
+                
+            })
+        }
+        
+        
+    })
 }
 

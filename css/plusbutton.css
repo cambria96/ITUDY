@@ -41,7 +41,8 @@
 }
 
 .my-float{
-	font-size:24px;
+	padding-top: 12px;
+
 }
 
 a.float + div.label-container {

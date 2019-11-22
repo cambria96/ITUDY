@@ -212,6 +212,20 @@ label {
     border-color: #dfaa32;
     outline:none;
 }
+.partyType{
+    text-align: center;
+}
+.partyBox{
+    margin-bottom:15px;
+}
+.partyTime{
+    width:33%;
+    min-width: 110px;
+}
+.partyCredit{
+    width: 20%;
+    min-width: 80px;
+}
 .partyTime p{
     margin:unset;
     font-size: 0.8em;

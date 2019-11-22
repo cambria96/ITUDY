@@ -294,8 +294,6 @@ router.post("/delete_participant", function (req, res) {
 })
 
 
-
-
 //mysql db 연결 함수
 
 var pool = mysql.createPool({

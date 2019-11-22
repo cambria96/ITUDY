@@ -43,17 +43,7 @@
     vertical-align: baseline;
 
 }
-.icon{
-    width: 10rem;
-    height: 10rem;
-    min-width: 5.5rem;
-    border-radius: 0.5rem;
-    background-color: rgb(251, 251, 251);
-    background-size: contain;
-    background-position: center center;
-    background-repeat: no-repeat;
-    border: 1px solid rgb(238, 238, 238);
-}
+
 .item-description{
     flex-grow: 1;
     flex-shrink: 1;
@@ -120,17 +110,10 @@
     right: 15px;
     bottom: 65px;
     transition: background 0.5s;
-    padding-top: 10px;
     color: #fff;
 }
 
-.fa-user-tie:before {
-    content: "\f508";
-}
-.fa, .fas {
-    font-family: "Font Awesome 5 Pro";
-    font-weight: 900;
-}
+
 .author{
     width:50%
 }
@@ -176,20 +159,4 @@
     50% { background-color: orangered; }
 }
 
-.float2{
-    position: fixed;
-    display: none;
-    background: #1bb1dc;
-    color: #fff;
-    width: 44px;
-    height: 44px;
-    text-align: center;
-    line-height: 1;
-    font-size: 20px;
-    border-radius: 50%;
-    right: 15px;
-    bottom: 10px;
-    transition: background 0.5s;
-    padding-top: 10px;
-    color: #fff;
-}
+

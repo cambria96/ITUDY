@@ -17,8 +17,8 @@ a:hover,
 a:active,
 a:focus {
   color:#fff;
-  outline: none;
-  text-decoration: none;
+  outline: none !important;
+  text-decoration: none !important;
 }
 
 p {

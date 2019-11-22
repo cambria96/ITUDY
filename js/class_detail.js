@@ -37,7 +37,7 @@ function participate(){
                 type: 'POST',
                 data: participant,
                 success: function(data) {
-                    alert("신청이 완료되었습니다. \n신청이 수락된 후 [마이페이지] > [참여중인 그룹]에서 확인 가능합니다.");
+                    alert("신청이 완료되었습니다. \n신청 목록은 [마이페이지] > [신청중인 그룹]에서 확인 가능합니다.");
                     targetBtn.text("신청 완료").removeClass("partyBtn").addClass("completeBtn");
                     targetBtn.siblings(".fakeBtn").removeClass("fakeBtn").addClass("cancelBtn")
 
