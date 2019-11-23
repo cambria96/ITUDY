@@ -260,6 +260,7 @@ app.post("/modify",function(req,res){
 
 var userClass =[];
 var userStudy=[];
+var participants=[];
 
 app.get("/introduction", function(req,res){
     res.render('introduction.ejs',{name:req.session.name,credit:req.session.credit});
@@ -272,22 +273,51 @@ app.post("/requestContent",function(req,res){
         if(!err){
             console.log("클래스 로드 완료");
             userClass=rows;
+            connection.query("SELECT * from study WHERE (`author_id` = '"+loginUser.id+"');",function(err,rows,result){
+                if(!err){
+                    console.log("스터디 로드 완료");
+                    //console.log("유저 클래스: "+ userClass);
+                    userStudy=rows;
+                    connection.query("SELECT * from participants",function(err,rows,result){
+                        if(!err){
+
+                            console.log("신청자 로드 완료");
+                            
+                            participants =rows;
+                            console.log('신청자길이' + participants.length);
+                            console.log(participants[0].participant_id);
+
+                            connection.query("SELECT * from positions", function(err,rows,result){
+                                if(!err){
+                                    console.log("포지션 로드 완료");
+                                    positions = rows;
+                                    console.log("포지션 길이 : "+positions.length);
+                                    res.send({loginUser: loginUser,userClass: userClass, userStudy:userStudy, participants:participants, positions:positions});
+
+                                }
+                                else{
+                                    console.log("포지션 로드 실패",err);
+                                }
+
+                            })
+                        }
+                        else{
+                            console.log("신청자로드실패", err);
+                        }
+                        
+                    })
+                    
+                }
+                else{
+                    console.log('Error while performing Query.',err);
+                }
+            });
         }
         else{
             console.log('Error while performing Query.',err);
         }
     });
-    
-    connection.query("SELECT * from study WHERE (`author_id` = '"+loginUser.id+"');",function(err,rows,result){
-        if(!err){
-            console.log("스터디 로드 완료");
-                userStudy=rows;
-        }
-        else{
-            console.log('Error while performing Query.',err);
-        }
-    });
-    res.send({loginUser: loginUser,userClass: userClass, userStudy:userStudy})
+ 
 })
 
 // 신청목록 로드
