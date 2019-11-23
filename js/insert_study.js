@@ -31,7 +31,7 @@ function clickEvnet(){
     })
 
     $(".submitBtn").click(function(){
-        var classInfo={};
+        var studyInfo={};
         var title = $("#title").val();
         var date =[];
         var time =[];
@@ -44,11 +44,6 @@ function clickEvnet(){
             alert("시간을 설정해주세요");
             return;
         }
-        if(role==undefined){
-          alert("역할을 설정해주세요");
-          return;
-        }
-        
         $(".dynamicTime").each(function(){
             if($(this).hasClass("active")){
                 date.push($(this).children(".dynamicDate").text());     
@@ -74,66 +69,61 @@ function clickEvnet(){
             total_participant += Number($(this).find(".howMany").val());
             
         })
-        classInfo["title"] = title;
-        classInfo["date"] = date;
-        classInfo["time"] = time;
-        classInfo["role"] = role;
-        classInfo["credit"] = credit;
-        classInfo["total_participant"] = total_participant;
-        classInfo["current_participant"] = current_participant;
-        classInfo["description"] = description;
+        studyInfo["title"] = title;
+        studyInfo["date"] = date;
+        studyInfo["time"] = time;
+        studyInfo["role"] = role;
+        studyInfo["credit"] = credit;
+        studyInfo["total_participant"] = total_participant;
+        studyInfo["current_participant"] = current_participant;
+        studyInfo["description"] = description;
 
         //position table 값 형성
         
         var positionList=[];
         var onePerson={};
         var i=0;
-        var checkBit =1;
         $(".participantList").each(function(){
             var conditionDetail;
             var condition = [];
             var number=$(this).find(".howMany").val();
             if($(this).find(".roleItem").length ==0){
-                alert("참가인원의 자격요건을 설정해주세요\n없다면 '없음'으로 설정해주세요 ...^^*");
-                checkBit =0;
+                alert("참가인원의 자격요건을 설정해주세요");
                 return;
             }
             $(this).find(".roleItem").each(function(){
-                if($(this).text() =="없음"){
-                  condition = ["none"];
-                  return false;
-                }
-                else{
-                  condition.push($(this).text());
-                }
-                
+              if($(this).text() =="없음"){
+                condition = ["none"];
+                return false;
+              }
+              else{
+                condition.push($(this).text());
+              }
             });
-            console.log(condition);
             conditionDetail = $(this).find(".detailInput").val();
             onePerson = {"condition":condition,"number":number,"description": conditionDetail}; 
             positionList.push(onePerson);
         })
-        if(checkBit ==0){
-          return;
-        }
-          $.ajax({
-              url: '/insert_class',
-              type: 'POST',
-              data: 
-              {
-                  "classInfo" :classInfo,
-                  "positionList":positionList
-              },
-              success: function(response) {
-                  alert("클래스 등록이 완료되었습니다.");
-                  location.href="/classes/1"
-              },
+        console.log(positionList);
+        
+        $.ajax({
+            url: '/insert_study',
+            type: 'POST',
+            data: 
+            {
+                "study_info" :studyInfo,
+                "positionList":positionList
+            },
+            success: function(response) {
+                alert("스터디 등록이 완료되었습니다.");
+                location.href="/studies/1"
+            },
 
-              error: function(request,error,status){
-                  alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-                  return false;
-              }
-          })
+            error: function(request,error,status){
+                alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                return false;
+            }
+        })
       
     })
 }

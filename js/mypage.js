@@ -3,35 +3,31 @@ $(document).ready(function(){
     sectionControl();
     modifyData();
     groupList();
+<<<<<<< HEAD
     send2group();
+=======
+    cancelParticipant();
+>>>>>>> 1693b9ab6239643e45995fdcea5116100d648017
 });
 var loginUser;
 var userClass;
 var userStudy;
+<<<<<<< HEAD
 var partyClass;
 var participants;
 var positions;
 var typeAry = ["C","C++","C#","Java","Ruby","Python","R","Go","HTML/CSS","Javascript","Spring","Nodejs","Angularjs","Vuejs","Reactjs","PHP","Android","IOS","Swift","Kotlin","Objective-C","MYSQL","MongoDB","SpringBoot","OracleDB"];
 var pl = [[],[],[],[],[],[],[],[]];
+=======
+>>>>>>> 1693b9ab6239643e45995fdcea5116100d648017
 function initial_mypage(){
-    $.ajax({
-        url:'/requestParty',
-        type:"POST",
-        success:function(data){
-            partyClass = data.contentList;
-        },
-        error: function(request,error,status){
-            alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-            return false;
-        }
-    })
+    
     $(".contentWrap").first().addClass("active");
     $.ajax({
 
         url:'/requestContent',
         type:'POST',
         success:function(data){
-            console.log(data.userClass);
             loginUser = data.loginUser;
             userClass = data.userClass;
             userStudy = data.userStudy;
@@ -76,7 +72,6 @@ function initial_mypage(){
                     $(".classList").append(dynamicList);
                     
                 }
-                    
             }
             
        
@@ -256,6 +251,44 @@ function groupList(){
         $(this).next().slideToggle();
     })
 
+}
+function cancelParticipant(){
+    $(".cancelBtn").click(function(){
+        var content=$(this).parents(".partyContent");
+        var result = confirm('취소 하시겠습니까?'); 
+        var cancelInfo={};
+
+        if(result){
+            
+            cancelInfo["content_id"] = $(this).val();
+            console.log($(this).siblings(".partyNumber"));
+            cancelInfo["position_id"] = $(this).siblings(".posNum").val();
+            cancelInfo["participant_id"] = loginUser.id;
+            if($(this).hasClass("classCancelBtn")){
+                cancelInfo["type"]=1;      
+
+            }   
+            else{
+                cancelInfo["type"]=0;
+            }
+            console.log(cancelInfo);
+            $.ajax({
+                url: "/delete_participant_both",
+                type:"POST",
+                data: cancelInfo,
+                success:function(){
+                    content.remove();
+                },
+                error: function(request,error,status){
+                    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                    return false;
+                }
+                
+            })
+        }
+        
+        
+    })
 }
 
 function send2group(){

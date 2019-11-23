@@ -34,8 +34,6 @@
     <link href="../css/footer.css" rel="stylesheet">
     <link href="../css/class.css" rel="stylesheet"/>
     <link href="../css/modal-dialog.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
     <link href="../css/plusbutton.css" rel="stylesheet">
 
 </head>
@@ -44,44 +42,44 @@
 
 
 <!--==========================
-Header
-============================-->
+ Header
+ ============================-->
 <div class="bannerBox">
     <div class="coverBox">
         <p class="bannerTitle">클래스 찾기</p>
     </div>
 </div>
 <header id="header">
-
+    
     <div class="headerContainer">
+     
+      <div class="logo "></div>
+      <nav class="main-nav d-none d-lg-block centerBar" >
+          <ul>
+            <li><a href="/introduction">서비스 소개</a></li>
+            <li class="drop-down"><a href="/home">그룹 찾기</a>
+              <ul>
+                <li><a href="/class">클래스</a></li>
+                <li><a href="/study">스터디</a></li>
 
-        <div class="logo "></div>
-        <nav class="main-nav d-none d-lg-block centerBar">
-            <ul>
-                <li><a href="#about">About Us</a></li>
-                <li class="drop-down"><a href="/home">그룹 찾기</a>
-                    <ul>
-                        <li><a href="/class">클래스</a></li>
-                        <li><a href="/study">스터디</a></li>
-
-                    </ul>
-                </li>
-                <li><a href="#footer">Contact Us</a></li>
-            </ul>
+              </ul>
+            </li>
+            <li><a href = "/ranking"> 랭킹 </a></li>
+          </ul>
         </nav><!-- .main-nav -->
 
-        <nav class="main-nav d-none d-lg-block">
-            <ul>
-
-                <li><a href="/mypage"><span class="accoutName"><%= name %></span> 님 환영합니다.</a></li>
-                <li><a href="#credit"><img src="../img/coin.png"> <span><%= credit %></span></a></li>
-                <li><a href='/logout'>Log Out</a></li>
-
-            </ul>
-        </nav><!-- .main-nav -->
-
+      <nav class="main-nav d-none d-lg-block" >
+        <ul>
+          
+          <li><a href = '/mypage' class="mypageLink"><span class="accoutName"><%=name %></span> 님 환영합니다.</a></li>
+          <li><a href="#credit"><img src="../img/coin.png">  <span><%=credit %></span></a></li>
+          <li><a href='/logout'>Log Out</a></li>
+          
+        </ul>
+      </nav><!-- .main-nav -->
+      
     </div>
-</header><!-- #header -->
+  </header><!-- #header -->
 
 <main>
     <section class="topBanner">
@@ -94,111 +92,55 @@ Header
             <div class="content-all" style="flex: 11 0%;">
                 <div class="card-list">
                     <% data.forEach(function (item, index){ %>
-                    <%if(can[index]==1){%>
-                        <div class="item-container" value="/detail_class/<%=item.id%>">
-                                <div class="item">
-                                    <div class="item-content">
-                                        <div class="icon-container">
-                                            <div class="icon"
-                                                 style="background-image: url('../img/icons/git-logo.png');">
-
-                                            </div>
-                                        </div>
-                                        <div class="item-description">
-                                            <div class="content-title-number">
-                                                <div class="content-title"><%= item.title %></div>
-                                                <div class="content-number">현재인원 <%=item.current_participant%>/<%= item.total_participant %></div>
-                                            </div>
-                                            <div class="content-author">
-                                                <div class="author"><i class="fas fa-user-tie"></i>
-                                                    <%if(item.role=="멘토"){%>
-                                                        <%= item.author%> 멘토
-                                                    <%}else if(item.role=="멘티"){%>
-                                                        <%= item.author%> 멘티
-                                                    <%}%>
-                                                </div>
-                                                <div class="content-possible  blink-possible">
-                                                    참가가능
-                                                </div>
-                                            </div>
-                                            <div class="content-period">
-                                                <div class="" style="display: flex;">
-                                                    <div class="" style="background-image: url('../img/icons/calendar.svg');width: 2rem;height: 2rem;margin-right: 0.5rem;">
-                                                    </div>
-                                                    <%
-                                                        var dateString = item.date.toString();
-                                                        var timeString = item.time.toString();
-                                                        var date = dateString.split(',');
-                                                        var time = timeString.split(',');
-                                                    %>
-                                                    <%
-                                                    date.forEach(function(dateToken,index){%>
-                                                    <div>
-                                                        <%=dateToken%>: <%=time[index]%>
-                                                    </div>
-                                                    <% if(date.length-1!=index){%>
-                                                        <div>&nbsp|&nbsp</div>
-                                                    <%}%>
-                                                    <%})%>
-
-                                                </div>
-                                                <div><img src="../img/coin.png"> <%=item.credit%></div>
-                                                </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-<!--                            </a>-->
-
-                        </div>
-                    <%} else{%>
-                    <div class="item-container" value="/detail_class/<%=item.id%>">
-                        <div class="item-not-allowed">
+                    <% if(can[index] == 1){ %>
+                    <div class="item-container" value="/detail_class/<%= item.id %>">
+                        <div class="item">
                             <div class="item-content">
                                 <div class="icon-container">
-                                    <div class="icon"
-                                         style="background-image: url('../img/icons/git-logo.png');">
-
-                                    </div>
+                                    <img src="../img/icons/git.png" class="myThumbnail">
+                                    
                                 </div>
                                 <div class="item-description">
+                                    
                                     <div class="content-title-number">
                                         <div class="content-title"><%= item.title %></div>
-                                        <div class="content-number">현재인원 <%=item.current_participant%>/<%= item.total_participant %></div>
+                                        <div class="content-number">현재인원 <%= item.current_participant %>/<%= item.total_participant %></div>
                                     </div>
                                     <div class="content-author">
-                                        <div class="author"><i class="fas fa-user-tie"></i>
-                                            <%if(item.role=="멘토"){%>
-                                                <%= item.author%> 멘토
-                                            <%}else if(item.role=="멘티"){%>
-                                                <%= item.author%> 멘티
-                                            <%}%>
+                                        <div class="author"><img src="../img/trophy.png">
+                                            <% if(item.role == "멘토"){ %>
+                                                <%= item.author_id %> 멘토
+                                            <% }else if(item.role == "멘티"){ %>
+                                                <%= item.author_id %> 멘티
+                                            <% } %>
                                         </div>
-                                        <div class="content-impossible blink-impossible">
-                                            참가불가
+                                        <div class="content-possible  blink-possible">
+                                            참가가능
                                         </div>
                                     </div>
                                     <div class="content-period">
                                         <div class="" style="display: flex;">
-                                            <div class="" style="background-image: url('../img/icons/calendar.svg');width: 2rem;height: 2rem;margin-right: 0.5rem;">
+                                            <div class=""
+                                                 style="background-image: url('../img/icons/calendar.svg');width: 2rem;height: 2rem;margin-right: 0.5rem;">
                                             </div>
                                             <%
-                                            var dateString = item.date.toString();
-                                            var timeString = item.time.toString();
-                                            var date = dateString.split(',');
-                                            var time = timeString.split(',');
+                                                var dateString = item.date.toString();
+                                                var timeString = item.time.toString();
+                                                var date = dateString.split(',');
+                                                var time = timeString.split(',');
                                             %>
                                             <%
-                                            date.forEach(function(dateToken,index){%>
+                                            date.forEach(function(dateToken, index){ %>
                                             <div>
-                                                <%=dateToken%>: <%=time[index]%>
+                                                <%= dateToken %>: <%= time[index] %>
                                             </div>
-                                            <% if(date.length-1!=index){%>
+                                            <% if(date.length - 1 != index){ %>
                                                 <div>&nbsp|&nbsp</div>
-                                            <%}%>
-                                            <%})%>
+                                            <% } %>
+                                            <% }) %>
+
                                         </div>
-                                        <div><img src="../img/coin.png"> <%=item.credit%></div>
+                                        <div><img src="../img/coin.png"> <%= item.credit %></div>
                                     </div>
 
                                 </div>
@@ -207,14 +149,113 @@ Header
                         <!--                            </a>-->
 
                     </div>
-                        <%}%>
+                    <% } else{ %>
+                    <div class="item-container" value="/detail_class/<%= item.id %>">
+                        <div class="item-not-allowed">
+                            <div class="item-content">
+                                <div class="icon-container">
+                                    <img src="../img/icons/git.png" class="myThumbnail">
+                                </div>
+                                <div class="item-description">
+                                    <div class="content-title-number">
+                                        <div class="content-title"><%= item.title %></div>
+                                        <div class="content-number">현재인원 <%= item.current_participant %>/<%= item.total_participant %></div>
+                                    </div>
+                                    <div class="content-author">
+                                        <div class="author"><img src="../img/trophy.png">
+                                            <% if(item.role == "멘토"){ %>
+                                                <%= item.author_id %> 멘토
+                                            <% }else if(item.role == "멘티"){ %>
+                                                <%= item.author_id %> 멘티
+                                            <% } %>
+                                        </div>
+                                        <div class="content-impossible blink-impossible">
+                                            참가불가
+                                        </div>
+                                    </div>
+                                    <div class="content-period">
+                                        <div class="" style="display: flex;">
+                                            <div class=""
+                                                 style="background-image: url('../img/icons/calendar.svg');width: 2rem;height: 2rem;margin-right: 0.5rem;">
+                                            </div>
+                                            <%
+                                                var dateString = item.date.toString();
+                                                var timeString = item.time.toString();
+                                                var date = dateString.split(',');
+                                                var time = timeString.split(',');
+                                            %>
+                                            <%
+                                            date.forEach(function(dateToken, index){ %>
+                                            <div>
+                                                <%= dateToken %>: <%= time[index] %>
+                                            </div>
+                                            <% if(date.length - 1 != index){ %>
+                                                <div>&nbsp|&nbsp</div>
+                                            <% } %>
+                                            <% }) %>
+                                        </div>
+                                        <div><img src="../img/coin.png"> <%= item.credit %></div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!--                            </a>-->
+
+                    </div>
+                    <% } %>
                     <% }) %>
+                    <a href="/insert_class">
+                        <div class="item-container addItem">
+                            <div class="item" style="position :relative">
+                                    <i class="fa fa-plus addPlusBtn"></i>
+                                <div class="item-content">
+                                    <div class="icon-container">
+                                        <div class="iconBox">
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="item-description">
+                                        
+                                        <div class="content-title-number">
+                                            <div class="content-title content-number"
+                                                 style="width: 15rem; height: 3rem; margin-bottom:1rem;"></div>
+                                            <div class="content-number"
+                                                 style="width: 7rem; height: 2rem; margin-bottom:1rem;"></div>
+                                        </div>
+                                        <div class="content-author">
+                                            <div class="author content-number" style="width: 7rem; height: 2rem;">
+                                            </div>
+                                            <div style="margin-right: 15%;">
+                                                
+                                            </div>
+
+                                            <div class="content-possible content-number"
+                                                 style="width: 5rem; height: 2rem;">
+                                            </div>
+                                        </div>
+                                        <div class="content-period">
+                                            <div class="content-number"
+                                                 style="display: flex; width: 5rem; height: 2rem;">
+                                            </div>
+                                            <div class="content-number"
+                                                 style="display: flex; width: 3rem; height: 2rem;">
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--                            </a>-->
+
+                            </div>
+                        </div>
+                    </a>
+
                 </div>
             </div>
 
 
         </div>
-
 
 
         <br>
@@ -235,13 +276,12 @@ Header
                 var curPage = Number(classes.curPage)
                 %>
 
-                <%if(curPage == 1){%>
+                <% if(curPage == 1){ %>
                     <li value=(curPage) class="previous">
                         <a href='/classes/<%= (curPage) %>'>첫번째페이지</a>
                     </li>
 
-
-                <%}else if(curPage > 1){
+                <% }else if(curPage > 1){
                 %>
                     <li value=(curPage -1) class="previous">
                         <a href='/classes/<%= (curPage - 1) %>'>이전페이지</a>
@@ -292,11 +332,10 @@ Header
                 <%
                 }else if(curPage == totalPage){
                 %>
-                <li value=( curPage) class="next">
-                    <a href='/classes/<%= (curPage) %>'>마지막페이지</a>
-                </li>
-                <%}%>
-
+                    <li value=( curPage) class="next">
+                        <a href='/classes/<%= (curPage) %>'>마지막페이지</a>
+                    </li>
+                <% } %>
 
             </ul>
 
@@ -306,14 +345,11 @@ Header
             <div id="modal-content" class="modal-content">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <iframe id="content-detail" src="" style="height: 80vh;border:0;">
-                    sdkfksdaflsdalf
+
                 </iframe>
             </div>
         </div>
 
-
-                    </ul>
-                </div>
 
     </section>
 
@@ -327,20 +363,21 @@ Header
                 <div class="col-lg-3 col-md-6 col-12 footerCol">
                     <div class="single-widget widget-about">
                         <p class="serviceName">ITUDY</p>
-                        <p>We are a team of designers and developers that create high quality <a href="www.dkstudio.in">Readmore...</a>
+                        <p>
+                            ITUDY is a service that provides IT study.
                         </p>
                     </div>
                 </div>
 
                 <div class="col-lg-3 col-md-6 col-12 footerCol">
                     <div class="single-widget widget-quick-links">
-                        <h5 class="widget-title">About This</h5>
+                        <h5 class="widget-title">Site Map</h5>
                         <ul>
-                            <li><a href="#">Sitemap</a></li>
-                            <li><a href="#">Privacy Policy</a></li>
-                            <li><a href="#">Your Account</a></li>
-                            <li><a href="#">Advanced Search</a></li>
-                            <li><a href="#">Contact Us</a></li>
+                            <li><a href="/introduction" style="color:#fff;">서비스 소개</a></li>
+                            <li><a href="/class" style="color:#fff;">클래스 찾기</a></li>
+                            <li><a href="/study" style="color:#fff;">스터디 찾기</a></li>
+                            <li><a href="/ranking" style="color:#fff;">랭킹</a></li>
+                            <li><a href="/mypage" style="color:#fff;">마이페이지</a></li>
                         </ul>
                     </div>
                 </div>
@@ -368,11 +405,11 @@ Header
                             </li>
                             <li class="phone">
                                 <span class="icon"><i class="fa fa-phone"></i></span>
-                                <p><a href="#">010 2222 2222</a></p>
+                                <p>010 2222 2222</p>
                             </li>
                             <li class="email">
                                 <span class="icon"><i class="fa fa-envelope-o"></i></span>
-                                <p><a href="#">wlqwndrydbr@gmail.com</a></p>
+                                <p>wlqwndrydbr@gmail.com</p>
                             </li>
                         </ul>
                     </div>
@@ -386,12 +423,11 @@ Header
 <a href="/insert_class"class="float1"style="display: inline;">
     <i class="fa fa-plus my-float"></i>
 </a>
-<a href="#" class="float2 back-to-top"><i class="fa fa-chevron-up"></i></a>
+<a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
 <!-- Uncomment below i you want to use a preloader -->
 <!-- <div id="preloader"></div> -->
 
 <!-- JavaScript Libraries -->
-<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <script src="../lib/jquery/jquery.min.js"></script>
 <script src="../lib/jquery/jquery-migrate.min.js"></script>
 <script src="../lib/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -400,6 +436,8 @@ Header
 <script src="../lib/owlcarousel/owl.carousel.min.js"></script>
 <script src="../lib/isotope/isotope.pkgd.min.js"></script>
 <script src="../lib/lightbox/js/lightbox.min.js"></script>
+
+
 <!-- Contact Form JavaScript File -->
 <script src="../contactform/contactform.js"></script>
 

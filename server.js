@@ -67,8 +67,82 @@ app.get('/signup',function(req,res){
     res.render("signup.html");
 })
 app.get('/mypage',function(req,res){
-    console.log("asdf");
-    res.render("mypage.ejs",{loginInfo:loginUser});
+    connection.query("SELECT * from participants WHERE (`participant_id` = '"+loginUser.id+"');",function(err,rows,result){
+        if(!err){
+            console.log("참가 목록 완료");
+            partyList=rows;
+            var contentList =[];
+            var classList=[];
+            var studyList=[];
+            var position_id_class=[];
+            var position_id_study=[];
+            if(partyList.length==0){
+                console.log("dsffsfddf");
+                res.render("mypage.ejs",{
+                    "loginInfo":loginUser,
+                    "contentList":contentList,
+                    "classList":classList,
+                    "studyList":studyList,
+                    "position_id_class":""
+                });
+            }
+            for(var m=0;m<partyList.length;m++){
+                var n=0;
+                connection.query("SELECT * from classes WHERE (`id` = '"+partyList[m].content_id+"');",function(err,rows,result){
+                    if(!err){
+                        if(partyList[n].type==1){
+                            contentList.push(rows[0]);
+                            classList.push(rows[0]);
+                            position_id_class.push(partyList[n].position_id);
+                            
+                        }
+                        else{
+                            var a=0;
+                            connection.query("SELECT * from study WHERE (`id` = '"+partyList[n].content_id+"');",function(err,rows,result){
+                                if(!err){
+                                    contentList.push(rows[0]);
+                                    studyList.push(rows[0]);
+                                    position_id_study.push(partyList[a].position_id);
+                                    if(contentList.length==partyList.length){
+                                        res.render("mypage.ejs",{
+                                            "loginInfo":loginUser,
+                                            "contentList":contentList,
+                                            "classList":classList,
+                                            "studyList":studyList,
+                                            "position_id_class":position_id_class,
+                                            "position_id_study":position_id_study
+                                        });
+                                    }
+                                }
+                                else{
+                                    console.log('Error while performing Query.',err);
+                                }
+                                a++;
+                            });
+                        }
+                    }
+                    else{
+                        console.log('Error while performing Query.',err);
+                    }
+                    if(contentList.length==partyList.length){
+                        res.render("mypage.ejs",{
+                            "loginInfo":loginUser,
+                            "contentList":contentList,
+                            "classList":classList,
+                            "studyList":studyList,
+                            "position_id_class":position_id_class,
+                            "position_id_study":position_id_study
+                        });
+                    }
+                    n++;
+                });
+            }
+        }
+        else{
+            console.log('Error while performing Query.',err);
+            res.send();
+        }
+    });
 })
 
 app.use(session({
@@ -276,6 +350,7 @@ app.post("/requestContent",function(req,res){
             connection.query("SELECT * from study WHERE (`author_id` = '"+loginUser.id+"');",function(err,rows,result){
                 if(!err){
                     console.log("스터디 로드 완료");
+<<<<<<< HEAD
                     //console.log("유저 클래스: "+ userClass);
                     userStudy=rows;
                     connection.query("SELECT * from participants",function(err,rows,result){
@@ -307,6 +382,10 @@ app.post("/requestContent",function(req,res){
                         
                     })
                     
+=======
+                    userStudy=rows;
+                    res.send({loginUser: loginUser,userClass: userClass, userStudy:userStudy})
+>>>>>>> 1693b9ab6239643e45995fdcea5116100d648017
                 }
                 else{
                     console.log('Error while performing Query.',err);
@@ -318,42 +397,32 @@ app.post("/requestContent",function(req,res){
         }
     });
  
+<<<<<<< HEAD
+=======
 })
+
+//신청중인 그룹 삭제
+app.post("/delete_participant_both", function (req, res) {
+    var cancelInfo = req.body;
+    console.log(req);
+    connection.query('delete from participants where type = ? and content_id = ? and position_id = ? and participant_id =?' , [cancelInfo.type,cancelInfo.content_id,cancelInfo.position_id,cancelInfo.participant_id], function (error) {
+        if (error) {
+            console.log("페이징 에러" + error);
+            return
+        }
+        else{
+            console.log("취소완료");
+            res.send();
+        }
+    })
+>>>>>>> 1693b9ab6239643e45995fdcea5116100d648017
+})
+
 
 // 신청목록 로드
 var partyList;
 app.post("/requestParty",function(req,res){
-    connection.query("SELECT * from participants WHERE (`participant_id` = '"+loginUser.id+"');",function(err,rows,result){
-        if(!err){
-            console.log("참가 목록 완료");
-            partyList=rows;
-            var contentList =[];
-            if(partyList.length==0){
-                res.send({"contentList":contentList})
-            }
-            for(var m=0;m<partyList.length;m++){
-                var n=0;
-                connection.query("SELECT * from classes WHERE (`id` = '"+partyList[m].content_id+"');",function(err,rows,result){
-                    if(!err){
-                        contentList.push(rows);
-                        if(n==partyList.length-1){
-                            console.log(contentList);
-                            res.send({"contentList":contentList});
-                        }
-                        n++;
-                    }
-                    else{
-                        console.log('Error while performing Query.',err);
-                    }
-                });
-            }
-        }
-        else{
-            console.log('Error while performing Query.',err);
-            res.send();
-        }
-        
-    });
+    
 })
 // app.get("/class",function(req,res){
 //     res.render('class.ejs');

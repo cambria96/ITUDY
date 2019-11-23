@@ -56,23 +56,23 @@
       <div class="logo "></div>
       <nav class="main-nav d-none d-lg-block centerBar" >
           <ul>
-              <li><a href="#about">서비스 소개</a></li>
-              <li class="drop-down"><a href="/home">그룹 찾기</a>
-                <ul>
-                  <li><a href="/class">클래스</a></li>
-                  <li><a href="/study">스터디</a></li>
-  
-                </ul>
-              </li>
-              <li><a href="#footer">랭킹</a></li>
-            </ul>
+            <li><a href="/introduction">서비스 소개</a></li>
+            <li class="drop-down"><a href="/home">그룹 찾기</a>
+              <ul>
+                <li><a href="/class">클래스</a></li>
+                <li><a href="/study">스터디</a></li>
+
+              </ul>
+            </li>
+            <li><a href = "/ranking"> 랭킹 </a></li>
+          </ul>
         </nav><!-- .main-nav -->
 
       <nav class="main-nav d-none d-lg-block" >
         <ul>
           
-        <li><a href = "/mypage" class="mypageLink"><span class="accoutName"><%= loginInfo.name %></span> 님 환영합니다.</a></li>
-        <li><a href="#credit"><img src="../img/coin.png">  <span><%= loginInfo.credit %></span></a></li>
+          <li><a href = '/mypage' class="mypageLink"><span class="accoutName"><%= loginInfo.name %></span> 님 환영합니다.</a></li>
+          <li><a href="#credit"><img src="../img/coin.png">  <span><%= loginInfo.credit %></span></a></li>
           <li><a href='/logout'>Log Out</a></li>
           
         </ul>
@@ -286,27 +286,61 @@
                 </div>
                 <div class="contentWrap">
                     <p class="contentTitle">신청중인 그룹</p>
-                    <div class="partyList">
-                        <div class="partyContent">
-                            <div class="partyTitle">sdf</div>
-                            <div class="partyCredit"><img src="../img/coin.png">sdf</div>
-                            <div class="partyTime"><p>sadfs</p><p>sadfs</p><p>sadfs</p></div>
-                            <div class="partyNumber">1/5</div>
-                             <button class="cancelBtn">취소</button>
+                        <p class="partyType">Class</p>
+                        <div class="partyBox">
+                            <%for(var n=0; n<classList.length;n++){%>
+                                <div class="partyContent typeClass" >
+                                    <div class="partyTitle"><%=classList[n].title%></div>
+                                    <div class="subContentBox">
+                                        <div class="partyCredit"><img src="../img/coin.png"> <%=classList[n].credit%></div>
+                                        <div class="partyTime">
+                                            <%       
+                                                var timeList = classList[n].time.split(",");
+                                                var dateList = classList[n].date.split(",");
+                                                for(var m=0;m<dateList.length;m++){%>
+                                                    <p><span><%=dateList[m]%>&nbsp|&nbsp<%=timeList[m]%></span> </p>
+                                                <%}
+                                                console.log(position_id_class[n]);
+
+                                            %>
+                                        </div>
+                                        
+                                        
+                                        <div class="partyNumber"><%=classList[n].current_participant%>/<%=classList[n].total_participant%></div>
+                                        <input class="posNum" style="display:none" value=<%=position_id_class[n]%> >
+                                        <button class="cancelBtn classCancelBtn" value =<%=classList[n].id %> >취소</button>
+                                    </div>
+                                </div>
+                            <%}%>
                         </div>
-                       
+                        <p class="partyType"> Study</p>
+                        <div class="partyBox">
+                            <%for(var n=0; n<studyList.length;n++){%>
+                                <div class="partyContent typeStudy" >
+                                    <div class="partyTitle"><%=studyList[n].title%></div>
+                                    <div class="subContentBox">
+                                        <div class="partyCredit studyCredit"><img src="../img/coin.png"> <%=studyList[n].credit%></div>
+                                        <div class="partyTime">
+                                            <% 
+                                                var timeList = studyList[n].time.split(",");
+                                                var dateList = studyList[n].date.split(",");
+                                                for(var m=0;m<dateList.length;m++){%>
+                                                    <p><span><%=dateList[m]%>&nbsp|&nbsp<%=timeList[m]%></span> </p>
+                                                <%}
+                                                
+                                            %>
+                                        </div>
+                                        <div class="partyNumber" ><%=studyList[n].current_participant%>/<%=studyList[n].total_participant%></div>
+                                        <input class="posNum" style="display:none" value=<%=position_id_study[n]%>>
+                                        <button class="cancelBtn studyCancelBtn"  value=<%=studyList[n].id %>>취소</button>
+                                    </div>
+                                </div>
+                            <%}%>
+                        </div>
                     </div>
-                </div>
-                <div class="contentWrap">
-                    <p class="contentTitle">참여중인 그룹</p>
-                    <ul>
-                        <li class="categoryList"><p class="categoryTitle">아이디</p><p class="dbContent"><%= loginInfo.id %></p></li>
-                        <li class="categoryList"><p class="categoryTitle">이름</p><input type="text" id="userName" value='<%= loginInfo.name %>' class="dbContent"></li>
-                        <li class="categoryList"><p class="categoryTitle">전화번호</p><input type="text" id="userPhone" value='<%= loginInfo.phone %>' class="dbContentInput"></li>
-                        <li class="categoryList"><p class="categoryTitle">크레딧</p><p class="dbContent"><%= loginInfo.credit %></p></li>
-                    </ul>
-                    <div class="buttonBox">
-                      <button type="button" class="modifyBtn">수정하기</button>
+                    <div class="contentWrap">
+                        <p class="contentTitle">참여중인 그룹</p>
+                   
                     </div>
                 </div>
             </div>
@@ -316,31 +350,33 @@
       
   </main>
   <!-- FOOTER -->
-    <footer>
+  <footer>
         <div class="footer-bottom-area bg-dark-light section-padding-sm">
             <div class="footerBox">
                 <div class="row widgets footer-widgets">
-
+    
                     <div class="col-lg-3 col-md-6 col-12 footerCol">
                         <div class="single-widget widget-about">
                             <p class="serviceName">ITUDY</p>
-                            <p>We are a team of designers and developers that create high quality <a href="www.dkstudio.in">Readmore...</a></p>
+                            <p>
+                                ITUDY is a service that provides IT study.
+                            </p>
                         </div>
                     </div>
-
+    
                     <div class="col-lg-3 col-md-6 col-12 footerCol">
                         <div class="single-widget widget-quick-links">
-                            <h5 class="widget-title">About This</h5>
+                            <h5 class="widget-title">Site Map</h5>
                             <ul>
-                                <li><a href="#">Sitemap</a></li>
-                                <li><a href="#">Privacy Policy</a></li>
-                                <li><a href="#">Your Account</a></li>
-                                <li><a href="#">Advanced Search</a></li>
-                                <li><a href="#">Contact Us</a></li>
+                                <li><a href="/introduction" style="color:#fff;">서비스 소개</a></li>
+                                <li><a href="/class" style="color:#fff;">클래스 찾기</a></li>
+                                <li><a href="/study" style="color:#fff;">스터디 찾기</a></li>
+                                <li><a href="/ranking" style="color:#fff;">랭킹</a></li>
+                                <li><a href="/mypage" style="color:#fff;">마이페이지</a></li>
                             </ul>
                         </div>
                     </div>
-
+    
                     <div class="col-lg-3 col-md-6 col-12 footerCol">
                         <div class="single-widget widget-quick-links">
                             <h5 class="widget-title">Developers</h5>
@@ -353,7 +389,7 @@
                             </ul>
                         </div>
                     </div>
-
+    
                     <div class="col-lg-3 col-md-6 col-12 footerCol">
                         <div class="single-widget widget-contact">
                             <h5 class="widget-title">Contact Us</h5>
@@ -364,20 +400,20 @@
                                 </li>
                                 <li class="phone">
                                     <span class="icon"><i class="fa fa-phone"></i></span>
-                                    <p><a href="#">010 2222 2222</a></p>
+                                    <p>010 2222 2222</p>
                                 </li>
                                 <li class="email">
                                     <span class="icon"><i class="fa fa-envelope-o"></i></span>
-                                    <p><a href="#">wlqwndrydbr@gmail.com</a></p>
+                                    <p>wlqwndrydbr@gmail.com</p>
                                 </li>
                             </ul>
                         </div>
                     </div>
-
+    
                 </div>
             </div>
         </div>
-    </footer>  
+    </footer>
   
 
   <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>

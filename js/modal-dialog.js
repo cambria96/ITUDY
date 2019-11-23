@@ -2,12 +2,23 @@ $(function() {
 
     $(document).ready(function() {
 
+        $(".addItem").hover(function(){
+            $(this).find(".addPlusBtn").addClass("active");
+        },function(){
+            $(this).find(".addPlusBtn").removeClass("active");
+        })
+
         $(".item-container").click(function() {
-            var src = $(this).attr('value')
-            $("#content-detail").prop('src',src)
-            $("#myModal").css({
-                "display": "block"
-            });
+            if($(this).hasClass("addItem")){
+
+            }else{
+                var src = $(this).attr('value')
+                $("#content-detail").prop('src',src)
+                $("#myModal").css({
+                    "display": "block"
+                });
+            }
+            
         });
 
 

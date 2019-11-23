@@ -43,17 +43,7 @@
     vertical-align: baseline;
 
 }
-.icon{
-    width: 10rem;
-    height: 10rem;
-    min-width: 5.5rem;
-    border-radius: 0.5rem;
-    background-color: rgb(251, 251, 251);
-    background-size: contain;
-    background-position: center center;
-    background-repeat: no-repeat;
-    border: 1px solid rgb(238, 238, 238);
-}
+
 .item-description{
     flex-grow: 1;
     flex-shrink: 1;
@@ -120,17 +110,10 @@
     right: 15px;
     bottom: 65px;
     transition: background 0.5s;
-    padding-top: 10px;
     color: #fff;
 }
 
-.fa-user-tie:before {
-    content: "\f508";
-}
-.fa, .fas {
-    font-family: "Font Awesome 5 Pro";
-    font-weight: 900;
-}
+
 .author{
     width:50%
 }
@@ -165,6 +148,60 @@
  .blink-possible {
      -webkit-animation: blink-possible 3s linear infinite;
  }
+ .myThumbnail{
+    width: 10rem;
+    height: 10rem;
+    min-width: 5.5rem;
+    border-radius: 0.5rem;
+    background-color: rgb(251, 251, 251);
+    background-size: contain;
+    background-position: center center;
+    background-repeat: no-repeat;
+    border: 1px solid rgb(238, 238, 238);
+
+ }
+ .addPlusBtn{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    opacity: 0.8;
+    transform: translate(-50%,-50%);
+    font-size: 3em;
+    border: 4px solid #dfaa32;
+    border-radius: 30px;
+    color: #dfaa32;
+    padding: 7px 11px;
+    z-index:1;
+    transition: all ease 0.25s;
+ }
+
+ @keyframes pulse
+{
+  0% {
+    box-shadow: 0 0 0 0px rgba(223,170,32,1);
+  }
+
+}
+
+.addPlusBtn.active {
+  background: #dfaa32 !important;
+  border: 1px solid #dfaa32 !important;
+  box-shadow:  0 0 0 15em rgba(223,170,32,0) !important;
+  color: #fff;
+  animation: pulse 1s;
+
+}
+.iconBox{
+    width: 10rem;
+    height: 10rem;
+    min-width: 5.5rem;
+    border-radius: 0.5rem;
+    background-color: rgb(236, 236, 236);
+    background-size: contain;
+    background-position: center center;
+    background-repeat: no-repeat;
+    border: 1px solid rgb(238, 238, 238);
+}
 @-webkit-keyframes blink-possible {
     50% { background-color: forestgreen; }
 }
@@ -176,20 +213,4 @@
     50% { background-color: orangered; }
 }
 
-.float2{
-    position: fixed;
-    display: none;
-    background: #1bb1dc;
-    color: #fff;
-    width: 44px;
-    height: 44px;
-    text-align: center;
-    line-height: 1;
-    font-size: 20px;
-    border-radius: 50%;
-    right: 15px;
-    bottom: 10px;
-    transition: background 0.5s;
-    padding-top: 10px;
-    color: #fff;
-}
+

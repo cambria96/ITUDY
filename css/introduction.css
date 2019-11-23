@@ -19,6 +19,7 @@
     font-size : 21px;
     display : flex;
     margin : auto;
+    align-items: center;
 }
 .leftbox{
 
@@ -40,4 +41,23 @@
 .notfound > img{
     width : 85%;
     height: auto;
+}
+.n1 p{
+    opacity: 0;
+    transition: all ease 1s;
+    transform: translateY(-100%);
+
+}
+.n1 p.active{
+    opacity: 1;
+    transform: translateY(0);
+
+}
+.mainTitle{
+    opacity: 0;
+    transition: all ease 1s;
+}
+.mainTitle.active{
+    opacity: 1;
+   
 }

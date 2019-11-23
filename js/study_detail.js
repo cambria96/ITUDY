@@ -28,7 +28,7 @@ function participate(){
         var result = confirm('신청 하시겠습니까?'); 
         if(result) { 
             var participant ={};
-            participant["type"] =1;
+            participant["type"] =0;
             participant["content_id"] =$(".content_id").text();
             participant["position_id"] =$(this).parents("tr").index();
             participant["participant_id"] =loginUser.id;
@@ -59,7 +59,7 @@ function cancelBtn(){
         var targetBtn = $(this);
         if(result){
             var cancelInfo ={};
-            cancelInfo["type"] =1;
+            cancelInfo["type"] =0;
             cancelInfo["content_id"] =$(".content_id").text();
             cancelInfo["position_id"] = $(this).parents("tr").index();
             cancelInfo["participant_id"] = loginUser.id;
@@ -93,7 +93,7 @@ function footerBtn(){
             deleteInfo["id"] = $(".content_id").text();
             
             $.ajax({
-                url: "/delete_class",
+                url: "/delete_study",
                 type: "POST",
                 data: deleteInfo,
                 success: function(){

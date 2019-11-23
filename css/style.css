@@ -17,8 +17,8 @@ a:hover,
 a:active,
 a:focus {
   color:#fff;
-  outline: none;
-  text-decoration: none;
+  outline: none !important;
+  text-decoration: none !important;
 }
 
 p {
@@ -313,7 +313,7 @@ h6 {
   color: #ffffff;
   padding: 10px 10px;
   transition: 0.3s;
-  font-size: 1em;
+  font-size: 15px;
   font-family: "Open Sans", sans-serif;
   text-transform: uppercase;
   font-weight: 600;
