@@ -350,7 +350,6 @@ app.post("/requestContent",function(req,res){
             connection.query("SELECT * from study WHERE (`author_id` = '"+loginUser.id+"');",function(err,rows,result){
                 if(!err){
                     console.log("스터디 로드 완료");
-<<<<<<< HEAD
                     //console.log("유저 클래스: "+ userClass);
                     userStudy=rows;
                     connection.query("SELECT * from participants",function(err,rows,result){
@@ -382,10 +381,6 @@ app.post("/requestContent",function(req,res){
                         
                     })
                     
-=======
-                    userStudy=rows;
-                    res.send({loginUser: loginUser,userClass: userClass, userStudy:userStudy})
->>>>>>> 1693b9ab6239643e45995fdcea5116100d648017
                 }
                 else{
                     console.log('Error while performing Query.',err);
@@ -397,8 +392,6 @@ app.post("/requestContent",function(req,res){
         }
     });
  
-<<<<<<< HEAD
-=======
 })
 
 //신청중인 그룹 삭제
@@ -415,7 +408,6 @@ app.post("/delete_participant_both", function (req, res) {
             res.send();
         }
     })
->>>>>>> 1693b9ab6239643e45995fdcea5116100d648017
 })
 
 

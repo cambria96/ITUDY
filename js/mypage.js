@@ -3,23 +3,17 @@ $(document).ready(function(){
     sectionControl();
     modifyData();
     groupList();
-<<<<<<< HEAD
     send2group();
-=======
     cancelParticipant();
->>>>>>> 1693b9ab6239643e45995fdcea5116100d648017
 });
 var loginUser;
 var userClass;
 var userStudy;
-<<<<<<< HEAD
 var partyClass;
 var participants;
 var positions;
 var typeAry = ["C","C++","C#","Java","Ruby","Python","R","Go","HTML/CSS","Javascript","Spring","Nodejs","Angularjs","Vuejs","Reactjs","PHP","Android","IOS","Swift","Kotlin","Objective-C","MYSQL","MongoDB","SpringBoot","OracleDB"];
 var pl = [[],[],[],[],[],[],[],[]];
-=======
->>>>>>> 1693b9ab6239643e45995fdcea5116100d648017
 function initial_mypage(){
     
     $(".contentWrap").first().addClass("active");
