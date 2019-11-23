@@ -44,6 +44,11 @@ function clickEvnet(){
             alert("시간을 설정해주세요");
             return;
         }
+        if(role==undefined){
+          alert("역할을 설정해주세요");
+          return;
+        }
+        
         $(".dynamicTime").each(function(){
             if($(this).hasClass("active")){
                 date.push($(this).children(".dynamicDate").text());     

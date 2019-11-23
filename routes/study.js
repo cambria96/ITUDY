@@ -18,7 +18,6 @@ router.use('../css',express.static('css'));
 //게시판 페이징
 router.get("/studies/:cur", function (req, res) {
     loginUser = require('../server').loginUser
-    console.log(loginUser)
 //페이지당 게시물 수 : 한 페이지 당 10개 게시물
     var page_size = 5;
 //페이지의 갯수 : 1 ~ 10개 페이지
@@ -40,7 +39,6 @@ router.get("/studies/:cur", function (req, res) {
 //현제 페이지
         var curPage = req.params.cur;
 
-        console.log("현재 페이지 : " + curPage, "전체 게시물 : " + totalPageCount);
 
 
 //전체 페이지 갯수
@@ -265,6 +263,37 @@ router.get("/detail_study/:id", function (req, res) {
         })
     });
 
+})
+
+// 게시글 삭제
+router.post("/delete_study", function (req, res) {
+    var classInfo = req.body;
+    getConnection().query('delete from study where id=?', classInfo.id, function (error) {
+        if (error) {
+            console.log("에러");
+            return
+        }
+        else{
+            getConnection().query('delete from positions where content_id=? and type=0', classInfo.id, function (error) {
+                if (error) {
+                    console.log("에러");
+                    return
+                }
+                else{
+                    getConnection().query('delete from participants where content_id=? and type=0', classInfo.id, function (error) {
+                        if (error) {
+                            console.log("에러");
+                            return
+                        }
+                        else{
+                            res.send();
+                        }
+                    })
+                }
+            })
+            
+        }
+    })
 })
 
 //스터디 참여

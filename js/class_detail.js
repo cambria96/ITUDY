@@ -3,6 +3,7 @@ $(document).ready(function () {
     initial()
     participate();
     cancelBtn();
+    footerBtn();
     
 })
 var loginUser;
@@ -81,4 +82,29 @@ function cancelBtn(){
         }
     });
 
+}
+
+function footerBtn(){
+
+    $(".deleteBtn").click(function(){
+        var result = confirm("모집글을 삭제하시겠습니까?");
+        if(result){
+            var deleteInfo={};
+            deleteInfo["id"] = $(".content_id").text();
+            
+            $.ajax({
+                url: "/delete_class",
+                type: "POST",
+                data: deleteInfo,
+                success: function(){
+                    alert("삭제되었습니다.");
+                    parent.document.location.reload();
+                },
+                error: function(request,error){
+                    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                    return false;
+                }
+            })
+        }
+    })
 }
