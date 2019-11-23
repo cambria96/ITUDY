@@ -29,7 +29,7 @@ function initial_mypage(){
             positions = data.positions;
             var initialClass='<p class="innertitle">Class</p>'
             var initialStudy='<p class="innertitle">Study</p>'
-            $(".classList").html(initialClass);
+             $(".classList").html(initialClass);
             if(userClass){
                 for(var m=0; m<userClass.length;m++){
                     
@@ -92,7 +92,7 @@ function initial_mypage(){
                             $("#"+userClass[y].id).children().append('<tr> <td>'+templist[x]+'</td> </tr>');
                             console.log(x);
                             $("#member"+userClass[y].id).append("<tr> <td>"+templist[x]+"</td> <td>"+"</td> </tr>");
-                            
+                            temparr=[];
 
                         }
                     }
