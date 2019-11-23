@@ -209,15 +209,18 @@ label {
 .leftbox{
 
     float: left;
-    width : 50%;
-    padding-left : 10px;
+    width : 100%;
     border : 1px solid black;
+    padding: 10px;
+
     
 }
 .rightbox{
     float: right;
-    width : 50%;
+    width : 100%;
     border : 1px solid black;
+    padding: 10px;
+    text-align: center;
  
 }
 .partibox{
@@ -292,4 +295,36 @@ label {
     justify-content: space-between;
     width: 50%;
     align-items: center;
+}
+.participantBox{
+    margin-top:25px;
+}
+.memberuserClass> li >span:first-child{
+    display: inline-block;
+    width: 20px;
+}
+.memberuserClass> li >span{
+    margin-right: 10px;
+}
+.specificContent p{
+    margin-bottom: 10px;
+
+}
+.partyTable,.partyList{
+    width: 100%;
+    text-align: center ;
+}
+caption{
+    text-align: center ;
+    caption-side: top ;
+}
+.detailContent{
+    text-align: center;
+}
+.halfBox{
+    width:49%;
+    display: inline-block;
+}
+.confirmList{
+    margin-right: 10px;
 }

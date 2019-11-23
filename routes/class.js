@@ -252,12 +252,18 @@ router.get("/detail_class/:id", function (req, res) {
                     if(error){
                         console.log(error);
                     }
-                    res.send(ejs.render(data, {
-                        "class_info": class_info[0],
-                        "positions": positions,
-                        "loginUser" : user.loginUser,
-                        "participants":participants
-                    }))
+                    getConnection().query('select * from userinfo where id = ?', [class_info[0].author_id], function (error, author_info) {
+                        if(error){
+                            console.log(error);
+                        }
+                        res.send(ejs.render(data, {
+                            "class_info": class_info[0],
+                            "author_info":author_info[0],
+                            "positions": positions,
+                            "loginUser" : user.loginUser,
+                            "participants":participants
+                        }))
+                    })
                 })
                 
             })

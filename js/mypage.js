@@ -29,10 +29,20 @@ function initial_mypage(){
             positions = data.positions;
             var initialClass='<p class="innertitle">Class</p>'
             var initialStudy='<p class="innertitle">Study</p>'
-            $(".classList").html(initialClass);
+             $(".classList").html(initialClass);
             if(userClass){
                 for(var m=0; m<userClass.length;m++){
-                    
+                    var datearr = userClass[m].date.split(',');
+                    var timearr = userClass[m].time.split(',');
+                    var datetime = [];
+                    for (var dl=0; dl<datearr.length; dl++){
+                        
+                        datetime[dl] =  datearr[dl] + ' : ' +  timearr[dl];
+                        
+                        console.log(datetime);
+                    }
+                    var datetimearr = datetime.join(' | ');
+                    console.log(datearr, timearr);
                     var dynamicList = '<div class="specificTitle">'
                                     + '<p>'+userClass[m].title+'</p>'
                                     +'</div>'
@@ -41,13 +51,13 @@ function initial_mypage(){
                                     +'<p class = "detailContent">상세정보</p>'
                                     +'<p class = "halfBox">작성자id :' +userClass[m].author_id+'</p>'
                                     +'<p class = "halfBox">내 역할 :' +userClass[m].role+'</p>'
-                                    +'<p>시간 : '+userClass[m].date+'</p>'
+                                    +'<p>시간 : '+datetimearr+'</p>'
                                     
                                     + '<p>크레딧 : ' + userClass[m].credit+'</p>'
                                     +'<div class = "participantBox">'
                                     +'<p class = "partyList"> 모집 현황 </p>'
                                     +'<div class="groupMember">'
-                                    +'<ul class = "memeberuserClass" id ='+'"'+'member'+userClass[m].id+'"'+'>'
+                                    +'<ul class = "memberuserClass" id ='+'"'+'member'+userClass[m].id+'"'+'>'
                                 
 
                                     +'</ul>'
@@ -105,7 +115,7 @@ function initial_mypage(){
                             var number = positions[x].position_id + 1
                             $("#"+userClass[y].id).children().append('<tr> <td>'+templist[x]+'</td> </tr>');
                             console.log(templist.length);
-                            $("#member"+userClass[y].id).append("<li><span>"+number+"</span><span>"+templist[x]+"</span></li> <li><span>-></span>");
+                            $("#member"+userClass[y].id).append("<li><span>"+number+"</span><span>"+templist[x]+"</span></li> <li><span >▶</span></li>");
                             temparr=[];
 
                         }
@@ -312,7 +322,7 @@ function send2group(){
         console.log( $(this).parent().prev().text());
         var target = positionname*2 +1;
         console.log("target"+target);
-        $("#member"+classnum).children('li').eq(target).children().append(partiname);
+        $("#member"+classnum).children('li').eq(target).append('<span class="confirmList">'+partiname+'</span>');
     });
 
 }
