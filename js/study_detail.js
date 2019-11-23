@@ -4,6 +4,7 @@ $(document).ready(function () {
     participate();
     cancelBtn();
     footerBtn();
+    profileBtn();
     
 })
 var loginUser;
@@ -105,6 +106,22 @@ function footerBtn(){
                     return false;
                 }
             })
+        }
+    })
+}
+
+function profileBtn(){
+    $(".profileBtn").on("click",function(){
+        if($(".profileContent").hasClass("is-active")){
+            $(".profileContent").removeClass("is-active");
+            $(this).css("background", "#b8b8b8");
+            $(this).html("프로필 보기");
+
+        }
+        else{
+            $(".profileContent").addClass("is-active");
+            $(this).css("background", "#dfaa32");
+            $(this).html("프로필 보기 X");
         }
     })
 }

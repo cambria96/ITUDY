@@ -55,6 +55,44 @@
                 <div class="divideBox">
                     <p class="groupSubTitle">작성자</p>
                     <span class ="groupContent"><%=study_info.author%></span>
+                    <button class="profileBtn">프로필 보기</button>
+                    <div class="profileContent" style="width:20%;">
+                        <div style="text-align: center;border-bottom: 1px solid #dfaa32; margin-bottom: 10px;"><%=study_info.author_id%>'s 프로필</div>
+                        <div style="font-size:2rem;">
+                            <table>
+                                <tr>
+                                    <td>이름</td>
+                                    <td><%=author_info.name%></td>
+                                </tr>
+                                <tr>
+                                    <td>레벨</td>
+                                    <td><%=author_info.level%></td>
+                                </tr>
+                                <tr>
+                                    <td>멘토활동 횟수</td>
+                                    <td><%=author_info.name%></td>
+                                </tr>
+                                <tr>
+                                    <td>멘티활동 횟수</td>
+                                    <td><%=author_info.name%></td>
+                                </tr>
+                                <tr>
+                                    <td>스터디활동 횟수</td>
+                                    <td><%=author_info.name%></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div style="border-top: 1px solid #dfaa32; font-size:1.5rem; padding-top:8px;">
+                            활동분야:
+                            <%var index = ["C","C++","C#","Java","Ruby","Python","R","Go","HTML/CSS","Javascript","Spring","Nodejs","Angularjs","Vuejs","Reactjs","PHP","Andriod","IOS","Swift","Kotlin","Objective-c","MYSQL","MongoDB","SpringBoot","OracleDB"];
+                            for(var i=0;i<index.length;i++){
+                            if(author_info[index[i]]=='1'){
+                            %>
+                            <%=index[i]%>
+                            <%}
+                            }%>
+                        </div>
+                    </div>
                 </div>
                 <div class="divideBox">
 
