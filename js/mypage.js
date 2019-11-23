@@ -113,9 +113,10 @@ function initial_mypage(){
 
                             templist[x]=temparr.toString();
                             var number = positions[x].position_id + 1
-                            $("#"+userClass[y].id).children().append('<tr> <td>'+templist[x]+'</td> </tr>');
-                            console.log(templist.length);
-                            $("#member"+userClass[y].id).append("<li><span>"+number+"</span><span>"+templist[x]+"</span></li> <li><span >▶</span></li>");
+                           // $("#"+userClass[y].id).children().append('<tr> <td>'+templist[x]+'</td> </tr>');
+                            
+                           console.log(templist.length);
+                            $("#member"+userClass[y].id).append("<li><span>"+number+"</span><span class ='conditionList'>"+templist[x]+"</span></li> <li><span>▶</span></li>");
                             temparr=[];
 
                         }
@@ -130,7 +131,8 @@ function initial_mypage(){
                         if(participants[p].type == 1 && participants[p].content_id == userClass[q].id){
                             position = "position" + participants[p].position_id;
                             console.log("포지션" + position);
-                            $("#"+userClass[q].id).children().children('tbody').children().eq(participants[p].position_id).append('<td>'+ partiList +'</td>'+'<td> <button class = "acceptBtn">수락 하기</button></td>');
+                            var condition = $("#"+userClass[q].id).parent(".rightbox").siblings(".leftbox").find(".conditionList").eq(participants[p].position_id).text();
+                            $("#"+userClass[q].id).children().children('tbody').append('<tr><td>'+ condition +'</td>'+'<td>'+ '<button class = "acceptBtn">수락 하기</button></td></tr>');
                             $("#"+userClass[q].id).children().children('tbody').children().eq(participants[p].position_id).attr("id",position);
                           
                         }
