@@ -328,3 +328,6 @@ caption{
 .confirmList{
     margin-right: 10px;
 }
+td{
+    width:33%;
+}
