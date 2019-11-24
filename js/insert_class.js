@@ -3,6 +3,8 @@ $(document).ready(function(){
     selectBox();
     autoComplete();
     numberInput();
+
+   
 })
 
 function clickEvnet(){
@@ -38,11 +40,17 @@ function clickEvnet(){
         var title = $("#title").val();
         var date =[];
         var time =[];
+        var icon = $(".myIcon").attr("src");
         var role = $("input[type=radio]:checked").val();
         var credit= $(".creditLine").val();
         var description = $(".detailLine").val();
         var total_participant =1;
         var current_participant=1;
+        console.log(icon);
+        if(icon == "../img/icons/add.png"){
+          alert("아이콘을 설정해주세요\n(아이콘은 게시글 목록에 표시됩니다.)");
+          return;
+        }
         if($(".dynamicTime.active").length ==0){
             alert("시간을 설정해주세요");
             return;
@@ -81,6 +89,7 @@ function clickEvnet(){
         classInfo["date"] = date;
         classInfo["time"] = time;
         classInfo["role"] = role;
+        classInfo["icon"] = icon;
         classInfo["credit"] = credit;
         classInfo["total_participant"] = total_participant;
         classInfo["current_participant"] = current_participant;
@@ -138,6 +147,22 @@ function clickEvnet(){
               }
           })
       
+    })
+
+    $(".iconWrap").click(function(){
+    
+      $(".iconBox").toggleClass("active");
+      var imageHeight = $(".image").outerWidth();
+      $(".image").css("height",imageHeight);
+      $(".iconBox").toggleClass("active2");
+    
+      
+    })
+    $(".image").click(function(){
+      var imageSource = $(this).children("img").attr("src");
+      $(this).siblings().children(".coverWrap").css("background","#fff");
+      $(this).children(".coverWrap").css("background","none");
+      $(".previewIcon").children("img").attr("src",imageSource);
     })
 }
 

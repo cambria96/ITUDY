@@ -36,10 +36,15 @@ function clickEvnet(){
         var date =[];
         var time =[];
         var role = $("input[type=radio]:checked").val();
+        var icon = $(".myIcon").attr("src");
         var credit= $(".creditLine").val();
         var description = $(".detailLine").val();
         var total_participant =1;
         var current_participant=1;
+        if(icon == "../img/icons/add.png"){
+          alert("아이콘을 설정해주세요\n(아이콘은 게시글 목록에 표시됩니다.)");
+          return;
+        }
         if($(".dynamicTime.active").length ==0){
             alert("시간을 설정해주세요");
             return;
@@ -73,6 +78,7 @@ function clickEvnet(){
         studyInfo["date"] = date;
         studyInfo["time"] = time;
         studyInfo["role"] = role;
+        studyInfo["icon"] = icon;
         studyInfo["credit"] = credit;
         studyInfo["total_participant"] = total_participant;
         studyInfo["current_participant"] = current_participant;
@@ -125,6 +131,21 @@ function clickEvnet(){
             }
         })
       
+    })
+    $(".iconWrap").click(function(){
+    
+      $(".iconBox").toggleClass("active");
+      var imageHeight = $(".image").outerWidth();
+      $(".image").css("height",imageHeight);
+      $(".iconBox").toggleClass("active2");
+    
+      
+    })
+    $(".image").click(function(){
+      var imageSource = $(this).children("img").attr("src");
+      $(this).siblings().children(".coverWrap").css("background","#fff");
+      $(this).children(".coverWrap").css("background","none");
+      $(".previewIcon").children("img").attr("src",imageSource);
     })
 }
 

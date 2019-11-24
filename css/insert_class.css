@@ -7,7 +7,7 @@ ul{
     margin: 50px 0px;
     border: 3px dashed #dfaa32;
     border-radius: 15px;
-    padding: 25px;
+    padding: 40px;
     max-width: 1200px;
 }
 .listBox{
@@ -311,13 +311,80 @@ ul{
 }
 
 .listBox span{
-  margin-right: 10px;
+  margin-right: 15px;
 }
 .image{
-  width:5%;
-  display: inline-block;
-
+  width:10%;
+  display: flex;
+  margin: 2px;
+  align-items: center;
+  position: relative;
+  cursor:pointer;
 }
 .image img{
   width: 100%;
+}
+.creditTitle{
+  display: inline-block;
+}
+.halfBox{
+  display: inline-block;
+  width:49%;
+}
+.iconWrap{
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+.iconBox{
+  display: none;
+  width:50%;
+  border: 2px solid #dfaa32;
+  padding: 10px;
+  border-radius: 20px;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all ease 1s;
+}
+.iconBox.active{
+  display: block;
+}
+.iconBox.active2{
+  opacity: 1;
+  transform: translateY(0px);
+
+}
+.iconBox ul{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.previewIcon{
+  width: 70px;
+  height: 70px;
+  display: inline-block;
+  cursor: pointer;
+}
+.myIcon{
+  width:100%;
+}
+.iconWrap div{
+  display: flex;
+  margin-right: 15px;
+  align-items: center;
+}
+.coverWrap{
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  opacity: .7;
+  background: #fff;
+  transition: all ease 0.25s;
+}
+.coverWrap:hover{
+  background:none;
+}
+.coverWrap:active{
+  background:none;
 }

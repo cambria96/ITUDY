@@ -40,7 +40,9 @@
 
 }
 .icon-container{
+    display: flex;
     vertical-align: baseline;
+    align-items: center;
 
 }
 
@@ -150,14 +152,8 @@
  }
  .myThumbnail{
     width: 10rem;
-    height: 10rem;
     min-width: 5.5rem;
-    border-radius: 0.5rem;
-    background-color: rgb(251, 251, 251);
-    background-size: contain;
-    background-position: center center;
-    background-repeat: no-repeat;
-    border: 1px solid rgb(238, 238, 238);
+    
 
  }
  .addPlusBtn{
