@@ -10,13 +10,16 @@ function clickEvnet(){
     $(".dateBtn").click(function(){
         var index=$(this).index()-7;
         if($(this).hasClass("active")){  
+            $(this).removeClass("active2");
             $(this).removeClass("active");
             $(".timeList").children().eq(index).removeClass("active");
         }
         else{
             $(this).addClass("active");
+            console.log($(this));
             $(".timeList").children().eq(index).find(".dynamicDate").text($(this).text());
             $(".timeList").children().eq(index).addClass("active");
+            
         }
         
     })

@@ -73,6 +73,7 @@ ul{
 
 
 
+
 /* 선택창 */
 .sel{
     display: inline-block;
@@ -307,4 +308,16 @@ ul{
 }
 .btnBox{
   text-align: center;
+}
+
+.listBox span{
+  margin-right: 10px;
+}
+.image{
+  width:5%;
+  display: inline-block;
+
+}
+.image img{
+  width: 100%;
 }
