@@ -6,6 +6,7 @@ $(document).ready(function(){
     user2group();
     group2user();
     cancelParticipant();
+    makeGroup();
 });
 var loginUser;
 var userClass;
@@ -54,7 +55,7 @@ function initial_mypage(){
                                     +'<p class = "halfBox">내 역할 :' +userClass[m].role+'</p>'
                                     +'<p>시간 : '+datetimearr+'</p>'
                                     
-                                    + '<p>크레딧 : ' + userClass[m].credit+'</p>'
+                                    + '<p class = "halfBox">크레딧 : ' + userClass[m].credit+'</p><p class = "halfBox totalNum"> 모집 인원 : <span>'+userClass[m].total_participant+'</span> 명</p>'
                                     +'<div class = "participantBox">'
                                     +'<p class = "partyList"> 모집 현황 </p>'
                                     +'<div class="groupMember">'
@@ -83,6 +84,7 @@ function initial_mypage(){
                                     +'</table>'
                                     +'</div>'
                                     +'</div>'
+                                    +'<div class="makeBox"><button class="makeGroupBtn">그룹 만들기</button></div>'
                                     +'</div>';
                                     
                     $(".classList").append(dynamicList);
@@ -117,7 +119,7 @@ function initial_mypage(){
                             var currentnum = 0;
                             //삭제한 부분
                             // $("#"+userClass[y].id).children().append('<tr> <td>'+templist[x]+'</td> </tr>');
-                            $("#member"+userClass[y].id).append("<li><span>"+number+"</span><span class='conditionList'>"+templist[x]+"</span>"+"(<span class='currentnum'>"+currentnum+"</span><span>/</span><span>"+positions[x].number+"</span>)"+"</li> <li><span >▶</span></li>");
+                            $("#member"+userClass[y].id).append("<li class='conditionLine'><span>"+number+"</span><span class='conditionList'>"+templist[x]+"</span>"+"(<span class='currentnum'>"+currentnum+"</span><span>/</span><span>"+positions[x].number+"</span>)"+"</li> <li><span >▶</span></li>");
                             temparr=[];
                             
                         }
@@ -347,5 +349,35 @@ function group2user(){
 
         })
     });
+}
+
+function makeGroup(){
+    
+    $(document).on("click",".makeGroupBtn",function(){
+        var totalNum=0;
+        var result;
+        var totalParticipant=$(this).parent().siblings(".leftbox").find(".totalNum").children("span").text();
+        $(this).parent().siblings(".leftbox").find(".conditionLine").each(function(){
+            
+
+            var currentNum =$(this).find(".currentnum").text();
+            totalNum += parseInt(currentNum);
+        })
+
+        if(parseInt(totalParticipant)!=totalNum+1){
+            result= confirm("설정 인원보다 모집 인원이 적습니다.\n이대로 그룹을 만드시겠습니까?")
+        }
+        else{
+            result= confirm("그룹을 생성하시겠습니까?\n그룹이 생성되면 모집 인원들의 이름과 전화번호가 공개됩니다.");
+        }
+        if(result){
+            
+            
+        }
+        // $(".conditionLine").find(".currentnum").each(function(){
+        //     console.log($(this));
+        // })
+    })
+ 
 }
 
