@@ -47,7 +47,7 @@ function clickEvnet(){
         var total_participant =1;
         var current_participant=1;
         console.log(icon);
-        if(icon == "../img/icons/add.png"){
+        if(icon == ""){
           alert("아이콘을 설정해주세요\n(아이콘은 게시글 목록에 표시됩니다.)");
           return;
         }
@@ -149,7 +149,7 @@ function clickEvnet(){
       
     })
 
-    $(".iconWrap").click(function(){
+    $(".previewIcon").click(function(){
     
       $(".iconBox").toggleClass("active");
       var imageHeight = $(".image").outerWidth();
@@ -158,15 +158,29 @@ function clickEvnet(){
     
       
     })
+
+
     $(".image").click(function(){
+      $(".previewIcon").addClass("active");
+      $(".previewIcon>p").addClass("active");
       var imageSource = $(this).children("img").attr("src");
       $(this).siblings().children(".coverWrap").css("background","#fff");
       $(this).children(".coverWrap").css("background","none");
       $(".previewIcon").children("img").attr("src",imageSource);
+
     })
 }
 
 function selectBox(){
+    $("html").click(function(e){
+      if(!$(e.target).hasClass("sel")){
+        
+          $(".sel").removeClass('active');
+      }
+   
+    })
+    
+
 
     $('.sel').each(function() {
         $(this).children('select').css('display', 'none');
@@ -198,7 +212,8 @@ function selectBox(){
       
       // Toggling the `.active` state on the `.sel`.
       $('.sel').click(function() {
-
+        $(this).parent().find(".sel").removeClass("active");
+        $(this).parent().siblings().find(".sel").removeClass("active");
         $(this).toggleClass('active');
       });
       

@@ -94,12 +94,12 @@
         <div class="container">
             <ul>
                 <li class="listBox">
-                    <p>제목</p>
+                    <p class="subTitle">제목</p>
                     <input type="text" class="submitControl titleLine" id="title" name= "title">
                 </li>
                 <li class="listBox">
                     <div class="divWrap">
-                        <p>시간</p>
+                        <p class="subTitle">시간</p>
                         <div class="divBox">
                             
                             <input type="checkbox" id="monday" class="hideCheckBox">
@@ -894,7 +894,7 @@
                     </div>
                 </li>
                 <li class="listBox halfBox">
-                    <span>역할 : </span>
+                    <span  class="subTitle">역할  </span>
                     <label for="mento">멘토</label>
                     <input type="radio" id="mento" name="role" value="멘토">
                     <label class="checkbox" for="mento"></label>  
@@ -904,15 +904,16 @@
                     
                 </li>
                 <li class="listBox halfBox">
-                    <p class="creditTitle">크레딧</p>
+                    <p class="creditTitle subTitle">크레딧</p>
                     <img src="../img/coin.png">
                     <input type="text" class="submitControl creditLine numberOnly" id="credit" name= "credit" maxlength="5" value=0>
                 </li>
                 <li class="listBox">
                     <div class="iconWrap">
-                        <span>아이콘</span>
+                        <span class="subTitle">아이콘</span>
                         <div class="previewIcon">
-                            <img src="../img/icons/add.png" class="myIcon">
+                            <p>No Icon</p>
+                            <img src="" class="myIcon">
                         </div>
                         
                     </div>
@@ -952,12 +953,12 @@
                 </li>
                 
                 <li class="listBox">
-                    <p>상세 내용</p>
+                    <p class="subTitle">상세 내용</p>
                     <textarea class="submitControl detailLine" id="detail" name= "detail"></textarea>
                 </li>
                 <li class="listBox">
                     <div class="roleControlBox">
-                        <span>참가 인원</span> <button type="button" class="roleAddBtn fa-plus"></button>
+                        <span class="subTitle">참가 인원</span> <button type="button" class="roleAddBtn fa-plus"></button>
                         
                     </div>
                     <ul class="participantBox">

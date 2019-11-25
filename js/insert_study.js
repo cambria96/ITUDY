@@ -41,7 +41,7 @@ function clickEvnet(){
         var description = $(".detailLine").val();
         var total_participant =1;
         var current_participant=1;
-        if(icon == "../img/icons/add.png"){
+        if(icon == ""){
           alert("아이콘을 설정해주세요\n(아이콘은 게시글 목록에 표시됩니다.)");
           return;
         }
@@ -142,6 +142,8 @@ function clickEvnet(){
       
     })
     $(".image").click(function(){
+      $(".previewIcon").addClass("active");
+      $(".previewIcon>p").addClass("active");
       var imageSource = $(this).children("img").attr("src");
       $(this).siblings().children(".coverWrap").css("background","#fff");
       $(this).children(".coverWrap").css("background","none");
@@ -151,6 +153,13 @@ function clickEvnet(){
 
 function selectBox(){
 
+    $("html").click(function(e){
+      if(!$(e.target).hasClass("sel")){
+        
+          $(".sel").removeClass('active');
+      }
+    })
+    
     $('.sel').each(function() {
         $(this).children('select').css('display', 'none');
         
@@ -181,10 +190,11 @@ function selectBox(){
       
       // Toggling the `.active` state on the `.sel`.
       $('.sel').click(function() {
-
+        $(this).parent().find(".sel").removeClass("active");
+        $(this).parent().siblings().find(".sel").removeClass("active");
         $(this).toggleClass('active');
       });
-      
+  
       // Toggling the `.selected` state on the options.
       $('.sel__box__options').click(function() {
         var txt = $(this).text();

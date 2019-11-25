@@ -4,11 +4,12 @@ ul{
 }
 
 .container{
-    margin: 50px 0px;
+    margin: 50px auto;
     border: 3px dashed #dfaa32;
     border-radius: 15px;
     padding: 40px;
     max-width: 1200px;
+    font-family: "Godo";
 }
 .listBox{
     margin-bottom: 10px;
@@ -51,7 +52,7 @@ ul{
     height: 25px;
     text-align: center;
     margin-right: 30px;
-
+    cursor:pointer;
     transition: all ease 0.25s;
 }
 .dateBtn.active{
@@ -311,7 +312,7 @@ ul{
 }
 
 .listBox span{
-  margin-right: 15px;
+  margin-right: 10px;
 }
 .image{
   width:10%;
@@ -360,10 +361,35 @@ ul{
 }
 
 .previewIcon{
+  position: relative;
   width: 70px;
   height: 70px;
-  display: inline-block;
   cursor: pointer;
+  border: 3px solid #e1af3f;
+  box-sizing: content-box;
+  border-radius: 15px;
+  transition: all ease 0.25s;
+
+}
+.previewIcon:hover{
+  font-size:1.1em;
+}
+.subTitle{
+  font-size: 1.3em;
+}
+.previewIcon p{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  text-align: center;
+  color: #000;
+  transform: translate(-50%,-50%);
+}
+.previewIcon p.active,
+.previewIcon.active{
+  border:none;
+  color:transparent;
 }
 .myIcon{
   width:100%;
