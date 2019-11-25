@@ -119,7 +119,7 @@ function initial_mypage(){
                             var currentnum = 0;
                             //삭제한 부분
                             // $("#"+userClass[y].id).children().append('<tr> <td>'+templist[x]+'</td> </tr>');
-                            $("#member"+userClass[y].id).append("<li class='conditionLine'><span>"+number+"</span><span class='conditionList'>"+templist[x]+"</span>"+"(<span class='currentnum'>"+currentnum+"</span><span>/</span><span>"+positions[x].number+"</span>)"+"</li> <li><span >▶</span></li>");
+                            $("#member"+userClass[y].id).append("<li class='conditionLine'><span class ='marginleft'>"+number+"</span><span class='conditionList marginleft'>"+templist[x]+"</span>"+"(<span class='currentnum'>"+currentnum+"</span><span>/</span><span>"+positions[x].number+"</span>)"+"</li> <li><span >▶</span></li>");
                             temparr=[];
                             
                         }
@@ -330,24 +330,28 @@ function user2group(){
         var cr = $("#member"+classnum).find(".currentnum").eq(positionname).text();
         cr++;
         $("#member"+classnum).find(".currentnum").eq(positionname).text(cr);
-        $(this).attr('class',"cancelBtn");
-        $(this).text('취소하기')
+        $(this).attr('class',"cancelConfirmBtn");
+        $(this).text('취소 하기')
     });
 
 }
 
 function group2user(){
-    $(document).on("click",".cancelBtn",function(){
+    $(document).on("click",".cancelConfirmBtn",function(){
+        var positionname = $(this).parent().parent().attr('class');
         var classnum = $(this).parent().parent().parent().parent().parent().attr('id');
         var cancelTarget  = $(this).parent().prev().text();
-        console.log(cancelTarget);
-        $("#member"+classnum).find(".confirmList").each(function (index,item){
-            // if(item.text()==cancelTarget){
-            //     console.log(index, item);
-            // }
-           
-
-        })
+        var target = positionname*2 +1;
+        $("#member"+classnum).children('li').eq(target).find(".confirmList").each(function (){      
+            if($(this).text()==cancelTarget){
+                $(this).remove();
+                var cr = $("#member"+classnum).find(".currentnum").eq(positionname).text();
+                cr--;
+                $("#member"+classnum).find(".currentnum").eq(positionname).text(cr);
+            }
+        });
+        $(this).attr("class","acceptBtn");
+        $(this).text('수락 하기')
     });
 }
 
