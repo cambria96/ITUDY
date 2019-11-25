@@ -3,7 +3,8 @@ $(document).ready(function(){
     sectionControl();
     modifyData();
     groupList();
-    send2group();
+    user2group();
+    group2user();
     cancelParticipant();
 });
 var loginUser;
@@ -13,7 +14,7 @@ var partyClass;
 var participants;
 var positions;
 var typeAry = ["C","C++","C#","Java","Ruby","Python","R","Go","HTML/CSS","Javascript","Spring","Nodejs","Angularjs","Vuejs","Reactjs","PHP","Android","IOS","Swift","Kotlin","Objective-C","MYSQL","MongoDB","SpringBoot","OracleDB"];
-var pl = [[],[],[],[],[],[],[],[]];
+
 function initial_mypage(){
     
     $(".contentWrap").first().addClass("active");
@@ -39,10 +40,10 @@ function initial_mypage(){
                         
                         datetime[dl] =  datearr[dl] + ' : ' +  timearr[dl];
                         
-                        console.log(datetime);
+        
                     }
                     var datetimearr = datetime.join(' | ');
-                    console.log(datearr, timearr);
+                    
                     var dynamicList = '<div class="specificTitle">'
                                     + '<p>'+userClass[m].title+'</p>'
                                     +'</div>'
@@ -113,27 +114,32 @@ function initial_mypage(){
 
                             templist[x]=temparr.toString();
                             var number = positions[x].position_id + 1
-                           // $("#"+userClass[y].id).children().append('<tr> <td>'+templist[x]+'</td> </tr>');
-                            
-                           console.log(templist.length);
-                            $("#member"+userClass[y].id).append("<li><span>"+number+"</span><span class ='conditionList'>"+templist[x]+"</span></li> <li><span>▶</span></li>");
+                            var currentnum = 0;
+                            //삭제한 부분
+                            // $("#"+userClass[y].id).children().append('<tr> <td>'+templist[x]+'</td> </tr>');
+                            $("#member"+userClass[y].id).append("<li><span>"+number+"</span><span class='conditionList'>"+templist[x]+"</span>"+"(<span class='currentnum'>"+currentnum+"</span><span>/</span><span>"+positions[x].number+"</span>)"+"</li> <li><span >▶</span></li>");
                             temparr=[];
-
+                            
                         }
                     }
                 }
             }
+
             if(participants){
                 
                 for(var p=0; p<participants.length;p++){
                     var partiList = participants[p].participant_id;
                     for (var q=0; q<userClass.length; q++){
                         if(participants[p].type == 1 && participants[p].content_id == userClass[q].id){
+                            
                             position = "position" + participants[p].position_id;
-                            console.log("포지션" + position);
+
+                            //추가한 부분
                             var condition = $("#"+userClass[q].id).parent(".rightbox").siblings(".leftbox").find(".conditionList").eq(participants[p].position_id).text();
-                            $("#"+userClass[q].id).children().children('tbody').append('<tr><td>'+ condition +'</td>'+'<td>'+ '<button class = "acceptBtn">수락 하기</button></td></tr>');
-                            $("#"+userClass[q].id).children().children('tbody').children().eq(participants[p].position_id).attr("id",position);
+                           
+                            // 수정한 부분
+                            $("#"+userClass[q].id).children().children('tbody').append('<tr class='+participants[p].position_id+'><td>'+condition+'</td><td>'+ partiList +'</td>'+'<td> <button class = "acceptBtn">수락 하기</button></td></tr>');                            
+                            
                           
                         }
                     }   
@@ -209,7 +215,7 @@ function modifyData(){
         var userData={};
         userData['name'] = userName;
         userData['phone']= userPhone;
-        console.log(userData);
+       
         $.ajax({
 
             url:'/modify',
@@ -281,7 +287,7 @@ function cancelParticipant(){
         if(result){
             
             cancelInfo["content_id"] = $(this).val();
-            console.log($(this).siblings(".partyNumber"));
+           
             cancelInfo["position_id"] = $(this).siblings(".posNum").val();
             cancelInfo["participant_id"] = loginUser.id;
             if($(this).hasClass("classCancelBtn")){
@@ -291,13 +297,14 @@ function cancelParticipant(){
             else{
                 cancelInfo["type"]=0;
             }
-            console.log(cancelInfo);
+      
             $.ajax({
                 url: "/delete_participant_both",
                 type:"POST",
                 data: cancelInfo,
                 success:function(){
                     content.remove();
+                    location.reload();
                 },
                 error: function(request,error,status){
                     alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
@@ -311,21 +318,34 @@ function cancelParticipant(){
     })
 }
 
-function send2group(){
+function user2group(){
     $(document).on("click",".acceptBtn",function(){
         var partiname = $(this).parent().prev().text();
-        console.log($(this).parent().parent().attr('id'));
-        var positionname = $(this).parent().parent().attr('id')[8];
-        console.log("positionname : " +positionname);
+        var positionname = $(this).parent().parent().attr('class');
         var classnum = $(this).parent().parent().parent().parent().parent().attr('id');
-        console.log("파티넴" +partiname);
-        console.log("쿨래스넘 :" +classnum);
-        console.log("포지션넴"+positionname);
-        console.log( $(this).parent().prev().text());
         var target = positionname*2 +1;
-        console.log("target"+target);
         $("#member"+classnum).children('li').eq(target).append('<span class="confirmList">'+partiname+'</span>');
+        var cr = $("#member"+classnum).find(".currentnum").eq(positionname).text();
+        cr++;
+        $("#member"+classnum).find(".currentnum").eq(positionname).text(cr);
+        $(this).attr('class',"cancelBtn");
+        $(this).text('취소하기')
     });
 
+}
+
+function group2user(){
+    $(document).on("click",".cancelBtn",function(){
+        var classnum = $(this).parent().parent().parent().parent().parent().attr('id');
+        var cancelTarget  = $(this).parent().prev().text();
+        console.log(cancelTarget);
+        $("#member"+classnum).find(".confirmList").each(function (index,item){
+            // if(item.text()==cancelTarget){
+            //     console.log(index, item);
+            // }
+           
+
+        })
+    });
 }
 
