@@ -3,6 +3,8 @@ $(document).ready(function(){
     selectBox();
     autoComplete();
     numberInput();
+
+   
 })
 
 function clickEvnet(){
@@ -10,13 +12,16 @@ function clickEvnet(){
     $(".dateBtn").click(function(){
         var index=$(this).index()-7;
         if($(this).hasClass("active")){  
+            $(this).removeClass("active2");
             $(this).removeClass("active");
             $(".timeList").children().eq(index).removeClass("active");
         }
         else{
             $(this).addClass("active");
+            console.log($(this));
             $(".timeList").children().eq(index).find(".dynamicDate").text($(this).text());
             $(".timeList").children().eq(index).addClass("active");
+            
         }
         
     })
@@ -35,11 +40,17 @@ function clickEvnet(){
         var title = $("#title").val();
         var date =[];
         var time =[];
+        var icon = $(".myIcon").attr("src");
         var role = $("input[type=radio]:checked").val();
         var credit= $(".creditLine").val();
         var description = $(".detailLine").val();
         var total_participant =1;
         var current_participant=1;
+        console.log(icon);
+        if(icon == ""){
+          alert("아이콘을 설정해주세요\n(아이콘은 게시글 목록에 표시됩니다.)");
+          return;
+        }
         if($(".dynamicTime.active").length ==0){
             alert("시간을 설정해주세요");
             return;
@@ -78,6 +89,7 @@ function clickEvnet(){
         classInfo["date"] = date;
         classInfo["time"] = time;
         classInfo["role"] = role;
+        classInfo["icon"] = icon;
         classInfo["credit"] = credit;
         classInfo["total_participant"] = total_participant;
         classInfo["current_participant"] = current_participant;
@@ -136,9 +148,39 @@ function clickEvnet(){
           })
       
     })
+
+    $(".previewIcon").click(function(){
+    
+      $(".iconBox").toggleClass("active");
+      var imageHeight = $(".image").outerWidth();
+      $(".image").css("height",imageHeight);
+      $(".iconBox").toggleClass("active2");
+    
+      
+    })
+
+
+    $(".image").click(function(){
+      $(".previewIcon").addClass("active");
+      $(".previewIcon>p").addClass("active");
+      var imageSource = $(this).children("img").attr("src");
+      $(this).siblings().children(".coverWrap").css("background","#fff");
+      $(this).children(".coverWrap").css("background","none");
+      $(".previewIcon").children("img").attr("src",imageSource);
+
+    })
 }
 
 function selectBox(){
+    $("html").click(function(e){
+      if(!$(e.target).hasClass("sel")){
+        
+          $(".sel").removeClass('active');
+      }
+   
+    })
+    
+
 
     $('.sel').each(function() {
         $(this).children('select').css('display', 'none');
@@ -170,7 +212,8 @@ function selectBox(){
       
       // Toggling the `.active` state on the `.sel`.
       $('.sel').click(function() {
-
+        $(this).parent().find(".sel").removeClass("active");
+        $(this).parent().siblings().find(".sel").removeClass("active");
         $(this).toggleClass('active');
       });
       

@@ -4,11 +4,12 @@ ul{
 }
 
 .container{
-    margin: 50px 0px;
+    margin: 50px auto;
     border: 3px dashed #dfaa32;
     border-radius: 15px;
-    padding: 25px;
+    padding: 40px;
     max-width: 1200px;
+    font-family: "Godo";
 }
 .listBox{
     margin-bottom: 10px;
@@ -51,7 +52,7 @@ ul{
     height: 25px;
     text-align: center;
     margin-right: 30px;
-
+    cursor:pointer;
     transition: all ease 0.25s;
 }
 .dateBtn.active{
@@ -70,6 +71,7 @@ ul{
     display: flex;
     align-items: center;
 }
+
 
 
 
@@ -307,4 +309,110 @@ ul{
 }
 .btnBox{
   text-align: center;
+}
+
+.listBox span{
+  margin-right: 10px;
+}
+.image{
+  width:10%;
+  display: flex;
+  margin: 2px;
+  align-items: center;
+  position: relative;
+  cursor:pointer;
+}
+.image img{
+  width: 100%;
+}
+.creditTitle{
+  display: inline-block;
+}
+.halfBox{
+  display: inline-block;
+  width:49%;
+}
+.iconWrap{
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+.iconBox{
+  display: none;
+  width:50%;
+  border: 2px solid #dfaa32;
+  padding: 10px;
+  border-radius: 20px;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all ease 1s;
+}
+.iconBox.active{
+  display: block;
+}
+.iconBox.active2{
+  opacity: 1;
+  transform: translateY(0px);
+
+}
+.iconBox ul{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.previewIcon{
+  position: relative;
+  width: 70px;
+  height: 70px;
+  cursor: pointer;
+  border: 3px solid #e1af3f;
+  box-sizing: content-box;
+  border-radius: 15px;
+  transition: all ease 0.25s;
+
+}
+.previewIcon:hover{
+  font-size:1.1em;
+}
+.subTitle{
+  font-size: 1.3em;
+}
+.previewIcon p{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  text-align: center;
+  color: #000;
+  transform: translate(-50%,-50%);
+}
+.previewIcon p.active{
+  display: none;
+}
+
+.previewIcon.active{
+  border:none;
+}
+.myIcon{
+  width:100%;
+}
+.iconWrap div{
+  display: flex;
+  margin-right: 15px;
+  align-items: center;
+}
+.coverWrap{
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  opacity: .7;
+  background: #fff;
+  transition: all ease 0.25s;
+}
+.coverWrap:hover{
+  background:none;
+}
+.coverWrap:active{
+  background:none;
 }
