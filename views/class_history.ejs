@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>클래스 상세설명</title>
+    <meta charset="utf-8">
+    <meta title="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="../lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../lib/animate/animate.min.css" rel="stylesheet">
+    <link href="../lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+    <link href="../lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="../lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <!-- Main Stylesheet File -->
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/class_detail.css" rel="stylesheet">
+
+    
+    
+</head>
+
+<body>
+
+    <div class="container">
+            <p class="content_id" style="display:none"><%=class_info.id%></p>
+            <p class="groupTitle"><%=class_info.title%></p>
+            <%
+                var date =class_info.date.split(",");
+                var time =class_info.time.split(",")
+                
+                var conditionList =[];
+                var typeAry = ["C","C++","C#","Java","Ruby","Python","R","Go","HTML/CSS","Javascript","Spring","Nodejs","Angularjs","Vuejs","Reactjs","PHP","Android","IOS","Swift","Kotlin","Objective-C","MYSQL","MongoDB","SpringBoot","OracleDB","none"];
+                
+                for(var n =0;n<positions.length;n++){
+                    var i=0;
+                    var conditionAry =[];
+                    for(var m=0;m<typeAry.length;m++){
+                        if(positions[n][typeAry[m]] == 1){
+                            if(typeAry[m]=="none"){
+                                conditionAry[i]="없음";
+                                i++;
+                            }
+                            else{
+                                conditionAry[i]=typeAry[m];
+                                i++;
+                            }
+                            
+                            
+                        };
+                     }
+                    conditionList[n] = conditionAry.toString();
+                }
+            %>
+            <div class="divideWrap">
+                <div class="divideBox" style="position:relative">
+                    <p class="groupSubTitle">작성자</p>
+                    <span class ="groupContent"><%=class_info.author%></span>
+                    <button class="profileBtn">프로필 보기</button>
+                    <div class="profileContent">
+                        <div style="text-align: center;border-bottom: 1px solid #dfaa32; margin-bottom: 10px;"><%=class_info.author_id%>'s 프로필</div>
+                        <div style="font-size:2rem;">
+                            <table>
+                                <tr>
+                                    <td>이름</td>
+                                    <td><%=author_info.name%></td>
+                                </tr>
+                                <tr>
+                                    <td>레벨</td>
+                                    <td><%=author_info.level%></td>
+                                </tr>
+                                <tr>
+                                    <td>멘토활동 횟수</td>
+                                    <td><%=author_info.name%></td>
+                                </tr>
+                                <tr>
+                                    <td>멘티활동 횟수</td>
+                                    <td><%=author_info.name%></td>
+                                </tr>
+                                <tr>
+                                    <td>스터디활동 횟수</td>
+                                    <td><%=author_info.name%></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div style="border-top: 1px solid #dfaa32; font-size:1.5rem; padding-top:8px;">
+                            활동분야:
+                            <%var index = ["C","C++","C#","Java","Ruby","Python","R","Go","HTML/CSS","Javascript","Spring","Nodejs","Angularjs","Vuejs","Reactjs","PHP","Andriod","IOS","Swift","Kotlin","Objective-c","MYSQL","MongoDB","SpringBoot","OracleDB"];
+                            for(var i=0;i<index.length;i++){
+                                if(author_info[index[i]]=='1'){
+                                    %>
+                                    <%=index[i]%>
+                                <%}
+                            }%>
+                        </div>
+                    </div>
+                </div>
+                <div class="divideBox">
+                    <p class="groupSubTitle">모집자 역할</p>
+                    <span class ="groupContent"><%=class_info.role%></span>
+                </div>
+            </div>
+            <div class="middleLine"></div>
+            <div class="divideWrap">
+                <div class="divideBox">
+                    <p class="groupSubTitle">클래스 시간</p>
+                    <ul>
+                        <% for (var m=0;m<date.length;m++){%>
+                            <li class="groupContent">
+                                <span class="date"><%=date[m]%> : </span><span class="time"><%=time[m]%></span>
+                            </li>
+                        <% } %>               
+                    </ul>
+                </div>
+                <div class="divideBox">
+                    <p class="groupSubTitle">필요 크레딧</p>
+                    <span class ="groupContent"><img src="../img/coin.png">  <%=class_info.credit%></span>
+                </div>
+            </div>
+            <div class="middleLine"></div>
+            <div class="divideWrap">
+                <div class="fullBox">
+                    <p class="groupSubTitle">상세 정보</p>
+                    <div class="textBox">
+                        <p class="groupContent detailContent"> <%=class_info.description%></p>
+                    </div>
+                </div>
+            </div>
+    </div>
+    <%if(loginUser.id == class_info.author_id){%>
+        <div class="footerBtnBox">
+            <button class="deleteBtn">삭제</button>
+        </div>
+    <%}%>
+    
+
+</body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+   
+ 
+
+    <!-- Template Main Javascript File -->
+    <script src="../js/main.js"></script>
+    <script src="../js/class_detail.js"></script>
+</html>

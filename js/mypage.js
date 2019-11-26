@@ -7,6 +7,7 @@ $(document).ready(function(){
     group2user();
     cancelParticipant();
     makeGroup();
+    requestConfirm();
 });
 var loginUser;
 var userClass;
@@ -87,7 +88,7 @@ function initial_mypage(){
                                     +'</table>'
                                     +'</div>'
                                     +'</div>'
-                                    +'<div class="makeBox"><button class="makeGroupBtn">그룹 만들기</button></div>'
+                                    +'<div class="makeBox"><button class="makeGroupBtn" value='+userClass[m].id+'>그룹 만들기</button></div>'
                                     +'</div>';
                                     
                     $(".classList").append(dynamicList);
@@ -383,7 +384,6 @@ function makeGroup(){
         var totalParticipant=$(this).parent().siblings(".leftbox").find(".totalNum").children("span").text();
         $(this).parent().siblings(".leftbox").find(".conditionLine").each(function(){
             
-
             var currentNum =$(this).find(".currentnum").text();
             totalNum += parseInt(currentNum);
         })
@@ -396,6 +396,33 @@ function makeGroup(){
         }
         if(result){
             
+            var content_id =$(this).val();
+            var users = [];
+            var user
+            var confirmData={};
+            users.push(loginUser.id);
+            var title = $(this).parents(".specificContent").prev().children().text();
+            $(this).parent().siblings(".leftbox").find(".confirmList").each(function(){
+                users.push($(this).text())
+            });
+            users= users.toString();
+            console.log(users);
+            confirmData["content_id"] = content_id;
+            confirmData["users"] = users;
+            confirmData["title"] = title;
+            $.ajax({
+                url: "/insert_confirm",
+                type: "POST",
+                data: confirmData,
+                success: function(){
+                    alert("그룹이 생성되었습니다.\n 참여자 정보는 [마이페이지] > [참여중인 그룹] 에서 확인 가능합니다.");
+                    location.reload();
+                },
+                error: function(request,error,status){
+                    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                    return false;
+                }
+            })
             
         }
         // $(".conditionLine").find(".currentnum").each(function(){
@@ -405,3 +432,45 @@ function makeGroup(){
  
 }
 
+function requestConfirm(){
+
+    $(".confirmGroup").click(function(){
+        $.ajax({
+            url:"/request_confirm",
+            type:"POST",
+            success: function(data){
+                var memberList = data.confirmList;
+                
+                
+                $(".lastBox").html('<p class="contentTitle">참여중인 그룹</p>');
+                for(var m=0; m<memberList.length;m++){
+                    var memberName=memberList[m].username.split(",");
+                    var memberEmail=memberList[m].email.split(",");
+                    var memberPhone=memberList[m].phonenum.split(",");
+                    var dynamicLi="";
+                    for(var n=0;n<memberName.length;n++){
+                        dynamicLi +=' <li class="confirmGroupList"><span class="name">'+memberName[n]+'</span><span class="email">'+memberEmail[n]+'</span><span class="phone">'+memberPhone[n]+'</span><button class="profileBtn">프로필 보기</button></li>'
+                    }
+
+                    var dynamicMember = '<div class="confirmBox">'
+                        +'<ul>'
+                        +'    <li class="confirmGroupList"><p>'+memberList[m].title+' <span class="detailLink" value="detail_class_history/'+memberList[m].content_id+'">자세히 보기</span></p></li>'
+                        +dynamicLi
+                        +'</ul>'
+                     +'</div>'
+                    
+
+                    $(".lastBox").append(dynamicMember);
+                }
+            },
+            error: function(request,error,status){
+                alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                return false;
+            }
+        })
+    })
+}
+
+function deleteConfirm(){
+    
+}

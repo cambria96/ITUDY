@@ -192,11 +192,14 @@ router.post("/insert_class", function (req, res) {
     var positionList = req.body.positionList;
     var body = req.body.classInfo;
     var content_id;
+    var bodyClone={};
     body["author"] = user.loginUser.name;
     body["author_id"] = user.loginUser.id;
     body["datetime"] = now;
+    bodyClone=body;
     // content_id++; //
     var queryString = 'insert into classes set ?'
+    
     getConnection().query(queryString,body, function (error,result) {
         //응답
         if (error) {
@@ -227,6 +230,15 @@ router.post("/insert_class", function (req, res) {
                 }
                 
             })
+            bodyClone["id"]= content_id;
+            getConnection().query('insert into classeshistory set ?',bodyClone,function(error,result){
+                if(error){
+                    console.log(error);
+                }
+                else{
+                    
+                }
+            })
         }
     })
 
@@ -241,6 +253,43 @@ router.get("/detail_class/:id", function (req, res) {
     fs.readFile('views/class_detail.ejs', 'utf-8', function (error, data) {
         
         getConnection().query('select * from classes where id = ?', [req.params.id], function (error, class_info) {
+            if(error){
+                console.log(error);
+            }
+            getConnection().query('select * from positions where content_id = ? and type=1', [req.params.id], function (error, positions) {
+                if(error){
+                    console.log(error);
+                }
+                getConnection().query('select * from participants where content_id = ? and type=1', [req.params.id], function (error, participants) {
+                    if(error){
+                        console.log(error);
+                    }
+                    getConnection().query('select * from userinfo where id = ?', [class_info[0].author_id], function (error, author_info) {
+                        if(error){
+                            console.log(error);
+                        }
+                        res.send(ejs.render(data, {
+                            "class_info": class_info[0],
+                            "author_info":author_info[0],
+                            "positions": positions,
+                            "loginUser" : user.loginUser,
+                            "participants":participants
+                        }))
+                    })
+                })
+                
+            })
+
+        })
+    });
+
+})
+
+
+router.get("/detail_class_history/:id", function (req, res) {
+    fs.readFile('views/class_history.ejs', 'utf-8', function (error, data) {
+        
+        getConnection().query('select * from classeshistory where id = ?', [req.params.id], function (error, class_info) {
             if(error){
                 console.log(error);
             }

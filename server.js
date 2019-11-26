@@ -69,7 +69,6 @@ app.get('/signup',function(req,res){
 app.get('/mypage',function(req,res){
     connection.query("SELECT * from participants WHERE (`participant_id` = '"+loginUser.id+"');",function(err,rows,result){
         if(!err){
-            console.log("참가 목록 완료");
             partyList=rows;
             var contentList =[];
             var classList=[];
@@ -77,7 +76,6 @@ app.get('/mypage',function(req,res){
             var position_id_class=[];
             var position_id_study=[];
             if(partyList.length==0){
-                console.log("dsffsfddf");
                 res.render("mypage.ejs",{
                     "loginInfo":loginUser,
                     "contentList":contentList,
@@ -143,6 +141,9 @@ app.get('/mypage',function(req,res){
             res.send();
         }
     });
+
+
+
 })
 
 app.use(session({
@@ -198,7 +199,6 @@ app.get('/home',function(req,res){
         
     }
     else{
-        console.log("af");
         res.render("main.html");
     }
 })
@@ -206,9 +206,20 @@ app.get('/home',function(req,res){
 
 app.get('/logout', function(req,res){
     delete req.session.name;
-    req.session.save(()=>{
-        res.render('main.html');
-    })
+
+    connection.query('SELECT * from userinfo',function(err,rows,fields){
+        if(!err){
+            console.log('The solution is: ',rows);
+            info = rows;
+            req.session.save(()=>{
+                res.render('main.html');
+            })
+        }
+        else{
+            console.log('Error while performing Query.',err);
+        }
+    });
+    
 });
 
 
@@ -217,10 +228,7 @@ app.post("/done",function(req,res){
     
     connection.query('insert into userinfo set ?',user,function(err,result){
         if(!err){
-            console.log("사용자 등록 성공");
-            console.log("new user id : "+ req.body.id);
-            console.log("new user password : "+req.body.password);
-            console.log('The solution is: ',result);
+ 
             console.log('회원가입 완료');
             
         }
@@ -245,14 +253,6 @@ app.get('/ranking', function(req,res){
         req.session.credit = loginUser.credit;
         req.session.id = loginUser.id;
         req.session.ranking = loginUser.ranking;
-        // alert(req.session.name + "님 환영합니다.");
-        console.log("session name" + req.session.name);
-        console.log("credit"+req.session.credit);
-        // req.session.save(()=>{
-        //     res.render('ranking.ejs',{name:req.session.name,credit:req.session.credit});
-        // });
-
-       
 
         info.sort(function(a,b){
             return a.credit > b.credit ? -1 : a.credit < b.credit? 1:0;
@@ -291,23 +291,7 @@ app.get('/ranking', function(req,res){
         
         
 });
-// // 기본정보 수정
-// app.post("/modify",function(req,res){
-//     var userName = req.body.name;
-//     var userPhone = req.body.phone;
-//     connection.query("UPDATE `userinfo`.`userinfo` SET `name` = '"+userName+"',`phone` = '"+userPhone+"' WHERE (`id` = '"+loginUser.id+"');",function(err,result){
-//         if(!err){
-//             console.log("수정완료");    
-//         }
-//         else{
-//             console.log('Error while performing Query.',err);
-//         }
-//     });
-//     loginUser.name = userName;
-//     loginUser.phone = userPhone;
-//     res.send();
-// })
-// 분야 수정
+
 app.post("/modify",function(req,res){
     var user = req.body
     console.log(user);
@@ -363,7 +347,6 @@ app.post("/requestContent",function(req,res){
 
                             connection.query("SELECT * from positions", function(err,rows,result){
                                 if(!err){
-                                    console.log("포지션 로드 완료");
                                     positions = rows;
                                     console.log("포지션 길이 : "+positions.length);
                                     res.send({loginUser: loginUser,userClass: userClass, userStudy:userStudy, participants:participants, positions:positions});
@@ -413,8 +396,91 @@ app.post("/delete_participant_both", function (req, res) {
 
 // 신청목록 로드
 var partyList;
-app.post("/requestParty",function(req,res){
+app.post("/request_confirm",function(req,res){
     
+    connection.query('select * from confirm where users like "%'+loginUser.id+'%"',function(err,rows,result){
+        if(!err){
+            console.log(rows);  
+            res.send({"confirmList":rows});
+        }
+        else{
+            console.log('Error while performing Query.',err);
+        }
+    })
+
+})
+
+app.post("/insert_confirm",function(req,res){
+    var users = req.body;
+    
+    var userList = users.users.split(",");
+    var userName= [];
+    var userEmail=[];
+    var userPhone=[];
+    var n=0;
+    var confirmData={};
+    for(var m=0;m<userList.length;m++){
+        connection.query("SELECT * from userinfo WHERE (`id` = '"+userList[m]+"');",function(err,rows,result){
+            if(!err){
+                userName.push(rows[0].name);
+                userEmail.push(rows[0].email);
+                userPhone.push(rows[0].phone);
+
+                if(n==userList.length-1){
+                    userName = userName.toString();
+                    userEmail = userEmail.toString();
+                    userPhone = userPhone.toString();
+                    confirmData["title"] = req.body.title;
+                    confirmData["content_id"] = users.content_id;
+                    confirmData["users"] = req.body.users;
+                    confirmData["username"] = userName;
+                    confirmData["email"] = userEmail;
+                    confirmData["phonenum"] = userPhone;
+
+                    connection.query("insert into confirm set ?",confirmData,function(err,result){
+                        if(!err){
+                            connection.query('delete from classes where id = ?',users.content_id,function(err,result){
+                                if(!err){
+                                    connection.query('delete from positions where content_id = ?',users.content_id,function(err,result){
+                                        if(!err){
+                                            connection.query('delete from participants where content_id = ?',users.content_id,function(err,result){
+                                                if(!err){
+                                                    console.log("그룹 생성 완료");
+                                                    
+                                                    res.send();
+                                                }
+                                                else{
+                                                    console.log('Error while performing Query.',err);
+                                                }
+                                            })
+                                            
+                                        }
+                                        else{
+                                            console.log('Error while performing Query.',err);
+                                        }
+                                    })
+                                    
+                                }
+                                else{
+                                    console.log('Error while performing Query.',err);
+                                }
+                            })
+                            res.send();
+                        }
+                        else{
+                            console.log('Error while performing Query.',err);
+                        }
+                    })
+                    console.log(confirmData)
+                    
+                }
+                n++;
+            }
+            else{
+                console.log('Error while performing Query.',err);
+            }
+        });
+    }
 })
 // app.get("/class",function(req,res){
 //     res.render('class.ejs');

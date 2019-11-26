@@ -7,20 +7,15 @@ $(function() {
         },function(){
             $(this).find(".addPlusBtn").removeClass("active");
         })
-
-        $(".item-container").click(function() {
-            if($(this).hasClass("addItem")){
-
-            }else{
-                var src = $(this).attr('value')
-                $("#content-detail").prop('src',src)
-                $("#myModal").css({
-                    "display": "block"
-                });
-            }
+        $(document).on("click",".detailLink",function(){
+            var src = $(this).attr('value')
+            $("#content-detail").prop('src',src)
+            $("#myModal").css({
+                "display": "block"
+            });
+        })
+        $(".item-container,.partyTitle").click(function() {
             
-        });
-        $(".partyContent").not(".partyContent.cancelBtn").click(function() {
             if($(this).hasClass("addItem")){
 
             }else{

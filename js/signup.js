@@ -74,6 +74,10 @@ function signupBtn(){
             $("#phone").parent().next().addClass("wrong");
             validation =0;
         }
+        if(!$("#phone").val()){
+            $("#email").parent().next().addClass("wrong");
+            validation =0;
+        }
         // 다 입력시 다음
         if(validation){
             $(".signupWrap").children().eq(stepCount).fadeOut("fast",function(){
@@ -173,6 +177,7 @@ function submitAll(){
         userData['password']= $("#password").val();
         userData['id']= $("#id").val();
         userData['phone']= $("#phone").val();
+        userData['email']= $("#email").val();
         for(m=0;m<userPoint.length;m++){
             userData[userPoint[m]] = '1';
         }

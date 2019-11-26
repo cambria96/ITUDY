@@ -95,7 +95,7 @@
                     <li class="sideContent"><span>분야 확인/수정</span></li>
                     <li class="sideContent"><span>내가올린그룹</span></li>
                     <li class="sideContent"><span>신청중인그룹</span></li>
-                    <li class="sideContent"><span>참여중인그룹</span></li>
+                    <li class="sideContent confirmGroup"><span>참여중인그룹</span></li>
                 </ul>
             </div>
             <div class="contextBox">
@@ -274,8 +274,8 @@
                         <p class="partyType">Class</p>
                         <div class="partyBox">
                             <%for(var n=0; n<classList.length;n++){%>
-                                <div class="partyContent typeClass"  value="/detail_class/<%= classList[n].id %>" >
-                                    <div class="partyTitle"><%=classList[n].title%></div>
+                                <div class="partyContent typeClass"  >
+                                    <div class="partyTitle" value="/detail_class/<%= classList[n].id %>"><span><%=classList[n].title%></span></div>
                                     <div class="subContentBox">
                                         <div class="partyCredit"><img src="../img/coin.png"> <%=classList[n].credit%></div>
                                         <div class="partyTime">
@@ -291,7 +291,6 @@
                                         </div>
                                         
                                         
-                                        <div class="partyNumber"><%=classList[n].current_participant%>/<%=classList[n].total_participant%></div>
                                         <input class="posNum" style="display:none" value=<%=position_id_class[n]%> >
                                         <button class="cancelBtn classCancelBtn" value =<%=classList[n].id %> >취소</button>
                                     </div>
@@ -301,8 +300,8 @@
                         <p class="partyType"> Study</p>
                         <div class="partyBox">
                             <%for(var n=0; n<studyList.length;n++){%>
-                                <div class="partyContent typeStudy"  value="/detail_study/<%= studyList[n].id %>" >
-                                    <div class="partyTitle"><%=studyList[n].title%></div>
+                                <div class="partyContent typeStudy"  >
+                                    <div class="partyTitle" value="/detail_study/<%= studyList[n].id %>"><span><%=studyList[n].title%></span></div>
                                     <div class="subContentBox">
                                         <div class="partyCredit studyCredit"><img src="../img/coin.png"> <%=studyList[n].credit%></div>
                                         <div class="partyTime">
@@ -315,7 +314,6 @@
                                                 
                                             %>
                                         </div>
-                                        <div class="partyNumber" ><%=studyList[n].current_participant%>/<%=studyList[n].total_participant%></div>
                                         <input class="posNum" style="display:none" value=<%=position_id_study[n]%>>
                                         <button class="cancelBtn studyCancelBtn"  value=<%=studyList[n].id %>>취소</button>
                                     </div>
@@ -323,8 +321,18 @@
                             <%}%>
                         </div>
                     </div>
-                    <div class="contentWrap">
-                        <p class="contentTitle">참여중인 그룹</p>
+                    <div class="contentWrap lastBox">
+                        <!-- <p class="contentTitle">참여중인 그룹</p> -->
+                        <!-- <div class="confirmBox">
+                            
+                            <ul>
+                                <li class="confirmGroupList"><p>제대로 된 글 <span class="detailLink">자세히 보기</span></p></li>
+                                <li class="confirmGroupList"><span class="name">여인혁</span><span class="email">djdjdj@gmail.com</span><span class="phone">010-2547-5890</span><button class="profileBtn">프로필 보기</button></li>
+                                <li class="confirmGroupList"><span class="name">여인혁</span><span>djddddddjdj@gmail.com</span><span>010-2547-5890</span><button class="profileBtn">프로필 보기</button></li>
+                                <li class="confirmGroupList"><span class="name">여인혁</span><span>djdjdj@gmail.com</span><span>010-2547-5890</span><button class="profileBtn">프로필 보기</button></li>
+
+                            </ul>
+                        </div> -->
                    
                     </div>
                 </div>
