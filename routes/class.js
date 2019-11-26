@@ -9,11 +9,11 @@ var content_id = 0;
 var loginUser;
 
 
-router.use(bodyParser.urlencoded({ extended: false }))
-router.use('../js',express.static('js'));
-router.use('../lib',express.static('lib'));
-router.use('../img',express.static('img'));
-router.use('../css',express.static('css'));
+router.use(bodyParser.urlencoded({extended: false}))
+router.use('../js', express.static('js'));
+router.use('../lib', express.static('lib'));
+router.use('../img', express.static('img'));
+router.use('../css', express.static('css'));
 
 //게시판 페이징
 router.get("/classes/:cur", function (req, res) {
@@ -38,7 +38,6 @@ router.get("/classes/:cur", function (req, res) {
 
 //현제 페이지
         var curPage = req.params.cur;
-
 
 
 //전체 페이지 갯수
@@ -91,39 +90,38 @@ router.get("/classes/:cur", function (req, res) {
                 var params = []
                 var can = new Array(rows1.length)
                 var queryString = 'select * from positions where '
-                for(var i=0; i<rows1.length; i++){
-                    queryString = queryString+"content_id=? AND type=1"
-                    if(i+1!=rows1.length){
-                        queryString = queryString +" OR "
+                for (var i = 0; i < rows1.length; i++) {
+                    queryString = queryString + "content_id=? AND type=1"
+                    if (i + 1 != rows1.length) {
+                        queryString = queryString + " OR "
                     }
-                    can[i]=0;
+                    can[i] = 0;
                     params.push(rows1[i].id)
                 }
 
 
-                getConnection().query(queryString,params,function(error,rows2) {
+                getConnection().query(queryString, params, function (error, rows2) {
 
-                    var index = ["C","C++","C#","Java","Ruby","Python","R","Go","HTML/CSS","Javascript","Spring","Nodejs","Angularjs","Vuejs","Reactjs","PHP","Andriod","IOS","Swift","Kotlin","Objective-c","MYSQL","MongoDB","SpringBoot","OracleDB"];
-                   
-                    for(var i=0;i<rows2.length;i++){
+                    var index = ["C", "C++", "C#", "Java", "Ruby", "Python", "R", "Go", "HTML/CSS", "Javascript", "Spring", "Nodejs", "Angularjs", "Vuejs", "Reactjs", "PHP", "Andriod", "IOS", "Swift", "Kotlin", "Objective-c", "MYSQL", "MongoDB", "SpringBoot", "OracleDB"];
 
-                        for(var m=0;m<rows1.length;m++){
-                            if(params[m]==rows2[i].content_id&&rows2[i].none=='1') {
-                                can[m]=1;
+                    for (var i = 0; i < rows2.length; i++) {
+
+                        for (var m = 0; m < rows1.length; m++) {
+                            if (params[m] == rows2[i].content_id && rows2[i].none == '1') {
+                                can[m] = 1;
                                 break;
                             }
-                            if( params[m]==rows2[i].content_id&&can[m]==1){
+                            if (params[m] == rows2[i].content_id && can[m] == 1) {
                                 break;
                             }
                         }
 
-                        if(m!==rows1.length) {
+                        if (m !== rows1.length) {
                             continue;
                         }
 
 
-
-                        for(var j=0;j<index.length;j++) {
+                        for (var j = 0; j < index.length; j++) {
                             var column = index[j]
                             if (rows2[i][column] === '1') {
                                 if (loginUser[column] == '1') {
@@ -133,8 +131,7 @@ router.get("/classes/:cur", function (req, res) {
                                             break;
                                         }
                                     }
-                                }
-                                else {
+                                } else {
                                     for (var k = 0; k < rows1.length; k++) {
                                         if (rows2[i].content_id === params[k]) {
                                             can[k] = 0;
@@ -152,13 +149,11 @@ router.get("/classes/:cur", function (req, res) {
                         can: can,
                         data: rows1,
                         classes: result2,
-                        name:req.session.name,
-                        credit:req.session.credit
+                        name: req.session.name,
+                        credit: req.session.credit
                     }));
 
                 })
-
-
 
 
             });
@@ -181,7 +176,7 @@ router.get("/class", function (req, res) {
 //삽입 페이지
 router.get("/insert_class", function (req, res) {
 
-    res.render('insert_class.ejs',{loginInfo:user.loginUser});   
+    res.render('insert_class.ejs', {loginInfo: user.loginUser});
 
 })
 //클래스 삽입
@@ -197,41 +192,40 @@ router.post("/insert_class", function (req, res) {
     body["datetime"] = now;
     // content_id++; //
     var queryString = 'insert into classes set ?'
-    getConnection().query(queryString,body, function (error,result) {
+    getConnection().query(queryString, body, function (error, result) {
         //응답
         if (error) {
             console.log("페이징 에러" + error);
             return
         }
-        content_id =result.insertId;
-        for(var m=0;m<positionList.length;m++){
+        content_id = result.insertId;
+        for (var m = 0; m < positionList.length; m++) {
             var condition = positionList[m].condition;
             var number = positionList[m].number;
             var description = positionList[m].description;
             var position = {};
-            for(var n=0;n<condition.length;n++){
+            for (var n = 0; n < condition.length; n++) {
                 position[condition[n]] = 1;
             }
             position["type"] = 1;
-            position["content_id"] =content_id;
+            position["content_id"] = content_id;
             position["position_id"] = m;
             position["number"] = number;
             position["description"] = description;
-    
+
             var queryString2 = 'insert into positions set ?'
-            getConnection().query(queryString2,position, function (error,result) {
+            getConnection().query(queryString2, position, function (error, result) {
                 //응답
                 if (error) {
                     console.log("페이징 에러" + error);
                     return
                 }
-                
+
             })
         }
     })
 
 
-    
     res.send();
 })
 
@@ -239,33 +233,33 @@ router.post("/insert_class", function (req, res) {
 //글상세보기
 router.get("/detail_class/:id", function (req, res) {
     fs.readFile('views/class_detail.ejs', 'utf-8', function (error, data) {
-        
+
         getConnection().query('select * from classes where id = ?', [req.params.id], function (error, class_info) {
-            if(error){
+            if (error) {
                 console.log(error);
             }
             getConnection().query('select * from positions where content_id = ? and type=1', [req.params.id], function (error, positions) {
-                if(error){
+                if (error) {
                     console.log(error);
                 }
                 getConnection().query('select * from participants where content_id = ? and type=1', [req.params.id], function (error, participants) {
-                    if(error){
+                    if (error) {
                         console.log(error);
                     }
                     getConnection().query('select * from userinfo where id = ?', [class_info[0].author_id], function (error, author_info) {
-                        if(error){
+                        if (error) {
                             console.log(error);
                         }
                         res.send(ejs.render(data, {
                             "class_info": class_info[0],
-                            "author_info":author_info[0],
+                            "author_info": author_info[0],
                             "positions": positions,
-                            "loginUser" : user.loginUser,
-                            "participants":participants
+                            "loginUser": user.loginUser,
+                            "participants": participants
                         }))
                     })
                 })
-                
+
             })
 
         })
@@ -280,27 +274,24 @@ router.post("/delete_class", function (req, res) {
         if (error) {
             console.log("에러");
             return
-        }
-        else{
+        } else {
             getConnection().query('delete from positions where content_id=? and type=1', classInfo.id, function (error) {
                 if (error) {
                     console.log("에러");
                     return
-                }
-                else{
-                    
+                } else {
+
                     getConnection().query('delete from participants where content_id=? and type=1', classInfo.id, function (error) {
                         if (error) {
                             console.log("에러");
                             return
-                        }
-                        else{
+                        } else {
                             res.send();
                         }
                     })
                 }
             })
-            
+
         }
     })
 })
@@ -313,8 +304,7 @@ router.post("/participate_class", function (req, res) {
         if (error) {
             console.log("페이징 에러" + error);
             return
-        }
-        else{
+        } else {
             res.send();
         }
     })
@@ -322,17 +312,188 @@ router.post("/participate_class", function (req, res) {
 
 router.post("/delete_participant", function (req, res) {
     var cancelInfo = req.body;
-    
-    getConnection().query('delete from participants where type = ? and content_id = ? and position_id = ? and participant_id =?' , [cancelInfo.type,cancelInfo.content_id,cancelInfo.position_id,cancelInfo.participant_id], function (error) {
+
+    getConnection().query('delete from participants where type = ? and content_id = ? and position_id = ? and participant_id =?', [cancelInfo.type, cancelInfo.content_id, cancelInfo.position_id, cancelInfo.participant_id], function (error) {
         if (error) {
             console.log("페이징 에러" + error);
-            
+
             return
-        }
-        else{
+        } else {
             console.log("취소완료");
             res.send();
         }
+    })
+})
+
+// skill tag filtering
+router.get("/classes/skills/:tags", function (req, res) {
+
+    loginUser = require('../server').loginUser
+    var skills = req.params.tags;
+    skills = skills.split(',');
+
+    for (var i = 0; i < skills.length; i++) {
+        if (skills[i] == 'CSharp') {
+            skills[i] = "C#"
+        }
+    }
+    for (var i = 0; i < skills.length; i++) {
+        if (skills[i] == 'CPlusPlus') {
+            skills[i] = "C++"
+        }
+    }
+    for (var i = 0; i < skills.length; i++) {
+        if (skills[i] == 'HTMLANDCSS') {
+            skills[i] = "HTML/CSS"
+        }
+    }
+    var selectedContent = [];
+
+    fs.readFile('views/class_tags.ejs', 'utf-8', function (error, data) {
+        getConnection().query('select * from positions where type=1', function (error, positions) { //TODO type 바꿀것
+                if (error) {
+                    console.log(error + "mysql 조회 실패");
+                    return;
+                }
+
+                var index = ["C", "C++", "C#", "Java", "Ruby", "Python", "R", "Go", "HTML/CSS", "Javascript", "Spring", "Nodejs", "Angularjs", "Vuejs", "Reactjs", "PHP", "Andriod", "IOS", "Swift", "Kotlin", "Objective-c", "MYSQL", "MongoDB", "SpringBoot", "OracleDB"];
+
+                for (var i = 0; i < positions.length; i++) {
+                    for (var j = 0; j < skills.length; j++) {
+                        if (positions[i][skills[j]] == '1') {
+                            selectedContent.push(positions[i].content_id);
+                        }
+                    }
+                }
+                if (selectedContent.length == 0) {
+                    fs.readFile('views/no_class.ejs', 'utf-8', function (error, data) {
+                        for (var i = 0; i < skills.length; i++) {
+                            if (skills[i] == 'HTML/CSS') {
+                                skills[i] = "HTMLANDCSS"
+                            }
+                        }
+                        for (var i = 0; i < skills.length; i++) {
+                            if (skills[i] == 'C#') {
+                                skills[i] = "CSharp"
+                            }
+                        }
+                        for (var i = 0; i < skills.length; i++) {
+                            if (skills[i] == "C++") {
+                                skills[i] = 'CPlusPlus'
+                            }
+                        }
+                        res.send(ejs.render(data, {
+                            name: req.session.name,
+                            credit: req.session.credit,
+                            tags: skills,
+                        }));
+
+                    })
+                }
+                else{
+                    var queryString1 = 'select * from classes where';
+
+
+                    for (var i = 0; i < selectedContent.length; i++) {
+                        queryString1 = queryString1 + ' id=' + selectedContent[i];
+                        if (i + 1 != selectedContent.length) {
+                            queryString1 = queryString1 + ' OR'
+                        }
+                    }
+                    getConnection().query(queryString1, function (error, rows) {
+                        if (error) {
+                            console.log(error + "mysql 조회 실패");
+                            return;
+                        }
+                        var can = new Array(rows.length)
+                        var queryString2 = 'select * from positions where '
+
+                        for (var i = 0; i < rows.length; i++) {
+                            queryString2 = queryString2 + "content_id=? AND type=1" //TODO type=0
+                            if (i + 1 != rows.length) {
+                                queryString2 = queryString2 + " OR "
+                            }
+                            can[i] = 0;
+                        }
+                        getConnection().query(queryString2, selectedContent, function (error, rows2) {
+
+                            var index = ["C", "C++", "C#", "Java", "Ruby", "Python", "R", "Go", "HTML/CSS", "Javascript", "Spring", "Nodejs", "Angularjs", "Vuejs", "Reactjs", "PHP", "Andriod", "IOS", "Swift", "Kotlin", "Objective-c", "MYSQL", "MongoDB", "SpringBoot", "OracleDB"];
+
+                            for (var i = 0; i < rows2.length; i++) {
+
+                                for (var m = 0; m < rows.length; m++) {
+                                    if (selectedContent[m] == rows2[i].content_id && rows2[i].none == '1') {
+                                        can[m] = 1;
+                                        break;
+                                    }
+                                    if (selectedContent[m] == rows2[i].content_id && can[m] == 1) {
+                                        break;
+                                    }
+                                }
+
+                                if (m !== rows.length) {
+                                    continue;
+                                }
+
+
+                                for (var j = 0; j < index.length; j++) {
+                                    var column = index[j]
+                                    if (rows2[i][column] === '1') {
+                                        if (loginUser[column] == '1') {
+                                            for (var l = 0; l < rows.length; l++) {
+                                                if (rows2[i].content_id === selectedContent[l]) {
+                                                    can[l] = 1;
+                                                    break;
+                                                }
+                                            }
+                                        } else {
+                                            for (var k = 0; k < rows.length; k++) {
+                                                if (rows2[i].content_id === selectedContent[k]) {
+                                                    can[k] = 0;
+                                                    break;
+                                                }
+
+                                            }
+                                            break
+                                        }
+                                    }
+                                }
+
+
+                            }
+                            for (var i = 0; i < skills.length; i++) {
+                                if (skills[i] == 'HTML/CSS') {
+                                    skills[i] = "HTMLANDCSS"
+                                }
+                            }
+                            for (var i = 0; i < skills.length; i++) {
+                                if (skills[i] == 'C#') {
+                                    skills[i] = "CSharp"
+                                }
+                            }
+                            for (var i = 0; i < skills.length; i++) {
+                                if (skills[i] == "C++") {
+                                    skills[i] = 'CPlusPlus'
+                                }
+                            }
+                            res.send(ejs.render(data, {
+                                can: can,
+                                data: rows,
+                                name: req.session.name,
+                                credit: req.session.credit,
+                                tags: skills,
+                            }));
+
+
+                        })
+
+                    });
+                }
+
+
+            }
+        );
+
     })
 })
 
