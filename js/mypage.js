@@ -94,6 +94,69 @@ function initial_mypage(){
                     
                 }
             }
+            $(".studyList").html(initialStudy);
+            if(userStudy){
+                for(var m=0; m<userStudy.length;m++){
+                    var datearr = userStudy[m].date.split(',');
+                    var timearr = userStudy[m].time.split(',');
+                    var datetime = [];
+                    var gatherNum = parseInt(userStudy[m].total_participant)-1;
+                    for (var dl=0; dl<datearr.length; dl++){
+                        
+                        datetime[dl] =  datearr[dl] + ' : ' +  timearr[dl];
+                        
+        
+                    }
+                    var datetimearr = datetime.join(' | ');
+                    
+                    var dynamicList = '<div class="specificTitle">'
+                                    + '<p>'+userStudy[m].title+'</p>'
+                                    +'</div>'
+                                    +'<div class="specificContent">'
+                                    +'<div class = "leftbox">'
+                                    +'<p class = "detailContent">상세정보</p>'
+                                    +'<p class = "halfBox">작성자id :' +userStudy[m].author_id+'</p>'
+                                    +'<p class = "halfBox">내 역할 :' +userStudy[m].role+'</p>'
+                                    
+                                    
+                                    + '<p class = "halfBox totalNum"> 모집 인원 : <span>'+gatherNum+'</span> 명</p>'
+                                    +'<p>시간 : '+datetimearr+'</p>'
+                                    +'<div class = "participantBox">'
+                                    +'<p class = "partyList"> 모집 현황 </p>'
+                                    +'<div class="groupMember">'
+                                    +'<ul class = "memberuserClass" id ='+'"'+'member'+userStudy[m].id+'_s"'+'>'
+                                
+
+                                    +'</ul>'
+                                    +'</div>'
+                                    +'</div>'
+                                    +'</div>'
+                                    
+                                    
+                                    +'<div class = "rightbox">'
+                                    +'<p class = "detailContent">신청자 목록</p>'
+                                    +'<div class = "partibox" id = '+'"'+userStudy[m].id+'_s"'+'>'
+                                    +'<table id="partitable" class = "partyTable">'
+                                    +'<thead>'
+                                    +'<tr>'
+                                    +'<td>모집 분야</td>'
+                                    +'<td>신청자 ID</td>'
+                                    +'<td>수락</td>'
+                                    +'</tr>'
+                                    +'</thead>'
+                                    +'<tbody>'
+                                    +'</tbody>'
+                                    +'</table>'
+                                    +'</div>'
+                                    +'</div>'
+                                    +'<div class="makeBox"><button class="makeGroupBtn">그룹 만들기</button></div>'
+                                    +'</div>';
+                                    
+                    $(".studyList").append(dynamicList);
+                    
+                }
+                    
+            }
             
        
             var temparr = []
@@ -127,6 +190,31 @@ function initial_mypage(){
                             
                         }
                     }
+                    for(var y=0; y<userStudy.length; y++){
+                        
+                        if(positions[x].content_id == userStudy[y].id){
+                            var i = 0
+                            for (var t=0; t<typeAry.length; t++){
+                                
+                                if(positions[x][typeAry[t]]==1){
+                                    temparr[i] =typeAry[t];
+                                    i++;
+                                    
+                                }
+                            
+                            }
+                            
+
+                            templist[x]=temparr.toString();
+                            var number = positions[x].position_id + 1
+                            var currentnum = 0;
+                            //삭제한 부분
+                            // $("#"+userClass[y].id).children().append('<tr> <td>'+templist[x]+'</td> </tr>');
+                            $("#member"+userStudy[y].id+"_s").append("<li class='conditionLine'><span class ='marginleft'>"+number+"</span><span class='conditionList marginleft'>"+templist[x]+"</span>"+"(<span class='currentnum colortext'>"+currentnum+"</span><span class ='colortext'>/</span><span class='totalnum colortext'>"+positions[x].number+"</span>)"+"</li> <li><span >▶</span></li>");
+                            temparr=[];
+                            
+                        }
+                    }
                 }
             }
 
@@ -147,53 +235,23 @@ function initial_mypage(){
                             
                           
                         }
-                    }   
+                    }
+                    for (var q=0; q<userStudy.length; q++){
+                        if(participants[p].type == 0 && participants[p].content_id == userStudy[q].id){
+                            position_s = "position_s" + participants[p].position_id;
+
+                            //추가한 부분
+                            var condition = $("#"+userStudy[q].id+"_s").parent(".rightbox").siblings(".leftbox").find(".conditionList").eq(participants[p].position_id).text();
+                           
+                            // 수정한 부분
+                            $("#"+userStudy[q].id+"_s").children().children('tbody').append('<tr class='+participants[p].position_id+'><td>'+condition+'</td><td>'+ partiList +'</td>'+'<td> <button class = "acceptBtn">수락 하기</button></td></tr>');                            
+                            
+                        }
+                    }
+                      
                 }
             }
           
-            $(".studyList").html(initialStudy);
-            if(userStudy){
-                for(var m=0; m<userStudy.length;m++){
-                    
-                    var dynamicList_study = '<div class="specificTitle">'
-                                    + '<div>'+userStudy[m].title+'</div>'
-                                    +'</div>'
-                                    +'<div class="specificContent">'
-                                    +'<div class = "leftbox">'
-                                    +'작성자id : ' +userStudy[m].author_id
-                                    +'<br>'
-                                    +'<br>'
-                                    +'시간 : '+userStudy[m].date
-                                    +'<br>'
-                                    + '크레딧 : ' + userStudy[m].credit
-                                    +'<p> 참여자 현황 </p>'
-                                    +'<ul><li class="groupMember">'
-                                    +'<p class="memberName">이름</p></li><li class="groupMember"><p class="memberName">이름</p></li></ul>'
-                                    +'</div>'
-                                    +'<div class = "rightbox">'
-                                    +'신청자 목록.'
-                                    +'<div class = "partibox" id = '+'"'+userStudy[m].id+'"'+'>'
-                                    +'</div>'
-                                    +'</div>'
-                                    +'</div>';
-                                    
-                    $(".studyList").append(dynamicList_study);
-                    
-                }
-                    
-            }
-
-            if(participants){
-                for(var p=0; p<participants.length;p++){
-                    var partiList = participants[p].participant_id;
-                    for (var q=0; q<userStudy.length; q++){
-                        if(participants[p].type == 0 && participants[p].content_id == userStudy[q].id){
-                            
-                            $("#"+userStudy[q].id).append(partiList);
-                        }
-                    }   
-                }
-            }
 
 
             $(".checkbox-container").each(function(){
