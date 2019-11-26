@@ -48,7 +48,10 @@ function initial_mypage(){
                     var datetimearr = datetime.join(' | ');
                     
                     var dynamicList = '<div class="specificTitle">'
-                                    + '<p>'+userClass[m].title+'</p>'
+                                    + '<span>'+userClass[m].title+'  '
+                                    +'<sapn class ="alarm"> </span>'
+                                    +'</sapn>'
+                                    +'<p> 등록일자 : '+userClass[m].datetime+'</p>'
                                     +'</div>'
                                     +'<div class="specificContent">'
                                     +'<div class = "leftbox">'
@@ -105,12 +108,12 @@ function initial_mypage(){
                         
                         datetime[dl] =  datearr[dl] + ' : ' +  timearr[dl];
                         
-        
                     }
                     var datetimearr = datetime.join(' | ');
                     
                     var dynamicList = '<div class="specificTitle">'
-                                    + '<p>'+userStudy[m].title+'</p>'
+                                    + '<span>'+userStudy[m].title+'  '
+                                    +'<sapn class ="alarm"> </span>'
                                     +'</div>'
                                     +'<div class="specificContent">'
                                     +'<div class = "leftbox">'
@@ -125,8 +128,6 @@ function initial_mypage(){
                                     +'<p class = "partyList"> 모집 현황 </p>'
                                     +'<div class="groupMember">'
                                     +'<ul class = "memberuserClass" id ='+'"'+'member'+userStudy[m].id+'_s"'+'>'
-                                
-
                                     +'</ul>'
                                     +'</div>'
                                     +'</div>'
@@ -222,6 +223,7 @@ function initial_mypage(){
                 
                 for(var p=0; p<participants.length;p++){
                     var partiList = participants[p].participant_id;
+                   
                     for (var q=0; q<userClass.length; q++){
                         if(participants[p].type == 1 && participants[p].content_id == userClass[q].id){
                             
@@ -232,10 +234,18 @@ function initial_mypage(){
                            
                             // 수정한 부분
                             $("#"+userClass[q].id).children().children('tbody').append('<tr class='+participants[p].position_id+'><td>'+condition+'</td><td>'+ partiList +'</td>'+'<td> <button class = "acceptBtn">수락 하기</button></td></tr>');                            
-                            
-                          
                         }
                     }
+                    
+                    // for (var hi=0; hi<userClass.length; hi++){
+                    //     $("#"+hi).children().children('tbody').chidren('tr').each(function(){
+                    //         var trnum = 0;
+                    //         //console.log($(this).length);
+                    //         trnum ++;
+                    //         console.log(trnum);
+                    //     });
+                    // }
+                    
                     for (var q=0; q<userStudy.length; q++){
                         if(participants[p].type == 0 && participants[p].content_id == userStudy[q].id){
                             position_s = "position_s" + participants[p].position_id;
@@ -251,7 +261,36 @@ function initial_mypage(){
                       
                 }
             }
-          
+            //신청자 수만큼 알람기능(클래스)
+            for (var hi=0; hi<userClass.length;hi++){
+                var trnum = $("#"+userClass[hi].id).children().children('tbody').children('tr').length;
+                
+                if(trnum!=0){
+                    $("#"+userClass[hi].id).parent().parent().prev().children().children('.alarm').append(trnum);
+                    $("#"+userClass[hi].id).parent().parent().prev().children().children('.alarm').attr("class","alarm_on");
+
+                }
+            }
+            //신청자 수만큼 알람기능(스터디)
+            for (var hi=0; hi<userStudy.length;hi++){
+                var trnum = $("#"+userStudy[hi].id+"_s").children().children('tbody').children('tr').length;
+                if(trnum!=0){
+                    $("#"+userStudy[hi].id+"_s").parent().parent().prev().children().children('.alarm').append(trnum);
+                    $("#"+userStudy[hi].id+"_s").parent().parent().prev().children().children('.alarm').attr("class","alarm_on");
+
+                }
+            }
+            var trnumSum = 0;
+            $(".alarm_on").each(function(){
+                for(var find = 0; find<$(this).length; find++){
+                    trnumSum = trnumSum + parseInt($(this).text());
+                }
+
+                
+            })
+            $(".trnum_sum").append(trnumSum);
+
+            
 
 
             $(".checkbox-container").each(function(){
@@ -388,8 +427,22 @@ function user2group(){
         var classnum = $(this).parent().parent().parent().parent().parent().attr('id');
         var target = positionname*2 +1;
         var totalnumber = $("#member"+classnum).children('li').eq(target-1).find(".totalnum").text();
+        var dup = false;
         var currentnumber = $("#member"+classnum).children('li').eq(target-1).find(".currentnum").text();
         if(totalnumber>currentnumber){
+            var a = $(this);
+            console.log(a);
+            $(this).parents(".rightbox").siblings(".leftbox").find("#member"+classnum).find('.confirmList').each(function(){
+                if($(this).text()==partiname){
+                    alert("그룹 내 중복된 사용자가 존재합니다.");
+                    dup = true;
+                    return false;
+                }
+            });  
+
+            if(dup){
+                return false;
+            }
             $("#member"+classnum).children('li').eq(target).append('<span class="confirmList">'+partiname+'</span>');
             var cr = $("#member"+classnum).find(".currentnum").eq(positionname).text();
             cr++;
@@ -397,10 +450,12 @@ function user2group(){
                 $("#member"+classnum).children('li').eq(target-1).find(".colortext").css("color","blue");
             }
             $("#member"+classnum).find(".currentnum").eq(positionname).text(cr);
+            console.log(a)
+            a.attr('class',"cancelConfirmBtn");
+            a.text('취소 하기');
+            
            
-            $(this).attr('class',"cancelConfirmBtn");
-            $(this).text('취소 하기')
-
+            
         }
         else{
             $("#member"+classnum).children('li').eq(target-1).find(".colortext").css("color","red");
