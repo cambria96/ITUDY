@@ -101,6 +101,22 @@ input[type="text"]{
     border-bottom: 1px solid #dfaa32;
     font-size: 1.2em;
 }
+#date{
+    font-size : 13px;
+}
+.alarm_on,
+.trnum_sum{
+    color : white;
+    font-size : 0.8em;
+    background-color: #ff6600;
+    display: inline-block;
+    border : 2px solid #ff6600;
+    border-radius : 100%;
+    width : 20px;
+    height: 20px;
+    text-align: center;
+    justify-content: space-around;
+}
 
 .contentWrap{
     display:none;
