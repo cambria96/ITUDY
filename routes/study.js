@@ -185,6 +185,7 @@ router.get("/insert_study", function (req, res) {
 
 })
 //클래스 삽입
+
 router.post("/insert_study", function (req, res) {
 
 
@@ -192,10 +193,13 @@ router.post("/insert_study", function (req, res) {
     var positionList = req.body.positionList;
     var body = req.body.study_info;
     var content_id;
+    var bodyClone={};
     body["author"] = user.loginUser.name;
     body["author_id"] = user.loginUser.id;
     body["datetime"] = now;
+    bodyClone=body;
     // content_id++; //
+    
     var queryString = 'insert into study set ?'
     getConnection().query(queryString,body, function (error,result) {
         //응답
@@ -226,6 +230,15 @@ router.post("/insert_study", function (req, res) {
                     return
                 }
 
+            })
+            bodyClone["id"]= content_id;
+            getConnection().query('insert into studyhistory set ?',bodyClone,function(error,result){
+                if(error){
+                    console.log(error);
+                }
+                else{
+                    
+                }
             })
         }
     })
