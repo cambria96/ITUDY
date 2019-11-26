@@ -33,6 +33,7 @@
   <link href="../css/mypage.css" rel="stylesheet">
 
 
+
   
 
 
@@ -273,7 +274,7 @@
                         <p class="partyType">Class</p>
                         <div class="partyBox">
                             <%for(var n=0; n<classList.length;n++){%>
-                                <div class="partyContent typeClass" >
+                                <div class="partyContent typeClass"  value="/detail_class/<%= classList[n].id %>" >
                                     <div class="partyTitle"><%=classList[n].title%></div>
                                     <div class="subContentBox">
                                         <div class="partyCredit"><img src="../img/coin.png"> <%=classList[n].credit%></div>
@@ -300,7 +301,7 @@
                         <p class="partyType"> Study</p>
                         <div class="partyBox">
                             <%for(var n=0; n<studyList.length;n++){%>
-                                <div class="partyContent typeStudy" >
+                                <div class="partyContent typeStudy"  value="/detail_study/<%= studyList[n].id %>" >
                                     <div class="partyTitle"><%=studyList[n].title%></div>
                                     <div class="subContentBox">
                                         <div class="partyCredit studyCredit"><img src="../img/coin.png"> <%=studyList[n].credit%></div>
@@ -329,6 +330,14 @@
                 </div>
             </div>
         </div>
+        <!--        상세보기(모달)-->
+    <div id="myModal" class="modal">
+        <div id="modal-content" class="modal-content">
+            <iframe id="content-detail" src="" style="height: 80vh;border:0;">
+
+            </iframe>
+        </div>
+    </div>
 
     </section>
       
@@ -398,6 +407,7 @@
             </div>
         </div>
     </footer>
+    
   
 
   <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
@@ -418,10 +428,12 @@
   <script src="contactform/contactform.js"></script>
 
   <!-- Template Main Javascript File -->
-  <script src="js/main.js"></script>
-  <script src="js/header.js"></script>
-  <script src="js/footer.js"></script>
-  <script src="js/mypage.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/header.js"></script>
+  <script src="../js/footer.js"></script>
+  <script src="../js/mypage.js"></script>
+  <script src="../js/modal-dialog.js"></script>
+
 
 
 </body>

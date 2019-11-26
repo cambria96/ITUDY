@@ -20,6 +20,19 @@ $(function() {
             }
             
         });
+        $(".partyContent").not(".partyContent.cancelBtn").click(function() {
+            if($(this).hasClass("addItem")){
+
+            }else{
+                var src = $(this).attr('value')
+                $("#content-detail").prop('src',src)
+                $("#myModal").css({
+                    "display": "block"
+                });
+            }
+            
+        });
+        
 
 
         $("html").click(function(event) {

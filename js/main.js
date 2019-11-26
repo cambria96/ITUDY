@@ -23,7 +23,9 @@
     $('html, body').animate({scrollTop : 0},500, 'easeInOutExpo');
     return false;
   });
-
+  $(".signupBtn").click(function(){
+    location.href="/signup"
+  })
 
   // Header scroll class
   $(window).scroll(function() {

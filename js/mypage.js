@@ -15,7 +15,6 @@ var partyClass;
 var participants;
 var positions;
 var typeAry = ["C","C++","C#","Java","Ruby","Python","R","Go","HTML/CSS","Javascript","Spring","Nodejs","Angularjs","Vuejs","Reactjs","PHP","Android","IOS","Swift","Kotlin","Objective-C","MYSQL","MongoDB","SpringBoot","OracleDB"];
-
 function initial_mypage(){
     
     $(".contentWrap").first().addClass("active");
@@ -29,6 +28,8 @@ function initial_mypage(){
             userStudy = data.userStudy;
             participants = data.participants;
             positions = data.positions;
+            
+
             var initialClass='<p class="innertitle">Class</p>'
             var initialStudy='<p class="innertitle">Study</p>'
              $(".classList").html(initialClass);
@@ -37,6 +38,7 @@ function initial_mypage(){
                     var datearr = userClass[m].date.split(',');
                     var timearr = userClass[m].time.split(',');
                     var datetime = [];
+                    var gatherNum = parseInt(userClass[m].total_participant)-1;
                     for (var dl=0; dl<datearr.length; dl++){
                         
                         datetime[dl] =  datearr[dl] + ' : ' +  timearr[dl];
@@ -53,9 +55,10 @@ function initial_mypage(){
                                     +'<p class = "detailContent">상세정보</p>'
                                     +'<p class = "halfBox">작성자id :' +userClass[m].author_id+'</p>'
                                     +'<p class = "halfBox">내 역할 :' +userClass[m].role+'</p>'
-                                    +'<p>시간 : '+datetimearr+'</p>'
                                     
-                                    + '<p class = "halfBox">크레딧 : ' + userClass[m].credit+'</p><p class = "halfBox totalNum"> 모집 인원 : <span>'+userClass[m].total_participant+'</span> 명</p>'
+                                    
+                                    + '<p class = "halfBox">크레딧 : ' + userClass[m].credit+'</p><p class = "halfBox totalNum"> 모집 인원 : <span>'+gatherNum+'</span> 명</p>'
+                                    +'<p>시간 : '+datetimearr+'</p>'
                                     +'<div class = "participantBox">'
                                     +'<p class = "partyList"> 모집 현황 </p>'
                                     +'<div class="groupMember">'
@@ -67,7 +70,7 @@ function initial_mypage(){
                                     +'</div>'
                                     +'</div>'
                                     
-
+                                    
                                     +'<div class = "rightbox">'
                                     +'<p class = "detailContent">신청자 목록</p>'
                                     +'<div class = "partibox" id = '+'"'+userClass[m].id+'"'+'>'
@@ -368,7 +371,7 @@ function makeGroup(){
             totalNum += parseInt(currentNum);
         })
 
-        if(parseInt(totalParticipant)!=totalNum+1){
+        if(parseInt(totalParticipant)!=totalNum){
             result= confirm("설정 인원보다 모집 인원이 적습니다.\n이대로 그룹을 만드시겠습니까?")
         }
         else{
