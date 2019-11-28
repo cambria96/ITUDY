@@ -344,7 +344,6 @@ app.post("/requestContent",function(req,res){
                             
                             participants =rows;
                             console.log('신청자길이' + participants.length);
-                            console.log(participants[0].participant_id);
 
                             connection.query("SELECT * from positions", function(err,rows,result){
                                 if(!err){
@@ -410,7 +409,6 @@ app.post("/request_confirm",function(req,res){
     })
 
 })
-
 app.post("/insert_confirm",function(req,res){
     var users = req.body;
     
@@ -437,36 +435,69 @@ app.post("/insert_confirm",function(req,res){
                     confirmData["username"] = userName;
                     confirmData["email"] = userEmail;
                     confirmData["phonenum"] = userPhone;
+                    confirmData["number"] = req.body.number;
+                    confirmData["type"] = req.body.type;
+
 
                     connection.query("insert into confirm set ?",confirmData,function(err,result){
                         if(!err){
-                            connection.query('delete from classes where id = ?',users.content_id,function(err,result){
-                                if(!err){
-                                    connection.query('delete from positions where content_id = ?',users.content_id,function(err,result){
-                                        if(!err){
-                                            connection.query('delete from participants where content_id = ?',users.content_id,function(err,result){
-                                                if(!err){
-                                                    console.log("그룹 생성 완료");
-                                                    
-                                                    res.send();
-                                                }
-                                                else{
-                                                    console.log('Error while performing Query.',err);
-                                                }
-                                            })
-                                            
-                                        }
-                                        else{
-                                            console.log('Error while performing Query.',err);
-                                        }
-                                    })
-                                    
-                                }
-                                else{
-                                    console.log('Error while performing Query.',err);
-                                }
-                            })
-                            res.send();
+                            if(req.body.type == 1){
+                                connection.query('delete from classes where id = ?',users.content_id,function(err,result){
+                                    if(!err){
+                                        connection.query('delete from positions where content_id = ?',users.content_id,function(err,result){
+                                            if(!err){
+                                                connection.query('delete from participants where content_id = ?',users.content_id,function(err,result){
+                                                    if(!err){
+                                                        console.log("그룹 생성 완료");
+                                                        
+                                                        res.send();
+                                                    }
+                                                    else{
+                                                        console.log('Error while performing Query.',err);
+                                                    }
+                                                })
+                                                
+                                            }
+                                            else{
+                                                console.log('Error while performing Query.',err);
+                                            }
+                                        })
+                                        
+                                    }
+                                    else{
+                                        console.log('Error while performing Query.',err);
+                                    }
+                                })
+                            }else{
+                                connection.query('delete from study where id = ?',users.content_id,function(err,result){
+                                    if(!err){
+                                        connection.query('delete from positions where content_id = ?',users.content_id,function(err,result){
+                                            if(!err){
+                                                connection.query('delete from participants where content_id = ?',users.content_id,function(err,result){
+                                                    if(!err){
+                                                        console.log("그룹 생성 완료");
+                                                        
+                                                        res.send();
+                                                    }
+                                                    else{
+                                                        console.log('Error while performing Query.',err);
+                                                    }
+                                                })
+                                                
+                                            }
+                                            else{
+                                                console.log('Error while performing Query.',err);
+                                            }
+                                        })
+                                        
+                                    }
+                                    else{
+                                        console.log('Error while performing Query.',err);
+                                    }
+                                })
+
+                            }
+                            
                         }
                         else{
                             console.log('Error while performing Query.',err);
@@ -483,9 +514,65 @@ app.post("/insert_confirm",function(req,res){
         });
     }
 })
-// app.get("/class",function(req,res){
-//     res.render('class.ejs');
-// })
+
+app.post("/add_stack",function(req,res){
+    var content_id = req.body.content_id;
+    var agreeName = req.body.agree;
+    console.log(agreeName);
+    connection.query('update confirm set stack = stack + 1 ,agree = concat(ifnull(agree,""),?) where content_id = ?',[agreeName,content_id],function(err,result){
+        if(!err){
+            
+            connection.query('select * from confirm where content_id = ?',[content_id],function(err,rows,result){
+                if(!err){
+                    console.log("삭제 스택 추가");
+                    console.log(rows[0].stack)
+                    console.log(rows[0].number)
+                    if(rows[0].stack == rows[0].number){
+
+                        connection.query('delete from confirm where content_id = ?',[content_id],function(err){
+
+                            if(!err){
+                                res.send({"check":1});
+                            }
+                            else{
+                                console.log(err);
+                            }
+                        })
+                    }
+                    else{
+
+                        res.send({"check":0});
+                    }
+                    
+                    
+                }
+                else{
+                    console.log('Error while performing Query.',err);
+                }
+            })
+
+        }
+        else{
+            console.log('Error while performing Query.',err);
+        }
+    })
+})
+
+app.post("/delete_stack",function(req,res){
+    var content_id = req.body.content_id;
+    var agreeName = req.body.agree;
+    console.log(agreeName);
+    connection.query('update confirm set stack = stack - 1 ,agree = ? where content_id = ?',[agreeName,content_id],function(err,result){
+        if(!err){
+            
+            console.log("삭제 스택 감소");
+            res.send();
+        }
+        else{
+            console.log('Error while performing Query.',err);
+        }
+    })
+})
 //
 // app.get("/study",function(req,res){
 //     res.render('study.ejs');

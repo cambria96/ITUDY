@@ -8,6 +8,7 @@ $(document).ready(function(){
     cancelParticipant();
     makeGroup();
     requestConfirm();
+    deleteConfirm();
 });
 var loginUser;
 var userClass;
@@ -31,10 +32,11 @@ function initial_mypage(){
             positions = data.positions;
             
 
-            var initialClass='<p class="innertitle">Class</p>'
-            var initialStudy='<p class="innertitle">Study</p>'
-             $(".classList").html(initialClass);
-            if(userClass){
+            
+           
+            if(userClass.length>0){
+                var initialClass='<p class="innertitle">Class</p>'
+                $(".classList").html(initialClass);
                 for(var m=0; m<userClass.length;m++){
                     var datearr = userClass[m].date.split(',');
                     var timearr = userClass[m].time.split(',');
@@ -49,9 +51,9 @@ function initial_mypage(){
                     var datetimearr = datetime.join(' | ');
                     
                     var dynamicList = '<div class="specificTitle">'
-                                    + '<span>'+userClass[m].title+'  '
-                                    +'<sapn class ="alarm"> </span>'
-                                    +'</sapn>'
+                                    + '<span ><span class="realTitle">'+userClass[m].title+'</span>  '
+                                    +'<span class ="alarm"> </span>'
+                                    +'</span>'
                                     +'<p id = "date"> 등록일자 : '+userClass[m].datetime+'</p>'
                                     +'</div>'
                                     +'<div class="specificContent">'
@@ -91,15 +93,21 @@ function initial_mypage(){
                                     +'</table>'
                                     +'</div>'
                                     +'</div>'
-                                    +'<div class="makeBox"><button class="makeGroupBtn" value='+userClass[m].id+'>그룹 만들기</button></div>'
+                                    +'<div class="makeBox" value="1"><button class="makeGroupBtn" value='+userClass[m].id+'>그룹 만들기</button></div>'
                                     +'</div>';
                                     
                     $(".classList").append(dynamicList);
                     
                 }
             }
-            $(".studyList").html(initialStudy);
-            if(userStudy){
+            else{
+                var initialClass='<p class="innertitle">Class</p><p class="noneLine">등록된 클래스가 없습니다</p>'
+                $(".classList").html(initialClass);
+            }
+            
+            if(userStudy.length>0){
+                var initialStudy='<p class="innertitle">Study</p>'
+                $(".studyList").html(initialStudy);
                 for(var m=0; m<userStudy.length;m++){
                     var datearr = userStudy[m].date.split(',');
                     var timearr = userStudy[m].time.split(',');
@@ -113,9 +121,10 @@ function initial_mypage(){
                     var datetimearr = datetime.join(' | ');
                     
                     var dynamicList = '<div class="specificTitle">'
-                                    + '<span>'+userStudy[m].title+'  '
-                                    +'<sapn class ="alarm"> </span>'
-                                    +'<p id = "date"> 등록일자 : '+userClass[m].datetime+'</p>'
+                                    + '<span ><span class="realTitle">'+userStudy[m].title+'</span>  '
+                                    +'<span class ="alarm"> </span>'
+                                    +'</span>'
+                                    +'<p id = "date"> 등록일자 : '+userStudy[m].datetime+'</p>'
                                     +'</div>'
                                     +'<div class="specificContent">'
                                     +'<div class = "leftbox">'
@@ -152,13 +161,16 @@ function initial_mypage(){
                                     +'</table>'
                                     +'</div>'
                                     +'</div>'
-                                    +'<div class="makeBox"><button class="makeGroupBtn">그룹 만들기</button></div>'
+                                    +'<div class="makeBox" value="0"><button class="makeGroupBtn" value='+userStudy[m].id+'>그룹 만들기</button></div>'
                                     +'</div>';
                                     
                     $(".studyList").append(dynamicList);
                     
                 }
                     
+            }else{
+                var initialStudy='<p class="innertitle">Study</p><p class="noneLine">등록된 스터디가 없습니다</p>'
+                $(".studyList").html(initialStudy);
             }
             
        
@@ -290,7 +302,15 @@ function initial_mypage(){
 
                 
             })
-            $(".trnum_sum").append(trnumSum);
+            if(trnumSum !=0){
+                $(".alarm_on").addClass("active");
+                $(".trnum_sum").addClass("active");
+                $(".trnum_sum").append(trnumSum);
+            }
+            else{
+                $(".trnum_sum").remove();
+            }
+            
 
             
 
@@ -509,21 +529,24 @@ function makeGroup(){
             result= confirm("그룹을 생성하시겠습니까?\n그룹이 생성되면 모집 인원들의 이름과 전화번호가 공개됩니다.");
         }
         if(result){
-            
+            var groupType = $(this).parent().attr("value");
             var content_id =$(this).val();
             var users = [];
             var user
             var confirmData={};
             users.push(loginUser.id);
-            var title = $(this).parents(".specificContent").prev().children().text();
-            $(this).parent().siblings(".leftbox").find(".confirmList").each(function(){
+            var title = $(this).parents(".specificContent").prev().find(".realTitle").text();
+                $(this).parent().siblings(".leftbox").find(".confirmList").each(function(){
                 users.push($(this).text())
             });
             users= users.toString();
             console.log(users);
+            confirmData["type"] = groupType;
             confirmData["content_id"] = content_id;
             confirmData["users"] = users;
             confirmData["title"] = title;
+            confirmData["number"] = totalNum+1;
+    
             $.ajax({
                 url: "/insert_confirm",
                 type: "POST",
@@ -545,7 +568,6 @@ function makeGroup(){
     })
  
 }
-
 function requestConfirm(){
 
     $(".confirmGroup").click(function(){
@@ -565,10 +587,26 @@ function requestConfirm(){
                     for(var n=0;n<memberName.length;n++){
                         dynamicLi +=' <li class="confirmGroupList"><span class="name">'+memberName[n]+'</span><span class="email">'+memberEmail[n]+'</span><span class="phone">'+memberPhone[n]+'</span><button class="profileBtn">프로필 보기</button></li>'
                     }
+                    var agreeList = memberList[m].agree.split(",");
+                    console.log(memberList[m].type);
+                    var dynamicType;
+                    if(memberList[m].type ==1){
+                        dynamicType="detail_class_history/"
+                    }
+                    else{
+                        dynamicType="detail_study_history/"
+                    }
+                    if(agreeList.indexOf(loginUser.id)){
+                        
+                        var dynamicBtn = '<li class="confirmGroupList"><p>'+memberList[m].title+' <span class="detailLink" value="'+dynamicType+memberList[m].content_id+'">자세히 보기</span></p><p class="deleteConfirm" value='+memberList[m].content_id+'><i class="fa fa-close"></i></p></li>'
 
-                    var dynamicMember = '<div class="confirmBox">'
+                    }else{
+                        var dynamicBtn = '<li class="confirmGroupList"><p>'+memberList[m].title+' <span class="detailLink" value="'+dynamicType+memberList[m].content_id+'">자세히 보기</span></p><p class="deleteConfirm" value='+memberList[m].content_id+'><i class="fa fa-ellipsis-h"></i></p></li>'
+                    }
+
+                    var dynamicMember = '<div class="confirmBox" value='+memberList[m].agree+'>'
                         +'<ul>'
-                        +'    <li class="confirmGroupList"><p>'+memberList[m].title+' <span class="detailLink" value="detail_class_history/'+memberList[m].content_id+'">자세히 보기</span></p></li>'
+                        +dynamicBtn
                         +dynamicLi
                         +'</ul>'
                      +'</div>'
@@ -586,5 +624,66 @@ function requestConfirm(){
 }
 
 function deleteConfirm(){
+    $(document).on("click",".deleteConfirm",function(){
+        var content_id = $(this).attr('value');
+        var agreeList = $(this).parents(".confirmBox").attr("value");
+        agreeList = agreeList.replace(loginUser.id+",","")
+
+        
+        if($(this).children().hasClass("fa-close")){
+            var thisBtn = $(this);
+            var result = confirm("참여중인 그룹을 해체하시겠습니까?\n구성원 모두가 해체 시 목록에서 사라집니다.")
+            if(result){
+
+                $.ajax({
+                    url:"/add_stack",
+                    type:"POST",
+                    data:{
+                        "content_id":content_id,
+                        "agree" :loginUser.id+","
+                    },
+                    success:function(data){
+                        if(data.check){
+                            alert("구성원이 모두 동의해 그룹을 삭제합니다.");
+                            location.reload();
+                        }
+                        else{
+                            thisBtn.children().removeClass("fa-close").addClass("fa-ellipsis-h");
+                        }
+                        
+                    },
+                    error: function(request,error,status){
+                        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                        return false;
+                    }
+                })
+                
+            }
+        }
+        else{
+            var thisBtn = $(this);
+            var result = confirm("그룹 해체를 취소하시겠습니까?")
+            if(result){
+
+                $.ajax({
+                    url:"/delete_stack",
+                    type:"POST",
+                    data:{
+                        "content_id":content_id,
+                        "agree" :agreeList
+                    },
+                    success:function(){
+                        thisBtn.children().removeClass("fa-ellipsis-h").addClass("fa-close");
+                        
+                    },
+                    error: function(request,error,status){
+                        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                        return false;
+                    }
+                })
+                
+            }
+        }
+    })
     
 }

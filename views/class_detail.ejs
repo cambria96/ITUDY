@@ -111,10 +111,20 @@
                         <% } %>               
                     </ul>
                 </div>
-                <div class="divideBox">
-                    <p class="groupSubTitle">필요 크레딧</p>
-                    <span class ="groupContent"><img src="../img/coin.png">  <%=class_info.credit%></span>
-                </div>
+                <%
+                    if(class_info.role =="멘토"){%>
+                        <div class="divideBox">
+                            <p class="groupSubTitle">필요 크레딧</p>
+                            <span class ="groupContent"><img src="../img/coin.png">  <%=class_info.credit%></span>
+                        </div>
+                    <%}else{%>
+                        <div class="divideBox">
+                            <p class="groupSubTitle">획득 크레딧</p>
+                            <span class ="groupContent"><img src="../img/coin.png">  <%=class_info.credit%></span>
+                        </div>
+                   <% }
+                %>
+                
             </div>
             <div class="middleLine"></div>
             <div class="divideWrap">

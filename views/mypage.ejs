@@ -273,52 +273,71 @@
                     <p class="contentTitle">신청중인 그룹</p>
                         <p class="partyType">Class</p>
                         <div class="partyBox">
-                            <%for(var n=0; n<classList.length;n++){%>
-                                <div class="partyContent typeClass"  >
-                                    <div class="partyTitle" value="/detail_class/<%= classList[n].id %>"><span><%=classList[n].title%></span></div>
-                                    <div class="subContentBox">
-                                        <div class="partyCredit"><img src="../img/coin.png"> <%=classList[n].credit%></div>
-                                        <div class="partyTime">
-                                            <%       
-                                                var timeList = classList[n].time.split(",");
-                                                var dateList = classList[n].date.split(",");
-                                                for(var m=0;m<dateList.length;m++){%>
-                                                    <p><span><%=dateList[m]%>&nbsp|&nbsp<%=timeList[m]%></span> </p>
-                                                <%}
-                                                console.log(position_id_class[n]);
+                            <%  if(classList.length>0){%>
 
-                                            %>
+                                <%for(var n=0; n<classList.length;n++){%>
+                                        <div class="partyContent typeClass"  >
+                                            <div class="partyTitle" value="/detail_class/<%= classList[n].id %>"><span><%=classList[n].title%></span></div>
+                                            <div class="subContentBox">
+                                                <div class="partyCredit"><img src="../img/coin.png"> <%=classList[n].credit%></div>
+                                                <div class="partyTime">
+                                                    <%       
+                                                        var timeList = classList[n].time.split(",");
+                                                        var dateList = classList[n].date.split(",");
+                                                        for(var m=0;m<dateList.length;m++){%>
+                                                            <p><span><%=dateList[m]%>&nbsp|&nbsp<%=timeList[m]%></span> </p>
+                                                        <%}
+                                                        console.log(position_id_class[n]);
+        
+                                                    %>
+                                                </div>
+                                                
+                                                
+                                                <input class="posNum" style="display:none" value=<%=position_id_class[n]%> >
+                                                <button class="cancelBtn classCancelBtn" value =<%=classList[n].id %> >취소</button>
+                                            </div>
                                         </div>
-                                        
-                                        
-                                        <input class="posNum" style="display:none" value=<%=position_id_class[n]%> >
-                                        <button class="cancelBtn classCancelBtn" value =<%=classList[n].id %> >취소</button>
-                                    </div>
-                                </div>
+                                    <%}%>
+                                
+                            <% }else{ %>
+                                <p class="noneLine">신청한 클래스가 없습니다.</p>
+
                             <%}%>
+
+                            
                         </div>
                         <p class="partyType"> Study</p>
                         <div class="partyBox">
-                            <%for(var n=0; n<studyList.length;n++){%>
-                                <div class="partyContent typeStudy"  >
-                                    <div class="partyTitle" value="/detail_study/<%= studyList[n].id %>"><span><%=studyList[n].title%></span></div>
-                                    <div class="subContentBox">
-                                        <div class="partyCredit studyCredit"><img src="../img/coin.png"> <%=studyList[n].credit%></div>
-                                        <div class="partyTime">
-                                            <% 
-                                                var timeList = studyList[n].time.split(",");
-                                                var dateList = studyList[n].date.split(",");
-                                                for(var m=0;m<dateList.length;m++){%>
-                                                    <p><span><%=dateList[m]%>&nbsp|&nbsp<%=timeList[m]%></span> </p>
-                                                <%}
-                                                
-                                            %>
-                                        </div>
-                                        <input class="posNum" style="display:none" value=<%=position_id_study[n]%>>
-                                        <button class="cancelBtn studyCancelBtn"  value=<%=studyList[n].id %>>취소</button>
-                                    </div>
-                                </div>
-                            <%}%>
+
+                                <%  if(studyList.length>0){%>
+
+                                    <%for(var n=0; n<studyList.length;n++){%>
+                                            <div class="partyContent typeStudy"  >
+                                                <div class="partyTitle" value="/detail_study/<%= studyList[n].id %>"><span><%=studyList[n].title%></span></div>
+                                                <div class="subContentBox">
+                                                    <div class="partyCredit studyCredit"><img src="../img/coin.png"> <%=studyList[n].credit%></div>
+                                                    <div class="partyTime">
+                                                        <% 
+                                                            var timeList = studyList[n].time.split(",");
+                                                            var dateList = studyList[n].date.split(",");
+                                                            for(var m=0;m<dateList.length;m++){%>
+                                                                <p><span><%=dateList[m]%>&nbsp|&nbsp<%=timeList[m]%></span> </p>
+                                                            <%}
+                                                            
+                                                        %>
+                                                    </div>
+                                                    <input class="posNum" style="display:none" value=<%=position_id_study[n]%>>
+                                                    <button class="cancelBtn studyCancelBtn"  value=<%=studyList[n].id %>>취소</button>
+                                                </div>
+                                            </div>
+                                        <%}%>
+                                    
+                                <% }else{ %>
+                                    <p class="noneLine">신청한 스터디가 없습니다.</p>
+    
+                                <%}%>
+
+                            
                         </div>
                     </div>
                     <div class="contentWrap lastBox">

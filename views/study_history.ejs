@@ -22,11 +22,11 @@
 <body>
 
     <div class="container">
-            <p class="content_id" style="display:none"><%=class_info.id%></p>
-            <p class="groupTitle"><%=class_info.title%></p>
+            <p class="content_id" style="display:none"><%=study_info.id%></p>
+            <p class="groupTitle"><%=study_info.title%></p>
             <%
-                var date =class_info.date.split(",");
-                var time =class_info.time.split(",")
+                var date =study_info.date.split(",");
+                var time =study_info.time.split(",")
                 
                 var conditionList =[];
                 var typeAry = ["C","C++","C#","Java","Ruby","Python","R","Go","HTML/CSS","Javascript","Spring","Nodejs","Angularjs","Vuejs","Reactjs","PHP","Android","IOS","Swift","Kotlin","Objective-C","MYSQL","MongoDB","SpringBoot","OracleDB","none"];
@@ -45,19 +45,19 @@
                                 i++;
                             }
                             
-                            
                         };
                      }
                     conditionList[n] = conditionAry.toString();
+                    
                 }
             %>
             <div class="divideWrap">
-                <div class="divideBox" style="position:relative">
+                <div class="divideBox">
                     <p class="groupSubTitle">작성자</p>
-                    <span class ="groupContent"><%=class_info.author%></span>
+                    <span class ="groupContent"><%=study_info.author%></span>
                     <button class="profileBtn">프로필 보기</button>
-                    <div class="profileContent">
-                        <div style="text-align: center;border-bottom: 1px solid #dfaa32; margin-bottom: 10px;"><%=class_info.author_id%>'s 프로필</div>
+                    <div class="profileContent" style="width:20%;">
+                        <div style="text-align: center;border-bottom: 1px solid #dfaa32; margin-bottom: 10px;"><%=study_info.author_id%>'s 프로필</div>
                         <div style="font-size:2rem;">
                             <table>
                                 <tr>
@@ -86,23 +86,16 @@
                             활동분야:
                             <%var index = ["C","C++","C#","Java","Ruby","Python","R","Go","HTML/CSS","Javascript","Spring","Nodejs","Angularjs","Vuejs","Reactjs","PHP","Andriod","IOS","Swift","Kotlin","Objective-c","MYSQL","MongoDB","SpringBoot","OracleDB"];
                             for(var i=0;i<index.length;i++){
-                                if(author_info[index[i]]=='1'){
-                                    %>
-                                    <%=index[i]%>
-                                <%}
+                            if(author_info[index[i]]=='1'){
+                            %>
+                            <%=index[i]%>
+                            <%}
                             }%>
                         </div>
                     </div>
                 </div>
                 <div class="divideBox">
-                    <p class="groupSubTitle">모집자 역할</p>
-                    <span class ="groupContent"><%=class_info.role%></span>
-                </div>
-            </div>
-            <div class="middleLine"></div>
-            <div class="divideWrap">
-                <div class="divideBox">
-                    <p class="groupSubTitle">클래스 시간</p>
+                    <p class="groupSubTitle">스터디 시간</p>
                     <ul>
                         <% for (var m=0;m<date.length;m++){%>
                             <li class="groupContent">
@@ -111,23 +104,18 @@
                         <% } %>               
                     </ul>
                 </div>
-                <div class="divideBox">
-                    <p class="groupSubTitle">필요 크레딧</p>
-                    <span class ="groupContent"><img src="../img/coin.png">  <%=class_info.credit%></span>
-                </div>
             </div>
+          
             <div class="middleLine"></div>
             <div class="divideWrap">
                 <div class="fullBox">
                     <p class="groupSubTitle">상세 정보</p>
                     <div class="textBox">
-                        <p class="groupContent detailContent"> <%=class_info.description%></p>
+                        <p class="groupContent detailContent"> <%=study_info.description%></p>
                     </div>
                 </div>
             </div>
     </div>
-   
-
 </body>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -137,5 +125,5 @@
 
     <!-- Template Main Javascript File -->
     <script src="../js/main.js"></script>
-    <script src="../js/class_detail.js"></script>
+    <script src="../js/study_detail.js"></script>
 </html>

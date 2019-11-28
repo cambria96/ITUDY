@@ -283,6 +283,42 @@ router.get("/detail_study/:id", function (req, res) {
 
 })
 
+router.get("/detail_study_history/:id", function (req, res) {
+    fs.readFile('views/study_history.ejs', 'utf-8', function (error, data) {
+
+        getConnection().query('select * from studyhistory where id = ?', [req.params.id], function (error, class_info) {
+            if(error){
+                console.log(error);
+            }
+            getConnection().query('select * from positions where content_id = ? and type=1', [req.params.id], function (error, positions) {
+                if(error){
+                    console.log(error);
+                }
+                getConnection().query('select * from participants where content_id = ? and type=1', [req.params.id], function (error, participants) {
+                    if(error){
+                        console.log(error);
+                    }
+                    getConnection().query('select * from userinfo where id = ?', [class_info[0].author_id], function (error, author_info) {
+                        if(error){
+                            console.log(error);
+                        }
+                        res.send(ejs.render(data, {
+                            "study_info": class_info[0],
+                            "author_info":author_info[0],
+                            "positions": positions,
+                            "loginUser" : user.loginUser,
+                            "participants":participants
+                        }))
+                    })
+                })
+
+            })
+
+        })
+    });
+
+})
+
 // 게시글 삭제
 router.post("/delete_study", function (req, res) {
     var classInfo = req.body;
