@@ -54,7 +54,7 @@
             <div class="divideWrap">
                 <div class="divideBox" style="position:relative">
                     <p class="groupSubTitle">작성자</p>
-                    <span class ="groupContent"><%=class_info.author%></span>
+                    <span class ="groupContent"><%=class_info.author_id%></span>
                     <button class="profileBtn">프로필 보기</button>
                     <div class="profileContent">
                         <div style="text-align: center;border-bottom: 1px solid #dfaa32; margin-bottom: 10px;"><%=class_info.author_id%>'s 프로필</div>
@@ -66,19 +66,19 @@
                                 </tr>
                                 <tr>
                                     <td>레벨</td>
-                                    <td><%=author_info.level%></td>
+                                    <td><img class="levelIcon" src=<%=author_info.level%>></td>
                                 </tr>
                                 <tr>
                                     <td>멘토활동 횟수</td>
-                                    <td><%=author_info.name%></td>
+                                    <td><%=author_info.mento%></td>
                                 </tr>
                                 <tr>
                                     <td>멘티활동 횟수</td>
-                                    <td><%=author_info.name%></td>
+                                    <td><%=author_info.mentee%></td>
                                 </tr>
                                 <tr>
                                     <td>스터디활동 횟수</td>
-                                    <td><%=author_info.name%></td>
+                                    <td><%=author_info.study%></td>
                                 </tr>
                             </table>
                         </div>
@@ -155,37 +155,50 @@
                                 <td><%=positions[m].description%></td>
                                 <td class="totalNumber"><%=positions[m].number%> 명</td>
                                 <% var checkbit=0;
-                                   var applyCheckBit=0;
-                                   
+                                   var conditionCheckBit=0;
+        
                                 %>
                                 <% 
-                                    var conditionCheck = [];
-                                    conditionCheck = conditionList[m].split(",");
-                                    for(var i=0;i<conditionCheck.length;i++){
-                                        if (loginUser[conditionCheck[i]] ==1){
-                                            checkbit=1;
-                                        }else if(conditionCheck[i]=="없음"){
-                                            checkbit=1;
-                                        }else{ 
-                                            checkbit=0;
-                                            break;
-                                        }
+                                    if(class_info.credit>loginUser.credit){
+                                        checkbit=0;
+                                        conditionCheckBit=1;
                                     }
-                                    
-                                    for(var h=0;h<participants.length;h++){
-                                        if(participants[h].position_id == m){
-                                            if(participants[h].participant_id==loginUser.id){
-                                                checkbit=2;
+                                    else{
+                                        var conditionCheck = [];
+                                        conditionCheck = conditionList[m].split(",");
+                                        for(var i=0;i<conditionCheck.length;i++){
+                                            if (loginUser[conditionCheck[i]] ==1){
+                                                checkbit=1;
+                                            }else if(conditionCheck[i]=="없음"){
+                                                checkbit=1;
+                                            }else{ 
+                                                checkbit=0;
+                                                break;
+                                            }
+                                        }
+                                        for(var h=0;h<participants.length;h++){
+                                            if(participants[h].position_id == m){
+                                                if(participants[h].participant_id==loginUser.id){
+                                                    checkbit=2;
+                                                }
                                             }
                                         }
                                     }
+                                    
+
+                                    
                                   %>
                                 <% if (checkbit ==1){%>
                                     <td><button class="partyBtn">신청 하기</button><button class="fakeBtn">취소</button></td>
                                 <% }else if(checkbit==2){ %>
                                     <td><button class="completeBtn">신청 완료</button><button class="cancelBtn">취소</button></td>
                                 <% }else{ %>
-                                    <td><button class="partyBtnNot">신청 불가</button><button class="fakeBtn">취소</button></td>
+                                    <% if (conditionCheckBit ==0){%>
+                                        <td><button class="partyBtnNot">조건 미충족</button><button class="fakeBtn">취소</button></td>
+                                    <% }else{ %>
+                                        <td><button class="partyBtnNot">크레딧 부족</button><button class="fakeBtn">취소</button></td>
+                                
+                                    <% } %>
                                 <% } %>
                             </tr>
                         <% } %>   

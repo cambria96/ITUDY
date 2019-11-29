@@ -63,7 +63,7 @@ function initial_mypage(){
                                     +'<p class = "halfBox">내 역할 :' +userClass[m].role+'</p>'
                                     
                                     
-                                    + '<p class = "halfBox">크레딧 : ' + userClass[m].credit+'</p><p class = "halfBox totalNum"> 모집 인원 : <span>'+gatherNum+'</span> 명</p>'
+                                    + '<p class = "halfBox">크레딧 : <span class="creditNum">' + userClass[m].credit+'</span></p><p class = "halfBox totalNum"> 모집 인원 : <span>'+gatherNum+'</span> 명</p>'
                                     +'<p>시간 : '+datetimearr+'</p>'
                                     +'<div class = "participantBox">'
                                     +'<p class = "partyList"> 모집 현황 </p>'
@@ -453,7 +453,6 @@ function user2group(){
         var currentnumber = $("#member"+classnum).children('li').eq(target-1).find(".currentnum").text();
         if(totalnumber>currentnumber){
             var a = $(this);
-            console.log(a);
             $(this).parents(".rightbox").siblings(".leftbox").find("#member"+classnum).find('.confirmList').each(function(){
                 if($(this).text()==partiname){
                     alert("그룹 내 중복된 사용자가 존재합니다.");
@@ -472,7 +471,6 @@ function user2group(){
                 $("#member"+classnum).children('li').eq(target-1).find(".colortext").css("color","blue");
             }
             $("#member"+classnum).find(".currentnum").eq(positionname).text(cr);
-            console.log(a)
             a.attr('class',"cancelConfirmBtn");
             a.text('취소 하기');
             
@@ -540,13 +538,12 @@ function makeGroup(){
                 users.push($(this).text())
             });
             users= users.toString();
-            console.log(users);
             confirmData["type"] = groupType;
             confirmData["content_id"] = content_id;
             confirmData["users"] = users;
             confirmData["title"] = title;
             confirmData["number"] = totalNum+1;
-    
+            confirmData["credit"] = $(this).parent().siblings(".leftbox").find(".creditNum").text();
             $.ajax({
                 url: "/insert_confirm",
                 type: "POST",
@@ -588,7 +585,6 @@ function requestConfirm(){
                         dynamicLi +=' <li class="confirmGroupList"><span class="name">'+memberName[n]+'</span><span class="email">'+memberEmail[n]+'</span><span class="phone">'+memberPhone[n]+'</span><button class="profileBtn">프로필 보기</button></li>'
                     }
                     var agreeList = memberList[m].agree.split(",");
-                    console.log(memberList[m].type);
                     var dynamicType;
                     if(memberList[m].type ==1){
                         dynamicType="detail_class_history/"

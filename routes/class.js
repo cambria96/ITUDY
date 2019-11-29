@@ -152,8 +152,8 @@ router.get("/classes/:cur", function (req, res) {
                         can: can,
                         data: rows1,
                         classes: result2,
-                        name:req.session.name,
-                        credit:req.session.credit
+                        name:loginUser.name,
+                        credit:loginUser.credit
                     }));
 
                 })
@@ -357,7 +357,8 @@ router.post("/delete_class", function (req, res) {
 // 클래스 참
 router.post("/participate_class", function (req, res) {
     var participant = req.body;
-    console.log("참가신청완료");
+ 
+    
     getConnection().query('insert into participants set ?', participant, function (error) {
         if (error) {
             console.log("페이징 에러" + error);

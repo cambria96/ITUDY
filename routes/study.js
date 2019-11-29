@@ -152,8 +152,8 @@ router.get("/studies/:cur", function (req, res) {
                         can: can,
                         data: rows1,
                         classes: result2,
-                        name:req.session.name,
-                        credit:req.session.credit
+                        name:loginUser.name,
+                        credit:loginUser.credit
                     }));
 
                 })
@@ -439,8 +439,8 @@ router.get("/studies/skills/:tags", function (req, res) {
                             }
                         }
                         res.send(ejs.render(data, {
-                            name: req.session.name,
-                            credit: req.session.credit,
+                            name: loginUser.name,
+                            credit: loginUser.credit,
                             tags: skills,
                         }));
 
@@ -536,8 +536,8 @@ router.get("/studies/skills/:tags", function (req, res) {
                             res.send(ejs.render(data, {
                                 can: can,
                                 data: rows,
-                                name: req.session.name,
-                                credit: req.session.credit,
+                                name: loginUser.name,
+                                credit: loginUser.credit,
                                 tags: skills,
                             }));
 

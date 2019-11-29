@@ -123,8 +123,8 @@
             <div class="" style="margin-top: 2rem;"></div>
             <div class="content-all" style="flex: 11 0%;">
                 <div class="card-list">
-                    <% data.forEach(function (item, index){ %>
-                        <% if(can[index] == 1){ %>
+                    <% data.forEach(function (item, index){%>
+                        <% if(can[index] == 1 && item.credit<=credit){ %>
                             <div class="item-container" value="/detail_class/<%= item.id %>">
                                 <div class="item">
                                     <div class="item-content">

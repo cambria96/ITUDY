@@ -1,4 +1,7 @@
 @import url('//cdn.rawgit.com/young-ha/webfont-archive/master/css/Godo.css');
+button:focus{
+    outline: none !important;
+}
 .mypageWrapper{
     width:100%;
     padding: 50px 0px;

@@ -255,40 +255,30 @@ app.get('/ranking', function(req,res){
         req.session.id = loginUser.id;
         req.session.ranking = loginUser.ranking;
 
-        info.sort(function(a,b){
-            return a.credit > b.credit ? -1 : a.credit < b.credit? 1:0;
+        connection.query('SELECT * from userinfo',function(err,rows,fields){
+            if(!err){
+                info = rows;
+                info.sort(function(a,b){
+                    return a.credit > b.credit ? -1 : a.credit < b.credit? 1:0;
+                });
+        
+                for (var k=0; k<info.length; k++){
+                    if(info[k].id == loginUser.id){
+                        break;
+                    }
+                }
+        
+                res.render('ranking.ejs',{name:req.session.name,credit:req.session.credit, 
+                    id:loginUser.id, ranking : k+1, 
+                    id1:info[0].id, id2:info[1].id, id3: info[2].id, id4: info[3].id, id5: info[4].id,
+                    credit1:info[0].credit, credit2 : info[1].credit, credit3: info[2].credit, credit4 : info[3].credit,credit5 : info[4].credit});
+                }
+            else{
+                console.log('Error while performing Query.',err);
+            }
         });
 
-        for (var k=0; k<info.length; k++){
-            if(info[k].id == loginUser.id){
-                break;
-            }
-        }
-        // DB에 랭킹 저장
-        // for(var k=0;k<info.length;k++){
-            
-        //     user_id = info[k].id;
-            
-        //     var template = `update userinfo set ranking = ${k+1} where id="${user_id}"`;
-        //     connection.query(template,function(err,rows,fields){
-        //         if(!err){
-        //             console.log('The solution is: ',rows);
-                    
-                    
-                    
-        //         }
-        //         else{
-        //             console.log('Error while performing Query.',err);
-        //         }
-        // });
-       
         
-        //}
-
-        res.render('ranking.ejs',{name:req.session.name,credit:req.session.credit, 
-            id:loginUser.id, ranking : k+1, 
-            id1:info[0].id, id2:info[1].id, id3: info[2].id, id4: info[3].id, id5: info[4].id,
-            credit1:info[0].credit, credit2 : info[1].credit, credit3: info[2].credit, credit4 : info[3].credit,credit5 : info[4].credit});
         
         
 });
@@ -418,7 +408,25 @@ app.post("/insert_confirm",function(req,res){
     var userPhone=[];
     var n=0;
     var confirmData={};
+    var addCredit = users.credit * (userList.length-1);
+    var subCredit = users.credit;
     for(var m=0;m<userList.length;m++){
+        
+        if(m==0){
+            connection.query('update userinfo set credit = credit + ? where id = ?',[addCredit,userList[m]],function(err){
+                if(err){
+                    console.log(err);
+                }
+            })
+        }
+        else{
+            connection.query('update userinfo set credit = credit - ? where id = ?',[subCredit,userList[m]],function(err){
+                if(err){
+                    console.log(err);
+                }
+            })
+        }
+
         connection.query("SELECT * from userinfo WHERE (`id` = '"+userList[m]+"');",function(err,rows,result){
             if(!err){
                 userName.push(rows[0].name);
@@ -448,9 +456,19 @@ app.post("/insert_confirm",function(req,res){
                                             if(!err){
                                                 connection.query('delete from participants where content_id = ?',users.content_id,function(err,result){
                                                     if(!err){
-                                                        console.log("그룹 생성 완료");
+                                                        connection.query('select * from userinfo where id = ? ',loginUser.id,function(err,rows){
+
+                                                            if(!err){
+                                                                console.log("그룹 생성 완료");
+                                                                loginUser = rows[0];
+                                                                exports.loginUser = loginUser;
+                                                                res.send();
+                                                            }
+                                                            else{
+                                                                console.log(err);
+                                                            }
+                                                        })
                                                         
-                                                        res.send();
                                                     }
                                                     else{
                                                         console.log('Error while performing Query.',err);
@@ -475,9 +493,18 @@ app.post("/insert_confirm",function(req,res){
                                             if(!err){
                                                 connection.query('delete from participants where content_id = ?',users.content_id,function(err,result){
                                                     if(!err){
-                                                        console.log("그룹 생성 완료");
-                                                        
-                                                        res.send();
+                                                        connection.query('select * from userinfo where id = ? ',loginUser.id,function(err,rows){
+
+                                                            if(!err){
+                                                                console.log("그룹 생성 완료");
+                                                                loginUser = rows[0];
+                                                                exports.loginUser = loginUser;
+                                                                res.send();
+                                                            }
+                                                            else{
+                                                                console.log(err);
+                                                            }
+                                                        })
                                                     }
                                                     else{
                                                         console.log('Error while performing Query.',err);
