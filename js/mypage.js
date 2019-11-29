@@ -221,6 +221,10 @@ function initial_mypage(){
                             
 
                             templist[x]=temparr.toString();
+                            if(templist[x]=""){
+                                templist[x] =="무관";
+                            }
+                            console.log(templist[x]);
                             var number = positions[x].position_id + 1
                             var currentnum = 0;
                             //삭제한 부분
@@ -245,7 +249,7 @@ function initial_mypage(){
 
                             //추가한 부분
                             var condition = $("#"+userClass[q].id).parent(".rightbox").siblings(".leftbox").find(".conditionList").eq(participants[p].position_id).text();
-                           
+                            
                             // 수정한 부분
                             $("#"+userClass[q].id).children().children('tbody').append('<tr class='+participants[p].position_id+'><td>'+condition+'</td><td>'+ partiList +'</td>'+'<td> <button class = "acceptBtn">수락 하기</button></td></tr>');                            
                         }
