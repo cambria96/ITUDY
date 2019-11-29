@@ -54,7 +54,7 @@
             <div class="divideWrap">
                 <div class="divideBox">
                     <p class="groupSubTitle">작성자</p>
-                    <span class ="groupContent"><%=study_info.author%></span>
+                    <span class ="groupContent"><%=study_info.author_id%></span>
                     <button class="profileBtn">프로필 보기</button>
                     <div class="profileContent" style="width:20%;">
                         <div style="text-align: center;border-bottom: 1px solid #dfaa32; margin-bottom: 10px;"><%=study_info.author_id%>'s 프로필</div>
@@ -66,19 +66,19 @@
                                 </tr>
                                 <tr>
                                     <td>레벨</td>
-                                    <td><%=author_info.level%></td>
+                                    <td><img class="levelIcon" src=<%=author_info.level%>></td>
                                 </tr>
                                 <tr>
                                     <td>멘토활동 횟수</td>
-                                    <td><%=author_info.name%></td>
+                                    <td><%=author_info.mento%></td>
                                 </tr>
                                 <tr>
                                     <td>멘티활동 횟수</td>
-                                    <td><%=author_info.name%></td>
+                                    <td><%=author_info.mentee%></td>
                                 </tr>
                                 <tr>
                                     <td>스터디활동 횟수</td>
-                                    <td><%=author_info.name%></td>
+                                    <td><%=author_info.mentee%></td>
                                 </tr>
                             </table>
                         </div>

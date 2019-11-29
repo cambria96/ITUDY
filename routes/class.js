@@ -147,20 +147,28 @@ router.get("/classes/:cur", function (req, res) {
                             }
                         }
                     }
+                    var queryString3 = "select level, id from userinfo where"
+                    var authorIds = []
+                    for(var i = 0; i<rows1.length;i++){
+                        queryString3 = queryString3 + ' id=?';
+                        authorIds.push(rows1[i].author_id)
+                        if(i+1!=rows1.length){
+                         queryString3 = queryString3 + ' OR'
+                        }
+                    }
 
-                    res.send(ejs.render(data, {
-                        can: can,
-                        data: rows1,
-                        classes: result2,
-                        name:req.session.name,
-                        credit:req.session.credit
-                    }));
+                    getConnection().query(queryString3, authorIds,function(error, authorsLevel){
 
+                        res.send(ejs.render(data, {
+                            can: can,
+                            data: rows1,
+                            authorsLevel: authorsLevel,
+                            classes: result2,
+                            name:loginUser.name,
+                            credit:loginUser.credit
+                        }));
+                    })
                 })
-
-
-
-
             });
         });
     })
@@ -357,7 +365,8 @@ router.post("/delete_class", function (req, res) {
 // 클래스 참
 router.post("/participate_class", function (req, res) {
     var participant = req.body;
-    console.log("참가신청완료");
+
+
     getConnection().query('insert into participants set ?', participant, function (error) {
         if (error) {
             console.log("페이징 에러" + error);
@@ -443,8 +452,8 @@ router.get("/classes/skills/:tags", function (req, res) {
                             }
                         }
                         res.send(ejs.render(data, {
-                            name: req.session.name,
-                            credit: req.session.credit,
+                            name:loginUser.name,
+                            credit:loginUser.credit,
                             tags: skills,
                         }));
 
@@ -536,13 +545,29 @@ router.get("/classes/skills/:tags", function (req, res) {
                                     skills[i] = 'CPlusPlus'
                                 }
                             }
-                            res.send(ejs.render(data, {
-                                can: can,
-                                data: rows,
-                                name: req.session.name,
-                                credit: req.session.credit,
-                                tags: skills,
-                            }));
+
+                            var queryString3 = "select level, id from userinfo where"
+                            var authorIds = []
+                            for(var i = 0; i<rows.length;i++){
+                                queryString3 = queryString3 + ' id=?';
+                                authorIds.push(rows[i].author_id)
+                                if(i+1!=rows.length){
+                                    queryString3 = queryString3 + ' OR'
+                                }
+                            }
+
+                            getConnection().query(queryString3, authorIds,function(error, authorsLevel){
+
+                                res.send(ejs.render(data, {
+                                    can: can,
+                                    data: rows,
+                                    authorsLevel:authorsLevel,
+                                    name:loginUser.name,
+                                    credit:loginUser.credit,
+                                    tags: skills,
+                                }));
+                            })
+
 
 
                         })

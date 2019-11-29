@@ -185,3 +185,6 @@ table{
   .profileContent.is-active{
       display:inline-block;
   }
+  .levelIcon{
+    width:20px;
+  }

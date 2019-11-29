@@ -186,7 +186,7 @@ app.post('/success',function(req,res){
         req.session.save(()=>{
             res.render('after_login.ejs',{loginInfo:loginUser});    
         });
-    
+
     }
     else if(check==2){
         res.write("<head><meta charset = 'utf-8'></head>");
@@ -355,40 +355,30 @@ app.get('/ranking', function(req,res){
         req.session.id = loginUser.id;
         req.session.ranking = loginUser.ranking;
 
-        info.sort(function(a,b){
-            return a.credit > b.credit ? -1 : a.credit < b.credit? 1:0;
+        connection.query('SELECT * from userinfo',function(err,rows,fields){
+            if(!err){
+                info = rows;
+                info.sort(function(a,b){
+                    return a.credit > b.credit ? -1 : a.credit < b.credit? 1:0;
+                });
+        
+                for (var k=0; k<info.length; k++){
+                    if(info[k].id == loginUser.id){
+                        break;
+                    }
+                }
+        
+                res.render('ranking.ejs',{name:req.session.name,credit:req.session.credit, 
+                    id:loginUser.id, ranking : k+1, 
+                    id1:info[0].id, id2:info[1].id, id3: info[2].id, id4: info[3].id, id5: info[4].id,
+                    credit1:info[0].credit, credit2 : info[1].credit, credit3: info[2].credit, credit4 : info[3].credit,credit5 : info[4].credit});
+                }
+            else{
+                console.log('Error while performing Query.',err);
+            }
         });
 
-        for (var k=0; k<info.length; k++){
-            if(info[k].id == loginUser.id){
-                break;
-            }
-        }
-        // DB에 랭킹 저장
-        // for(var k=0;k<info.length;k++){
-            
-        //     user_id = info[k].id;
-            
-        //     var template = `update userinfo set ranking = ${k+1} where id="${user_id}"`;
-        //     connection.query(template,function(err,rows,fields){
-        //         if(!err){
-        //             console.log('The solution is: ',rows);
-                    
-                    
-                    
-        //         }
-        //         else{
-        //             console.log('Error while performing Query.',err);
-        //         }
-        // });
-       
         
-        //}
-
-        res.render('ranking.ejs',{name:req.session.name,credit:req.session.credit, 
-            id:loginUser.id, ranking : k+1, 
-            id1:info[0].id, id2:info[1].id, id3: info[2].id, id4: info[3].id, id5: info[4].id,
-            credit1:info[0].credit, credit2 : info[1].credit, credit3: info[2].credit, credit4 : info[3].credit,credit5 : info[4].credit});
         
         
 });
@@ -518,7 +508,138 @@ app.post("/insert_confirm",function(req,res){
     var userPhone=[];
     var n=0;
     var confirmData={};
+    var addCredit = users.credit * (userList.length-1);
+    var subCredit = users.credit;
+    var userCredit = loginUser.credit;
+    var userRole = users.role;
+    var petabyte = "../img/petabyte.png";
+    var terabyte = "../img/terabyte.png";
+    var gigabyte = "../img/gigabyte.png";
+    var megabyte = "../img/megabyte.png";
+    var byte = "../img/byte.png";
+    var n =0;
+    console.log(userRole);
+    if(userRole == '멘토'){
+        var firstQuery = 'update userinfo set credit = credit + ? where id = ?';
+        var normalQuery = 'update userinfo set credit = credit - ? where id = ?';
+    }
+    else if(userRole == '멘티'){
+        var firstQuery = 'update userinfo set credit = credit - ? where id = ?' ;
+        var normalQuery = 'update userinfo set credit = credit + ? where id = ?';
+    }
+    
     for(var m=0;m<userList.length;m++){
+        if(m==0){
+            userCredit = userCredit+ addCredit;
+            connection.query(firstQuery,[addCredit,userList[m]],function(err){
+                if(err){
+                    console.log(err);
+                }
+                else{
+                    connection.query('select * from userinfo where id = ?',[userList[n]],function(err,rows){
+                        if(err){
+                            console.log(err);
+                        }
+                        else{
+                            if(rows[0].credit >= 10000){
+                                connection.query('update userinfo set level = ? where id = ?',[petabyte,rows[0].id],function(err){
+                                    if(err){
+                                        console.log(err);
+                                    }
+                                })
+
+                            }
+                            else if(rows[0].credit <10000&& rows[0].credit >=6000){
+                                connection.query('update userinfo set level = ? where id = ?',[terabyte,rows[0].id],function(err){
+                                    if(err){
+                                        console.log(err);
+                                    }
+                                })
+
+                            }else if(rows[0].credit <6000&& rows[0].credit >=3500){
+                                connection.query('update userinfo set level = ? where id = ?',[gigabyte,rows[0].id],function(err){
+                                    if(err){
+                                        console.log(err);
+                                    }
+                                })
+                                
+                            }else if(rows[0].credit <3500&& rows[0].credit >=1500){
+                                connection.query('update userinfo set level = ? where id = ?',[megabyte,rows[0].id],function(err){
+                                    if(err){
+                                        console.log(err);
+                                    }
+                                })
+                                
+                            }else{
+                                connection.query('update userinfo set level = ? where id = ?',[byte,rows[0].id],function(err){
+                                    if(err){
+                                        console.log(err);
+                                    }
+                                })
+                            }
+                            n++;
+                        }
+                    })
+                }
+            })
+        }
+        else{
+            userCredit = userCredit -subCredit;
+            connection.query(normalQuery,[subCredit,userList[m]],function(err){
+                if(err){
+                    console.log(err);
+                }
+                else{
+                    connection.query('select * from userinfo where id = ?',[userList[n]],function(err,rows){
+                        if(err){
+                            console.log(err);
+                            
+                        }
+                        else{
+                            if(rows[0].credit >= 10000){
+                                connection.query('update userinfo set level = ? where id = ?',[petabyte,rows[0].id],function(err){
+                                    if(err){
+                                        console.log(err);
+                                    }
+                                })
+
+                            }
+                            else if(rows[0].credit <10000&& rows[0].credit >=6000){
+                                connection.query('update userinfo set level = ? where id = ?',[terabyte,rows[0].id],function(err){
+                                    if(err){
+                                        console.log(err);
+                                    }
+                                })
+
+                            }else if(rows[0].credit <6000&& rows[0].credit >=3500){
+                                connection.query('update userinfo set level = ? where id = ?',[gigabyte,rows[0].id],function(err){
+                                    if(err){
+                                        console.log(err);
+                                    }
+                                })
+                                
+                            }else if(rows[0].credit <3500&& rows[0].credit >=1500){
+                                connection.query('update userinfo set level = ? where id = ?',[megabyte,rows[0].id],function(err){
+                                    if(err){
+                                        console.log(err);
+                                    }
+                                })
+                                
+                            }else{
+                                connection.query('update userinfo set level = ? where id = ?',[byte,rows[0].id],function(err){
+                                    if(err){
+                                        console.log(err);
+                                    }
+                                })
+                            }
+                            n++;
+                        }
+                    })
+                }
+            })
+        }
+
+
         connection.query("SELECT * from userinfo WHERE (`id` = '"+userList[m]+"');",function(err,rows,result){
             if(!err){
                 userName.push(rows[0].name);
@@ -548,9 +669,19 @@ app.post("/insert_confirm",function(req,res){
                                             if(!err){
                                                 connection.query('delete from participants where content_id = ?',users.content_id,function(err,result){
                                                     if(!err){
-                                                        console.log("그룹 생성 완료");
+                                                        connection.query('select * from userinfo where id = ? ',loginUser.id,function(err,rows){
+
+                                                            if(!err){
+                                                                console.log("그룹 생성 완료");
+                                                                loginUser = rows[0];
+                                                                exports.loginUser = loginUser;
+                                                                res.send();
+                                                            }
+                                                            else{
+                                                                console.log(err);
+                                                            }
+                                                        })
                                                         
-                                                        res.send();
                                                     }
                                                     else{
                                                         console.log('Error while performing Query.',err);
@@ -575,9 +706,18 @@ app.post("/insert_confirm",function(req,res){
                                             if(!err){
                                                 connection.query('delete from participants where content_id = ?',users.content_id,function(err,result){
                                                     if(!err){
-                                                        console.log("그룹 생성 완료");
-                                                        
-                                                        res.send();
+                                                        connection.query('select * from userinfo where id = ? ',loginUser.id,function(err,rows){
+
+                                                            if(!err){
+                                                                console.log("그룹 생성 완료");
+                                                                loginUser = rows[0];
+                                                                exports.loginUser = loginUser;
+                                                                res.send();
+                                                            }
+                                                            else{
+                                                                console.log(err);
+                                                            }
+                                                        })
                                                     }
                                                     else{
                                                         console.log('Error while performing Query.',err);

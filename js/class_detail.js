@@ -33,7 +33,10 @@ function participate(){
             participant["content_id"] =$(".content_id").text();
             participant["position_id"] =$(this).parents("tr").index();
             participant["participant_id"] =loginUser.id;
-            console.log(participant);
+            if($(".groupContent").first().text() ==loginUser.id){
+                alert("모집자는 신청이 불가능 합니다.");
+                return;
+            }
             $.ajax({
                 url: '/participate_class',
                 type: 'POST',
@@ -42,7 +45,8 @@ function participate(){
                     alert("신청이 완료되었습니다. \n신청 목록은 [마이페이지] > [신청중인 그룹]에서 확인 가능합니다.");
                     targetBtn.text("신청 완료").removeClass("partyBtn").addClass("completeBtn");
                     targetBtn.siblings(".fakeBtn").removeClass("fakeBtn").addClass("cancelBtn")
-
+                
+                    
                 },
                 error: function(request,error,status){
                     alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);

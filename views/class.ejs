@@ -123,8 +123,8 @@
             <div class="" style="margin-top: 2rem;"></div>
             <div class="content-all" style="flex: 11 0%;">
                 <div class="card-list">
-                    <% data.forEach(function (item, index){ %>
-                        <% if(can[index] == 1){ %>
+                    <% data.forEach(function (item, index){%>
+                        <% if(can[index] == 1 && item.credit<=credit ){%>
                             <div class="item-container" value="/detail_class/<%= item.id %>">
                                 <div class="item">
                                     <div class="item-content">
@@ -140,7 +140,14 @@
                                                 </div>
                                             </div>
                                             <div class="content-author">
-                                                <div class="author"><img src="../img/trophy.png">
+                                                <div class="author">
+                                                    <% for(var i = 0; i < authorsLevel.length;i++){ %>
+                                                        <% if(item.author_id == authorsLevel[i].id){ %>
+                                                            <img src="../<%= authorsLevel[i].level %>"
+                                                                 style="width: 2.5rem; height: 2.5rem;">
+                                                        <% } %>
+                                                    <% } %>
+
                                                     <% if(item.role == "멘토"){ %>
                                                         <%= item.author_id %> 멘토
                                                     <% }else if(item.role == "멘티"){ %>
@@ -154,7 +161,7 @@
                                             <div class="content-period">
                                                 <div class="" style="display: flex;">
                                                     <div class=""
-                                                         style="background-image: url('../img/icons/calendar.svg');width: 2rem;height: 2rem;margin-right: 0.5rem;">
+                                                         style="background-image: url('../img/icons/calendar.svg');width: 2rem;height: 2rem;margin-right: 0.5rem; margin-left:0.4rem;">
                                                     </div>
                                                     <%
                                                         var dateString = item.date.toString();
@@ -183,6 +190,74 @@
 
                             </div>
                         <% } else{ %>
+                            <% if(item.role == "멘티"){ %>
+                                <div class="item-container" value="/detail_class/<%= item.id %>">
+                                    <div class="item">
+                                        <div class="item-content">
+                                            <div class="icon-container">
+                                                <img class="myThumbnail" src=<%= item.icon %>>
+    
+                                            </div>
+                                            <div class="item-description">
+    
+                                                <div class="content-title-number">
+                                                    <div class="content-title"><%= item.title %></div>
+                                                    <div class="content-number">모집인원 <%= item.total_participant - 1 %>명
+                                                    </div>
+                                                </div>
+                                                <div class="content-author">
+                                                    <div class="author">
+                                                        <% for(var i = 0; i < authorsLevel.length;i++){ %>
+                                                            <% if(item.author_id == authorsLevel[i].id){ %>
+                                                                <img src="../<%= authorsLevel[i].level %>"
+                                                                     style="width: 2.5rem; height: 2.5rem;">
+                                                            <% } %>
+                                                        <% } %>
+    
+                                                        <% if(item.role == "멘토"){ %>
+                                                            <%= item.author_id %> 멘토
+                                                        <% }else if(item.role == "멘티"){ %>
+                                                            <%= item.author_id %> 멘티
+                                                        <% } %>
+                                                    </div>
+                                                    <div class="content-possible  blink-possible">
+                                                        참가가능
+                                                    </div>
+                                                </div>
+                                                <div class="content-period">
+                                                    <div class="" style="display: flex;">
+                                                        <div class=""
+                                                             style="background-image: url('../img/icons/calendar.svg');width: 2rem;height: 2rem;margin-right: 0.5rem; margin-left:0.4rem;">
+                                                        </div>
+                                                        <%
+                                                            var dateString = item.date.toString();
+                                                            var timeString = item.time.toString();
+                                                            var date = dateString.split(',');
+                                                            var time = timeString.split(',');
+                                                        %>
+                                                        <%
+                                                        date.forEach(function(dateToken, index){ %>
+                                                            <div>
+                                                                <%= dateToken %>: <%= time[index] %>
+                                                            </div>
+                                                            <% if(date.length - 1 != index){ %>
+                                                                <div>&nbsp|&nbsp</div>
+                                                            <% } %>
+                                                        <% }) %>
+    
+                                                    </div>
+                                                    <div><img src="../img/coin.png"> <%= item.credit %></div>
+                                                </div>
+    
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--                            </a>-->
+    
+                                </div>
+                            <% }else if(item.role == "멘토"){ %>
+                                
+                            
                             <div class="item-container" value="/detail_class/<%= item.id %>">
                                 <div class="item-not-allowed">
                                     <div class="item-content">
@@ -196,7 +271,13 @@
                                                 </div>
                                             </div>
                                             <div class="content-author">
-                                                <div class="author"><img src="../img/trophy.png">
+                                                <div class="author">
+                                                    <% for(var i = 0; i < authorsLevel.length;i++){ %>
+                                                        <% if(item.author_id == authorsLevel[i].id){ %>
+                                                            <img src="../<%= authorsLevel[i].level %>"
+                                                                 style="width: 2.5rem; height: 2.5rem;">
+                                                        <% } %>
+                                                    <% } %>
                                                     <% if(item.role == "멘토"){ %>
                                                         <%= item.author_id %> 멘토
                                                     <% }else if(item.role == "멘티"){ %>
@@ -210,7 +291,7 @@
                                             <div class="content-period">
                                                 <div class="" style="display: flex;">
                                                     <div class=""
-                                                         style="background-image: url('../img/icons/calendar.svg');width: 2rem;height: 2rem;margin-right: 0.5rem;">
+                                                         style="background-image: url('../img/icons/calendar.svg');width: 2rem;height: 2rem;margin-right: 0.5rem; margin-left:0.4rem;">
                                                     </div>
                                                     <%
                                                         var dateString = item.date.toString();
@@ -237,6 +318,7 @@
                                 <!--                            </a>-->
 
                             </div>
+                            <% } %>
                         <% } %>
                     <% }) %>
                     <a href="/insert_class">
