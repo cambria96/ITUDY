@@ -410,22 +410,135 @@ app.post("/insert_confirm",function(req,res){
     var confirmData={};
     var addCredit = users.credit * (userList.length-1);
     var subCredit = users.credit;
+    var userCredit = loginUser.credit;
+    var userRole = users.role;
+    var petabyte = "../img/petabyte.png";
+    var terabyte = "../img/terabyte.png";
+    var gigabyte = "../img/gigabyte.png";
+    var megabyte = "../img/megabyte.png";
+    var byte = "../img/byte.png";
+    var n =0;
+    console.log(userRole);
+    if(userRole == '멘토'){
+        var firstQuery = 'update userinfo set credit = credit + ? where id = ?';
+        var normalQuery = 'update userinfo set credit = credit - ? where id = ?';
+    }
+    else if(userRole == '멘티'){
+        var firstQuery = 'update userinfo set credit = credit - ? where id = ?' ;
+        var normalQuery = 'update userinfo set credit = credit + ? where id = ?';
+    }
+    
     for(var m=0;m<userList.length;m++){
-        
         if(m==0){
-            connection.query('update userinfo set credit = credit + ? where id = ?',[addCredit,userList[m]],function(err){
+            userCredit = userCredit+ addCredit;
+            connection.query(firstQuery,[addCredit,userList[m]],function(err){
                 if(err){
                     console.log(err);
+                }
+                else{
+                    connection.query('select * from userinfo where id = ?',[userList[n]],function(err,rows){
+                        if(err){
+                            console.log(err);
+                        }
+                        else{
+                            if(rows[0].credit >= 10000){
+                                connection.query('update userinfo set level = ? where id = ?',[petabyte,rows[0].id],function(err){
+                                    if(err){
+                                        console.log(err);
+                                    }
+                                })
+
+                            }
+                            else if(rows[0].credit <10000&& rows[0].credit >=6000){
+                                connection.query('update userinfo set level = ? where id = ?',[terabyte,rows[0].id],function(err){
+                                    if(err){
+                                        console.log(err);
+                                    }
+                                })
+
+                            }else if(rows[0].credit <6000&& rows[0].credit >=3500){
+                                connection.query('update userinfo set level = ? where id = ?',[gigabyte,rows[0].id],function(err){
+                                    if(err){
+                                        console.log(err);
+                                    }
+                                })
+                                
+                            }else if(rows[0].credit <3500&& rows[0].credit >=1500){
+                                connection.query('update userinfo set level = ? where id = ?',[megabyte,rows[0].id],function(err){
+                                    if(err){
+                                        console.log(err);
+                                    }
+                                })
+                                
+                            }else{
+                                connection.query('update userinfo set level = ? where id = ?',[byte,rows[0].id],function(err){
+                                    if(err){
+                                        console.log(err);
+                                    }
+                                })
+                            }
+                            n++;
+                        }
+                    })
                 }
             })
         }
         else{
-            connection.query('update userinfo set credit = credit - ? where id = ?',[subCredit,userList[m]],function(err){
+            userCredit = userCredit -subCredit;
+            connection.query(normalQuery,[subCredit,userList[m]],function(err){
                 if(err){
                     console.log(err);
                 }
+                else{
+                    connection.query('select * from userinfo where id = ?',[userList[n]],function(err,rows){
+                        if(err){
+                            console.log(err);
+                            
+                        }
+                        else{
+                            if(rows[0].credit >= 10000){
+                                connection.query('update userinfo set level = ? where id = ?',[petabyte,rows[0].id],function(err){
+                                    if(err){
+                                        console.log(err);
+                                    }
+                                })
+
+                            }
+                            else if(rows[0].credit <10000&& rows[0].credit >=6000){
+                                connection.query('update userinfo set level = ? where id = ?',[terabyte,rows[0].id],function(err){
+                                    if(err){
+                                        console.log(err);
+                                    }
+                                })
+
+                            }else if(rows[0].credit <6000&& rows[0].credit >=3500){
+                                connection.query('update userinfo set level = ? where id = ?',[gigabyte,rows[0].id],function(err){
+                                    if(err){
+                                        console.log(err);
+                                    }
+                                })
+                                
+                            }else if(rows[0].credit <3500&& rows[0].credit >=1500){
+                                connection.query('update userinfo set level = ? where id = ?',[megabyte,rows[0].id],function(err){
+                                    if(err){
+                                        console.log(err);
+                                    }
+                                })
+                                
+                            }else{
+                                connection.query('update userinfo set level = ? where id = ?',[byte,rows[0].id],function(err){
+                                    if(err){
+                                        console.log(err);
+                                    }
+                                })
+                            }
+                            n++;
+                        }
+                    })
+                }
             })
         }
+
 
         connection.query("SELECT * from userinfo WHERE (`id` = '"+userList[m]+"');",function(err,rows,result){
             if(!err){

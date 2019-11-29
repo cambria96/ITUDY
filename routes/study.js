@@ -163,8 +163,8 @@ router.get("/studies/:cur", function (req, res) {
                             data: rows1,
                             authorsLevel: authorsLevel,
                             classes: result2,
-                            name:req.session.name,
-                            credit:req.session.credit
+                            name:loginUser.name,
+                            credit:loginUser.credit
                         }));
                     })
 
@@ -562,8 +562,8 @@ router.get("/studies/skills/:tags", function (req, res) {
                                     can: can,
                                     data: rows,
                                     authorsLevel:authorsLevel,
-                                    name: req.session.name,
-                                    credit: req.session.credit,
+                                    name:loginUser.name,
+                                    credit:loginUser.credit,
                                     tags: skills,
                                 }));
                             })

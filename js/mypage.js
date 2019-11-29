@@ -60,7 +60,7 @@ function initial_mypage(){
                                     +'<div class = "leftbox">'
                                     +'<p class = "detailContent">상세정보</p>'
                                     +'<p class = "halfBox">작성자id :' +userClass[m].author_id+'</p>'
-                                    +'<p class = "halfBox">내 역할 :' +userClass[m].role+'</p>'
+                                    +'<p class = "halfBox">내 역할 : <span class="roleNum">'+userClass[m].role+'</span></p>'
                                     
                                     
                                     + '<p class = "halfBox">크레딧 : <span class="creditNum">' + userClass[m].credit+'</span></p><p class = "halfBox totalNum"> 모집 인원 : <span>'+gatherNum+'</span> 명</p>'
@@ -130,7 +130,7 @@ function initial_mypage(){
                                     +'<div class = "leftbox">'
                                     +'<p class = "detailContent">상세정보</p>'
                                     +'<p class = "halfBox">작성자id :' +userStudy[m].author_id+'</p>'
-                                    +'<p class = "halfBox">내 역할 :' +userStudy[m].role+'</p>'
+                                    +'<p class = "halfBox">내 역할 : <span class="roleNum">' +userStudy[m].role+'</span></p>'
                                     
                                     
                                     + '<p class = "halfBox totalNum"> 모집 인원 : <span>'+gatherNum+'</span> 명</p>'
@@ -543,6 +543,7 @@ function makeGroup(){
             confirmData["users"] = users;
             confirmData["title"] = title;
             confirmData["number"] = totalNum+1;
+            confirmData["role"] =  $(this).parent().siblings(".leftbox").find(".roleNum").text();
             confirmData["credit"] = $(this).parent().siblings(".leftbox").find(".creditNum").text();
             $.ajax({
                 url: "/insert_confirm",

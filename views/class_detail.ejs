@@ -159,33 +159,34 @@
         
                                 %>
                                 <% 
-                                    if(class_info.credit>loginUser.credit){
-                                        checkbit=0;
-                                        conditionCheckBit=1;
-                                    }
-                                    else{
-                                        var conditionCheck = [];
-                                        conditionCheck = conditionList[m].split(",");
-                                        for(var i=0;i<conditionCheck.length;i++){
-                                            if (loginUser[conditionCheck[i]] ==1){
-                                                checkbit=1;
-                                            }else if(conditionCheck[i]=="없음"){
-                                                checkbit=1;
-                                            }else{ 
-                                                checkbit=0;
-                                                break;
-                                            }
+                                    
+                                    
+                                    var conditionCheck = [];
+                                    conditionCheck = conditionList[m].split(",");
+                                    for(var i=0;i<conditionCheck.length;i++){
+                                        if (loginUser[conditionCheck[i]] ==1){
+                                            checkbit=1;
+                                        }else if(conditionCheck[i]=="없음"){
+                                            checkbit=1;
+                                        }else{ 
+                                            checkbit=0;
+                                            break;
                                         }
-                                        for(var h=0;h<participants.length;h++){
-                                            if(participants[h].position_id == m){
-                                                if(participants[h].participant_id==loginUser.id){
-                                                    checkbit=2;
-                                                }
+                                    }
+                                    for(var h=0;h<participants.length;h++){
+                                        if(participants[h].position_id == m){
+                                            if(participants[h].participant_id==loginUser.id){
+                                                checkbit=2;
                                             }
                                         }
                                     }
                                     
-
+                                    if(class_info.credit>loginUser.credit){
+                                        if(class_info.role=="멘토"){
+                                            checkbit=0;
+                                            conditionCheckBit=1;
+                                        }
+                                    }
                                     
                                   %>
                                 <% if (checkbit ==1){%>
