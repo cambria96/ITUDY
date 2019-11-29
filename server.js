@@ -182,7 +182,7 @@ app.post('/success',function(req,res){
         req.session.save(()=>{
             res.render('after_login.ejs',{loginInfo:loginUser});    
         });
-    
+
     }
     else{
         console.log('로그인 실패');

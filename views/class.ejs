@@ -140,7 +140,14 @@
                                                 </div>
                                             </div>
                                             <div class="content-author">
-                                                <div class="author"><img src="../img/trophy.png">
+                                                <div class="author">
+                                                    <% for(var i = 0; i < authorsLevel.length;i++){ %>
+                                                        <% if(item.author_id == authorsLevel[i].id){ %>
+                                                            <img src="../<%= authorsLevel[i].level %>"
+                                                                 style="width: 2.5rem; height: 2.5rem;">
+                                                        <% } %>
+                                                    <% } %>
+
                                                     <% if(item.role == "멘토"){ %>
                                                         <%= item.author_id %> 멘토
                                                     <% }else if(item.role == "멘티"){ %>
@@ -154,7 +161,7 @@
                                             <div class="content-period">
                                                 <div class="" style="display: flex;">
                                                     <div class=""
-                                                         style="background-image: url('../img/icons/calendar.svg');width: 2rem;height: 2rem;margin-right: 0.5rem;">
+                                                         style="background-image: url('../img/icons/calendar.svg');width: 2rem;height: 2rem;margin-right: 0.5rem; margin-left:0.4rem;">
                                                     </div>
                                                     <%
                                                         var dateString = item.date.toString();
@@ -196,7 +203,13 @@
                                                 </div>
                                             </div>
                                             <div class="content-author">
-                                                <div class="author"><img src="../img/trophy.png">
+                                                <div class="author">
+                                                    <% for(var i = 0; i < authorsLevel.length;i++){ %>
+                                                        <% if(item.author_id == authorsLevel[i].id){ %>
+                                                            <img src="../<%= authorsLevel[i].level %>"
+                                                                 style="width: 2.5rem; height: 2.5rem;">
+                                                        <% } %>
+                                                    <% } %>
                                                     <% if(item.role == "멘토"){ %>
                                                         <%= item.author_id %> 멘토
                                                     <% }else if(item.role == "멘티"){ %>
@@ -210,7 +223,7 @@
                                             <div class="content-period">
                                                 <div class="" style="display: flex;">
                                                     <div class=""
-                                                         style="background-image: url('../img/icons/calendar.svg');width: 2rem;height: 2rem;margin-right: 0.5rem;">
+                                                         style="background-image: url('../img/icons/calendar.svg');width: 2rem;height: 2rem;margin-right: 0.5rem; margin-left:0.4rem;">
                                                     </div>
                                                     <%
                                                         var dateString = item.date.toString();

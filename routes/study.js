@@ -146,15 +146,27 @@ router.get("/studies/:cur", function (req, res) {
                             }
                         }
                     }
+                    var queryString3 = "select level, id from userinfo where"
+                    var authorIds = []
+                    for(var i = 0; i<rows1.length;i++){
+                        queryString3 = queryString3 + ' id=?';
+                        authorIds.push(rows1[i].author_id)
+                        if(i+1!=rows1.length){
+                            queryString3 = queryString3 + ' OR'
+                        }
+                    }
 
+                    getConnection().query(queryString3, authorIds,function(error, authorsLevel){
 
-                    res.send(ejs.render(data, {
-                        can: can,
-                        data: rows1,
-                        classes: result2,
-                        name:req.session.name,
-                        credit:req.session.credit
-                    }));
+                        res.send(ejs.render(data, {
+                            can: can,
+                            data: rows1,
+                            authorsLevel: authorsLevel,
+                            classes: result2,
+                            name:req.session.name,
+                            credit:req.session.credit
+                        }));
+                    })
 
                 })
 
@@ -533,13 +545,28 @@ router.get("/studies/skills/:tags", function (req, res) {
                                     skills[i] = 'CPlusPlus'
                                 }
                             }
-                            res.send(ejs.render(data, {
-                                can: can,
-                                data: rows,
-                                name: req.session.name,
-                                credit: req.session.credit,
-                                tags: skills,
-                            }));
+
+                            var queryString3 = "select level, id from userinfo where"
+                            var authorIds = []
+                            for(var i = 0; i<rows.length;i++){
+                                queryString3 = queryString3 + ' id=?';
+                                authorIds.push(rows[i].author_id)
+                                if(i+1!=rows.length){
+                                    queryString3 = queryString3 + ' OR'
+                                }
+                            }
+
+                            getConnection().query(queryString3, authorIds,function(error, authorsLevel){
+
+                                res.send(ejs.render(data, {
+                                    can: can,
+                                    data: rows,
+                                    authorsLevel:authorsLevel,
+                                    name: req.session.name,
+                                    credit: req.session.credit,
+                                    tags: skills,
+                                }));
+                            })
 
 
                         })

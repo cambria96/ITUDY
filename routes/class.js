@@ -104,7 +104,7 @@ router.get("/classes/:cur", function (req, res) {
                 getConnection().query(queryString,params,function(error,rows2) {
 
                     var index = ["C","C++","C#","Java","Ruby","Python","R","Go","HTML/CSS","Javascript","Spring","Nodejs","Angularjs","Vuejs","Reactjs","PHP","Andriod","IOS","Swift","Kotlin","Objective-c","MYSQL","MongoDB","SpringBoot","OracleDB"];
-                   
+
                     for(var i=0;i<rows2.length;i++){
 
                         for(var m=0;m<rows1.length;m++){
@@ -147,20 +147,28 @@ router.get("/classes/:cur", function (req, res) {
                             }
                         }
                     }
+                    var queryString3 = "select level, id from userinfo where"
+                    var authorIds = []
+                    for(var i = 0; i<rows1.length;i++){
+                        queryString3 = queryString3 + ' id=?';
+                        authorIds.push(rows1[i].author_id)
+                        if(i+1!=rows1.length){
+                         queryString3 = queryString3 + ' OR'
+                        }
+                    }
 
-                    res.send(ejs.render(data, {
-                        can: can,
-                        data: rows1,
-                        classes: result2,
-                        name:req.session.name,
-                        credit:req.session.credit
-                    }));
+                    getConnection().query(queryString3, authorIds,function(error, authorsLevel){
 
+                        res.send(ejs.render(data, {
+                            can: can,
+                            data: rows1,
+                            authorsLevel: authorsLevel,
+                            classes: result2,
+                            name:req.session.name,
+                            credit:req.session.credit
+                        }));
+                    })
                 })
-
-
-
-
             });
         });
     })
@@ -181,7 +189,7 @@ router.get("/class", function (req, res) {
 //삽입 페이지
 router.get("/insert_class", function (req, res) {
 
-    res.render('insert_class.ejs',{loginInfo:user.loginUser});   
+    res.render('insert_class.ejs',{loginInfo:user.loginUser});
 
 })
 //클래스 삽입
@@ -220,7 +228,7 @@ router.post("/insert_class", function (req, res) {
             position["position_id"] = m;
             position["number"] = number;
             position["description"] = description;
-    
+
             var queryString2 = 'insert into positions set ?'
             getConnection().query(queryString2,position, function (error,result) {
                 //응답
@@ -243,7 +251,7 @@ router.post("/insert_class", function (req, res) {
     })
 
 
-    
+
     res.send();
 })
 
@@ -251,7 +259,7 @@ router.post("/insert_class", function (req, res) {
 //글상세보기
 router.get("/detail_class/:id", function (req, res) {
     fs.readFile('views/class_detail.ejs', 'utf-8', function (error, data) {
-        
+
         getConnection().query('select * from classes where id = ?', [req.params.id], function (error, class_info) {
             if(error){
                 console.log(error);
@@ -337,7 +345,7 @@ router.post("/delete_class", function (req, res) {
                     return
                 }
                 else{
-                    
+
                     getConnection().query('delete from participants where content_id=? and type=1', classInfo.id, function (error) {
                         if (error) {
                             console.log("에러");
@@ -349,7 +357,7 @@ router.post("/delete_class", function (req, res) {
                     })
                 }
             })
-            
+
         }
     })
 })
@@ -371,11 +379,11 @@ router.post("/participate_class", function (req, res) {
 
 router.post("/delete_participant", function (req, res) {
     var cancelInfo = req.body;
-    
+
     getConnection().query('delete from participants where type = ? and content_id = ? and position_id = ? and participant_id =?' , [cancelInfo.type,cancelInfo.content_id,cancelInfo.position_id,cancelInfo.participant_id], function (error) {
         if (error) {
             console.log("페이징 에러" + error);
-            
+
             return
         }
         else{
@@ -470,7 +478,7 @@ router.get("/classes/skills/:tags", function (req, res) {
 
                         for (var i = 0; i < rows.length; i++) {
                             queryString2 = queryString2 + "content_id=? AND type=1" //TODO type=0
-                            if (i + 1 != rows.length) {
+                            if (i + 1 !== rows.length) {
                                 queryString2 = queryString2 + " OR "
                             }
                             can[i] = 0;
@@ -536,13 +544,29 @@ router.get("/classes/skills/:tags", function (req, res) {
                                     skills[i] = 'CPlusPlus'
                                 }
                             }
-                            res.send(ejs.render(data, {
-                                can: can,
-                                data: rows,
-                                name: req.session.name,
-                                credit: req.session.credit,
-                                tags: skills,
-                            }));
+
+                            var queryString3 = "select level, id from userinfo where"
+                            var authorIds = []
+                            for(var i = 0; i<rows.length;i++){
+                                queryString3 = queryString3 + ' id=?';
+                                authorIds.push(rows[i].author_id)
+                                if(i+1!=rows.length){
+                                    queryString3 = queryString3 + ' OR'
+                                }
+                            }
+
+                            getConnection().query(queryString3, authorIds,function(error, authorsLevel){
+
+                                res.send(ejs.render(data, {
+                                    can: can,
+                                    data: rows,
+                                    authorsLevel:authorsLevel,
+                                    name: req.session.name,
+                                    credit: req.session.credit,
+                                    tags: skills,
+                                }));
+                            })
+
 
 
                         })
