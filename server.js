@@ -410,7 +410,6 @@ app.post("/insert_confirm",function(req,res){
     var confirmData={};
     var addCredit = users.credit * (userList.length-1);
     var subCredit = users.credit;
-    var userCredit = loginUser.credit;
     var userRole = users.role;
     var petabyte = "../img/petabyte.png";
     var terabyte = "../img/terabyte.png";
@@ -429,8 +428,33 @@ app.post("/insert_confirm",function(req,res){
     }
     
     for(var m=0;m<userList.length;m++){
+        
         if(m==0){
-            userCredit = userCredit+ addCredit;
+            
+            if(req.body.type ==1){
+                if(userRole == '멘토'){
+                    connection.query('update userinfo set mento = mento + 1 where id = ?',[userList[m]],function(err){
+                        if(err){
+                            console.log(err);
+                        }
+                    })
+                }
+                else if(userRole == '멘티'){
+                    connection.query('update userinfo set mentee = mentee + 1 where id = ?',[userList[m]],function(err){
+                        if(err){
+                            console.log(err);
+                        }
+                    })
+                }   
+            }
+            else{
+                connection.query('update userinfo set study = study + 1 where id = ?',[userList[m]],function(err){
+                    if(err){
+                        console.log(err);
+                    }
+                })
+            }
+             
             connection.query(firstQuery,[addCredit,userList[m]],function(err){
                 if(err){
                     console.log(err);
@@ -484,7 +508,30 @@ app.post("/insert_confirm",function(req,res){
             })
         }
         else{
-            userCredit = userCredit -subCredit;
+
+            if(req.body.type ==1){
+                if(userRole == '멘토'){
+                    connection.query('update userinfo set mentee = mentee + 1 where id = ?',[userList[m]],function(err){
+                        if(err){
+                            console.log(err);
+                        }
+                    })
+                }
+                else if(userRole == '멘티'){
+                    connection.query('update userinfo set mento = mento + 1 where id = ?',[userList[m]],function(err){
+                        if(err){
+                            console.log(err);
+                        }
+                    })
+                }   
+            }
+            else{
+                connection.query('update userinfo set study = study + 1 where id = ?',[userList[m]],function(err){
+                    if(err){
+                        console.log(err);
+                    }
+                })
+            }
             connection.query(normalQuery,[subCredit,userList[m]],function(err){
                 if(err){
                     console.log(err);
@@ -563,6 +610,7 @@ app.post("/insert_confirm",function(req,res){
                     connection.query("insert into confirm set ?",confirmData,function(err,result){
                         if(!err){
                             if(req.body.type == 1){
+                                
                                 connection.query('delete from classes where id = ?',users.content_id,function(err,result){
                                     if(!err){
                                         connection.query('delete from positions where content_id = ?',users.content_id,function(err,result){

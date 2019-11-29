@@ -31,7 +31,7 @@ function clickEvnet(){
       })
     })
     $(".roleAddBtn").click(function(){
-      var dynamicList = '<li class="participantList"><span class ="roleList firstLine">자격 요건: </span><input class="roleListInput searchInput"><br><span class ="roleList">모집 인원: </span><input type="text" class="roleListInput howMany numberOnly" value="1" maxlength="3"><span> 명</span><br><span class ="roleList">요건 상세 설명: </span><input type="text" class="roleListInput detailInput"></li>'
+      var dynamicList = '<li class="participantList"><span class ="roleList firstLine">필요 분야: </span><input class="roleListInput searchInput"><br><span class ="roleList">모집 인원: </span><input type="text" class="roleListInput howMany numberOnly" value="1" maxlength="3"><span> 명</span><br><span class ="roleList">요건 상세 설명: </span><input type="text" class="roleListInput detailInput"></li>'
       $(".participantBox").append(dynamicList);
     })
 
@@ -47,16 +47,24 @@ function clickEvnet(){
         var total_participant =1;
         var current_participant=1;
         console.log(icon);
-        if(icon == ""){
-          alert("아이콘을 설정해주세요\n(아이콘은 게시글 목록에 표시됩니다.)");
-          return;
-        }
+        
         if($(".dynamicTime.active").length ==0){
-            alert("시간을 설정해주세요");
-            return;
+          alert("시간을 설정해주세요");
+          var offset =$(".listBox").eq(1).offset();
+          $("html").animate({scrollTop:offset.top-200},0);
+          return;
         }
         if(role==undefined){
           alert("역할을 설정해주세요");
+          var offset =$(".listBox").eq(3).offset();
+          $("html").animate({scrollTop:offset.top-200},0);         
+          return;
+        }
+        if(icon == ""){
+          alert("아이콘을 설정해주세요\n(아이콘은 게시글 목록에 표시됩니다.)");
+          var offset =$(".listBox").eq(4).offset();
+          console.log($(".listBox").eq(4))
+          $("html").animate({scrollTop:offset.top-200},0);  
           return;
         }
         
@@ -106,7 +114,7 @@ function clickEvnet(){
             var condition = [];
             var number=$(this).find(".howMany").val();
             if($(this).find(".roleItem").length ==0){
-                alert("참가인원의 자격요건을 설정해주세요\n없다면 '없음'으로 설정해주세요 ...^^*");
+                alert("참가인원의 필요 분야를 설정해주세요\n없다면 '없음'으로 설정해주세요 ...^^*");
                 checkBit =0;
                 return;
             }
@@ -128,24 +136,24 @@ function clickEvnet(){
         if(checkBit ==0){
           return;
         }
-          $.ajax({
-              url: '/insert_class',
-              type: 'POST',
-              data: 
-              {
-                  "classInfo" :classInfo,
-                  "positionList":positionList
-              },
-              success: function(response) {
-                  alert("클래스 등록이 완료되었습니다.");
-                  location.href="/classes/1"
-              },
+        $.ajax({
+            url: '/insert_class',
+            type: 'POST',
+            data: 
+            {
+                "classInfo" :classInfo,
+                "positionList":positionList
+            },
+            success: function(response) {
+                alert("클래스 등록이 완료되었습니다.");
+                location.href="/classes/1"
+            },
 
-              error: function(request,error,status){
-                  alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-                  return false;
-              }
-          })
+            error: function(request,error,status){
+                alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                return false;
+            }
+        })
       
     })
 
