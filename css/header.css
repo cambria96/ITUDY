@@ -35,8 +35,8 @@
 .logo{
 
     width: 200px;
-    background: url(../img/logo.png) center no-repeat;
-    background-size: contain;
+    background: url(../img/new_logo.png) center no-repeat;
+    background-size: cover;
 }
 
 .bannerBox{

@@ -451,8 +451,8 @@ router.get("/studies/skills/:tags", function (req, res) {
                             }
                         }
                         res.send(ejs.render(data, {
-                            name: req.session.name,
-                            credit: req.session.credit,
+                            name: loginUser.name,
+                            credit: loginUser.credit,
                             tags: skills,
                         }));
 
