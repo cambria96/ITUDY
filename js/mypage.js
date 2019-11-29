@@ -196,6 +196,9 @@ function initial_mypage(){
                             
 
                             templist[x]=temparr.toString();
+                            if(templist[x]==""){
+                                templist[x] ="무관";
+                            }
                             var number = positions[x].position_id + 1
                             var currentnum = 0;
                             //삭제한 부분
@@ -221,14 +224,13 @@ function initial_mypage(){
                             
 
                             templist[x]=temparr.toString();
-                            if(templist[x]=""){
-                                templist[x] =="무관";
+                            if(templist[x]==""){
+                                templist[x] ="무관";
                             }
                             console.log(templist[x]);
                             var number = positions[x].position_id + 1
                             var currentnum = 0;
-                            //삭제한 부분
-                            // $("#"+userClass[y].id).children().append('<tr> <td>'+templist[x]+'</td> </tr>');
+                            
                             $("#member"+userStudy[y].id+"_s").append("<li class='conditionLine'><span class ='marginleft'>"+number+"</span><span class='conditionList marginleft'>"+templist[x]+"</span>"+"(<span class='currentnum colortext'>"+currentnum+"</span><span class ='colortext'>/</span><span class='totalnum colortext'>"+positions[x].number+"</span>)"+"</li> <li><span >▶</span></li>");
                             temparr=[];
                             

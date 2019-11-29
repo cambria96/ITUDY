@@ -424,7 +424,7 @@ router.get("/studies/skills/:tags", function (req, res) {
                     return;
                 }
 
-                var index = ["C", "C++", "C#", "Java", "Ruby", "Python", "R", "Go", "HTML/CSS", "Javascript", "Spring", "Nodejs", "Angularjs", "Vuejs", "Reactjs", "PHP", "Andriod", "IOS", "Swift", "Kotlin", "Objective-c", "MYSQL", "MongoDB", "SpringBoot", "OracleDB"];
+                var index = ["C", "C++", "C#", "Java", "Ruby", "Python", "R", "Go", "HTML/CSS", "Javascript", "Spring", "Nodejs", "Angularjs", "Vuejs", "Reactjs", "PHP", "Android", "IOS", "Swift", "Kotlin", "Objective-c", "MYSQL", "MongoDB", "SpringBoot", "OracleDB"];
 
                 for (var i = 0; i < positions.length; i++) {
                     for (var j = 0; j < skills.length; j++) {

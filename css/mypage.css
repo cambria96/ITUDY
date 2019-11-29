@@ -27,6 +27,9 @@ button:focus{
 
 
 }
+.halfUl{
+    width:50%;
+}
 .contextBox ul{
     margin-bottom: 0px;
 
@@ -61,16 +64,22 @@ button:focus{
 
 }
 .categoryTitle{
-    width: 8%;
     margin: unset;
+    padding-right: 10px;
     border-right: 1px solid #dfaa32;
+}
+.ulBox{
+    display: flex;
 }
 
 .dbContent{
-    width: 150px;
+    width:120px;
     margin: unset;
     padding-left: 10p;
     margin-left: 10px;
+}
+.dbContent img{
+    width:25px;
 }
 input[type="text"]{
     border: none;

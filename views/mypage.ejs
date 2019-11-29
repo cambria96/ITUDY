@@ -101,12 +101,21 @@
             <div class="contextBox">
                 <div class="contentWrap">
                     <p class="contentTitle">기본정보</p>
-                    <ul>
-                        <li class="categoryList"><p class="categoryTitle">아이디</p><p class="dbContent"><%= loginInfo.id %></p></li>
-                        <li class="categoryList"><p class="categoryTitle">이름</p><input type="text" id="userName" value='<%= loginInfo.name %>' class="dbContent"></li>
-                        <li class="categoryList"><p class="categoryTitle">전화번호</p><input type="text" id="userPhone" value='<%= loginInfo.phone %>' class="dbContent"></li>
-                        <li class="categoryList"><p class="categoryTitle">크레딧</p><p class="dbContent"><%= loginInfo.credit %></p></li>
-                    </ul>
+                    <div class="ulBox">
+                        <ul class="halfUl">
+                            <li class="categoryList"><span class="categoryTitle">아이디</span><span class="dbContent"><%= loginInfo.id %></span></li>
+                            <li class="categoryList"><span class="categoryTitle">이름</span><input type="text" id="userName" value='<%= loginInfo.name %>' class="dbContent"></li>
+                            <li class="categoryList"><span class="categoryTitle">전화번호</span><input type="text" id="userPhone" value='<%= loginInfo.phone %>' class="dbContent"></li>
+                            <li class="categoryList"><span class="categoryTitle">이메일</span><span class="dbContent"><%= loginInfo.email %></span></li>
+                        </ul>
+                        <ul class="halfUl">
+                            <li class="categoryList"><span class="categoryTitle">레벨</span><span class="dbContent"><img src=<%=loginInfo.level%>></span></li>
+                            <li class="categoryList"><span class="categoryTitle">멘토 참여 횟수</span><span class="dbContent"><%= loginInfo.mento %> 회</span></li>
+                            <li class="categoryList"><span class="categoryTitle">멘티 참여 횟수</span><span class="dbContent"><%= loginInfo.mentee %> 회</span></li>
+                            <li class="categoryList"><span class="categoryTitle">스터디 참여 횟수</span><span class="dbContent"><%= loginInfo.study %> 회</span></li>
+                        </ul>
+                    </div>
+                    
                     <div class="buttonBox">
                       <button type="button" class="modifyBtn">수정하기</button>
                     </div>

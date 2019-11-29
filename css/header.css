@@ -35,7 +35,7 @@
 .logo{
 
     width: 200px;
-    background: url(../img/new_logo.png) center no-repeat;
+    background: url("../img/new_logo.png") center no-repeat;
     background-size: cover;
 }
 
