@@ -280,8 +280,9 @@ app.post("/mail",function(req,res){
         from : 'affinity96@gmail.com',
         to: user.email,
         subject : 'ITUDY - 인증을 하든말든 맘대로하세요',
-        html : '<p> 안녕하세요! ITUDY와 함께해주셔서 감사하지않습니다</p>'+
-                '<p>아래의 링크를 클릭하면 되는데 하든말든 알바는 아닙니다.</p>'+
+        html : '<img src = ../img/new_logo_hover>'+
+                '<h1> 안녕하세요! ITUDY와 함께해주셔서 감사하지않습니다</h1>'+
+                '<p style="color : red">아래의 링크를 클릭하면 되는데 하든말든 알바는 아닙니다.</p>'+
                 '<a href = "http://localhost:3000/auth/?email='+user.email+'&token=abcdefg">인증하기</a>'
     }
 
@@ -320,31 +321,7 @@ app.get("/auth", function(req,res,next){
     });
     res.render("email_verify_complete.html")
 });
-// app.post("/done",function(req,res){
-//     var user = req.body;
-    
-    
-//     connection.query('insert into userinfo set ?',user,function(err,result){
-//         if(!err){
- 
-//             console.log('회원가입 완료');
-            
-//         }
-//         else{
-//             console.log('Error while performing Query.',err);
-//         }
-//     });
-//     connection.query('SELECT * from userinfo',function(err,rows,fields){
-//             if(!err){
-//                 console.log('The solution is: ',rows);
-//                 info = rows;
-//             }
-//             else{
-//                 console.log('Error while performing Query.',err);
-//             }
-//     });
-//     res.render("main.html");
-// })
+
 app.get("/done",function(req,res){
     res.render('main.html');
 })
@@ -541,13 +518,13 @@ app.post("/insert_confirm",function(req,res){
                             console.log(err);
                         }
                         else{
+
                             if(rows[0].credit >= 10000){
                                 connection.query('update userinfo set level = ? where id = ?',[petabyte,rows[0].id],function(err){
                                     if(err){
                                         console.log(err);
                                     }
                                 })
-
                             }
                             else if(rows[0].credit <10000&& rows[0].credit >=6000){
                                 connection.query('update userinfo set level = ? where id = ?',[terabyte,rows[0].id],function(err){
