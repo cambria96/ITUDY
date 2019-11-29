@@ -157,22 +157,26 @@ app.use(session({
 
 var loginUser;
 
-app.post('/success',function(req,res){
-    
-    var session = req.session;
-    
-    var nameAry = new Array();
+app.post('/success',function(req,res){    
     var check = 0;    
     for(var i=0;i<info.length;i++){
-        nameAry.push(info[i].id);
         if(req.body.id == info[i].id){
              if(req.body.password == info[i].password){
-                 check=1;
-                 break;
+                 if(info[i].authority == 1){
+                    check=1;
+                    break;
+                 }
+                 else{
+                     check = 2;
+                     break;
+                 }
              }
         }
+
     }
-    if(check){
+    console.log(check);
+    if(check==1){
+        console.log("로그인 성공");
         loginUser=info[i];
         req.session.name = loginUser.name
         req.session.credit = loginUser.credit;
@@ -184,9 +188,23 @@ app.post('/success',function(req,res){
         });
 
     }
+    else if(check==2){
+        res.write("<head><meta charset = 'utf-8'></head>");
+        res.write("<script>");
+        res.write("alert('이메일 인증이 완료되지 않았습니다.');");
+        res.write("history.back();");
+        res.write("</script>");
+        console.log("인증실패")
+        
+    }
     else{
+        res.write("<head><meta charset='utf-8'></head>");
+        res.write('<script>');
+        res.write("alert('아이디/비밀번호가 존재하지 않습니다.');");
+        res.write("history.back();");
+        res.write("</script>");
         console.log('로그인 실패');
-        res.render('main.html');
+
     }
 
 });
@@ -223,14 +241,16 @@ app.get('/logout', function(req,res){
     
 });
 
+const nodemailer = require('nodemailer');
 
-app.post("/done",function(req,res){
+app.post("/mail",function(req,res){
     var user = req.body;
-    
+    console.log("이메일:" + user.email);
+  
     connection.query('insert into userinfo set ?',user,function(err,result){
         if(!err){
  
-            console.log('회원가입 완료');
+            console.log('디비 저장 완료');
             
         }
         else{
@@ -246,7 +266,87 @@ app.post("/done",function(req,res){
                 console.log('Error while performing Query.',err);
             }
     });
-    res.render("main.html");
+    
+
+    let transporter = nodemailer.createTransport({
+        service : 'gmail',
+        auth:{
+            user : 'affinity96@gmail.com',
+            pass : 'djvlslxl369#'
+        }
+    });
+
+    let mailOptions={
+        from : 'affinity96@gmail.com',
+        to: user.email,
+        subject : 'ITUDY - 인증을 하든말든 맘대로하세요',
+        html : '<p> 안녕하세요! ITUDY와 함께해주셔서 감사하지않습니다</p>'+
+                '<p>아래의 링크를 클릭하면 되는데 하든말든 알바는 아닙니다.</p>'+
+                '<a href = "http://localhost:3000/auth/?email='+user.email+'&token=abcdefg">인증하기</a>'
+    }
+
+    transporter.sendMail(mailOptions, function(error,info){
+        if(error){
+            console.log(error);
+        }
+        else{
+            console.log("Email sent : "+info.response);
+            res.send();
+        }
+    });
+})
+
+app.get("/auth", function(req,res,next){
+    let email = req.query.email;
+    let token = req.query.token;
+    console.log("이멜 : "+email);
+    console.log("쿼리:" + token );
+    connection.query("UPDATE userinfo SET authority = 1 WHERE (`email` = '"+email+"');",function(err,rows,result){
+        if(!err){
+            console.log('권한 1로 수정!');
+            connection.query('SELECT * from userinfo',function(err,rows,fields){
+                if(!err){
+                    info = rows;
+                }
+                else{
+                    console.log('Error while performing Query.',err);
+                }
+            });
+
+        }
+        else{
+            console.log('Error while performing Query.',err);
+        }
+    });
+    res.render("email_verify_complete.html")
+});
+// app.post("/done",function(req,res){
+//     var user = req.body;
+    
+    
+//     connection.query('insert into userinfo set ?',user,function(err,result){
+//         if(!err){
+ 
+//             console.log('회원가입 완료');
+            
+//         }
+//         else{
+//             console.log('Error while performing Query.',err);
+//         }
+//     });
+//     connection.query('SELECT * from userinfo',function(err,rows,fields){
+//             if(!err){
+//                 console.log('The solution is: ',rows);
+//                 info = rows;
+//             }
+//             else{
+//                 console.log('Error while performing Query.',err);
+//             }
+//     });
+//     res.render("main.html");
+// })
+app.get("/done",function(req,res){
+    res.render('main.html');
 })
 
 app.get('/ranking', function(req,res){

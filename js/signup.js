@@ -1,9 +1,10 @@
+
 $(document).ready(function(){
 
     initial()
     signupBtn()
     checkBox();
-    submitAll();
+   // submitAll();
     changeDection();
     
 })
@@ -130,6 +131,7 @@ function checkBox(){
         totalCount=0;
         checkIndex=-1;
         checkAry=[];
+
         $(".categoryList").find("input[type='checkbox']:checked").each(function(){
             currentTitle=$(this).parent().siblings(".colTitle").text();
             currentContent=$(this).siblings().first().text();      
@@ -146,6 +148,38 @@ function checkBox(){
             i++;
         });
         console.log(stepCount);
+
+        var userData={};
+        var userPoint=[];
+        var i=0;
+        $(".colContent").find("input[type='checkbox']:checked").each(function(){
+            userPoint.push($(this).siblings('label').text());
+        });
+        userData['name']= $("#name").val();
+        userData['password']= $("#password").val();
+        userData['id']= $("#id").val();
+        userData['phone']= $("#phone").val();
+        userData['email']= $("#email").val();
+        for(m=0;m<userPoint.length;m++){
+            userData[userPoint[m]] = '1';
+        }
+
+        console.log(userData);
+        
+        $.ajax({
+            url: '/mail',
+            type: 'POST',
+            data: userData,
+            success: function(response) {
+               
+            },
+
+            error: function(request,error,status){
+                alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                return false;
+            }
+        });
+
         nextPage();
     })
 }
@@ -164,36 +198,47 @@ function nextPage(){
     });
 }
 
-// 클릭한거 전부 디비로 보내기
-function submitAll(){
-    $(".submitBtn").click(function(){
-        var userData={};
-        var userPoint=[];
-        var i=0;
-        $(".colContent").find("input[type='checkbox']:checked").each(function(){
-            userPoint.push($(this).siblings('label').text());
-        });
-        userData['name']= $("#name").val();
-        userData['password']= $("#password").val();
-        userData['id']= $("#id").val();
-        userData['phone']= $("#phone").val();
-        userData['email']= $("#email").val();
-        for(m=0;m<userPoint.length;m++){
-            userData[userPoint[m]] = '1';
-        }
-        console.log(userData);
-        $.ajax({
-            url: '/done',
-            type: 'POST',
-            data: userData,
-            success: function(response) {
-                location.href='/'
-            },
+// function emailVerifyComplete(){
+//     $(".submitBtn").click(function(){
+        
+        
+//     });
+// }
 
-            error: function(request,error,status){
-                alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-                return false;
-            }
-        });
-    })
-}
+// 클릭한거 전부 디비로 보내기
+// function submitAll(){
+//     $(".submitBtn").click(function(){
+//         var userData={};
+//         var userPoint=[];
+//         var i=0;
+//         $(".colContent").find("input[type='checkbox']:checked").each(function(){
+//             userPoint.push($(this).siblings('label').text());
+//         });
+//         userData['name']= $("#name").val();
+//         userData['password']= $("#password").val();
+//         userData['id']= $("#id").val();
+//         userData['phone']= $("#phone").val();
+//         userData['email']= $("#email").val();
+//         for(m=0;m<userPoint.length;m++){
+//             userData[userPoint[m]] = '1';
+//         }
+
+//         console.log(userData);
+//         $.ajax({
+//             url: '/done',
+//             type: 'POST',
+//             data: userData,
+//             success: function(response) {
+//                 location.href='/'
+//             },
+
+//             error: function(request,error,status){
+//                 alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+//                 return false;
+//             }
+//         });
+//     })
+// }
+
+
+
