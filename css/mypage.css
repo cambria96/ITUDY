@@ -106,6 +106,7 @@ input[type="text"]{
 }
 .alarm_on,
 .trnum_sum{
+    display: none !important;
     color : white;
     font-size : 0.8em;
     background-color: #ff6600;
@@ -116,6 +117,11 @@ input[type="text"]{
     height: 20px;
     text-align: center;
     justify-content: space-around;
+}
+.alarm_on.active,
+.trnum_sum.active{
+    display: inline-block !important;
+    
 }
 
 .contentWrap{
@@ -245,6 +251,7 @@ label {
     
 }
 
+.profileBtn,
 .acceptBtn,
 .cancelConfirmBtn{
     transition : 0.25s;
@@ -255,7 +262,7 @@ label {
     border-radius : 25px;
     outline : none;
 }
-
+.profileBtn:hover,
 .cancelConfirmBtn:hover,
 .acceptBtn:hover{
     box-shadow : inset 0 0 0 2em #dfaa32;
@@ -278,14 +285,19 @@ label {
 .partyContent{
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    background-color: #fff;
+    align-items: stretch;
+    background-color: #f4f4f4;
     border: 1px solid #ddd;
     border-radius: .5rem;
-    cursor: pointer;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,.12);
+    margin-bottom: 10px;
     overflow: hidden;
-    padding:10px;
+    padding: 10px;
+    transition: all ease 0.5s;
+}
+.partyContent:hover{
+
+    box-shadow: 0px 0px 9px 3px rgba(0,0,0,.12);
+    background: #fff;
 }
 .cancelBtn{
     background: none;
@@ -301,6 +313,7 @@ label {
     outline:none;
 }
 .partyType{
+    font-size: 1.5em;
     text-align: center;
 }
 .partyBox{
@@ -310,7 +323,7 @@ label {
     width:33%;
 }
 .partyCredit{
-    width: 20%;
+    width: 21%;
 }
 .partyTime p{
     margin:unset;
@@ -320,8 +333,9 @@ label {
 .subContentBox{
     display: flex;
     justify-content: space-between;
-    width: 50%;
+    width: 43%;
     align-items: center;
+    min-width: 333px;
 }
 .participantBox{
     margin-top:25px;
@@ -354,9 +368,7 @@ caption{
     width:49%;
     display: inline-block;
 }
-.confirmList{
-    margin-right: 10px;
-}
+
 td{
     width:33%;
 }
@@ -441,3 +453,75 @@ td{
       text-decoration: none;
       cursor: pointer;
   }
+  .partyTitle{
+    display: flex;
+    width: 57%;
+    cursor: pointer;
+    align-items: center;
+  }
+  .partyTitle span.active{
+    border-bottom: 1px solid;
+    padding-bottom: 5px;
+}
+.confirmBox ul{
+    background:#f4f4f4;
+    border: 1px solid #ddd;
+    border-radius: .5rem;
+    transition:all ease 0.5s;
+}
+.confirmBox ul:hover{
+    background:#fff;
+    box-shadow: 0px 0px 9px 3px rgba(0,0,0,.12);
+}
+.confirmList{
+    margin-right: 10px;
+}
+.confirmGroupList{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    margin: 0px 10px;
+    border-bottom: 1px solid #c1c1c1;
+}
+.confirmGroupList:last-child{
+    border-bottom: none;
+}
+.confirmGroupList span{
+    width:25%;
+}
+.confirmGroupList .name{
+    width:10%;
+}
+.confirmGroupList p {
+    margin:unset;
+}
+.deleteConfirm{
+    display: flex;
+    align-items: center;
+    padding: 1px 7px;
+    border-radius: 15px;
+    color:#848484;
+    cursor:pointer;
+    transition:all ease 0.25s;
+}
+.deleteConfirm:hover{
+    box-shadow: inset 0 0 0 2em #e7e7e7;
+    
+}
+.detailLink{
+    margin-left: 10px;
+    font-size: 0.8em;
+    color: #848484;
+    cursor: pointer;
+}
+.detailLink:hover{
+    border-bottom: 1px solid;
+}
+.confirmBox{
+    margin-bottom:10px;
+}
+
+.noneLine{
+    text-align: center;
+    color: #848484;
+}

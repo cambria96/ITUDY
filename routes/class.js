@@ -192,11 +192,14 @@ router.post("/insert_class", function (req, res) {
     var positionList = req.body.positionList;
     var body = req.body.classInfo;
     var content_id;
+    var bodyClone={};
     body["author"] = user.loginUser.name;
     body["author_id"] = user.loginUser.id;
     body["datetime"] = now;
+    bodyClone=body;
     // content_id++; //
     var queryString = 'insert into classes set ?'
+
     getConnection().query(queryString,body, function (error,result) {
         //응답
         if (error) {
@@ -225,7 +228,16 @@ router.post("/insert_class", function (req, res) {
                     console.log("페이징 에러" + error);
                     return
                 }
-                
+
+            })
+            bodyClone["id"]= content_id;
+            getConnection().query('insert into classeshistory set ?',bodyClone,function(error,result){
+                if(error){
+                    console.log(error);
+                }
+                else{
+
+                }
             })
         }
     })
@@ -265,7 +277,44 @@ router.get("/detail_class/:id", function (req, res) {
                         }))
                     })
                 })
-                
+
+            })
+
+        })
+    });
+
+})
+
+
+router.get("/detail_class_history/:id", function (req, res) {
+    fs.readFile('views/class_history.ejs', 'utf-8', function (error, data) {
+
+        getConnection().query('select * from classeshistory where id = ?', [req.params.id], function (error, class_info) {
+            if(error){
+                console.log(error);
+            }
+            getConnection().query('select * from positions where content_id = ? and type=1', [req.params.id], function (error, positions) {
+                if(error){
+                    console.log(error);
+                }
+                getConnection().query('select * from participants where content_id = ? and type=1', [req.params.id], function (error, participants) {
+                    if(error){
+                        console.log(error);
+                    }
+                    getConnection().query('select * from userinfo where id = ?', [class_info[0].author_id], function (error, author_info) {
+                        if(error){
+                            console.log(error);
+                        }
+                        res.send(ejs.render(data, {
+                            "class_info": class_info[0],
+                            "author_info":author_info[0],
+                            "positions": positions,
+                            "loginUser" : user.loginUser,
+                            "participants":participants
+                        }))
+                    })
+                })
+
             })
 
         })
@@ -333,6 +382,178 @@ router.post("/delete_participant", function (req, res) {
             console.log("취소완료");
             res.send();
         }
+    })
+})
+
+// skill tag filtering
+router.get("/classes/skills/:tags", function (req, res) {
+
+    loginUser = require('../server').loginUser
+    var skills = req.params.tags;
+    skills = skills.split(',');
+
+    for (var i = 0; i < skills.length; i++) {
+        if (skills[i] == 'CSharp') {
+            skills[i] = "C#"
+        }
+    }
+    for (var i = 0; i < skills.length; i++) {
+        if (skills[i] == 'CPlusPlus') {
+            skills[i] = "C++"
+        }
+    }
+    for (var i = 0; i < skills.length; i++) {
+        if (skills[i] == 'HTMLANDCSS') {
+            skills[i] = "HTML/CSS"
+        }
+    }
+    var selectedContent = [];
+
+    fs.readFile('views/class_tags.ejs', 'utf-8', function (error, data) {
+        getConnection().query('select * from positions where type=1', function (error, positions) { //TODO type 바꿀것
+                if (error) {
+                    console.log(error + "mysql 조회 실패");
+                    return;
+                }
+
+                var index = ["C", "C++", "C#", "Java", "Ruby", "Python", "R", "Go", "HTML/CSS", "Javascript", "Spring", "Nodejs", "Angularjs", "Vuejs", "Reactjs", "PHP", "Andriod", "IOS", "Swift", "Kotlin", "Objective-c", "MYSQL", "MongoDB", "SpringBoot", "OracleDB"];
+
+                for (var i = 0; i < positions.length; i++) {
+                    for (var j = 0; j < skills.length; j++) {
+                        if (positions[i][skills[j]] == '1') {
+                            selectedContent.push(positions[i].content_id);
+                        }
+                    }
+                }
+                if (selectedContent.length == 0) {
+                    fs.readFile('views/no_class.ejs', 'utf-8', function (error, data) {
+                        for (var i = 0; i < skills.length; i++) {
+                            if (skills[i] == 'HTML/CSS') {
+                                skills[i] = "HTMLANDCSS"
+                            }
+                        }
+                        for (var i = 0; i < skills.length; i++) {
+                            if (skills[i] == 'C#') {
+                                skills[i] = "CSharp"
+                            }
+                        }
+                        for (var i = 0; i < skills.length; i++) {
+                            if (skills[i] == "C++") {
+                                skills[i] = 'CPlusPlus'
+                            }
+                        }
+                        res.send(ejs.render(data, {
+                            name: req.session.name,
+                            credit: req.session.credit,
+                            tags: skills,
+                        }));
+
+                    })
+                }
+                else{
+                    var queryString1 = 'select * from classes where';
+
+
+                    for (var i = 0; i < selectedContent.length; i++) {
+                        queryString1 = queryString1 + ' id=' + selectedContent[i];
+                        if (i + 1 != selectedContent.length) {
+                            queryString1 = queryString1 + ' OR'
+                        }
+                    }
+                    getConnection().query(queryString1, function (error, rows) {
+                        if (error) {
+                            console.log(error + "mysql 조회 실패");
+                            return;
+                        }
+                        var can = new Array(rows.length)
+                        var queryString2 = 'select * from positions where '
+
+                        for (var i = 0; i < rows.length; i++) {
+                            queryString2 = queryString2 + "content_id=? AND type=1" //TODO type=0
+                            if (i + 1 != rows.length) {
+                                queryString2 = queryString2 + " OR "
+                            }
+                            can[i] = 0;
+                        }
+                        getConnection().query(queryString2, selectedContent, function (error, rows2) {
+
+                            var index = ["C", "C++", "C#", "Java", "Ruby", "Python", "R", "Go", "HTML/CSS", "Javascript", "Spring", "Nodejs", "Angularjs", "Vuejs", "Reactjs", "PHP", "Andriod", "IOS", "Swift", "Kotlin", "Objective-c", "MYSQL", "MongoDB", "SpringBoot", "OracleDB"];
+
+                            for (var i = 0; i < rows2.length; i++) {
+
+                                for (var m = 0; m < rows.length; m++) {
+                                    if (selectedContent[m] == rows2[i].content_id && rows2[i].none == '1') {
+                                        can[m] = 1;
+                                        break;
+                                    }
+                                    if (selectedContent[m] == rows2[i].content_id && can[m] == 1) {
+                                        break;
+                                    }
+                                }
+
+                                if (m !== rows.length) {
+                                    continue;
+                                }
+
+
+                                for (var j = 0; j < index.length; j++) {
+                                    var column = index[j]
+                                    if (rows2[i][column] === '1') {
+                                        if (loginUser[column] == '1') {
+                                            for (var l = 0; l < rows.length; l++) {
+                                                if (rows2[i].content_id === selectedContent[l]) {
+                                                    can[l] = 1;
+                                                    break;
+                                                }
+                                            }
+                                        } else {
+                                            for (var k = 0; k < rows.length; k++) {
+                                                if (rows2[i].content_id === selectedContent[k]) {
+                                                    can[k] = 0;
+                                                    break;
+                                                }
+
+                                            }
+                                            break
+                                        }
+                                    }
+                                }
+
+
+                            }
+                            for (var i = 0; i < skills.length; i++) {
+                                if (skills[i] == 'HTML/CSS') {
+                                    skills[i] = "HTMLANDCSS"
+                                }
+                            }
+                            for (var i = 0; i < skills.length; i++) {
+                                if (skills[i] == 'C#') {
+                                    skills[i] = "CSharp"
+                                }
+                            }
+                            for (var i = 0; i < skills.length; i++) {
+                                if (skills[i] == "C++") {
+                                    skills[i] = 'CPlusPlus'
+                                }
+                            }
+                            res.send(ejs.render(data, {
+                                can: can,
+                                data: rows,
+                                name: req.session.name,
+                                credit: req.session.credit,
+                                tags: skills,
+                            }));
+
+
+                        })
+
+                    });
+                }
+
+
+            }
+        );
+
     })
 })
 
