@@ -589,7 +589,13 @@ function requestConfirm(){
                     var memberPhone=memberList[m].phonenum.split(",");
                     var dynamicLi="";
                     for(var n=0;n<memberName.length;n++){
-                        dynamicLi +=' <li class="confirmGroupList"><span class="name">'+memberName[n]+'</span><span class="email">'+memberEmail[n]+'</span><span class="phone">'+memberPhone[n]+'</span><button class="profileBtn">프로필 보기</button></li>'
+                        if(n==0){
+                            dynamicLi +=' <li class="confirmGroupList"><span class="name">'+memberName[n]+' &nbsp; <img class = "crown" src = "../img/crown.png">'+'</span><span class="email">'+memberEmail[n]+'</span><span class="phone">'+memberPhone[n]+'</span><button class="profileBtn">프로필 보기</button></li>'
+        
+                        }
+                        else{
+                            dynamicLi +=' <li class="confirmGroupList"><span class="name">'+memberName[n]+'</span><span class="email">'+memberEmail[n]+'</span><span class="phone">'+memberPhone[n]+'</span><button class="profileBtn">프로필 보기</button></li>'
+                        }
                     }
                     var agreeList = memberList[m].agree.split(",");
                     var dynamicType;
