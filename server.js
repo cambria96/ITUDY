@@ -838,6 +838,22 @@ app.post("/delete_stack",function(req,res){
         }
     })
 })
+
+
+app.post("/detail_profile", function (req, res) {
+    var userID = req.body.userID;
+    connection.query('select * from userinfo where id = ?',[userID],function(err,rows){
+        if(!err){
+            
+            res.send({"userInfo":rows[0]});
+        }
+        else{
+            console.log('Error while performing Query.',err);
+        }
+    })
+    
+
+})
 //
 // app.get("/study",function(req,res){
 //     res.render('study.ejs');
