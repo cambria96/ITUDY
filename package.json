@@ -1,0 +1,36 @@
+{
+  "name": "jip-joong2",
+  "version": "1.0.0",
+  "description": "새로운 페이지 만들 때 default.html에 있는 코드 복붙하고 내용 추가하면 됩니다.",
+  "main": "server.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "console": "^0.7.2",
+    "cookie-parser": "^1.4.4",
+    "ejs-lint": "^0.3.0",
+    "ejs": "^2.7.1",
+    "express-session": "^1.17.0",
+    "express": "^4.17.1",
+    "express-mysql-session": "^2.1.0",
+    "multer": "^1.4.2",
+    "mysql": "^2.17.1",
+    "njs": "^0.0.2",
+    "nodemailer": "^6.3.1",
+    "nodemailer-smtp-transport": "^2.7.4",
+    "require": "^2.4.20"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://git.ajou.ac.kr/affinity96/jip-joong2.git"
+  },
+  "author": "",
+  "license": "ISC"
+}

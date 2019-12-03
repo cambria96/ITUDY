@@ -9,6 +9,7 @@ $(document).ready(function(){
     makeGroup();
     requestConfirm();
     deleteConfirm();
+    profileDetail();
 });
 var loginUser;
 var userClass;
@@ -584,17 +585,32 @@ function requestConfirm(){
                 
                 $(".lastBox").html('<p class="contentTitle">참여중인 그룹</p>');
                 for(var m=0; m<memberList.length;m++){
+                    var memberID = memberList[m].users.split(",");
                     var memberName=memberList[m].username.split(",");
                     var memberEmail=memberList[m].email.split(",");
                     var memberPhone=memberList[m].phonenum.split(",");
                     var dynamicLi="";
                     for(var n=0;n<memberName.length;n++){
                         if(n==0){
-                            dynamicLi +=' <li class="confirmGroupList"><span class="name" value='+memberName[n]+'>'+memberName[n]+' &nbsp; <img class = "crown" src = "../img/crown.png">'+'</span><span class="email">'+memberEmail[n]+'</span><span class="phone">'+memberPhone[n]+'</span><button class="profileBtn" id="reportLink">신고하기</button><button class="profileBtn">프로필 보기</button></li>'
+                            dynamicLi +=' <li class="confirmGroupList"><span class="name">'+memberName[n]+' &nbsp; <img class = "crown" src = "../img/crown.png">'+'</span><span class="email">'+memberEmail[n]+'</span><span class="phone">'+memberPhone[n]+'</span><div style="position: relative"><button class="profileBtn" value='+memberID[n]+'>프로필 보기</button>'
+                            +'<ul class="profileDetail">'
+                            +'<li>'+memberID[n]+' 님의 프로필</li>'
+                            +'<li><p>레벨</p><p><img src="" class="levelIcon"></p></li>'
+                            +'<li><p>멘토 횟수</p><p class="mentoCount"></p></li>'
+                            +'<li><p>멘티 횟수</p><p class="menteeCount"></p></li>'
+                            +'<li><p>스터디 횟수</p><p class="studyCount"></p></li>'
+                            +'</ul></div></li>'
         
                         }
                         else{
-                            dynamicLi +=' <li class="confirmGroupList"><span class="name" value='+memberName[n]+'>'+memberName[n]+'</span><span class="email">'+memberEmail[n]+'</span><span class="phone">'+memberPhone[n]+'</span><button class="profileBtn" id="reportLink">신고하기</button><button class="profileBtn">프로필 보기</button></li>'
+                            dynamicLi +=' <li class="confirmGroupList"><span class="name">'+memberName[n]+'</span><span class="email">'+memberEmail[n]+'</span><span class="phone">'+memberPhone[n]+'</span><div style="position: relative"><button class="profileBtn" value='+memberID[n]+'>프로필 보기</button>'
+                            +'<ul class="profileDetail">'
+                            +'<li>'+memberID[n]+' 님의 프로필</li>'
+                            +'<li><p>레벨</p><p><img src="" class="levelIcon"></p></li>'
+                            +'<li><p>멘토 횟수</p><p class="mentoCount"></p></li>'
+                            +'<li><p>멘티 횟수</p><p class="menteeCount"></p></li>'
+                            +'<li><p>스터디 횟수</p><p class="studyCount"></p></li>'
+                            +'</ul></div></li>'
                         }
                     }
                     var agreeList = memberList[m].agree.split(",");
@@ -614,7 +630,7 @@ function requestConfirm(){
                     }
 
                     var dynamicMember = '<div class="confirmBox" value='+memberList[m].agree+'>'
-                        +'<ul>'
+                        +'<ul class="confirmUl">'
                         +dynamicBtn
                         +dynamicLi
                         +'</ul>'
@@ -695,4 +711,42 @@ function deleteConfirm(){
         }
     })
     
+}
+
+function profileDetail(){
+    $("html").click(function(e){
+        if(!$(e.target).parents().hasClass("profileDetail")){
+            $(".profileDetail").slideUp("fast");
+        }
+    })
+    $(document).on("click",".profileBtn",function(){
+        var userID = $(this).val();
+        var profileBtn =$(this);
+        if( $(this).siblings(".profileDetail").is(":visible")){
+            $(this).siblings(".profileDetail").slideUp("fast");
+        }
+        else{
+            $(this).siblings(".profileDetail").slideDown("fast");
+        }
+
+        $.ajax({
+            url:"detail_profile",
+            type: "POST",
+            data:{
+                "userID":userID
+            },
+            success: function(data){
+                console.log(data.userInfo);
+                profileBtn.siblings(".profileDetail").find(".levelIcon").attr("src",data.userInfo.level);
+                profileBtn.siblings(".profileDetail").find(".mentoCount").text(data.userInfo.mento+"회");
+                profileBtn.siblings(".profileDetail").find(".menteeCount").text(data.userInfo.mentee+"회");
+                profileBtn.siblings(".profileDetail").find(".studyCount").text(data.userInfo.study+"회");
+
+            },
+            error: function(request,error,status){
+                alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                return false;
+            }
+        })
+    })
 }

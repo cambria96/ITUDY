@@ -147,7 +147,12 @@
                             <tr>
                                 <th><%=m+1%>.</th>
                                 <td class="condition"><%=conditionList[m]%></td>
-                                <td><%=positions[m].description%></td>
+                                <td><% if(positions[m].description==""){ %>
+                                    <span>-</span>
+                                    <%}else{%>
+                                        <%=positions[m].description%>
+                                    <%}%>
+                                    </td>
                                 <td class="totalNumber"><%=positions[m].number%> 명</td>
                                 <% var checkbit=0;
                                    var conditionCheckBit=0;

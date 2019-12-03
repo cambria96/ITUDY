@@ -225,7 +225,7 @@
     flex-wrap: wrap;
     -webkit-box-pack: start;
     -ms-flex-pack: start;
-    justify-content: flex-start;
+    justify-content: space-between;
 }
 .skill_buttons{
     display: contents;
@@ -241,15 +241,21 @@
     font-size: 2rem;
     border: none;
     padding: 1px .6rem 2px .8rem;
-    margin-right: 1rem;
+    margin-left: .5rem;
+    margin-right: .5rem;
     margin-bottom: 1rem;
+    transition: transform ease 0.2s;
 
+
+}
+.tag:hover{
+    transform: scale(1.1);
 }
 .tag:focus{
     outline: none;
 }
 .tag.is-active {
-    background: #1dc078;
+    background: #dfaa32;
 }
 .tag.is-active span {
     margin-left: 8px;

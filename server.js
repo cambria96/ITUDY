@@ -26,7 +26,7 @@ var info;
 
 connection.query('SELECT * from userinfo',function(err,rows,fields){
         if(!err){
-            console.log('The solution is: ',rows);
+           
             info = rows;
         }
         else{
@@ -837,6 +837,22 @@ app.post("/delete_stack",function(req,res){
             console.log('Error while performing Query.',err);
         }
     })
+})
+
+
+app.post("/detail_profile", function (req, res) {
+    var userID = req.body.userID;
+    connection.query('select * from userinfo where id = ?',[userID],function(err,rows){
+        if(!err){
+            
+            res.send({"userInfo":rows[0]});
+        }
+        else{
+            console.log('Error while performing Query.',err);
+        }
+    })
+    
+
 })
 //
 // app.get("/study",function(req,res){
