@@ -861,6 +861,46 @@ app.post("/detail_profile", function (req, res) {
 // app.get("/study",function(req,res){
 //     res.render('study.ejs');
 // })
+
+
+app.post("/report", function(req, res) {
+    var reportedUser = req.body.reportedUser;
+    var reportUser = loginUser.id;
+    var title = req.body.title;
+    var detail = req.body.detail;
+
+    let transporter = nodemailer.createTransport({
+        service : 'gmail',
+        auth:{
+            user : 'affinity96@gmail.com',
+            pass : 'djvlslxl369#'
+        }
+    });
+
+    let mailOptions={
+        from : loginUser.email,
+        to: 'jaewan9074@gmail.com',
+        subject : '사용자 Report',
+        html :
+            '<h1> 사용자의 Report가 접수되었습니다.</h1>'+
+            '<h2>'+'report한 유저: '+reportUser+'</h2>'+
+            '<h2>'+'report된 유저: '+reportedUser+'</h2>'+
+            '<h2>'+'제목: '+title+'</h2>'+
+            '<h2>'+'내용: '+detail+'</h2>'
+    }
+
+    transporter.sendMail(mailOptions, function(error,info){
+        if(error){
+            console.log(error);
+        }
+        else{
+            console.log("Email sent : "+info.response);
+            res.send();
+        }
+    });
+
+    res.send();
+})
 ///////////////////////////// 게시판 구현 ////////////////////////
 
 //클래스 게시판

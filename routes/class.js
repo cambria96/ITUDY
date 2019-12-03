@@ -103,7 +103,7 @@ router.get("/classes/:cur", function (req, res) {
 
                 getConnection().query(queryString,params,function(error,rows2) {
 
-                    var index = ["C","C++","C#","Java","Ruby","Python","R","Go","HTML/CSS","Javascript","Spring","Nodejs","Angularjs","Vuejs","Reactjs","PHP","Andriod","IOS","Swift","Kotlin","Objective-c","MYSQL","MongoDB","SpringBoot","OracleDB"];
+                    var index = ["C","C++","C#","Java","Ruby","Python","R","Go","HTML/CSS","Javascript","Spring","Nodejs","Angularjs","Vuejs","Reactjs","PHP","Android","IOS","Swift","Kotlin","Objective-c","MYSQL","MongoDB","SpringBoot","OracleDB"];
                    
                     for(var i=0;i<rows2.length;i++){
 
@@ -486,7 +486,7 @@ router.get("/classes/skills/:tags", function (req, res) {
                         }
                         getConnection().query(queryString2, selectedContent, function (error, rows2) {
 
-                            var index = ["C", "C++", "C#", "Java", "Ruby", "Python", "R", "Go", "HTML/CSS", "Javascript", "Spring", "Nodejs", "Angularjs", "Vuejs", "Reactjs", "PHP", "Andriod", "IOS", "Swift", "Kotlin", "Objective-c", "MYSQL", "MongoDB", "SpringBoot", "OracleDB"];
+                            var index = ["C", "C++", "C#", "Java", "Ruby", "Python", "R", "Go", "HTML/CSS", "Javascript", "Spring", "Nodejs", "Angularjs", "Vuejs", "Reactjs", "PHP", "Android", "IOS", "Swift", "Kotlin", "Objective-c", "MYSQL", "MongoDB", "SpringBoot", "OracleDB"];
 
                             for (var i = 0; i < rows2.length; i++) {
 
