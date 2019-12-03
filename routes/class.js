@@ -126,7 +126,7 @@ router.get("/classes/:cur", function (req, res) {
                         for(var j=0;j<index.length;j++) {
                             var column = index[j]
                             if (rows2[i][column] === '1') {
-                                if (loginUser[column] == '1') {
+                                if (req.session.loginUser[column] == '1') {
                                     for (var l = 0; l < rows1.length; l++) {
                                         if (rows2[i].content_id === params[l]) {
                                             can[l] = 1;
@@ -164,8 +164,8 @@ router.get("/classes/:cur", function (req, res) {
                             data: rows1,
                             authorsLevel: authorsLevel,
                             classes: result2,
-                            name:loginUser.name,
-                            credit:loginUser.credit
+                            name:req.session.loginUser.name,
+                            credit:req.session.loginUser.credit
                         }));
                     })
                 })
@@ -189,7 +189,7 @@ router.get("/class", function (req, res) {
 //삽입 페이지
 router.get("/insert_class", function (req, res) {
 
-    res.render('insert_class.ejs',{loginInfo:user.loginUser});   
+    res.render('insert_class.ejs',{loginInfo:req.session.loginUser});   
 
 })
 //클래스 삽입
@@ -201,8 +201,8 @@ router.post("/insert_class", function (req, res) {
     var body = req.body.classInfo;
     var content_id;
     var bodyClone={};
-    body["author"] = user.loginUser.name;
-    body["author_id"] = user.loginUser.id;
+    body["author"] = req.session.loginUser.name;
+    body["author_id"] = req.session.loginUser.id;
     body["datetime"] = now;
     bodyClone=body;
     // content_id++; //
@@ -280,7 +280,7 @@ router.get("/detail_class/:id", function (req, res) {
                             "class_info": class_info[0],
                             "author_info":author_info[0],
                             "positions": positions,
-                            "loginUser" : user.loginUser,
+                            "loginUser" : req.session.loginUser,
                             "participants":participants
                         }))
                     })
@@ -317,7 +317,7 @@ router.get("/detail_class_history/:id", function (req, res) {
                             "class_info": class_info[0],
                             "author_info":author_info[0],
                             "positions": positions,
-                            "loginUser" : user.loginUser,
+                            "loginUser" : req.session.loginUser,
                             "participants":participants
                         }))
                     })
@@ -452,8 +452,8 @@ router.get("/classes/skills/:tags", function (req, res) {
                             }
                         }
                         res.send(ejs.render(data, {
-                            name:loginUser.name,
-                            credit:loginUser.credit,
+                            name:req.session.loginUser.name,
+                            credit:req.session.loginUser.credit,
                             tags: skills,
                         }));
 
@@ -508,7 +508,7 @@ router.get("/classes/skills/:tags", function (req, res) {
                                 for (var j = 0; j < index.length; j++) {
                                     var column = index[j]
                                     if (rows2[i][column] === '1') {
-                                        if (loginUser[column] == '1') {
+                                        if (req.session.loginUser[column] == '1') {
                                             for (var l = 0; l < rows.length; l++) {
                                                 if (rows2[i].content_id === selectedContent[l]) {
                                                     can[l] = 1;
@@ -562,8 +562,8 @@ router.get("/classes/skills/:tags", function (req, res) {
                                     can: can,
                                     data: rows,
                                     authorsLevel:authorsLevel,
-                                    name:loginUser.name,
-                                    credit:loginUser.credit,
+                                    name:req.session.loginUser.name,
+                                    credit:req.session.loginUser.credit,
                                     tags: skills,
                                 }));
                             })

@@ -64,88 +64,7 @@ http.createServer(app).listen(app.get('port'),function(){
 app.get('/',function(req,res){
     res.render("main.html");
 })
-app.get('/signup',function(req,res){
-    res.render("signup.html");
-})
-app.get('/mypage',function(req,res){
-    connection.query("SELECT * from participants WHERE (`participant_id` = '"+loginUser.id+"');",function(err,rows,result){
-        if(!err){
-            partyList=rows;
-            var contentList =[];
-            var classList=[];
-            var studyList=[];
-            var position_id_class=[];
-            var position_id_study=[];
-            if(partyList.length==0){
-                res.render("mypage.ejs",{
-                    "loginInfo":loginUser,
-                    "contentList":contentList,
-                    "classList":classList,
-                    "studyList":studyList,
-                    "position_id_class":""
-                });
-            }
-            for(var m=0;m<partyList.length;m++){
-                var n=0;
-                connection.query("SELECT * from classes WHERE (`id` = '"+partyList[m].content_id+"');",function(err,rows,result){
-                    if(!err){
-                        if(partyList[n].type==1){
-                            contentList.push(rows[0]);
-                            classList.push(rows[0]);
-                            position_id_class.push(partyList[n].position_id);
-                            
-                        }
-                        else{
-                            var a=0;
-                            connection.query("SELECT * from study WHERE (`id` = '"+partyList[n].content_id+"');",function(err,rows,result){
-                                if(!err){
-                                    contentList.push(rows[0]);
-                                    studyList.push(rows[0]);
-                                    position_id_study.push(partyList[a].position_id);
-                                    if(contentList.length==partyList.length){
-                                        res.render("mypage.ejs",{
-                                            "loginInfo":loginUser,
-                                            "contentList":contentList,
-                                            "classList":classList,
-                                            "studyList":studyList,
-                                            "position_id_class":position_id_class,
-                                            "position_id_study":position_id_study
-                                        });
-                                    }
-                                }
-                                else{
-                                    console.log('Error while performing Query.',err);
-                                }
-                                a++;
-                            });
-                        }
-                    }
-                    else{
-                        console.log('Error while performing Query.',err);
-                    }
-                    if(contentList.length==partyList.length){
-                        res.render("mypage.ejs",{
-                            "loginInfo":loginUser,
-                            "contentList":contentList,
-                            "classList":classList,
-                            "studyList":studyList,
-                            "position_id_class":position_id_class,
-                            "position_id_study":position_id_study
-                        });
-                    }
-                    n++;
-                });
-            }
-        }
-        else{
-            console.log('Error while performing Query.',err);
-            res.send();
-        }
-    });
 
-
-
-})
 
 app.use(session({
     key : 'sid',
@@ -178,13 +97,16 @@ app.post('/success',function(req,res){
     if(check==1){
         console.log("로그인 성공");
         loginUser=info[i];
-        req.session.name = loginUser.name
-        req.session.credit = loginUser.credit;
-        req.session.id = loginUser.id;
+        // req.session.name = loginUser.name
+        // req.session.credit = loginUser.credit;
+        // req.session.id = loginUser.id;
+        // req.session.credit = loginUser.credit;
         // alert(req.session.name + "님 환영합니다.");
+        req.session.loginUser = loginUser;
         exports.loginUser = loginUser;
         req.session.save(()=>{
-            res.render('after_login.ejs',{loginInfo:loginUser});    
+            
+            res.render('after_login.ejs',{loginInfo:req.session.loginUser});    
         });
 
     }
@@ -211,9 +133,9 @@ app.post('/success',function(req,res){
 
 app.get('/home',function(req,res){
     
-    if(req.session.name){
+    if(req.session.loginUser){
         req.session.save(()=>{
-            res.render('after_login.ejs',{loginInfo:loginUser});    
+            res.render('after_login.ejs',{loginInfo:req.session.loginUser});    
         });
         
     }
@@ -222,17 +144,102 @@ app.get('/home',function(req,res){
     }
 })
 
+app.get('/signup',function(req,res){
+    res.render("signup.html");
+})
+app.get('/mypage',function(req,res){
+    connection.query("SELECT * from participants WHERE (`participant_id` = '"+loginUser.id+"');",function(err,rows,result){
+        if(!err){
+            partyList=rows;
+            var contentList =[];
+            var classList=[];
+            var studyList=[];
+            var position_id_class=[];
+            var position_id_study=[];
+            console.log(req.session);
+            if(partyList.length==0){
+                res.render("mypage.ejs",{
+                    "loginInfo":req.session.loginUser,
+                    "contentList":contentList,
+                    "classList":classList,
+                    "studyList":studyList,
+                    "position_id_class":""
+                });
+            }
+            for(var m=0;m<partyList.length;m++){
+                var n=0;
+                connection.query("SELECT * from classes WHERE (`id` = '"+partyList[m].content_id+"');",function(err,rows,result){
+                    if(!err){
+                        if(partyList[n].type==1){
+                            contentList.push(rows[0]);
+                            classList.push(rows[0]);
+                            position_id_class.push(partyList[n].position_id);
+                            
+                        }
+                        else{
+                            var a=0;
+                            connection.query("SELECT * from study WHERE (`id` = '"+partyList[n].content_id+"');",function(err,rows,result){
+                                if(!err){
+                                    contentList.push(rows[0]);
+                                    studyList.push(rows[0]);
+                                    position_id_study.push(partyList[a].position_id);
+                                    if(contentList.length==partyList.length){
+                                        res.render("mypage.ejs",{
+                                            "loginInfo":req.session.loginUser,
+                                            "contentList":contentList,
+                                            "classList":classList,
+                                            "studyList":studyList,
+                                            "position_id_class":position_id_class,
+                                            "position_id_study":position_id_study
+                                        });
+                                    }
+                                }
+                                else{
+                                    console.log('Error while performing Query.',err);
+                                }
+                                a++;
+                            });
+                        }
+                    }
+                    else{
+                        console.log('Error while performing Query.',err);
+                    }
+                    if(contentList.length==partyList.length){
+                        res.render("mypage.ejs",{
+                            "loginInfo":req.session.loginUser,
+                            "contentList":contentList,
+                            "classList":classList,
+                            "studyList":studyList,
+                            "position_id_class":position_id_class,
+                            "position_id_study":position_id_study
+                        });
+                    }
+                    n++;
+                });
+            }
+        }
+        else{
+            console.log('Error while performing Query.',err);
+            res.send();
+        }
+    });
 
+
+
+})
 app.get('/logout', function(req,res){
-    delete req.session.name;
+    req.session.destroy(function(){
+        req.session;
+    });
+        
+        
 
     connection.query('SELECT * from userinfo',function(err,rows,fields){
         if(!err){
             console.log('The solution is: ',rows);
             info = rows;
-            req.session.save(()=>{
-                res.render('main.html');
-            })
+            res.render('main.html');
+            
         }
         else{
             console.log('Error while performing Query.',err);
@@ -327,10 +334,6 @@ app.get("/done",function(req,res){
 })
 
 app.get('/ranking', function(req,res){
-        req.session.name = loginUser.name;
-        req.session.credit = loginUser.credit;
-        req.session.id = loginUser.id;
-        req.session.ranking = loginUser.ranking;
 
         connection.query('SELECT * from userinfo',function(err,rows,fields){
             if(!err){
@@ -345,8 +348,8 @@ app.get('/ranking', function(req,res){
                     }
                 }
         
-                res.render('ranking.ejs',{name:req.session.name,credit:req.session.credit, 
-                    id:loginUser.id, ranking : k+1, 
+                res.render('ranking.ejs',{name:req.session.loginUser.name,credit:req.session.loginUser.credit, 
+                    id:req.session.loginUser.id, ranking : k+1, 
                     id1:info[0].id, id2:info[1].id, id3: info[2].id, id4: info[3].id, id5: info[4].id,
                     credit1:info[0].credit, credit2 : info[1].credit, credit3: info[2].credit, credit4 : info[3].credit,credit5 : info[4].credit});
                 }
@@ -389,10 +392,10 @@ var userStudy=[];
 var participants=[];
 
 app.get("/introduction", function(req,res){
-    res.render('introduction.ejs',{name:req.session.name,credit:req.session.credit});
+    res.render('introduction.ejs',{name:req.session.loginUser.name,credit:req.session.loginUser.credit});
 })
 app.post("/requestUserInfo",function(req,res){
-    res.send({"loginUser":loginUser})
+    res.send({"loginUser":req.session.loginUser})
 })
 app.post("/requestContent",function(req,res){
     connection.query("SELECT * from classes WHERE (`author_id` = '"+loginUser.id+"');",function(err,rows,result){
