@@ -26,7 +26,7 @@ var info;
 
 connection.query('SELECT * from userinfo',function(err,rows,fields){
         if(!err){
-            console.log('The solution is: ',rows);
+           
             info = rows;
         }
         else{
