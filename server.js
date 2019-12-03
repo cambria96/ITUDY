@@ -26,7 +26,7 @@ var info;
 
 connection.query('SELECT * from userinfo',function(err,rows,fields){
         if(!err){
-            console.log('The solution is: ',rows);
+           
             info = rows;
         }
         else{
@@ -64,88 +64,7 @@ http.createServer(app).listen(app.get('port'),function(){
 app.get('/',function(req,res){
     res.render("main.html");
 })
-app.get('/signup',function(req,res){
-    res.render("signup.html");
-})
-app.get('/mypage',function(req,res){
-    connection.query("SELECT * from participants WHERE (`participant_id` = '"+loginUser.id+"');",function(err,rows,result){
-        if(!err){
-            partyList=rows;
-            var contentList =[];
-            var classList=[];
-            var studyList=[];
-            var position_id_class=[];
-            var position_id_study=[];
-            if(partyList.length==0){
-                res.render("mypage.ejs",{
-                    "loginInfo":loginUser,
-                    "contentList":contentList,
-                    "classList":classList,
-                    "studyList":studyList,
-                    "position_id_class":""
-                });
-            }
-            for(var m=0;m<partyList.length;m++){
-                var n=0;
-                connection.query("SELECT * from classes WHERE (`id` = '"+partyList[m].content_id+"');",function(err,rows,result){
-                    if(!err){
-                        if(partyList[n].type==1){
-                            contentList.push(rows[0]);
-                            classList.push(rows[0]);
-                            position_id_class.push(partyList[n].position_id);
-                            
-                        }
-                        else{
-                            var a=0;
-                            connection.query("SELECT * from study WHERE (`id` = '"+partyList[n].content_id+"');",function(err,rows,result){
-                                if(!err){
-                                    contentList.push(rows[0]);
-                                    studyList.push(rows[0]);
-                                    position_id_study.push(partyList[a].position_id);
-                                    if(contentList.length==partyList.length){
-                                        res.render("mypage.ejs",{
-                                            "loginInfo":loginUser,
-                                            "contentList":contentList,
-                                            "classList":classList,
-                                            "studyList":studyList,
-                                            "position_id_class":position_id_class,
-                                            "position_id_study":position_id_study
-                                        });
-                                    }
-                                }
-                                else{
-                                    console.log('Error while performing Query.',err);
-                                }
-                                a++;
-                            });
-                        }
-                    }
-                    else{
-                        console.log('Error while performing Query.',err);
-                    }
-                    if(contentList.length==partyList.length){
-                        res.render("mypage.ejs",{
-                            "loginInfo":loginUser,
-                            "contentList":contentList,
-                            "classList":classList,
-                            "studyList":studyList,
-                            "position_id_class":position_id_class,
-                            "position_id_study":position_id_study
-                        });
-                    }
-                    n++;
-                });
-            }
-        }
-        else{
-            console.log('Error while performing Query.',err);
-            res.send();
-        }
-    });
 
-
-
-})
 
 app.use(session({
     key : 'sid',
@@ -178,13 +97,16 @@ app.post('/success',function(req,res){
     if(check==1){
         console.log("로그인 성공");
         loginUser=info[i];
-        req.session.name = loginUser.name
-        req.session.credit = loginUser.credit;
-        req.session.id = loginUser.id;
+        // req.session.name = loginUser.name
+        // req.session.credit = loginUser.credit;
+        // req.session.id = loginUser.id;
+        // req.session.credit = loginUser.credit;
         // alert(req.session.name + "님 환영합니다.");
+        req.session.loginUser = loginUser;
         exports.loginUser = loginUser;
         req.session.save(()=>{
-            res.render('after_login.ejs',{loginInfo:loginUser});    
+            
+            res.render('after_login.ejs',{loginInfo:req.session.loginUser});    
         });
 
     }
@@ -211,9 +133,9 @@ app.post('/success',function(req,res){
 
 app.get('/home',function(req,res){
     
-    if(req.session.name){
+    if(req.session.loginUser){
         req.session.save(()=>{
-            res.render('after_login.ejs',{loginInfo:loginUser});    
+            res.render('after_login.ejs',{loginInfo:req.session.loginUser});    
         });
         
     }
@@ -222,17 +144,102 @@ app.get('/home',function(req,res){
     }
 })
 
+app.get('/signup',function(req,res){
+    res.render("signup.html");
+})
+app.get('/mypage',function(req,res){
+    connection.query("SELECT * from participants WHERE (`participant_id` = '"+loginUser.id+"');",function(err,rows,result){
+        if(!err){
+            partyList=rows;
+            var contentList =[];
+            var classList=[];
+            var studyList=[];
+            var position_id_class=[];
+            var position_id_study=[];
+            console.log(req.session);
+            if(partyList.length==0){
+                res.render("mypage.ejs",{
+                    "loginInfo":req.session.loginUser,
+                    "contentList":contentList,
+                    "classList":classList,
+                    "studyList":studyList,
+                    "position_id_class":""
+                });
+            }
+            for(var m=0;m<partyList.length;m++){
+                var n=0;
+                connection.query("SELECT * from classes WHERE (`id` = '"+partyList[m].content_id+"');",function(err,rows,result){
+                    if(!err){
+                        if(partyList[n].type==1){
+                            contentList.push(rows[0]);
+                            classList.push(rows[0]);
+                            position_id_class.push(partyList[n].position_id);
+                            
+                        }
+                        else{
+                            var a=0;
+                            connection.query("SELECT * from study WHERE (`id` = '"+partyList[n].content_id+"');",function(err,rows,result){
+                                if(!err){
+                                    contentList.push(rows[0]);
+                                    studyList.push(rows[0]);
+                                    position_id_study.push(partyList[a].position_id);
+                                    if(contentList.length==partyList.length){
+                                        res.render("mypage.ejs",{
+                                            "loginInfo":req.session.loginUser,
+                                            "contentList":contentList,
+                                            "classList":classList,
+                                            "studyList":studyList,
+                                            "position_id_class":position_id_class,
+                                            "position_id_study":position_id_study
+                                        });
+                                    }
+                                }
+                                else{
+                                    console.log('Error while performing Query.',err);
+                                }
+                                a++;
+                            });
+                        }
+                    }
+                    else{
+                        console.log('Error while performing Query.',err);
+                    }
+                    if(contentList.length==partyList.length){
+                        res.render("mypage.ejs",{
+                            "loginInfo":req.session.loginUser,
+                            "contentList":contentList,
+                            "classList":classList,
+                            "studyList":studyList,
+                            "position_id_class":position_id_class,
+                            "position_id_study":position_id_study
+                        });
+                    }
+                    n++;
+                });
+            }
+        }
+        else{
+            console.log('Error while performing Query.',err);
+            res.send();
+        }
+    });
 
+
+
+})
 app.get('/logout', function(req,res){
-    delete req.session.name;
+    req.session.destroy(function(){
+        req.session;
+    });
+        
+        
 
     connection.query('SELECT * from userinfo',function(err,rows,fields){
         if(!err){
             console.log('The solution is: ',rows);
             info = rows;
-            req.session.save(()=>{
-                res.render('main.html');
-            })
+            res.render('main.html');
+            
         }
         else{
             console.log('Error while performing Query.',err);
@@ -268,7 +275,7 @@ app.post("/mail",function(req,res){
     });
     
 
-    let transporter = nodemailer.createTransport({
+    var transporter = nodemailer.createTransport({
         service : 'gmail',
         auth:{
             user : 'affinity96@gmail.com',
@@ -276,14 +283,14 @@ app.post("/mail",function(req,res){
         }
     });
 
-    let mailOptions={
+    var mailOptions={
         from : 'affinity96@gmail.com',
         to: user.email,
         subject : 'ITUDY - 인증을 하든말든 맘대로하세요',
         html : '<img src = ../img/new_logo_hover>'+
                 '<h1> 안녕하세요! ITUDY와 함께해주셔서 감사하지않습니다</h1>'+
                 '<p style="color : red">아래의 링크를 클릭하면 되는데 하든말든 알바는 아닙니다.</p>'+
-                '<a href = "http://localhost:3000/auth/?email='+user.email+'&token=abcdefg">인증하기</a>'
+                '<a href = "http://104.197.203.211:3000/auth/?email='+user.email+'&token=abcdefg">인증하기</a>'
     }
 
     transporter.sendMail(mailOptions, function(error,info){
@@ -298,8 +305,8 @@ app.post("/mail",function(req,res){
 })
 
 app.get("/auth", function(req,res,next){
-    let email = req.query.email;
-    let token = req.query.token;
+    var email = req.query.email;
+    var token = req.query.token;
     console.log("이멜 : "+email);
     console.log("쿼리:" + token );
     connection.query("UPDATE userinfo SET authority = 1 WHERE (`email` = '"+email+"');",function(err,rows,result){
@@ -327,10 +334,6 @@ app.get("/done",function(req,res){
 })
 
 app.get('/ranking', function(req,res){
-        req.session.name = loginUser.name;
-        req.session.credit = loginUser.credit;
-        req.session.id = loginUser.id;
-        req.session.ranking = loginUser.ranking;
 
         connection.query('SELECT * from userinfo',function(err,rows,fields){
             if(!err){
@@ -340,13 +343,13 @@ app.get('/ranking', function(req,res){
                 });
         
                 for (var k=0; k<info.length; k++){
-                    if(info[k].id == loginUser.id){
+                    if(info[k].id == req.session.loginUser.id){
                         break;
                     }
                 }
         
-                res.render('ranking.ejs',{name:req.session.name,credit:req.session.credit, 
-                    id:loginUser.id, ranking : k+1, 
+                res.render('ranking.ejs',{name:req.session.loginUser.name,credit:req.session.loginUser.credit, 
+                    id:req.session.loginUser.id, ranking : k+1, 
                     id1:info[0].id, id2:info[1].id, id3: info[2].id, id4: info[3].id, id5: info[4].id,
                     credit1:info[0].credit, credit2 : info[1].credit, credit3: info[2].credit, credit4 : info[3].credit,credit5 : info[4].credit});
                 }
@@ -363,7 +366,7 @@ app.get('/ranking', function(req,res){
 app.post("/modify",function(req,res){
     var user = req.body
     console.log(user);
-    connection.query("UPDATE `userinfo`.`userinfo` SET ? WHERE (`id` = '"+loginUser.id+"');",user,function(err,result){
+    connection.query("UPDATE `userinfo`.`userinfo` SET ? WHERE (`id` = '"+req.session.loginUser.id+"');",user,function(err,result){
         if(!err){
             console.log("수정완료");    
         }
@@ -371,10 +374,10 @@ app.post("/modify",function(req,res){
             console.log('Error while performing Query.',err);
         }
     });
-    connection.query("SELECT * from userinfo WHERE (`id` = '"+loginUser.id+"');",user,function(err,rows,result){
+    connection.query("SELECT * from userinfo WHERE (`id` = '"+req.session.loginUser.id+"');",user,function(err,rows,result){
         if(!err){
             console.log("수정완료");   
-            loginUser =  rows[0];
+            req.session.loginUser =  rows[0];
             exports.loginUser = loginUser;
         }
         else{
@@ -389,17 +392,17 @@ var userStudy=[];
 var participants=[];
 
 app.get("/introduction", function(req,res){
-    res.render('introduction.ejs',{name:req.session.name,credit:req.session.credit});
+    res.render('introduction.ejs',{name:req.session.loginUser.name,credit:req.session.loginUser.credit});
 })
 app.post("/requestUserInfo",function(req,res){
-    res.send({"loginUser":loginUser})
+    res.send({"loginUser":req.session.loginUser})
 })
 app.post("/requestContent",function(req,res){
-    connection.query("SELECT * from classes WHERE (`author_id` = '"+loginUser.id+"');",function(err,rows,result){
+    connection.query("SELECT * from classes WHERE (`author_id` = '"+req.session.loginUser.id+"');",function(err,rows,result){
         if(!err){
             console.log("클래스 로드 완료");
             userClass=rows;
-            connection.query("SELECT * from study WHERE (`author_id` = '"+loginUser.id+"');",function(err,rows,result){
+            connection.query("SELECT * from study WHERE (`author_id` = '"+req.session.loginUser.id+"');",function(err,rows,result){
                 if(!err){
                     console.log("스터디 로드 완료");
                     //console.log("유저 클래스: "+ userClass);
@@ -416,7 +419,7 @@ app.post("/requestContent",function(req,res){
                                 if(!err){
                                     positions = rows;
                                     console.log("포지션 길이 : "+positions.length);
-                                    res.send({loginUser: loginUser,userClass: userClass, userStudy:userStudy, participants:participants, positions:positions});
+                                    res.send({loginUser: req.session.loginUser,userClass: userClass, userStudy:userStudy, participants:participants, positions:positions});
 
                                 }
                                 else{
@@ -465,7 +468,7 @@ app.post("/delete_participant_both", function (req, res) {
 var partyList;
 app.post("/request_confirm",function(req,res){
     
-    connection.query('select * from confirm where users like "%'+loginUser.id+'%"',function(err,rows,result){
+    connection.query('select * from confirm where users like "%'+req.session.loginUser.id+'%"',function(err,rows,result){
         if(!err){
             console.log(rows);  
             res.send({"confirmList":rows});
@@ -694,11 +697,11 @@ app.post("/insert_confirm",function(req,res){
                                             if(!err){
                                                 connection.query('delete from participants where content_id = ?',users.content_id,function(err,result){
                                                     if(!err){
-                                                        connection.query('select * from userinfo where id = ? ',loginUser.id,function(err,rows){
+                                                        connection.query('select * from userinfo where id = ? ',req.session.loginUser.id,function(err,rows){
 
                                                             if(!err){
                                                                 console.log("그룹 생성 완료");
-                                                                loginUser = rows[0];
+                                                                req.session.loginUser = rows[0];
                                                                 exports.loginUser = loginUser;
                                                                 res.send();
                                                             }
@@ -731,11 +734,11 @@ app.post("/insert_confirm",function(req,res){
                                             if(!err){
                                                 connection.query('delete from participants where content_id = ?',users.content_id,function(err,result){
                                                     if(!err){
-                                                        connection.query('select * from userinfo where id = ? ',loginUser.id,function(err,rows){
+                                                        connection.query('select * from userinfo where id = ? ',req.session.loginUser.id,function(err,rows){
 
                                                             if(!err){
                                                                 console.log("그룹 생성 완료");
-                                                                loginUser = rows[0];
+                                                                req.session.loginUser = rows[0];
                                                                 exports.loginUser = loginUser;
                                                                 res.send();
                                                             }
@@ -838,10 +841,66 @@ app.post("/delete_stack",function(req,res){
         }
     })
 })
+
+
+app.post("/detail_profile", function (req, res) {
+    var userID = req.body.userID;
+    connection.query('select * from userinfo where id = ?',[userID],function(err,rows){
+        if(!err){
+            
+            res.send({"userInfo":rows[0]});
+        }
+        else{
+            console.log('Error while performing Query.',err);
+        }
+    })
+    
+
+})
 //
 // app.get("/study",function(req,res){
 //     res.render('study.ejs');
 // })
+
+
+app.post("/report", function(req, res) {
+    var reportedUser = req.body.reportedUser;
+    var reportUser = req.session.loginUser.id;
+    var title = req.body.title;
+    var detail = req.body.detail;
+
+    let transporter = nodemailer.createTransport({
+        service : 'gmail',
+        auth:{
+            user : 'affinity96@gmail.com',
+            pass : 'djvlslxl369#'
+        }
+    });
+
+    let mailOptions={
+        from : req.session.loginUser.email,
+        to: 'affinity96@gmail.com',
+        subject : '사용자 Report',
+        html :
+            '<h1> 사용자의 Report가 접수되었습니다.</h1>'+
+            '<h2>'+'report한 유저: '+reportUser+'</h2>'+
+            '<h2>'+'report된 유저: '+reportedUser+'</h2>'+
+            '<h2>'+'제목: '+title+'</h2>'+
+            '<h2>'+'내용: '+detail+'</h2>'
+    }
+
+    transporter.sendMail(mailOptions, function(error,info){
+        if(error){
+            console.log(error);
+        }
+        else{
+            console.log("Email sent : "+info.response);
+            res.send();
+        }
+    });
+
+    res.send();
+})
 ///////////////////////////// 게시판 구현 ////////////////////////
 
 //클래스 게시판

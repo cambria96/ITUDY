@@ -8,8 +8,6 @@
     <link href="../lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <link href="../lib/animate/animate.min.css" rel="stylesheet">
     <link href="../lib/ionicons/css/ionicons.min.css" rel="stylesheet">
-    <link href="../lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="../lib/lightbox/css/lightbox.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <!-- Main Stylesheet File -->
     <link href="../css/style.css" rel="stylesheet">
@@ -37,7 +35,7 @@
                     for(var m=0;m<typeAry.length;m++){
                         if(positions[n][typeAry[m]] == 1){
                             if(typeAry[m]=="none"){
-                                conditionAry[i]="없음";
+                                conditionAry[i]="무관";
                                 i++;
                             }
                             else{
@@ -57,13 +55,10 @@
                     <span class ="groupContent"><%=class_info.author_id%></span>
                     <button class="profileBtn">프로필 보기</button>
                     <div class="profileContent">
-                        <div style="text-align: center;border-bottom: 1px solid #dfaa32; margin-bottom: 10px;"><%=class_info.author_id%>'s 프로필</div>
+                        <div style="text-align: center;border-bottom: 1px solid #dfaa32; margin-bottom: 10px;"><%=class_info.author_id%> 님의 프로필</div>
                         <div style="font-size:2rem;">
                             <table>
-                                <tr>
-                                    <td>이름</td>
-                                    <td><%=author_info.name%></td>
-                                </tr>
+                            
                                 <tr>
                                     <td>레벨</td>
                                     <td><img class="levelIcon" src=<%=author_info.level%>></td>
@@ -152,7 +147,12 @@
                             <tr>
                                 <th><%=m+1%>.</th>
                                 <td class="condition"><%=conditionList[m]%></td>
-                                <td><%=positions[m].description%></td>
+                                <td><% if(positions[m].description==""){ %>
+                                    <span>-</span>
+                                    <%}else{%>
+                                        <%=positions[m].description%>
+                                    <%}%>
+                                    </td>
                                 <td class="totalNumber"><%=positions[m].number%> 명</td>
                                 <% var checkbit=0;
                                    var conditionCheckBit=0;
@@ -166,7 +166,7 @@
                                     for(var i=0;i<conditionCheck.length;i++){
                                         if (loginUser[conditionCheck[i]] ==1){
                                             checkbit=1;
-                                        }else if(conditionCheck[i]=="없음"){
+                                        }else if(conditionCheck[i]=="무관"){
                                             checkbit=1;
                                         }else{ 
                                             checkbit=0;
@@ -221,9 +221,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
    
- 
-
-    <!-- Template Main Javascript File -->
     <script src="../js/main.js"></script>
     <script src="../js/class_detail.js"></script>
 </html>

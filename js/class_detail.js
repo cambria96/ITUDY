@@ -115,17 +115,27 @@ function footerBtn(){
 }
 
 function profileBtn(){
+    $("html").click(function(e){
+        console.log($(e.target).hasClass("profileContent"));
+        console.log($(e.target).hasClass("profileBtn"));
+        if(!($(e.target).parents().hasClass("profileContent") || $(e.target).hasClass("profileBtn"))){
+            $(".profileContent").removeClass('is-active');
+            $(".profileBtn").removeClass("active");
+            $(".profileBtn").text("프로필 보기");
+        }
+     
+    })
     $(".profileBtn").on("click",function(){
         if($(".profileContent").hasClass("is-active")){
             $(".profileContent").removeClass("is-active");
-            $(this).css("background", "#b8b8b8");
-            $(this).html("프로필 보기");
+            $(this).removeClass("active");
+            $(this).text("프로필 보기");
 
         }
         else{
             $(".profileContent").addClass("is-active");
-            $(this).css("background", "#dfaa32");
-            $(this).html("프로필 보기 X");
+            $(this).addClass("active");
+            $(this).text("프로필 보기 X");
         }
     })
 }

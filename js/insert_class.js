@@ -114,12 +114,12 @@ function clickEvnet(){
             var condition = [];
             var number=$(this).find(".howMany").val();
             if($(this).find(".roleItem").length ==0){
-                alert("참가인원의 필요 분야를 설정해주세요\n없다면 '없음'으로 설정해주세요 ...^^*");
+                alert("참가인원의 필요 분야를 설정해주세요\n없다면 '무관'으로 입력해주세요 ...^^*");
                 checkBit =0;
                 return;
             }
             $(this).find(".roleItem").each(function(){
-                if($(this).text() =="없음"){
+                if($(this).text() =="무관"){
                   condition = ["none"];
                   return false;
                 }
@@ -243,7 +243,7 @@ function selectBox(){
 function autoComplete(){
 
   $(document).on('keydown.autocomplete', ".searchInput", function() {
-    var searchSource = ["C","C++","C#","Java","Ruby","Python","R","Go","HTML/CSS","Javascript","Spring","Nodejs","Angularjs","Vuejs","Reactjs","PHP","Android","IOS","Swift","Kotlin","Objective-C","MYSQL","MongoDB","SpringBoot","OracleDB","없음"]; 
+    var searchSource = ["C","C++","C#","Java","Ruby","Python","R","Go","HTML/CSS","Javascript","Spring","Nodejs","Angularjs","Vuejs","Reactjs","PHP","Android","IOS","Swift","Kotlin","Objective-C","MYSQL","MongoDB","SpringBoot","OracleDB","무관"]; 
     $(".searchInput").autocomplete({  //오토 컴플릿트 시작
       source : searchSource,	// source 는 자동 완성 대상
       select : function(event, ui) {	//아이템 선택시
