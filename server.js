@@ -268,7 +268,7 @@ app.post("/mail",function(req,res){
     });
     
 
-    let transporter = nodemailer.createTransport({
+    var transporter = nodemailer.createTransport({
         service : 'gmail',
         auth:{
             user : 'affinity96@gmail.com',
@@ -276,14 +276,14 @@ app.post("/mail",function(req,res){
         }
     });
 
-    let mailOptions={
+    var mailOptions={
         from : 'affinity96@gmail.com',
         to: user.email,
         subject : 'ITUDY - 인증을 하든말든 맘대로하세요',
         html : '<img src = ../img/new_logo_hover>'+
                 '<h1> 안녕하세요! ITUDY와 함께해주셔서 감사하지않습니다</h1>'+
                 '<p style="color : red">아래의 링크를 클릭하면 되는데 하든말든 알바는 아닙니다.</p>'+
-                '<a href = "http://localhost:3000/auth/?email='+user.email+'&token=abcdefg">인증하기</a>'
+                '<a href = "http://104.197.203.211:3000/auth/?email='+user.email+'&token=abcdefg">인증하기</a>'
     }
 
     transporter.sendMail(mailOptions, function(error,info){
@@ -298,8 +298,8 @@ app.post("/mail",function(req,res){
 })
 
 app.get("/auth", function(req,res,next){
-    let email = req.query.email;
-    let token = req.query.token;
+    var email = req.query.email;
+    var token = req.query.token;
     console.log("이멜 : "+email);
     console.log("쿼리:" + token );
     connection.query("UPDATE userinfo SET authority = 1 WHERE (`email` = '"+email+"');",function(err,rows,result){
