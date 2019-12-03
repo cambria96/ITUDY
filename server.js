@@ -879,7 +879,7 @@ app.post("/report", function(req, res) {
 
     let mailOptions={
         from : req.session.loginUser.email,
-        to: 'jaewan9074@gmail.com',
+        to: 'affinity96@gmail.com',
         subject : '사용자 Report',
         html :
             '<h1> 사용자의 Report가 접수되었습니다.</h1>'+
