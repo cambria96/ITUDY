@@ -44,6 +44,8 @@
     color: #aaaaaa;
     float: right;
     font-weight: bold;
+    position: absolute;
+    right: 0;
 }
 
 .close:hover,

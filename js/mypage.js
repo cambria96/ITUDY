@@ -590,11 +590,11 @@ function requestConfirm(){
                     var dynamicLi="";
                     for(var n=0;n<memberName.length;n++){
                         if(n==0){
-                            dynamicLi +=' <li class="confirmGroupList"><span class="name">'+memberName[n]+' &nbsp; <img class = "crown" src = "../img/crown.png">'+'</span><span class="email">'+memberEmail[n]+'</span><span class="phone">'+memberPhone[n]+'</span><button class="profileBtn">프로필 보기</button></li>'
+                            dynamicLi +=' <li class="confirmGroupList"><span class="name" value='+memberName[n]+'>'+memberName[n]+' &nbsp; <img class = "crown" src = "../img/crown.png">'+'</span><span class="email">'+memberEmail[n]+'</span><span class="phone">'+memberPhone[n]+'</span><button class="profileBtn" id="reportLink">신고하기</button><button class="profileBtn">프로필 보기</button></li>'
         
                         }
                         else{
-                            dynamicLi +=' <li class="confirmGroupList"><span class="name">'+memberName[n]+'</span><span class="email">'+memberEmail[n]+'</span><span class="phone">'+memberPhone[n]+'</span><button class="profileBtn">프로필 보기</button></li>'
+                            dynamicLi +=' <li class="confirmGroupList"><span class="name" value='+memberName[n]+'>'+memberName[n]+'</span><span class="email">'+memberEmail[n]+'</span><span class="phone">'+memberPhone[n]+'</span><button class="profileBtn" id="reportLink">신고하기</button><button class="profileBtn">프로필 보기</button></li>'
                         }
                     }
                     var agreeList = memberList[m].agree.split(",");

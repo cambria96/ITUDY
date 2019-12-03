@@ -842,6 +842,23 @@ app.post("/delete_stack",function(req,res){
 // app.get("/study",function(req,res){
 //     res.render('study.ejs');
 // })
+
+
+app.post("/report", function(req, res) {
+    var reportedUser = req.body.reportedUser;
+    var reportUser = loginUser.id;
+    var title = req.body.title;
+    var detail = req.body.detail;
+
+    connection.query("insert into report values(?,?,?,?)",[reportUser, reportedUser, title, detail], function(err, result){
+        if(!err){
+            res.send();
+        }
+        else{
+            console.log('Error while performing Query.',err);
+        }
+    })
+})
 ///////////////////////////// 게시판 구현 ////////////////////////
 
 //클래스 게시판
