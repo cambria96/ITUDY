@@ -18,25 +18,42 @@
     font-size : 2.3em;
 }
 .tabs{
-    border-bottom : 1px solid gray;
+    
 }
 ul.tabs{
+    display: flex;
+    justify-content: center;
     margin: 0px;
     padding: 0px;
     list-style: none;
   }
   ul.tabs li{
-    background: none;
-    color: #222;
+    
     display: inline-block;
-    padding: 10px 2.5em;
+    padding: 10px 1em;
     cursor: pointer;
-  }
-   
-  ul.tabs li.current{
-    background: #fff3da;
     color: #222;
+    border-bottom : 1px solid gray;
+    text-decoration: none;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-image: linear-gradient(
+    	to right,
+	    #dfaa32,
+	    #dfaa32 50%,
+	    #000 50%);
+    background-size: 200% 100%;
+    background-position: 100%;
+
   }
+  ul.tabs li:hover{
+    transition: all ease 0.3s;
+    background-position: 0%;
+
+  }
+  ul.tabs li.current{
+    background-position: 0%;  
+}
    
   .tab-content{
     display: none;
