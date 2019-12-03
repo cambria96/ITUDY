@@ -592,7 +592,7 @@ function requestConfirm(){
                     var dynamicLi="";
                     for(var n=0;n<memberName.length;n++){
                         if(n==0){
-                            dynamicLi +=' <li class="confirmGroupList"><span class="name">'+memberName[n]+' &nbsp; <img class = "crown" src = "../img/crown.png">'+'</span><span class="email">'+memberEmail[n]+'</span><span class="phone">'+memberPhone[n]+'</span><div style="position: relative"><button class="profileBtn" value='+memberID[n]+'>프로필 보기</button>'
+                            dynamicLi +=' <li class="confirmGroupList"><span class="name" value='+memberName[n]+'>'+memberName[n]+' &nbsp; <img class = "crown" src = "../img/crown.png">'+'</span><span class="email">'+memberEmail[n]+'</span><span class="phone">'+memberPhone[n]+'</span><button class="profileBtn" id="reportLink">신고하기</button><div style="position: relative"><button class="profileBtn" value='+memberID[n]+'>프로필 보기</button>'
                             +'<ul class="profileDetail">'
                             +'<li>'+memberID[n]+' 님의 프로필</li>'
                             +'<li><p>레벨</p><p><img src="" class="levelIcon"></p></li>'
@@ -603,7 +603,7 @@ function requestConfirm(){
         
                         }
                         else{
-                            dynamicLi +=' <li class="confirmGroupList"><span class="name">'+memberName[n]+'</span><span class="email">'+memberEmail[n]+'</span><span class="phone">'+memberPhone[n]+'</span><div style="position: relative"><button class="profileBtn" value='+memberID[n]+'>프로필 보기</button>'
+                            dynamicLi +=' <li class="confirmGroupList"><span class="name"value='+memberName[n]+'>'+memberName[n]+'</span><span class="email">'+memberEmail[n]+'</span><span class="phone">'+memberPhone[n]+'</span><button class="profileBtn" id="reportLink">신고하기</button><div style="position: relative"><button class="profileBtn" value='+memberID[n]+'>프로필 보기</button>'
                             +'<ul class="profileDetail">'
                             +'<li>'+memberID[n]+' 님의 프로필</li>'
                             +'<li><p>레벨</p><p><img src="" class="levelIcon"></p></li>'
