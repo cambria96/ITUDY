@@ -268,7 +268,7 @@ app.post("/mail",function(req,res){
     });
     
 
-    let transporter = nodemailer.createTransport({
+    var transporter = nodemailer.createTransport({
         service : 'gmail',
         auth:{
             user : 'affinity96@gmail.com',
@@ -276,7 +276,7 @@ app.post("/mail",function(req,res){
         }
     });
 
-    let mailOptions={
+    var mailOptions={
         from : 'affinity96@gmail.com',
         to: user.email,
         subject : 'ITUDY - 인증을 하든말든 맘대로하세요',
@@ -298,8 +298,8 @@ app.post("/mail",function(req,res){
 })
 
 app.get("/auth", function(req,res,next){
-    let email = req.query.email;
-    let token = req.query.token;
+    var email = req.query.email;
+    var token = req.query.token;
     console.log("이멜 : "+email);
     console.log("쿼리:" + token );
     connection.query("UPDATE userinfo SET authority = 1 WHERE (`email` = '"+email+"');",function(err,rows,result){
