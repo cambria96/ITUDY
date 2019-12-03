@@ -343,7 +343,7 @@ app.get('/ranking', function(req,res){
                 });
         
                 for (var k=0; k<info.length; k++){
-                    if(info[k].id == loginUser.id){
+                    if(info[k].id == req.session.loginUser.id){
                         break;
                     }
                 }
@@ -366,7 +366,7 @@ app.get('/ranking', function(req,res){
 app.post("/modify",function(req,res){
     var user = req.body
     console.log(user);
-    connection.query("UPDATE `userinfo`.`userinfo` SET ? WHERE (`id` = '"+loginUser.id+"');",user,function(err,result){
+    connection.query("UPDATE `userinfo`.`userinfo` SET ? WHERE (`id` = '"+req.session.loginUser.id+"');",user,function(err,result){
         if(!err){
             console.log("수정완료");    
         }
@@ -374,10 +374,10 @@ app.post("/modify",function(req,res){
             console.log('Error while performing Query.',err);
         }
     });
-    connection.query("SELECT * from userinfo WHERE (`id` = '"+loginUser.id+"');",user,function(err,rows,result){
+    connection.query("SELECT * from userinfo WHERE (`id` = '"+req.session.loginUser.id+"');",user,function(err,rows,result){
         if(!err){
             console.log("수정완료");   
-            loginUser =  rows[0];
+            req.session.loginUser =  rows[0];
             exports.loginUser = loginUser;
         }
         else{
@@ -398,11 +398,11 @@ app.post("/requestUserInfo",function(req,res){
     res.send({"loginUser":req.session.loginUser})
 })
 app.post("/requestContent",function(req,res){
-    connection.query("SELECT * from classes WHERE (`author_id` = '"+loginUser.id+"');",function(err,rows,result){
+    connection.query("SELECT * from classes WHERE (`author_id` = '"+req.session.loginUser.id+"');",function(err,rows,result){
         if(!err){
             console.log("클래스 로드 완료");
             userClass=rows;
-            connection.query("SELECT * from study WHERE (`author_id` = '"+loginUser.id+"');",function(err,rows,result){
+            connection.query("SELECT * from study WHERE (`author_id` = '"+req.session.loginUser.id+"');",function(err,rows,result){
                 if(!err){
                     console.log("스터디 로드 완료");
                     //console.log("유저 클래스: "+ userClass);
@@ -419,7 +419,7 @@ app.post("/requestContent",function(req,res){
                                 if(!err){
                                     positions = rows;
                                     console.log("포지션 길이 : "+positions.length);
-                                    res.send({loginUser: loginUser,userClass: userClass, userStudy:userStudy, participants:participants, positions:positions});
+                                    res.send({loginUser: req.session.loginUser,userClass: userClass, userStudy:userStudy, participants:participants, positions:positions});
 
                                 }
                                 else{
@@ -468,7 +468,7 @@ app.post("/delete_participant_both", function (req, res) {
 var partyList;
 app.post("/request_confirm",function(req,res){
     
-    connection.query('select * from confirm where users like "%'+loginUser.id+'%"',function(err,rows,result){
+    connection.query('select * from confirm where users like "%'+req.session.loginUser.id+'%"',function(err,rows,result){
         if(!err){
             console.log(rows);  
             res.send({"confirmList":rows});
@@ -697,11 +697,11 @@ app.post("/insert_confirm",function(req,res){
                                             if(!err){
                                                 connection.query('delete from participants where content_id = ?',users.content_id,function(err,result){
                                                     if(!err){
-                                                        connection.query('select * from userinfo where id = ? ',loginUser.id,function(err,rows){
+                                                        connection.query('select * from userinfo where id = ? ',req.session.loginUser.id,function(err,rows){
 
                                                             if(!err){
                                                                 console.log("그룹 생성 완료");
-                                                                loginUser = rows[0];
+                                                                req.session.loginUser = rows[0];
                                                                 exports.loginUser = loginUser;
                                                                 res.send();
                                                             }
@@ -734,11 +734,11 @@ app.post("/insert_confirm",function(req,res){
                                             if(!err){
                                                 connection.query('delete from participants where content_id = ?',users.content_id,function(err,result){
                                                     if(!err){
-                                                        connection.query('select * from userinfo where id = ? ',loginUser.id,function(err,rows){
+                                                        connection.query('select * from userinfo where id = ? ',req.session.loginUser.id,function(err,rows){
 
                                                             if(!err){
                                                                 console.log("그룹 생성 완료");
-                                                                loginUser = rows[0];
+                                                                req.session.loginUser = rows[0];
                                                                 exports.loginUser = loginUser;
                                                                 res.send();
                                                             }
@@ -865,7 +865,7 @@ app.post("/detail_profile", function (req, res) {
 
 app.post("/report", function(req, res) {
     var reportedUser = req.body.reportedUser;
-    var reportUser = loginUser.id;
+    var reportUser = req.session.loginUser.id;
     var title = req.body.title;
     var detail = req.body.detail;
 
@@ -878,7 +878,7 @@ app.post("/report", function(req, res) {
     });
 
     let mailOptions={
-        from : loginUser.email,
+        from : req.session.loginUser.email,
         to: 'jaewan9074@gmail.com',
         subject : '사용자 Report',
         html :
