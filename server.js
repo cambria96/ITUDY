@@ -75,6 +75,29 @@ app.use(session({
 }));
 
 var loginUser;
+app.post("/modify",function(req,res){
+    var user = req.body
+    console.log(user);
+    connection.query("UPDATE `userinfo`.`userinfo` SET ? WHERE (`id` = '"+req.session.loginUser.id+"');",user,function(err,result){
+        if(!err){
+            console.log("수정완료");    
+        }
+        else{
+            console.log('Error while performing Query.',err);
+        }
+    });
+    connection.query("SELECT * from userinfo WHERE (`id` = '"+req.session.loginUser.id+"');",user,function(err,rows,result){
+        if(!err){
+            console.log("수정완료");   
+            req.session.loginUser =  rows[0];
+            exports.loginUser = loginUser;
+        }
+        else{
+            console.log('Error while performing Query.',err);
+        }
+    });
+    res.send();
+});
 
 app.post('/success',function(req,res){    
     var check = 0;    
@@ -363,29 +386,7 @@ app.get('/ranking', function(req,res){
         
 });
 
-app.post("/modify",function(req,res){
-    var user = req.body
-    console.log(user);
-    connection.query("UPDATE `userinfo`.`userinfo` SET ? WHERE (`id` = '"+req.session.loginUser.id+"');",user,function(err,result){
-        if(!err){
-            console.log("수정완료");    
-        }
-        else{
-            console.log('Error while performing Query.',err);
-        }
-    });
-    connection.query("SELECT * from userinfo WHERE (`id` = '"+req.session.loginUser.id+"');",user,function(err,rows,result){
-        if(!err){
-            console.log("수정완료");   
-            req.session.loginUser =  rows[0];
-            exports.loginUser = loginUser;
-        }
-        else{
-            console.log('Error while performing Query.',err);
-        }
-    });
-    res.send();
-});
+
 
 var userClass =[];
 var userStudy=[];
