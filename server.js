@@ -148,7 +148,7 @@ app.get('/signup',function(req,res){
     res.render("signup.html");
 })
 app.get('/mypage',function(req,res){
-    connection.query("SELECT * from participants WHERE (`participant_id` = '"+loginUser.id+"');",function(err,rows,result){
+    connection.query("SELECT * from participants WHERE (`participant_id` = '"+req.session.loginUser.id+"');",function(err,rows,result){
         if(!err){
             partyList=rows;
             var contentList =[];
