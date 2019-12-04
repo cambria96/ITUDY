@@ -474,7 +474,7 @@ app.post("/request_confirm",function(req,res){
     connection.query('select * from confirm where users like "%'+req.session.loginUser.id+'%"',function(err,rows,result){
         if(!err){
             console.log(rows);  
-            res.send({"confirmList":rows});
+            res.send({"confirmList":rows,"loginUser":req.session.loginUser});
         }
         else{
             console.log('Error while performing Query.',err);
@@ -876,12 +876,12 @@ app.post("/report", function(req, res) {
         service : 'gmail',
         auth:{
             user : 'itudy2019@gmail.com',
-            pass : 'qewrtyqwerty11'
+            pass : 'qwertyqwerty11'
         }
     });
 
     let mailOptions={
-        from : req.session.loginUser.email,
+        from : 'itudy2019@gmail.com',
         to: 'itudy2019@gmail.com',
         subject : '사용자 Report',
         html :

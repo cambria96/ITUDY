@@ -5,7 +5,7 @@
     padding: 25px;
     max-width: 1200px;
     width: 90%;
-    font-size: 1.5em;
+    font-size: 1.2em;
 }
 .listBox{
     margin-bottom: 25px;
@@ -16,9 +16,13 @@
 .submitControl{
     width: 100%;
     border-color: #dfaa32;
+    font-size :0.8em;
 }
 .submitControl:focus{
     outline: none;
+}
+.detailLine{
+    height: 100px;
 }
 .titleLine{
     width: 70%;

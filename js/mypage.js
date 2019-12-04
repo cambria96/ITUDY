@@ -582,7 +582,6 @@ function requestConfirm(){
             success: function(data){
                 var memberList = data.confirmList;
                 
-                
                 $(".lastBox").html('<p class="contentTitle">참여중인 그룹</p>');
                 for(var m=0; m<memberList.length;m++){
                     var memberID = memberList[m].users.split(",");
@@ -592,7 +591,7 @@ function requestConfirm(){
                     var dynamicLi="";
                     for(var n=0;n<memberName.length;n++){
                         if(n==0){
-                            dynamicLi +=' <li class="confirmGroupList"><span class="name" value='+memberName[n]+'>'+memberName[n]+' &nbsp; <img class = "crown" src = "../img/crown.png">'+'</span><span class="email">'+memberEmail[n]+'</span><span class="phone">'+memberPhone[n]+'</span><button class="profileBtn" id="reportLink">신고하기</button><div style="position: relative"><button class="profileBtn" value='+memberID[n]+'>프로필 보기</button>'
+                            dynamicLi +=' <li class="confirmGroupList"><span class="name" value='+memberName[n]+'>'+memberName[n]+' &nbsp; <img class = "crown" src = "../img/crown.png">'+'</span><span class="email">'+memberEmail[n]+'</span><span class="phone">'+memberPhone[n]+'</span><button class="reportBtn" id="reportLink">신고하기</button><div style="position: relative"><button class="profileBtn" value='+memberID[n]+'>프로필 보기</button>'
                             +'<ul class="profileDetail">'
                             +'<li>'+memberID[n]+' 님의 프로필</li>'
                             +'<li><p>레벨</p><p><img src="" class="levelIcon"></p></li>'
@@ -601,6 +600,16 @@ function requestConfirm(){
                             +'<li><p>스터디 횟수</p><p class="studyCount"></p></li>'
                             +'</ul></div></li>'
         
+                        }
+                        else if(memberName[n] == data.loginUser.name){
+                            dynamicLi +=' <li class="confirmGroupList"><span class="name" value='+memberName[n]+'>'+memberName[n]+' &nbsp;'+'</span><span class="email">'+memberEmail[n]+'</span><span class="phone">'+memberPhone[n]+'</span><button class="reportBtn" id="reportLink" style="pointer-events:none; opacity:0;">신고하기</button><div style="position: relative"><button class="profileBtn" value='+memberID[n]+'>프로필 보기</button>'
+                            +'<ul class="profileDetail">'
+                            +'<li>'+memberID[n]+' 님의 프로필</li>'
+                            +'<li><p>레벨</p><p><img src="" class="levelIcon"></p></li>'
+                            +'<li><p>멘토 횟수</p><p class="mentoCount"></p></li>'
+                            +'<li><p>멘티 횟수</p><p class="menteeCount"></p></li>'
+                            +'<li><p>스터디 횟수</p><p class="studyCount"></p></li>'
+                            +'</ul></div></li>'
                         }
                         else{
                             dynamicLi +=' <li class="confirmGroupList"><span class="name"value='+memberName[n]+'>'+memberName[n]+'</span><span class="email">'+memberEmail[n]+'</span><span class="phone">'+memberPhone[n]+'</span><button class="profileBtn" id="reportLink">신고하기</button><div style="position: relative"><button class="profileBtn" value='+memberID[n]+'>프로필 보기</button>'
