@@ -80,23 +80,23 @@ app.post("/modify",function(req,res){
     console.log(user);
     connection.query("UPDATE `userinfo`.`userinfo` SET ? WHERE (`id` = '"+req.session.loginUser.id+"');",user,function(err,result){
         if(!err){
-            console.log("수정완료");    
+            connection.query("SELECT * from userinfo WHERE (`id` = '"+req.session.loginUser.id+"');",user,function(err,rows,result){
+                if(!err){
+                    console.log("수정완료");   
+                    req.session.loginUser =  rows[0];
+                    res.send();
+                    exports.loginUser = loginUser;
+                }
+                else{
+                    console.log('Error while performing Query.',err);
+                }
+            });
         }
         else{
             console.log('Error while performing Query.',err);
         }
     });
-    connection.query("SELECT * from userinfo WHERE (`id` = '"+req.session.loginUser.id+"');",user,function(err,rows,result){
-        if(!err){
-            console.log("수정완료");   
-            req.session.loginUser =  rows[0];
-            exports.loginUser = loginUser;
-        }
-        else{
-            console.log('Error while performing Query.',err);
-        }
-    });
-    res.send();
+    
 });
 
 app.post('/success',function(req,res){    
@@ -179,8 +179,8 @@ app.get('/mypage',function(req,res){
             var studyList=[];
             var position_id_class=[];
             var position_id_study=[];
-            console.log(req.session);
             if(partyList.length==0){
+                console.log(req.session.loginUser);
                 res.render("mypage.ejs",{
                     "loginInfo":req.session.loginUser,
                     "contentList":contentList,
@@ -207,6 +207,7 @@ app.get('/mypage',function(req,res){
                                     studyList.push(rows[0]);
                                     position_id_study.push(partyList[a].position_id);
                                     if(contentList.length==partyList.length){
+                                        console.log(req.session.loginUser);
                                         res.render("mypage.ejs",{
                                             "loginInfo":req.session.loginUser,
                                             "contentList":contentList,
@@ -228,6 +229,7 @@ app.get('/mypage',function(req,res){
                         console.log('Error while performing Query.',err);
                     }
                     if(contentList.length==partyList.length){
+                        console.log(req.session.loginUser);
                         res.render("mypage.ejs",{
                             "loginInfo":req.session.loginUser,
                             "contentList":contentList,
