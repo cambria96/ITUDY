@@ -278,19 +278,19 @@ app.post("/mail",function(req,res){
     var transporter = nodemailer.createTransport({
         service : 'gmail',
         auth:{
-            user : 'affinity96@gmail.com',
-            pass : 'djvlslxl369#'
+            user : 'itudy2019@gmail.com',
+            pass : 'qwertyqwerty11'
         }
     });
 
     var mailOptions={
-        from : 'affinity96@gmail.com',
+        from : 'itudy2019@gmail.com',
         to: user.email,
         subject : 'ITUDY - 인증을 하든말든 맘대로하세요',
         html : '<img src = ../img/new_logo_hover>'+
                 '<h1> 안녕하세요! ITUDY와 함께해주셔서 감사하지않습니다</h1>'+
                 '<p style="color : red">아래의 링크를 클릭하면 되는데 하든말든 알바는 아닙니다.</p>'+
-                '<a href = "http://104.197.203.211:3000/auth/?email='+user.email+'&token=abcdefg">인증하기</a>'
+                '<a href = "http://34.97.93.49:3000/auth/?email='+user.email+'&token=abcdefg">인증하기</a>'
     }
 
     transporter.sendMail(mailOptions, function(error,info){
@@ -872,14 +872,14 @@ app.post("/report", function(req, res) {
     let transporter = nodemailer.createTransport({
         service : 'gmail',
         auth:{
-            user : 'affinity96@gmail.com',
-            pass : 'djvlslxl369#'
+            user : 'itudy2019@gmail.com',
+            pass : 'qewrtyqwerty11'
         }
     });
 
     let mailOptions={
         from : req.session.loginUser.email,
-        to: 'affinity96@gmail.com',
+        to: 'itudy2019@gmail.com',
         subject : '사용자 Report',
         html :
             '<h1> 사용자의 Report가 접수되었습니다.</h1>'+
