@@ -1486,6 +1486,17 @@ text-decoration: none;
 /*--------------------------------------------------------------
 # Responsive Media Queries
 --------------------------------------------------------------*/
+@media(max-width:1200px){
+
+  #intro .intro-info h2 {
+
+    font-size: 2em;
+   
+  }
+  .login {
+    width: 280px !important;
+  }
+}
 
 @media (min-width: 991px) {
   #call-to-action .cta-btn-container {
@@ -1538,6 +1549,8 @@ text-decoration: none;
   #pricing .card {
     margin-bottom: 50px;
   }
+  
+
 }
 
 @media (max-width: 768px) {
@@ -1551,6 +1564,10 @@ text-decoration: none;
 
   #faq #faq-list i {
     top: 13px;
+  }
+  #intro .intro-info h2 {
+    font-size: 1.8em;
+    margin-bottom:15px;
   }
 }
 
@@ -1601,5 +1618,12 @@ text-decoration: none;
 @media (max-width: 574px) {
   #footer .footer-top .social-links a {
     margin-bottom: 25px;
+  }
+}
+
+@media (max-width: 480px){
+  #intro .intro-info h2 {
+    font-size: 1.8em;
+    margin-bottom:10px;
   }
 }

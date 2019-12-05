@@ -13,6 +13,8 @@ body{
 .buttomBox{
     display : flex;
     padding-bottom : 20px;
+    justify-content: space-evenly;
+
 }
 
 .btnwrapper {
@@ -91,14 +93,11 @@ path.two {
 
 .left-box{
 
-    padding-left: 180px;
-    width : 50%;
     padding-top: 70px;
     text-align : center;
 }
 .right-box{
-    padding-right: 180px;
-    width : 50%;
+
     padding-top: 70px;
     text-align : center;
 }
@@ -142,4 +141,108 @@ path.two {
 }
 h2{
     font-family: 'Godo', serif;
+}
+@media(max-width:768px){
+    
+}
+
+@media(max-width:480px){
+    .btnwrapper {
+
+        padding-bottom: 40px;
+    }
+    .buttomBox {
+        flex-direction: column;
+    }
+
+    .right-box {
+        padding-top: 0px;
+        text-align: center;
+    }
+    #classimg {
+
+        display: none;
+    }
+    .explain{
+        display: none;
+    }
+    .cta{
+        font-family: 'Godo', sans-serif;
+
+    }
+    .widget-quick-links{
+        display:none;
+    }
+
+
+
+
+    .cta {
+        display: flex;
+        padding: 10px 45px;
+        text-decoration: none;
+        font-family: 'Poppins', sans-serif;
+        font-size: 40px;
+        color: white;
+        background: rgb(131, 131, 131);
+        transition: 1s;
+        box-shadow: 6px 6px 0 black;
+        transform: skewX(-15deg);
+    }
+    
+    .cta:focus {
+       outline: none; 
+    }
+    
+    .cta {
+        transition: 0.5s;
+        box-shadow: 10px 10px 0 #ac8100;
+    }
+    
+    .cta span:nth-child(2) {
+        transition: 0.5s;
+        margin-right: 0px;
+    }
+    
+    .cta  span:nth-child(2) {
+        transition: 0.5s;
+        margin-right: 45px;
+    }
+    
+      .cta span {
+        transform: skewX(15deg) 
+      }
+    
+      .cta span:nth-child(2) {
+        width: 20px;
+        margin-left: 30px;
+        position: relative;
+      }
+      
+    /**************SVG****************/
+    
+    path.one {
+        transition: 0.4s;
+        transform: translateX(-60%);
+    }
+    
+    path.two {
+        transition: 0.5s;
+        transform: translateX(-30%);
+    }
+    
+    .cta path.three {
+        animation: color_anim 1s infinite 0.2s;
+    }
+    
+    .cta path.one {
+        transform: translateX(0%);
+        animation: color_anim 1s infinite 0.6s;
+    }
+    
+    .cta path.two {
+        transform: translateX(0%);
+        animation: color_anim 1s infinite 0.4s;
+    }
+
 }
