@@ -153,7 +153,7 @@ h6 {
 #header {
 
   background: rgba(127, 137, 161, 0);
-  
+
   height: 110px;
   padding: 20px 0;
   border : 20px 0;
@@ -410,6 +410,8 @@ text-decoration: none;
   padding-top: 18px;
   background: rgba(40, 38, 70, 0.8);
   transition: 0.4s;
+  font-size: 16px;
+  font-family: 'Godo', serif;
 }
 
 .mobile-nav * {

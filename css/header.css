@@ -23,31 +23,62 @@
     font-size: 3em;
     font-family: 'Godo', serif;
 }
-.centerBar{
 
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+
+
+@media(min-width:992px) {
+    .logo.pc-logo{
+        display:block;
+        width: 200px;
+        background: url("../img/new_logo.png") center no-repeat;
+        background-size: cover;
+    }
+    .centerBar{
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    .logoutBtn1 {
+        display:block;
+    }
+    .logoutBtn2 {
+        display:none;
+    }
+    .bannerBox{
+        position: relative;
+        width: 100%;
+        height: 250px;
+        background: url("../img/banner.jpg") center no-repeat;
+        background-size : 100%;
+        box-shadow: 0px 5px 15px 0px;
+    }
 }
-.main-nav a:hover{
-    color:#1bb1dc;
+@media(max-width:991px){
+    .logo.mobile-logo{
+        width: 250px;
+        height:50px;
+        margin-left:10px;
+        background: url("../img/new_logo.png") center no-repeat;
+        background-size: cover;
+        display:block;
+    }
+    .logoutBtn1{
+        display:none;
+    }
+    .logoutBtn2{
+        display:block;
+    }
+    .centerBar{
+    }
+    .bannerBox{
+        position: relative;
+        width: 100%;
+        height: 250px;
+        background: url("../img/banner.jpg") center no-repeat;
+        box-shadow: 0px 5px 15px 0px;
+    }
 }
-.logo{
 
-    width: 200px;
-    background: url("../img/new_logo.png") center no-repeat;
-    background-size: cover;
-}
-
-.bannerBox{
-    position: relative;
-    width: 100%;
-    height: 250px;
-    background: url("../img/banner.jpg") center no-repeat;
-    background-size : 100%;
-    box-shadow: 0px 5px 15px 0px;
-
-  }
 .logo{
     cursor: pointer;
 }
