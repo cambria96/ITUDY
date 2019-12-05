@@ -143,35 +143,9 @@ h2{
     font-family: 'Godo', serif;
 }
 @media(max-width:768px){
-    
-}
-
-@media(max-width:480px){
-    .btnwrapper {
-
-        padding-bottom: 40px;
-    }
-    .buttomBox {
-        flex-direction: column;
-    }
-
-    .right-box {
-        padding-top: 0px;
-        text-align: center;
-    }
-    #classimg {
-
-        display: none;
-    }
-    .explain{
-        display: none;
-    }
     .cta{
         font-family: 'Godo', sans-serif;
 
-    }
-    .widget-quick-links{
-        display:none;
     }
 
 
@@ -244,5 +218,28 @@ h2{
         transform: translateX(0%);
         animation: color_anim 1s infinite 0.4s;
     }
+}
+
+@media(max-width:480px){
+    .btnwrapper {
+
+        padding-bottom: 40px;
+    }
+    .buttomBox {
+        flex-direction: column;
+    }
+
+    .right-box {
+        padding-top: 0px;
+        text-align: center;
+    }
+    #classimg {
+
+        display: none;
+    }
+    .explain{
+        display: none;
+    }
+    
 
 }
