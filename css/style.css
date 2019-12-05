@@ -329,6 +329,9 @@ h6 {
 .main-nav li:hover > div > a {
 text-decoration: none;
 }
+.main-nav ul li a:hover{
+  color:#8dc2fa;
+}
 
 
 .main-nav .drop-down ul {
@@ -407,8 +410,7 @@ text-decoration: none;
   overflow-y: auto;
   left: -260px;
   width: 260px;
-  padding-top: 18px;
-  background: rgba(40, 38, 70, 0.8);
+  background: rgba(255, 255, 255, 0.8);
   transition: 0.4s;
   font-size: 16px;
   font-family: 'Godo', serif;
@@ -423,9 +425,11 @@ text-decoration: none;
 .mobile-nav a {
   display: block;
   position: relative;
-  color: #fff;
+  color: #000;
   padding: 10px 20px;
   font-weight: 500;
+  transition: all ease 0.25s;
+
 }
 
 .mobile-nav a:hover,
@@ -462,8 +466,8 @@ text-decoration: none;
 
 .mobile-nav-toggle {
   position: fixed;
-  right: 0;
-  top: 0;
+  right: 15px;
+  top: 25px;
   z-index: 9998;
   border: 0;
   background: none;
@@ -477,7 +481,12 @@ text-decoration: none;
 
 .mobile-nav-toggle i {
   margin: 18px 18px 0 0;
-  color: #065e77;
+  color: #fff;
+  transition: all ease 0.5s;
+
+}
+.mobile-nav-toggle i.active {
+  color: #dfaa32;
 }
 
 .mobile-nav-overly {
@@ -487,7 +496,7 @@ text-decoration: none;
   top: 0;
   left: 0;
   position: fixed;
-  background: rgba(40, 38, 70, 0.8);
+  background: #0000008c;
   overflow: hidden;
   display: none;
 }
@@ -1533,6 +1542,10 @@ text-decoration: none;
   #header {
     height: 70px;
     padding: 15px 0;
+  }
+  #header:hover {
+    background:none;
+    opacity: 1;
   }
 
   #header .logo h1 {

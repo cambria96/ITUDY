@@ -49,6 +49,9 @@ button:focus{
     margin-bottom: 10px;
     cursor: pointer;
 }
+.mypageList{
+    display:none;
+}
 
 .sideContent span:hover{
     padding-bottom:5px;
@@ -227,13 +230,19 @@ label {
 .specificTitle{
     display: flex;
     justify-content: space-between;
-    background-color: #fff;
+    background-color: #f4f4f4;
+    
     border: 1px solid #ddd;
     border-radius: .5rem;
     cursor: pointer;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,.12);
     overflow: hidden;
     padding:5px;
+    transition: all ease 0.5s;
+}
+.specificTitle:hover{
+
+    background-color: #fff;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,.12);
 }
 
 .specificContent{
@@ -243,7 +252,7 @@ label {
     border-top: none;
     overflow: auto;
 
-    background-color: #f1f0f0;
+    background-color: #fff;
     border-radius: .5rem;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,.12);
 }
@@ -252,20 +261,18 @@ label {
 .leftbox{
 
     float: left;
-    width : 100%;
+    width: 100%;
     padding: 15px 30px;
-    border-bottom: 1px solid #727272;
+    border-bottom: 3px dashed #dfaa32;
     margin-bottom: 10px;
-
     
 }
 .rightbox{
-    width : 100%;
+    width: 100%;
     padding: 15px 0px;
     text-align: center;
-    border: 1px solid #727272;
+    border: 2px solid #dfaa32;
     border-radius: 15px;
- 
 }
 .partibox{
     
@@ -305,6 +312,7 @@ label {
 }
 .partyContent{
     display: flex;
+    position: relative;
     justify-content: space-between;
     align-items: stretch;
     background-color: #f4f4f4;
@@ -321,6 +329,7 @@ label {
     background: #fff;
 }
 .cancelBtn{
+    width: 65px;
     background: none;
     border: none;
     border-radius: 25px;
@@ -576,17 +585,39 @@ td{
 .levelIcon{
     width:20px;
 }
+.mobile_mypage{
+    display: none;
+}
+.detailCover{
+    position: absolute;
+    width: 80%;
+    height: 100%;
+    top: 0;
+    z-index: 1;
+
+}
 @media (max-width:991px){
-    .sideBar{
-        display:none;
-    }
 
     .contextBox {
         width: 100%;
     }
+    .mypageList{
+        display: list-item;
+        font-size: 0.8em;
+
+    }
+
+    .mobile_mypage{
+        display:list-item;
+    }
 }
 @media (max-width: 768px){
     .classList {
+        padding-left: 2em;
+        padding-right: 2em;
+        padding-bottom: 3em;
+    }
+    .studyList {
         padding-left: 2em;
         padding-right: 2em;
         padding-bottom: 3em;
@@ -619,19 +650,24 @@ td{
     }
 }
 @media (max-width:480px){
+    .classList {
+        padding-left: 0.5em;
+        padding-right: 0.5em;
+        padding-bottom: 0.5em;
+    }
+    #date {
+        display: none;
+    }
+    .studyList {
+        padding-left: 0.5em;
+        padding-right: 0.5em;
+        padding-bottom: 0.5em;
+    }
     .subContentBox {
 
         min-width: 150px;
     }
-    .partyTitle {
-        width: 100px;
 
-    }
-    .partyTitle span {
-        
-        width: 100px;
-    
-    }
     .ulBox {
         flex-direction: column;
     }
@@ -651,5 +687,20 @@ td{
         width:50%;
         margin-bottom: 15px;
 
+    }
+    .contextBox {
+        padding: 15px;
+
+    }
+    .detailCover{
+        width: 70%;
+        z-index: 1;
+    }
+    .specificContent {
+        padding: 10px;
+
+    }
+    .leftbox {
+        padding: 10px 10px;
     }
 }
