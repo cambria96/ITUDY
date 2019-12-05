@@ -337,6 +337,7 @@
         text-overflow: ellipsis;
         white-space: nowrap;
     }
+
     .tag{
         font-size : 1.5rem;
     }
@@ -356,5 +357,9 @@
     
     .finder_close:focus{
         outline : none;
+    }
+    .iconBox{
+        height : 63px;
+    
     }
 }
