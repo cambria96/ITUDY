@@ -33,7 +33,6 @@ button:focus{
 .contextBox ul{
     margin-bottom: 0px;
 
-    
 }
 .studyCredit{
     opacity: 0;
@@ -575,3 +574,14 @@ td{
 .levelIcon{
     width:20px;
   }
+
+@media(min-width:992px){
+    .mypage-mobile{
+        display: none;
+    }
+}
+@media(max-width:991px){
+    .mypage-mobile{
+        display: block;
+    }
+}

@@ -2,18 +2,55 @@ body {
 	font-family: "Godo" !important;
 	color: #121312;
 }
-.bottombox{
-    display : flex;
-    padding-bottom : 20px;
+
+@media(min-width:992px){
+    .bottombox{
+        display : flex;
+        padding-bottom : 20px;
+    }
+    .wrapper {
+        line-height: 0.8em;
+        margin: 0 auto;
+        padding: 2em 0 3em;
+        width: 70%;
+        max-width: 2000px;
+        overflow: hidden;
+    }
+    .rank_container{
+        width:50%
+    }
+    .level_container{
+        width : 50%;
+        text-align : center;
+    }
+    .level_container > .wrapper{
+        width: 50%;
+    }
 }
-.level_container{
-    width : 50%;
-    text-align : center;
+@media(max-width:991px){
+    .bottombox{
+        display : block;
+        padding-bottom : 20px;
+    }
+    .wrapper {
+        line-height: 0.8em;
+        margin: 0 auto;
+        width: 100%;
+        max-width: 2000px;
+        overflow: hidden;
+    }
+    .rank_container{
+        width:100%
+    }
+    .level_container{
+        width : 100%;
+        text-align : center;
+    }
+    .level_container > .wrapper{
+        width: 100%;
+    }
 }
 
-.rank_container{
-    width:50%
-}
 .wrapper > header {
 	margin: 0 auto;
 	padding: 1em;
@@ -26,23 +63,11 @@ body {
 	margin: 0;
 }
 
-.level_container > .wrapper{
-    width: 50%;
-}
-.wrapper {
-	line-height: 0.8em;
-	margin: 0 auto;
-	padding: 2em 0 3em;
-	width: 70%;
-	max-width: 2000px;
-	overflow: hidden;
-}
 
 table {
     border-collapse: collapse;
     width: 100%;
     background: #fff;
-    
 
 }
 .level_container > .wrapper > td, th{

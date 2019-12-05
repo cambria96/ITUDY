@@ -103,7 +103,7 @@ router.get("/studies/:cur", function (req, res) {
 
                 getConnection().query(queryString,params,function(error,rows2) {
 
-                    var index = ["C","C++","C#","Java","Ruby","Python","R","Go","HTML/CSS","Javascript","Spring","Nodejs","Angularjs","Vuejs","Reactjs","PHP","Android","IOS","Swift","Kotlin","Objective-c","MYSQL","MongoDB","SpringBoot","OracleDB"];
+                    var index = ["C","C++","C#","Java","Ruby","Python","R","Go","HTML/CSS","Javascript","Spring","Nodejs","Angularjs","Vuejs","Reactjs","PHP","Android","IOS","Swift","Kotlin","Objective-C","MYSQL","MongoDB","SpringBoot","OracleDB"];
                     if(rows2!=undefined){
                         for(var i=0;i<rows2.length;i++){
                             for(var m=0;m<rows1.length;m++){
@@ -424,7 +424,7 @@ router.get("/studies/skills/:tags", function (req, res) {
                     return;
                 }
 
-                var index = ["C", "C++", "C#", "Java", "Ruby", "Python", "R", "Go", "HTML/CSS", "Javascript", "Spring", "Nodejs", "Angularjs", "Vuejs", "Reactjs", "PHP", "Android", "IOS", "Swift", "Kotlin", "Objective-c", "MYSQL", "MongoDB", "SpringBoot", "OracleDB"];
+                var index = ["C", "C++", "C#", "Java", "Ruby", "Python", "R", "Go", "HTML/CSS", "Javascript", "Spring", "Nodejs", "Angularjs", "Vuejs", "Reactjs", "PHP", "Android", "IOS", "Swift", "Kotlin", "Objective-C", "MYSQL", "MongoDB", "SpringBoot", "OracleDB"];
 
                 for (var i = 0; i < positions.length; i++) {
                     for (var j = 0; j < skills.length; j++) {
@@ -486,7 +486,7 @@ router.get("/studies/skills/:tags", function (req, res) {
                         }
                         getConnection().query(queryString2, selectedContent, function (error, rows2) {
 
-                            var index = ["C", "C++", "C#", "Java", "Ruby", "Python", "R", "Go", "HTML/CSS", "Javascript", "Spring", "Nodejs", "Angularjs", "Vuejs", "Reactjs", "PHP", "Android", "IOS", "Swift", "Kotlin", "Objective-c", "MYSQL", "MongoDB", "SpringBoot", "OracleDB"];
+                            var index = ["C", "C++", "C#", "Java", "Ruby", "Python", "R", "Go", "HTML/CSS", "Javascript", "Spring", "Nodejs", "Angularjs", "Vuejs", "Reactjs", "PHP", "Android", "IOS", "Swift", "Kotlin", "Objective-C", "MYSQL", "MongoDB", "SpringBoot", "OracleDB"];
 
                             for (var i = 0; i < rows2.length; i++) {
 

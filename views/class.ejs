@@ -437,13 +437,13 @@
                 %>
 
                 <% if(curPage == 1){ %>
-                    <li value=(curPage) class="previous">
+                    <li value="<%=curPage%>" class="previous">
                         <a href='/classes/<%= (curPage) %>'>첫번째페이지</a>
                     </li>
 
                 <% }else if(curPage > 1){
                 %>
-                    <li value=(curPage -1) class="previous">
+                    <li value='<%=curPage-1%>' class="previous">
                         <a href='/classes/<%= (curPage - 1) %>'>이전페이지</a>
                     </li>
 
@@ -459,8 +459,8 @@
 
                 if(i == curPage){
                 %>
-                    <li value=<%= i %> class=''>
-                        <a href='/classes/<%= i %>'>
+                    <li value=<%= i %>>
+                        <a href='/classes/<%= i %>' style="background-color:#337ab7; color:white;">
                             <%= i %>
                         </a>
                     </li>
@@ -469,7 +469,7 @@
                 }else{
                 %>
 
-                    <li value=<%= i %> class='active'>
+                    <li value=<%= i %> class=''>
                         <a href='/classes/<%= i %>'>
                             <%= i %>
                         </a>
@@ -486,14 +486,14 @@
                 <%
                 if(curPage < totalPage){
                 %>
-                    <li value=( curPage + 1) class="next">
-                        <a href='/classes/<%= (curPage + 1) %>'>다음페이지</a>
+                    <li value='<%=curPage+1%>' class="next">
+                        <a href='/classes/<%= curPage + 1 %>'>다음페이지</a>
                     </li>
                 <%
                 }else if(curPage == totalPage){
                 %>
-                    <li value=( curPage) class="next">
-                        <a href='/classes/<%= (curPage) %>'>마지막페이지</a>
+                    <li value='<%=curPage%>' class="next">
+                        <a href='/classes/<%= curPage %>'>마지막페이지</a>
                     </li>
                 <% } %>
 
