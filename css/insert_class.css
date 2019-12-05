@@ -317,7 +317,7 @@ ul{
   margin-right: 10px;
 }
 .image{
-  width:10%;
+  width:18%;
   display: flex;
   margin: 2px;
   align-items: center;
@@ -417,4 +417,34 @@ ul{
 }
 .coverWrap:active{
   background:none;
+}
+
+@media(max-width : 455px){
+.container{
+  padding : 20px;
+  border: 2px solid #dfaa32;
+
+}  
+
+.divBox{
+  width : 100%;
+  text-align: center;
+}
+.dateBtn{
+  margin-right : 1em;
+}
+.titleLine{
+  width:100%;
+}
+.iconBox{
+  width : 100%;
+  padding: 5px;
+  border-radius:5px;
+}
+.halfBox{
+  width:100%;
+}
+.detailLine{
+  height: 220px;
+  }
 }

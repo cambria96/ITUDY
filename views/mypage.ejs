@@ -56,7 +56,7 @@ Header
     <div class="headerContainer">
         <div class="logo pc-logo"></div>
         <nav class="main-nav d-none d-lg-block" >
-            <ul>
+            <ul class="infoBar">
                 <li><a href = '/mypage' class="mypageLink"><span class="accoutName"><%= loginInfo.name %></span> 님 환영합니다.</a></li>
                 <li><a href="#credit"><img src="../img/coin.png">  <span><%= loginInfo.credit %></span></a></li>
                 <li class="logoutBtn1"><a href='/logout'>Log Out</a></li>
@@ -69,16 +69,16 @@ Header
                         <li><a href="/study">스터디</a></li>
                     </ul>
                 </li>
-
-                <ul class="mypage-mobile">
+                <li><a href = "/ranking"> 랭킹 </a></li>
+                <li class="mobile_mypage"><a href="#e" class="mypageLine">마이페이지</a></li>
+                <li><span class="divLine"></span></li>
+                <ul class="mypageList" >
                     <li class="sideContent" style="margin-bottom: 0px"><a href="#">기본정보</a></li>
                     <li class="sideContent" style="margin-bottom: 0px"><a href="#">분야확인/수정</a></li>
-                    <li class="sideContent" style="margin-bottom: 0px"><a href="#">내가올린그룹</a></li>
+                    <li class="sideContent" style="margin-bottom: 0px"><a href="#">내가올린그룹 &nbsp;&nbsp;<span class = "trnum_sum"></span></a></li>
                     <li class="sideContent" style="margin-bottom: 0px"><a href="#">신청중인그룹</a></li>
                     <li class="sideContent confirmGroup" style="margin-bottom: 0px"><a href="#">참여중인그룹</a></li>
                 </ul>
-
-                <li><a href = "/ranking"> 랭킹 </a></li>
                 <li class="logoutBtn2"><a href='/logout'>Log Out</a></li>
             </ul>
         </nav>
@@ -289,6 +289,7 @@ Header
 
                         <%for(var n=0; n<classList.length;n++){%>
                             <div class="partyContent typeClass"  >
+                                <div class="detailCover"  value="/detail_class/<%= classList[n].id %>"></div>
                                 <div class="partyTitle" value="/detail_class/<%= classList[n].id %>"><span><%=classList[n].title%></span></div>
                                 <div class="subContentBox">
                                     <div class="partyCredit"><img src="../img/coin.png"> <%=classList[n].credit%></div>
@@ -428,7 +429,7 @@ Header
                             <li><a href="/class" style="color:#fff;">클래스 찾기</a></li>
                             <li><a href="/study" style="color:#fff;">스터디 찾기</a></li>
                             <li><a href="/ranking" style="color:#fff;">랭킹</a></li>
-                            <li><a href="/mypage" style="color:#fff;">마이페이지</a></li>
+                            <li class="mobile_mypage"><a href="/mypage" style="color:#fff;">마이페이지</a></li>
                         </ul>
                     </div>
                 </div>
