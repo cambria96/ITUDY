@@ -1,5 +1,6 @@
 $(document).ready(function(){
     initial_mypage();
+    sectionControlMobile();
     sectionControl();
     modifyData();
     groupList();
@@ -394,6 +395,18 @@ function modifyData(){
 
     })
 }
+
+function sectionControlMobile(){
+    $(".sideContent a").click(function(){
+        var menuPos = $(this).parent().index();
+        $(".contentWrap").removeClass("active");
+        $(".contentWrap").eq(menuPos).addClass("active");
+        $(".mobile-nav-overly").css("display","none");
+        $("body").removeClass("mobile-nav-active");
+        $(".fa.fa-times").toggleClass("fa-times fa-bars")
+    })
+}
+
 function sectionControl(){
     $(".sideContent span").click(function(){
         var menuPos = $(this).parent().index();
@@ -581,7 +594,6 @@ function requestConfirm(){
             type:"POST",
             success: function(data){
                 var memberList = data.confirmList;
-                
                 $(".lastBox").html('<p class="contentTitle">참여중인 그룹</p>');
                 for(var m=0; m<memberList.length;m++){
                     var memberID = memberList[m].users.split(",");
@@ -592,7 +604,7 @@ function requestConfirm(){
                     for(var n=0;n<memberName.length;n++){
                         if(n==0){
                             if(memberName[n] == data.loginUser.name){
-                                dynamicLi +=' <li class="confirmGroupList"><span class="name" value='+memberName[n]+'>'+memberName[n]+' &nbsp; <img class = "crown" src = "../img/crown.png">'+'</span><span class="email">'+memberEmail[n]+'</span><span class="phone">'+memberPhone[n]+'</span><button class="reportBtn" id="reportLink" style="pointer-events:none; opacity:0;">신고하기</button><div style="position: relative"><button class="profileBtn" value='+memberID[n]+'>프로필 보기</button>'
+                                dynamicLi +=' <li class="confirmGroupList"><span class="name" value='+memberID[n]+'>'+memberID[n]+' &nbsp; <img class = "crown" src = "../img/crown.png">'+'</span><span class="email">'+memberEmail[n]+'</span><span class="phone">'+memberPhone[n]+'</span><button class="reportBtn" id="reportLink" style="pointer-events:none; opacity:0;">신고하기</button><div style="position: relative"><button class="profileBtn" value='+memberID[n]+'>프로필 보기</button>'
                                 +'<ul class="profileDetail">'
                                 +'<li>'+memberID[n]+' 님의 프로필</li>'
                                 +'<li><p>레벨</p><p><img src="" class="levelIcon"></p></li>'
@@ -602,7 +614,7 @@ function requestConfirm(){
                                 +'</ul></div></li>'
                             }
                             else{
-                                dynamicLi +=' <li class="confirmGroupList"><span class="name" value='+memberName[n]+'>'+memberName[n]+' &nbsp; <img class = "crown" src = "../img/crown.png">'+'</span><span class="email">'+memberEmail[n]+'</span><span class="phone">'+memberPhone[n]+'</span><button class="reportBtn" id="reportLink">신고하기</button><div style="position: relative"><button class="profileBtn" value='+memberID[n]+'>프로필 보기</button>'
+                                dynamicLi +=' <li class="confirmGroupList"><span class="name" value='+memberID[n]+'>'+memberID[n]+' &nbsp; <img class = "crown" src = "../img/crown.png">'+'</span><span class="email">'+memberEmail[n]+'</span><span class="phone">'+memberPhone[n]+'</span><button class="reportBtn" id="reportLink">신고하기</button><div style="position: relative"><button class="profileBtn" value='+memberID[n]+'>프로필 보기</button>'
                                 +'<ul class="profileDetail">'
                                 +'<li>'+memberID[n]+' 님의 프로필</li>'
                                 +'<li><p>레벨</p><p><img src="" class="levelIcon"></p></li>'
@@ -615,7 +627,7 @@ function requestConfirm(){
         
                         }
                         else if(memberName[n] == data.loginUser.name){
-                            dynamicLi +=' <li class="confirmGroupList"><span class="name" value='+memberName[n]+'>'+memberName[n]+' &nbsp;'+'</span><span class="email">'+memberEmail[n]+'</span><span class="phone">'+memberPhone[n]+'</span><button class="reportBtn" id="reportLink" style="pointer-events:none; opacity:0;">신고하기</button><div style="position: relative"><button class="profileBtn" value='+memberID[n]+'>프로필 보기</button>'
+                            dynamicLi +=' <li class="confirmGroupList"><span class="name" value='+memberID[n]+'>'+memberID[n]+' &nbsp;'+'</span><span class="email">'+memberEmail[n]+'</span><span class="phone">'+memberPhone[n]+'</span><button class="reportBtn" id="reportLink" style="pointer-events:none; opacity:0;">신고하기</button><div style="position: relative"><button class="profileBtn" value='+memberID[n]+'>프로필 보기</button>'
                             +'<ul class="profileDetail">'
                             +'<li>'+memberID[n]+' 님의 프로필</li>'
                             +'<li><p>레벨</p><p><img src="" class="levelIcon"></p></li>'
