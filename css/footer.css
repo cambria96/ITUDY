@@ -96,3 +96,23 @@
 .footerCol{
     padding: 10px 50px;
 }
+@media(max-width:991px){
+    .footerCol {
+        padding: 10px 20px;
+    }
+}
+@media(max-width:768px){
+    .footerCol {
+        padding: 10px 0px;
+    }
+    .footer-widgets{
+        padding: 0px 20px;
+
+    }
+}
+@media(max-width:480px){
+    .widget-quick-links{
+        display:none;
+    }
+
+}

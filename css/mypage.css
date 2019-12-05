@@ -23,6 +23,7 @@ button:focus{
     border: 3px double  #dfaa32;
     border-radius: 15px;
     padding: 25px;
+    padding-bottom: 0px;
     max-width: 1200px;
 
 
@@ -33,6 +34,7 @@ button:focus{
 .contextBox ul{
     margin-bottom: 0px;
 
+    
 }
 .studyCredit{
     opacity: 0;
@@ -72,7 +74,7 @@ button:focus{
 }
 
 .dbContent{
-    width:120px;
+    width: 130px;
     margin: unset;
     padding-left: 10p;
     margin-left: 10px;
@@ -86,7 +88,7 @@ input[type="text"]{
 }
 
 .buttonBox{
-    padding: 10px 0px;
+    padding: 20px 0px;
     text-align: center;
     border-top: 1px solid #dfaa32;
 }
@@ -573,15 +575,81 @@ td{
 }
 .levelIcon{
     width:20px;
-  }
+}
+@media (max-width:991px){
+    .sideBar{
+        display:none;
+    }
 
-@media(min-width:992px){
-    .mypage-mobile{
-        display: none;
+    .contextBox {
+        width: 100%;
     }
 }
-@media(max-width:991px){
-    .mypage-mobile{
+@media (max-width: 768px){
+    .classList {
+        padding-left: 2em;
+        padding-right: 2em;
+        padding-bottom: 3em;
+    }
+    .partyCredit {
+        display: none;
+    }
+    .partyTime {
+        width: 67%;
+    }
+    .partyTime p span{
         display: block;
+        overflow : hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    .subContentBox {
+
+        min-width: 200px;
+    }
+    .partyTitle {
+        width: 130px;
+
+    }
+    .partyTitle span {
+        width: 130px;
+        overflow : hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+}
+@media (max-width:480px){
+    .subContentBox {
+
+        min-width: 150px;
+    }
+    .partyTitle {
+        width: 100px;
+
+    }
+    .partyTitle span {
+
+        width: 100px;
+
+    }
+    .ulBox {
+        flex-direction: column;
+    }
+    .categoryList {
+        padding: 10px 0px;
+    }
+    .categoryLists {
+        flex-wrap: wrap;
+    }
+    .halfUl {
+        width: 100%;
+    }
+    .categoryList:first-child {
+        padding-top: 10px;
+    }
+    .colBox{
+        width:50%;
+        margin-bottom: 15px;
+
     }
 }
