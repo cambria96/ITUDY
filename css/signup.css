@@ -58,7 +58,7 @@ p{
 }
 
 .signupTitle{
-    font-size:1.2em;
+    font-size:1.8em;
     font-family: 'Spoqa Han Sans';
     font-weight: 600;
     opacity: 0;
@@ -316,10 +316,18 @@ th{
     .signupBox.wide {
         width: 80%;
     }
+    .signupTitleFin {
+        font-size: 1.5em;
+    }
+
     
 }
 
 @media (max-width: 768px){
+    .categoryList {
+
+        font-size: 1.3em;
+    }
 
     .checkbox-container .checkbox {
        
@@ -344,6 +352,24 @@ th{
         transform: translate(5px, 12px) rotate(-45deg);
  
     }
+    .colContent {
+
+        font-size: 1em;
+    }
+    .signupTitle {
+        font-size: 2em;
+
+        
+    }
+    .signupSubTitle {
+        font-size: 1.5em;
+    }
+    .colTitle {
+        font-size: 1.2em;
+
+    }
+
+
 }
 
 @media(max-width:480px){
@@ -353,17 +379,25 @@ th{
     }
     .colContent {
 
-        font-size: 0.8em;
+        font-size: 0.6em;
     }
-    .signupTitle {
+    /* .signupTitle {
         font-size: 1em;
 
         
-    }
+    } */
     .colTitle {
-        font-size: 1em;
+        font-size: 0.9em;
 
+        
     }
+    .signupTitle {
+        font-size: 1.3em;
+    }
+    .signupSubTitle {
+        font-size: 1.2em;
+    }
+    
     .signupBox {
         padding: 20px 15px 40px;
 
