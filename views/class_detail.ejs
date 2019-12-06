@@ -279,12 +279,13 @@
                     </tbody>
                     </table>
             </div>
+            <%if(loginUser.id == class_info.author_id){%>
+                <div class="footerBtnBox">
+                    <button class="deleteBtn">삭제</button>
+                </div>
+            <%}%>
     </div>
-    <%if(loginUser.id == class_info.author_id){%>
-        <div class="footerBtnBox">
-            <button class="deleteBtn">삭제</button>
-        </div>
-    <%}%>
+    
     
 
 </body>

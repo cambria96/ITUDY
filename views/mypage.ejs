@@ -326,6 +326,7 @@ Header
 
                         <%for(var n=0; n<studyList.length;n++){%>
                             <div class="partyContent typeStudy"  >
+                                <div class="detailCover"  value="/detail_study/<%= studyList[n].id %>"></div>
                                 <div class="partyTitle" value="/detail_study/<%= studyList[n].id %>"><span><%=studyList[n].title%></span></div>
                                 <div class="subContentBox">
                                     <div class="partyCredit studyCredit"><img src="../img/coin.png" style="width:24px; height:24px"> <%=studyList[n].credit%></div>
@@ -373,7 +374,7 @@ Header
         <!--        상세보기(모달)-->
         <div id="myModal" class="modal">
             <div id="modal-content" class="modal-content">
-                <iframe id="content-detail" src="" style="height: 80vh;border:0;">
+                <iframe id="content-detail" src="" style="height: 80vh;border:0; max-height: 600px;">
 
                 </iframe>
             </div>

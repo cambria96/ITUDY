@@ -51,11 +51,11 @@ function closeFindBtn(){
 
 function loadImage(){
 
-    var iHTML = '<div style="width:100%;height:100%;display:table;position:absolute;left:0;top:0;">';
+    var iHTML = '<div style="width:100%;height:100%;display:table;position:fixed;left:0;top:0;background:rgba(0,0,0,0); z-index:9999">';
 
 	iHTML += '<div style="width:100%;height:100%;display:table-cell;text-align:center;vertical-align:middle;background-color:rgba(0,0,0,0.0);">';
 
-	iHTML += '<img src="https://t1.daumcdn.net/cfile/tistory/26794936577F4F9E14?original" alt="Loading..." title="Loading..." />';
+	iHTML += '<div class="book"><div class="book__page"></div><div class="book__page"></div><div class="book__page"></div>';
 
 	iHTML += '</div>';
 

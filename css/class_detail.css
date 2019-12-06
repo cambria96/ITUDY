@@ -4,6 +4,8 @@ body{
   font-family: "Godo";
   background:none;
 }
+
+
 .container_detail
 {
 
@@ -157,7 +159,7 @@ th:last-child,td:last-child{
 
 .footerBtnBox{
   text-align: center;
-  margin-bottom: 20px;
+  margin-top: 20px;
 
 }
 
@@ -169,7 +171,6 @@ th:last-child,td:last-child{
   padding: 0px 40px;
   border-radius: 25px;
   margin: 0px 30px;
-  font-size: 1.5em;
 }
 
 .deleteBtn:hover{

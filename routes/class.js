@@ -258,6 +258,7 @@ router.post("/insert_class", function (req, res) {
 
 //글상세보기
 router.get("/detail_class/:id", function (req, res) {
+    
     fs.readFile('views/class_detail.ejs', 'utf-8', function (error, data) {
         
         getConnection().query('select * from classes where id = ?', [req.params.id], function (error, class_info) {
@@ -276,13 +277,17 @@ router.get("/detail_class/:id", function (req, res) {
                         if(error){
                             console.log(error);
                         }
-                        res.send(ejs.render(data, {
-                            "class_info": class_info[0],
-                            "author_info":author_info[0],
-                            "positions": positions,
-                            "loginUser" : req.session.loginUser,
-                            "participants":participants
-                        }))
+
+                        setTimeout(function(){
+                            res.send(ejs.render(data, {
+                                "class_info": class_info[0],
+                                "author_info":author_info[0],
+                                "positions": positions,
+                                "loginUser" : req.session.loginUser,
+                                "participants":participants
+                            }))
+                        },Math.floor(Math.random()*(1500-500+1)) + 1000);
+                        
                     })
                 })
 
@@ -313,13 +318,17 @@ router.get("/detail_class_history/:id", function (req, res) {
                         if(error){
                             console.log(error);
                         }
-                        res.send(ejs.render(data, {
-                            "class_info": class_info[0],
-                            "author_info":author_info[0],
-                            "positions": positions,
-                            "loginUser" : req.session.loginUser,
-                            "participants":participants
-                        }))
+                        
+
+                        setTimeout(function(){
+                            res.send(ejs.render(data, {
+                                "class_info": class_info[0],
+                                "author_info":author_info[0],
+                                "positions": positions,
+                                "loginUser" : req.session.loginUser,
+                                "participants":participants
+                            }))
+                        },Math.floor(Math.random()*(1500-500+1)) + 1000);
                     })
                 })
 

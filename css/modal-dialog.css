@@ -8,6 +8,7 @@
   border: 3px double #dfaa32;
   border-radius: 15px;
   padding: 25px;
+  
   max-width: 1200px;
   width: 90%;
   font-size: 1.5em;
@@ -52,6 +53,9 @@ button.close{
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
+    max-width: 1200px;
+    box-shadow: none;
+
 }
 
 /* The Close Button */
