@@ -317,7 +317,7 @@ ul{
   margin-right: 10px;
 }
 .image{
-  width:18%;
+  width:10%;
   display: flex;
   margin: 2px;
   align-items: center;
@@ -419,6 +419,24 @@ ul{
   background:none;
 }
 
+@media(max-width : 768px){
+  .iconBox{
+    width : 100%;
+    padding: 5px;
+    border-radius:5px;
+  }
+  .halfBox{
+    width:100%;
+  
+  }
+  .image{
+    width:10%;
+  }  
+  .divBox{
+    width:100%;
+  }
+}
+
 @media(max-width : 455px){
 .container{
   padding : 20px;
@@ -431,7 +449,7 @@ ul{
   text-align: center;
 }
 .dateBtn{
-  margin-right : 1em;
+  margin-right : 0.9em;
 }
 .titleLine{
   width:100%;
@@ -447,4 +465,8 @@ ul{
 .detailLine{
   height: 220px;
   }
+.image{
+  width:18%;
+}
+
 }

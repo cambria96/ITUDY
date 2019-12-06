@@ -103,16 +103,20 @@
 }
 @media(max-width:768px){
     .footerCol {
-        padding: 10px 0px;
+        padding: 0px 0px;
     }
     .footer-widgets{
         padding: 0px 20px;
 
     }
-}
-@media(max-width:480px){
     .widget-quick-links{
         display:none;
     }
+    .footerCol:nth-child(2),.footerCol:nth-child(3){
+        display:none;
+    }
 
+}
+@media(max-width:480px){
+    
 }

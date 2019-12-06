@@ -288,6 +288,8 @@ label {
     padding : 0px 15px;
     border-radius : 25px;
     outline : none;
+    margin-left: 10px;
+
 }
 .reportBtn:hover,
 .profileBtn:hover,
@@ -297,6 +299,9 @@ label {
     color : #fff;
     border-color : #dfaa32;
     outline : none;
+}
+.button{
+    display: flex;
 }
 
 .acceptBtn:focus,
@@ -541,6 +546,8 @@ td{
     
 }
 .detailLink{
+    width: auto !important;
+    display: inline-block;
     margin-left: 10px;
     font-size: 0.8em;
     color: #848484;
@@ -567,6 +574,7 @@ td{
     padding: 10px;
     border: 1px solid #dfaa32;
     border-radius: 10px;
+    z-index: 1;
 }
 .profileDetail li {
     display: flex;
@@ -595,6 +603,17 @@ td{
     top: 0;
     z-index: 1;
 
+}
+.detailTitle{
+    width:auto !important;
+    display: inline-block;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
+.userPhoneLi,
+.userEmailLi    {
+    display:none !important;
 }
 @media (max-width:991px){
 
@@ -648,8 +667,34 @@ td{
         text-overflow: ellipsis;
         white-space: nowrap;
     }
+    .pcText{
+        display: none;
+    }
+    .profileDetail {
+        display: none;
+        width: 250%;
+        top: 100%;
+        right: 0;
+        
+    }
+    .userPhoneLi,
+    .userEmailLi{
+        display:flex !important;
+    }
 }
+
 @media (max-width:480px){
+    .reportBtn, .profileBtn, .acceptBtn, .cancelConfirmBtn {
+        transition: 0.25s;
+        border: 1px solid;
+        color: #000000;
+        background: transparent;
+        padding: 0px 5px;
+        border-radius: 25px;
+        outline: none;
+        margin-left: 5px;
+        font-size: 0.9em;
+    }
     .classList {
         padding-left: 0.5em;
         padding-right: 0.5em;
@@ -703,4 +748,13 @@ td{
     .leftbox {
         padding: 10px 10px;
     }
+    .detailTitle{
+        width:60% !important;
+    }
+    .profileDetail {
+        width: 300%;
+
+    }
+    
+    
 }
