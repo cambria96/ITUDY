@@ -177,3 +177,15 @@ td.rank {
 .rank img {
 	width:30px;
 }
+@media(max-width:768px){
+    .rank_container {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column-reverse;
+    }
+    .level_container {
+        display:none;
+        margin-top: 20px;
+    }
+}

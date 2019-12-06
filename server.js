@@ -63,9 +63,7 @@ http.createServer(app).listen(app.get('port'),function(){
 
 
 
-app.get('/',function(req,res){
-    res.render("main.html");
-})
+
 
 
 app.use(session({
@@ -75,6 +73,15 @@ app.use(session({
     saveUninitialized : false,
     store : new MySQLStore(options)
 }));
+app.get('/',function(req,res){
+    if(req.session.loginUser !=undefined){
+        res.render('after_login.ejs',{loginInfo:req.session.loginUser});
+    }
+    else{
+        res.render("main.html");
+    }
+    
+})
 
 
 
@@ -174,6 +181,7 @@ app.use(function(req, res, next) {
         }
         
     }
+
     next();
     
  });
