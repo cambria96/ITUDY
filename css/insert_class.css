@@ -440,7 +440,10 @@ ul{
 @media(max-width : 455px){
 .container{
   padding : 20px;
+  border: 2px solid #dfaa32;
+
 }  
+
 .divBox{
   width : 100%;
   text-align: center;

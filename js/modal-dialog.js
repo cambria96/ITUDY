@@ -22,7 +22,7 @@ $(function() {
             reportedUser = $(this).parent().children(":first").attr("value")
 
         })
-        $(".item-container,.partyTitle").click(function() {
+        $(".item-container,.detailCover").click(function() {
             
             if($(this).hasClass("addItem")){
 

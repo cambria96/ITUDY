@@ -84,6 +84,39 @@
 }
 
 @media (max-width:991px){
+    .moblie-bar{
+
+        width:25px;
+        height: 3px;
+        background: #fff;
+        margin-bottom: 5px;
+        transition:all ease 0.25s;
+
+    }
+    .moblie-bar.active3{
+        background: #dfaa32;
+    }
+    .topBar.active{
+        transform: translateY(8px);
+
+    }
+    .middleBar.active{
+
+    }
+    .bottomBar.active{
+        transform: translateY(-8px);
+    }
+    .topBar.active2{   
+        transform: translateY(8px) rotate(45deg);
+
+    }
+    .middleBar.active2{
+        transform:  rotate(45deg);
+    }
+    .bottomBar.active2{
+        transform: translateY(-8px) rotate(135deg);
+
+    }
     .bannerBox {
         height: 150px;
         
@@ -94,6 +127,17 @@
         text-align: center;
         font-size: 2em;
     }
+    .sideBar{
+        display:none;   
+    }
+    .mobile-nav ul:first-child{
+        padding-top:15px;
+        background:#513202c7
+    }
+    .mobile-nav ul:first-child li a{
+        color:#fff;
+    }
+
 }
 @media (max-width:768px){
     .bannerBox {

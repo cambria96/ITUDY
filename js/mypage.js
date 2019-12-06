@@ -403,7 +403,13 @@ function sectionControlMobile(){
         $(".contentWrap").eq(menuPos).addClass("active");
         $(".mobile-nav-overly").css("display","none");
         $("body").removeClass("mobile-nav-active");
-        $(".fa.fa-times").toggleClass("fa-times fa-bars")
+        $(".topBar").removeClass("active2"); 
+        $(".middleBar").removeClass("active2");
+        $(".bottomBar").removeClass("active2");
+        setTimeout(function(){
+            $(".topBar").removeClass("active");
+            $(".bottomBar").removeClass("active");
+        },250)
     })
 }
 

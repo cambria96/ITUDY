@@ -55,7 +55,7 @@
         <nav class="main-nav d-none d-lg-block" >
             <ul>
                 <li><a href='/mypage' class="mypageLink"><span class="accoutName"><%= name %></span> 님 환영합니다.</a></li>
-                <li><a href="#credit"><img src="../img/coin.png"> <span><%= credit %></span></a></li>
+                <li><a href="#credit"><img src="../img/coin.png" style="width:24px; height:24px"> <span><%= credit %></span></a></li>
                 <li class="logoutBtn1"><a href='/logout'>Log Out</a></li>
             </ul>
             <ul class="centerBar">
@@ -82,7 +82,9 @@
 
     <section id="mainContainer" style="font-family: 'Godo', serif; padding-top: 15px;">
         <div class="container">
-            <button class="finder"><img class ="finderimg" src = "../img/finder.png"></button>
+            <div>
+                <button class="finder"><img class ="finderimg" src = "../img/finder.png"></button>
+            </div>
             <div class="tags initial_tags">
                 <div class="skill_buttons">
                     <button class="tag" id="C">C</button>
@@ -177,7 +179,7 @@
                                                 <% }) %>
 
                                             </div>
-                                            <div><img src="../img/coin.png"> <%= item.credit %></div>
+                                            <div><img src="../img/coin.png" style="width:24px; height:24px"> <%= item.credit %></div>
                                         </div>
 
                                     </div>
@@ -236,7 +238,7 @@
                                                     <% } %>
                                                 <% }) %>
                                             </div>
-                                            <div><img src="../img/coin.png"> <%= item.credit %></div>
+                                            <div><img src="../img/coin.png" style="width:24px; height:24px"> <%= item.credit %></div>
                                         </div>
 
                                     </div>
@@ -301,7 +303,7 @@
                                                 <% }) %>
 
                                             </div>
-                                            <div><img src="../img/coin.png"> <%= item.credit %></div>
+                                            <div><img src="../img/coin.png" style="width:24px; height:24px"> <%= item.credit %></div>
                                         </div>
 
                                     </div>
@@ -360,7 +362,7 @@
                                                     <% } %>
                                                 <% }) %>
                                             </div>
-                                            <div><img src="../img/coin.png"> <%= item.credit %></div>
+                                            <div><img src="../img/coin.png" style="width:24px; height:24px"> <%= item.credit %></div>
                                         </div>
 
                                     </div>
@@ -438,13 +440,13 @@
                 %>
 
                 <% if(curPage == 1){ %>
-                    <li value=(curPage) class="previous">
+                    <li value="<%=curPage%>" class="previous">
                         <a href='/classes/<%= (curPage) %>'>첫번째페이지</a>
                     </li>
 
                 <% }else if(curPage > 1){
                 %>
-                    <li value=(curPage -1) class="previous">
+                    <li value='<%=curPage-1%>' class="previous">
                         <a href='/classes/<%= (curPage - 1) %>'>이전페이지</a>
                     </li>
 
@@ -460,8 +462,8 @@
 
                 if(i == curPage){
                 %>
-                    <li value=<%= i %> class=''>
-                        <a href='/classes/<%= i %>'>
+                    <li value=<%= i %>>
+                        <a href='/classes/<%= i %>' style="background-color:#337ab7; color:white;">
                             <%= i %>
                         </a>
                     </li>
@@ -470,7 +472,7 @@
                 }else{
                 %>
 
-                    <li value=<%= i %> class='active'>
+                    <li value=<%= i %> class=''>
                         <a href='/classes/<%= i %>'>
                             <%= i %>
                         </a>
@@ -487,14 +489,14 @@
                 <%
                 if(curPage < totalPage){
                 %>
-                    <li value=( curPage + 1) class="next">
-                        <a href='/classes/<%= (curPage + 1) %>'>다음페이지</a>
+                    <li value='<%=curPage+1%>' class="next">
+                        <a href='/classes/<%= curPage + 1 %>'>다음페이지</a>
                     </li>
                 <%
                 }else if(curPage == totalPage){
                 %>
-                    <li value=( curPage) class="next">
-                        <a href='/classes/<%= (curPage) %>'>마지막페이지</a>
+                    <li value='<%=curPage%>' class="next">
+                        <a href='/classes/<%= curPage %>'>마지막페이지</a>
                     </li>
                 <% } %>
 

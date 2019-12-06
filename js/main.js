@@ -27,16 +27,43 @@
     location.href="/signup"
   })
 
+  $(".mobile-nav-toggle").click(function(){
+    if($(".topBar").hasClass("active")){  
+      $(".topBar").removeClass("active2"); 
+      $(".middleBar").removeClass("active2");
+      $(".bottomBar").removeClass("active2");
+      setTimeout(function(){
+        $(".topBar").removeClass("active");
+        $(".bottomBar").removeClass("active");
+      },250)
+    }
+    else{
+      $(".topBar").addClass("active");
+   
+      $(".bottomBar").addClass("active");
+      setTimeout(function(){
+        $(".topBar").addClass("active2"); 
+        $(".middleBar").addClass("active2");
+        $(".bottomBar").addClass("active2");
+      },250)
+    }
+    
+    
+  })
+
   // Header scroll class
   $(window).scroll(function() {
     if ($(this).scrollTop() > 100) {
       $('#header').addClass('header-scrolled');
       $('.main-nav a').addClass("active");
+      $(".moblie-bar").addClass("active3");
     } else {
       $('#header').removeClass('header-scrolled');
+      $(".moblie-bar").removeClass("active3");
       $('.main-nav a').removeClass("active");
     }
   });
+
 
   if ($(window).scrollTop() > 100) {
     $('#header').addClass('header-scrolled');
