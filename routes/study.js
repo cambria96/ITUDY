@@ -182,7 +182,6 @@ router.get("/studies/:cur", function (req, res) {
 
 //메인화면
 router.get("/study", function (req, res) {
-    console.log("메인화면")
 
 //class 으로 들어오면 바로 페이징 처리
     res.redirect('/studies/' + 1)

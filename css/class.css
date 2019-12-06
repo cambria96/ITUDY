@@ -278,6 +278,18 @@
    
 }
 
+.pageBtn{
+    font-size:20px;
+    border:none!important;
+    border-radius:15px !important;
+    color: #dfaa32 !important;
+}
+.curPageBtn{
+    font-size:20px;
+    background-color:#dfaa32!important;
+    color:white!important;
+}
+
 @media(max-width : 991px){
     .content-title{
         font-size : 2rem;
@@ -300,6 +312,20 @@
     }
     .tag{
         font-size: 1.5rem;
+    }
+
+    .pageBtn{
+        border:none!important;
+        border-radius:15px !important;
+        color: #dfaa32 !important;
+        font-size:14px;!important;
+        font-weight:bold;
+    }
+    .curPageBtn{
+        background-color:#dfaa32!important;
+        color:white!important;
+        font-size:14px!important;
+        font-weight:bold;
     }
 }
 .finderimg{
@@ -327,6 +353,20 @@
         overflow : hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
+    }
+    .pageBtn{
+        border:none!important;
+        border-radius:15px !important;
+        color: #dfaa32 !important;
+        font-size:14px;!important;
+        font-weight:bold;
+
+    }
+    .curPageBtn{
+        background-color:#dfaa32!important;
+        color:white!important;
+        font-size:14px!important;
+        font-weight:bold;
     }
 }
 @media(max-width : 455px){
@@ -361,5 +401,19 @@
     .iconBox{
         height : 63px;
     
+    }
+    .pageBtn{
+        font-size:14px;!important;
+        border:none!important;
+        border-radius:15px !important;
+        color: #dfaa32 !important;
+        font-weight:bold;
+
+    }
+    .curPageBtn{
+        background-color:#dfaa32!important;
+        color:white!important;
+        font-size:14px!important;
+        font-weight:bold;
     }
 }

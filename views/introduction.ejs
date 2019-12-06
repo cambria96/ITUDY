@@ -1,67 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>ITUDY</title>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <meta content="" name="keywords">
-  <meta content="" name="description">
+    <meta charset="utf-8">
+    <title>ITUDY</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
 
-  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
 
-  <!-- Favicons -->
-  <link href="../img/favicon.png" rel="icon">
-  <link href="../img/apple-touch-icon.png" rel="apple-touch-icon">
+    <!-- Favicons -->
+    <link href="../img/favicon.png" rel="icon">
+    <link href="../img/apple-touch-icon.png" rel="apple-touch-icon">
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,500,600,700,700i|Montserrat:300,400,500,600,700" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,500,600,700,700i|Montserrat:300,400,500,600,700"
+          rel="stylesheet">
 
-  <!-- Bootstrap CSS File -->
-  <link href="../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap CSS File -->
+    <link href="../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-  <!-- Libraries CSS Files -->
-  <link href="../lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-  <link href="../lib/animate/animate.min.css" rel="stylesheet">
-  <link href="../lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+    <!-- Libraries CSS Files -->
+    <link href="../lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../lib/animate/animate.min.css" rel="stylesheet">
+    <link href="../lib/ionicons/css/ionicons.min.css" rel="stylesheet">
 
 
-  <!-- Main Stylesheet File -->
-  <link href="../css/style.css" rel="stylesheet">
-  <link href="../css/header.css" rel="stylesheet">
-  <link href="../css/footer.css" rel="stylesheet">
-  <link href="../css/introduction.css" rel="stylesheet">
+    <!-- Main Stylesheet File -->
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/header.css" rel="stylesheet">
+    <link href="../css/footer.css" rel="stylesheet">
+    <link href="../css/introduction.css" rel="stylesheet">
 
 
 </head>
 
 <body>
 
- 
-  <!--==========================
-  Header
-  ============================-->
-  <div class="bannerBox"> 
-    <div class="coverBox">
-      <p class="bannerTitle">서비스 소개</p>
-    </div>
-  </div>
-  <header id="header">
-      <div class="logo mobile-logo"></div>
-      <div class="headerContainer">
-          <div class="logo pc-logo"></div>
-          <nav class="main-nav d-none d-lg-block" >
-              <ul>
 
-                  <li><a href = '/mypage' class="mypageLink"><span class="accoutName"><%= name %></span> 님 환영합니다.</a></li>
-                  <li><a href="#credit"><img src="../img/coin.png" style="width:24px; height:24px">  <span><%= credit %></span></a></li>
-                  <li class="logoutBtn1"><a href='/logout'>Log Out</a></li>
-              </ul>
-              <ul class="centerBar">
-                  <li><a href="/introduction">서비스 소개</a></li>
-                  <li class="drop-down"><a href="/home">그룹 찾기</a>
-                      <ul>
-                          <li><a href="/class">클래스</a></li>
-                          <li><a href="/study">스터디</a></li>
+<!--==========================
+Header
+============================-->
+<div class="bannerBox">
+    <div class="coverBox">
+        <p class="bannerTitle">서비스 소개</p>
+    </div>
+</div>
+<header id="header">
+    <div class="logo mobile-logo"></div>
+    <div class="headerContainer">
+        <div class="logo pc-logo"></div>
+        <nav class="main-nav d-none d-lg-block">
+            <ul>
+
+                <li><a href='/mypage' class="mypageLink"><span class="accoutName"><%= name %></span> 님 환영합니다.</a></li>
+                <li><a href="#credit"><img src="../img/coin.png" style="width:24px; height:24px">
+                        <span><%= credit %></span></a></li>
+                <li class="logoutBtn1"><a href='/logout'>Log Out</a></li>
+            </ul>
+            <ul class="centerBar">
+                <li><a href="/introduction">서비스 소개</a></li>
+                <li class="drop-down"><a href="/home">그룹 찾기</a>
+                    <ul>
+                        <li><a href="/class">클래스</a></li>
+                        <li><a href="/study">스터디</a></li>
 
                       </ul>
                   </li>
@@ -73,242 +75,241 @@
       </div>
   </header><!-- #header -->
 
-  <main>
+<main>
     <section class="topBanner">
 
 
     </section>
-
+    <div class="topBar">
+        <ul class="tabs">
+            <li class="sideContent current" data-tab="tab-1">About ITUDY</li>
+            <li class="sideContent" data-tab="tab-2">클래스/스터디</li>
+            <li class="sideContent" data-tab="tab-3">비트</li>
+            <li class="sideContent" data-tab="tab-4">그룹 생성하기</li>
+        </ul>
+    </div>
     <section id="mainContainer">
         <section class="introduction">
-            <div class="sideBar">
-                <ul class = "tabs">
-                    <li class="sideContent current" data-tab = "tab-1">About ITUDY</li>
-                    <li class="sideContent"data-tab = "tab-2">클래스/스터디</li>
-                    <li class="sideContent"data-tab = "tab-3">비트</li>
-                    <li class="sideContent"data-tab = "tab-4">그룹 생성하기</li>
-                </ul>
-            </div>
-            <div id = "tab-1" class = "tab-content current">
+
+            <div id="tab-1" class="tab-content current">
                 <div class="n1">
                     <div class="subMainTitle">
-                      <p>혼자라서 힘들 땐, </p>  
-                      <br> 
-                      <p>함께라서 더 좋은, </p>
-                      <br>
-                      .
-                      <br>
-                      .
-                      <br>
-                      .
-                      <br>
-                      <br>
+                        <p>혼자라서 힘들 땐, </p>
+                        <br>
+                        <p>함께라서 더 좋은, </p>
+                        <br>
+                        .
+                        <br>
+                        .
+                        <br>
+                        .
+                        <br>
+                        <br>
                     </div>
-                      <div class="mainTitle" ><img class = "logo" src = "../img/new_logo_hover.png"></div>
-                      <br>
-                      <br>
-                      .
-                      <br>
-                      .
-                      <br>
-                      .
-                      <br>
-                      
-                  </div>
-                  
-      
-                  <div class="n2">
-                      <div class = "leftbox">
-                          <div class = "notfound"><img src = "../img/낫파운드.png"></div>
-                      </div>
-                      <div class = "rightbox">
-                   
-                          컴퓨터 공학과 신입생이 C언어를 처음 접했을 때,
-                          <br>
-                          사회학과 수업에서 R프로그래밍을 처음 공부할 때,
-                          <br>
-                          도통 무슨소린지도 모르겠고 혼자서 낑낑댈 때,
-                          <br>
-                          <br>
-                          <br>
-                          우리는 누군가 가르쳐주고, <b>함께</b> 공부했으면 좋겠습니다.
-      
-                      </div>
-                  </div>
-      
-                  <div class = "n3">
-                    <div class = "leftbox">
-                      혼자라서 힘들때, 
-                    </div>
-      
-                    <div class = "rightbox">
-                    함께하고 싶을 때,
-                    </div>
-                  </div>
-                  
-            </div>
-               
-            <div id = "tab-2" class = "tab-content">
-               
-              <div class ="title"><img class = "class" src="../img/class.png"> 클래스(Class)</div>
-              <div class = "text">
-                  <p>- 'ITUDY'의 '클래스'는 멘토와 멘티로 구성된 그룹입니다.</p>
-                
-                  <p>- 'ITUDY 클래스'의 '멘토'란 기존의 '멘토'와는 다릅니다.</p>
-                  <p>- 'ITUDY'가 필요한 '멘토'는
-                      크고 작은 과제, 시험공부, 지식등 대하여 누군가를 가르쳐 줄 수 있는, 아주 조그마한 것들이라도 도움을 줄 수 있는 사람입니다.</p>
-                  
-                  <p>- 누군가의 멘토는, 다른 누군가의 멘티가 될 수도 있습니다.</p>
-                  <p>- 아무리 사소한 것이라도, IT공부를 하다 막힐 때, 클래스를 생성해보세요.
-                      자신의 경험 분야에 따라 딱 맞는 클래스를 찾아볼 수도 있습니다.</p>
-                  <p>
-                      - 어려움을 겪는 사람들에게 도움이 되고 싶다면, 멘토로써 클래스에 참여해보세요.
-                      누군가를 가르치는 것 또한 자신의 포트폴리오가 될 것입니다.
-                  </p>
-                  <p>
-                      - '클래스'에서 멘티는 멘토에게 일정량의 비트를 지불함으로써 참여할 수 있습니다.
-                  </p>
-                  
-                  
-              </div>
+                    <div class="mainTitle"><img class="logo" src="../img/new_logo_hover.png"></div>
+                    <br>
+                    <br>
+                    .
+                    <br>
+                    .
+                    <br>
+                    .
+                    <br>
 
-              <div class ="title"><img class = "class" src="../img/study.png"> 스터디(Study)</div>
-                <div class = "text">
+                </div>
+
+
+                <div class="n2">
+                    <div class="leftbox">
+                        <div class="notfound"><img src="../img/낫파운드.png"></div>
+                    </div>
+                    <div class="rightbox">
+
+                        컴퓨터 공학과 신입생이 C언어를 처음 접했을 때,
+                        <br>
+                        사회학과 수업에서 R프로그래밍을 처음 공부할 때,
+                        <br>
+                        도통 무슨소린지도 모르겠고 혼자서 낑낑댈 때,
+                        <br>
+                        <br>
+                        <br>
+                        우리는 누군가 가르쳐주고, <b>함께</b> 공부했으면 좋겠습니다.
+
+                    </div>
+                </div>
+
+                <div class="n3">
+                    <div class="leftbox">
+                        혼자라서 힘들때,
+                    </div>
+
+                    <div class="rightbox">
+                        함께하고 싶을 때,
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div id="tab-2" class="tab-content">
+
+                <div class="title"><img class="class" src="../img/class.png"> 클래스(Class)</div>
+                <div class="text">
+                    <p>- 'ITUDY'의 '클래스'는 멘토와 멘티로 구성된 그룹입니다.</p>
+
+                    <p>- 'ITUDY 클래스'의 '멘토'란 기존의 '멘토'와는 다릅니다.</p>
+                    <p>- 'ITUDY'가 필요한 '멘토'는
+                        크고 작은 과제, 시험공부, 지식등 대하여 누군가를 가르쳐 줄 수 있는, 아주 조그마한 것들이라도 도움을 줄 수 있는 사람입니다.</p>
+
+                    <p>- 누군가의 멘토는, 다른 누군가의 멘티가 될 수도 있습니다.</p>
+                    <p>- 아무리 사소한 것이라도, IT공부를 하다 막힐 때, 클래스를 생성해보세요.
+                        자신의 경험 분야에 따라 딱 맞는 클래스를 찾아볼 수도 있습니다.</p>
+                    <p>
+                        - 어려움을 겪는 사람들에게 도움이 되고 싶다면, 멘토로써 클래스에 참여해보세요.
+                        누군가를 가르치는 것 또한 자신의 포트폴리오가 될 것입니다.
+                    </p>
+                    <p>
+                        - '클래스'에서 멘티는 멘토에게 일정량의 비트를 지불함으로써 참여할 수 있습니다.
+                    </p>
+
+
+                </div>
+
+                <div class="title"><img class="class" src="../img/study.png"> 스터디(Study)</div>
+                <div class="text">
                     <p>- 'ITUDY'의 '스터디'는 같은 목적을 갖는 사람끼리 함께 하는 그룹입니다.</p>
-                  
+
                     <p>- 같은 수업을 듣는 사람들끼리 시험범위를 나눠서 공부할 수도,
                         함께 웹 공부를 할 수도,
                         공모전이나 프로젝트때 필요한 역량을 가진 사람을 구할 수도 있습니다.</p>
-                    <p>- '스터디'에는 별도의 비트가 필요하지 않습니다. 나와 같은 상황의 사람들을 마음껏 찾아보세요!</p> 
+                    <p>- '스터디'에는 별도의 비트가 필요하지 않습니다. 나와 같은 상황의 사람들을 마음껏 찾아보세요!</p>
                 </div>
-                
+
             </div>
-            <div id = "tab-3" class = "tab-content">
-               
-                <div class ="title"><img class = "class" src="../img/coin.png" style="width:35px; height:35px"> 비트(bit)</div>
-                <div class = "text">
+            <div id="tab-3" class="tab-content">
+
+                <div class="title"><img class="class" src="../img/coin.png" style="width:35px; height:35px"> 비트(bit)
+                </div>
+                <div class="text">
                     <p>- 비트(Bit)는 'ITUDY'에서 쓰이는 가상화폐입니다. </p>
-                  
+
                     <p>- '클래스'에서, 멘티들은 비트를 멘토에게 지불함으로써 참여할 수 있습니다.</p>
-                    <p>- 클래스에 참가할 때 요구되는 각 클래스별 비트는 클래스 상세정보에 표기되어 있습니다.</p> 
+                    <p>- 클래스에 참가할 때 요구되는 각 클래스별 비트는 클래스 상세정보에 표기되어 있습니다.</p>
                     <p>- 비트가 부족할 경우, 클래스의 멘토활동을 통해 획득할 수 있으며, 일정기간 칭호를 유지할 경우 칭호에 따라 차등지급됩니다.</p>
                     <p>- 「랭킹」섹션에서 비트별 랭킹을 확인할 수 있습니다. 멘토활동을 통해 순위권에 들어보세요!</p>
                 </div>
-                  
+
             </div>
-            <div id = "tab-4" class = "tab-content">
-               
-                <div class = "text">
+            <div id="tab-4" class="tab-content">
+
+                <div class="text">
                     <p>클래스와 스터디에서, 하단의 항목을 누르면 그룹을 생성할 수 있습니다. </p>
-                  
-                    <img class = "info_img" src = "../img/info0.png">
+
+                    <img class="info_img" src="../img/info0.png">
+                    <br>
 
                     <p>그룹을 생성하는 방법은 다음과 같습니다. </p>
 
-                    <img class = "info_img" src ="../img/info1.png">
-                    <img class = "info_img" src ="../img/info2.png">
+                    <img class="info_img" src="../img/info1.png">
+                    <img class="info_img" src="../img/info2.png">
+                    <br>
 
                     <p>'ITUDY'가 제공하는 IT분야는 다음과 같습니다.</p>
-                    <img class = "info_img" src = "../img/info4.png">
+                    <img class="info_img" src="../img/info4.png">
                     <p>
                         또한, 요구되는 분야가 없을 경우 '무관'으로 검색할 수 있습니다.
                     </p>
 
 
                 </div>
-                  
+
             </div>
         </section>
-        
+
     </section>
-      
-  </main>
-  <!-- FOOTER -->
-  <footer>
-      <div class="footer-bottom-area bg-dark-light section-padding-sm">
-          <div class="footerBox">
-              <div class="row widgets footer-widgets">
-  
-                  <div class="col-lg-3 col-md-6 col-12 footerCol">
-                      <div class="single-widget widget-about">
-                          <p class="serviceName">ITUDY</p>
-                          <p>
-                              ITUDY is a service that provides IT study.
-                          </p>
-                      </div>
-                  </div>
-  
-                  <div class="col-lg-3 col-md-6 col-12 footerCol">
-                      <div class="single-widget widget-quick-links">
-                          <h5 class="widget-title">Site Map</h5>
-                          <ul>
-                              <li><a href="/introduction" style="color:#fff;">서비스 소개</a></li>
-                              <li><a href="/class" style="color:#fff;">클래스 찾기</a></li>
-                              <li><a href="/study" style="color:#fff;">스터디 찾기</a></li>
-                              <li><a href="/ranking" style="color:#fff;">랭킹</a></li>
-                              <li><a href="/mypage" style="color:#fff;">마이페이지</a></li>
-                          </ul>
-                      </div>
-                  </div>
-  
-                  <div class="col-lg-3 col-md-6 col-12 footerCol">
-                      <div class="single-widget widget-quick-links">
-                          <h5 class="widget-title">Developers</h5>
-                          <ul>
-                              <li>Lee Eeun Chang</li>
-                              <li>Yeo In Hyeok</li>
-                              <li>Hwang Jae Wan</li>
-                              <li>jipjung</li>
-                              <li>hahaha</li>
-                          </ul>
-                      </div>
-                  </div>
-  
-                  <div class="col-lg-3 col-md-6 col-12 footerCol">
-                      <div class="single-widget widget-contact">
-                          <h5 class="widget-title">Contact Us</h5>
-                          <ul>
-                              <li class="address">
-                                  <span class="icon"><i class="fa fa-map-marker"></i></span>
-                                  <p>집교동</p>
-                              </li>
-                              <li class="phone">
-                                  <span class="icon"><i class="fa fa-phone"></i></span>
-                                  <p>010 2222 2222</p>
-                              </li>
-                              <li class="email">
-                                  <span class="icon"><i class="fa fa-envelope-o"></i></span>
-                                  <p>wlqwndrydbr@gmail.com</p>
-                              </li>
-                          </ul>
-                      </div>
-                  </div>
-  
-              </div>
-          </div>
-      </div>
-  </footer>
-  
 
-  <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+</main>
+<!-- FOOTER -->
+<footer>
+    <div class="footer-bottom-area bg-dark-light section-padding-sm">
+        <div class="footerBox">
+            <div class="row widgets footer-widgets">
 
-  <script src="lib/jquery/jquery.min.js"></script>
-  <script src="lib/jquery/jquery-migrate.min.js"></script>
-  <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="lib/easing/easing.min.js"></script>
-  <script src="lib/mobile-nav/mobile-nav.js"></script>
-  <script src="lib/isotope/isotope.pkgd.min.js"></script>
+                <div class="col-lg-3 col-md-6 col-12 footerCol">
+                    <div class="single-widget widget-about">
+                        <p class="serviceName">ITUDY</p>
+                        <p>
+                            ITUDY is a service that provides IT study.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 col-12 footerCol">
+                    <div class="single-widget widget-quick-links">
+                        <h5 class="widget-title">Site Map</h5>
+                        <ul>
+                            <li><a href="/introduction" style="color:#fff;">서비스 소개</a></li>
+                            <li><a href="/class" style="color:#fff;">클래스 찾기</a></li>
+                            <li><a href="/study" style="color:#fff;">스터디 찾기</a></li>
+                            <li><a href="/ranking" style="color:#fff;">랭킹</a></li>
+                            <li><a href="/mypage" style="color:#fff;">마이페이지</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 col-12 footerCol">
+                    <div class="single-widget widget-quick-links">
+                        <h5 class="widget-title">Developers</h5>
+                        <ul>
+                            <li>Lee Eeun Chang</li>
+                            <li>Yeo In Hyeok</li>
+                            <li>Hwang Jae Wan</li>
+                            <li>jipjung</li>
+                            <li>hahaha</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 col-12 footerCol">
+                    <div class="single-widget widget-contact">
+                        <h5 class="widget-title">Contact Us</h5>
+                        <ul>
+                            <li class="address">
+                                <span class="icon"><i class="fa fa-map-marker"></i></span>
+                                <p>집교동</p>
+                            </li>
+                            <li class="phone">
+                                <span class="icon"><i class="fa fa-phone"></i></span>
+                                <p>010 2222 2222</p>
+                            </li>
+                            <li class="email">
+                                <span class="icon"><i class="fa fa-envelope-o"></i></span>
+                                <p>wlqwndrydbr@gmail.com</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</footer>
 
 
-  <script src="js/main.js"></script>
-  <script src="js/header.js"></script>
-  <script src="js/footer.js"></script>
-  <script src="js/introduction.js"></script>
+<a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
 
-  
+<script src="lib/jquery/jquery.min.js"></script>
+<script src="lib/jquery/jquery-migrate.min.js"></script>
+<script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="lib/easing/easing.min.js"></script>
+<script src="lib/mobile-nav/mobile-nav.js"></script>
+<script src="lib/isotope/isotope.pkgd.min.js"></script>
 
 
-
+<script src="js/main.js"></script>
+<script src="js/header.js"></script>
+<script src="js/footer.js"></script>
+<script src="js/introduction.js"></script>
 
 
 </body>
