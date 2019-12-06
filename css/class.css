@@ -332,7 +332,7 @@
 @media(max-width : 455px){
     .content-title{
         padding-bottom : 10px;
-        width : 230px;
+        width : 200px;
         overflow : hidden;
         text-overflow: ellipsis;
         white-space: nowrap;

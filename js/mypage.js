@@ -765,6 +765,7 @@ function deleteConfirm(){
 }
 
 function profileDetail(){
+    
     $("html").click(function(e){
         if(!$(e.target).parents().hasClass("profileDetail")){
             $(".profileDetail").slideUp("fast");

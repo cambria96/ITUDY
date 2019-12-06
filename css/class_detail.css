@@ -2,11 +2,25 @@
 
 body{
   font-family: "Godo";
+  background:none;
 }
+.container_detail
+{
+
+  width: 100% !important;
+  background: #fff;
+  border: 3px double #dfaa32;
+  border-radius: 15px;
+  padding: 25px;
+  max-width: 1200px;
+  width: 90%;
+  font-size: 1.5em;
+
+
+} 
 
 .container{
     margin: 30px auto;
-    border: 3px double #dfaa32;
     border-radius: 15px;
     padding: 25px;
     max-width: 1200px;
@@ -270,6 +284,11 @@ th:last-child,td:last-child{
     overflow : hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+  }
+  .profileContent {
+    top: 50%;
+    right: 0;
+    font-size: 0.9em;
   }
 
 }

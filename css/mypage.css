@@ -334,7 +334,7 @@ label {
     background: #fff;
 }
 .cancelBtn{
-    width: 65px;
+    width: 70px;
     background: none;
     border: none;
     border-radius: 25px;
@@ -547,7 +547,7 @@ td{
 }
 .detailLink{
     width: auto !important;
-    display: inline-block;
+    display: contents;
     margin-left: 10px;
     font-size: 0.8em;
     color: #848484;
@@ -645,7 +645,7 @@ td{
         display: none;
     }
     .partyTime {
-        width: 67%;
+        width: 60%;
     }
     .partyTime p span{
         display: block;
@@ -710,7 +710,7 @@ td{
     }
     .subContentBox {
 
-        min-width: 150px;
+        min-width: 165px;
     }
 
     .ulBox {
