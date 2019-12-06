@@ -3,6 +3,10 @@
 @import url('https://fonts.googleapis.com/css?family=Black+Han+Sans|Jua|Nanum+Brush+Script|Nanum+Myeongjo:400,700,800|Noto+Serif+KR:200,300,400,500,600,700,900|Song+Myung&display=swap&subset=korean');
 
 
+.topBar{
+    font-family: 'Godo', serif;
+    text-align: center;
+}
 @media(min-width: 992px) {
     .introduction{
         padding : 3em;
@@ -13,8 +17,6 @@
     }
     .topBar{
         margin-top: 1em;
-        font-family: 'Godo', serif;
-        text-align: center;
         font-size : 2em;
     }
     ul.tabs li{
@@ -108,9 +110,7 @@
         scroll-snap-type : y mandatory;
     }
     .topBar{
-        font-family: 'Godo', serif;
-        text-align: center;
-        font-size : 90%;
+        font-size : 1.8em;
         margin-top: 0.5em;
     }
     .logo{
@@ -183,6 +183,13 @@
         font-size : 20px;
         border-radius: 15px;
         margin-bottom:3em;
+    }
+}
+
+@media(max-width: 450px){
+    .topBar{
+        font-size : 0.9em;
+        margin-top: 0.5em;
     }
 }
 
