@@ -84,8 +84,60 @@ Header
 
     <section id="mainContainer">
         <div class="bottombox">
+            
             <div class="rank_container">
+                    <div class="level_container">
+                            <div class="wrapper" id="level_wrapper">
+                                <!-- <header style ="opacity: 0; z-index:-40;">
+                                    <h1>Level</h1>
+                                </header> -->
+            
+                                <table>
+                                    <thead>
+                                    <tr>
+                                        <th class="paddingR">아이콘</th>
+                                        <th class="paddingR">레벨</th>
+                                        <th class="paddingR"> 필요 비트</th>
+            
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr id="rank1">
+                                        <td class="rank"><img src="../img/petabyte.png"></td>
+                                        <td class="team">페타바이트</td>
+                                        <td class="points">10000</td>
+                                    </tr>
+                                    <tr id="rank2">
+                                        <td class="rank"><img src="../img/terabyte.png"></td>
+                                        <td class="team">테라바이트</td>
+                                        <td class="points">6000</td>
+                                    </tr>
+                                    <tr id="rank3">
+                                        <td class="rank"><img src="../img/gigabyte.png"></td>
+                                        <td class="team">기가바이트</td>
+                                        <td class="points">3500</td>
+                                    </tr>
+                                    <tr id="rank4">
+                                        <td class="rank"><img src="../img/megabyte.png"></td>
+                                        <td class="team">메가바이트</td>
+                                        <td class="points">1500</td>
+            
+                                    </tr>
+                                    <tr>
+                                        <td class="rank"><img src="../img/byte.png"></td>
+                                        <td class="team">바이트</td>
+                                        <td class="points">0</td>
+            
+                                    </tr>
+            
+            
+                                    </tbody>
+                                </table>
+                            </div>
+            
+                        </div>
                 <div class="wrapper">
+                    
                     <header>
                         <h1>Top 5</h1>
                     </header>
@@ -96,6 +148,7 @@ Header
                             <th>Rank</th>
                             <th>ID</th>
                             <th>비트</th>
+                            <th>레벨<img src="../img/question.png" class="questionMark"></th>
 
                         </tr>
                         </thead>
@@ -104,49 +157,51 @@ Header
                             <td class="rank"><img src="../img/gold.png" class="rankimg"></td>
                             <td class="team"><%= id1 %> </td>
                             <td class="points"><%= credit1 %></td>
+                            <td class="level"><img src=<%= level1 %>></td>
 
                         </tr>
                         <tr id="rank2">
                             <td class="rank"><img src="../img/silver.png" class="rankimg"></td>
                             <td class="team"><%= id2 %></td>
                             <td class="points"><%= credit2 %></td>
+                            <td class="level"><img src=<%= level2 %>></td>
 
                         </tr>
                         <tr id="rank3">
                             <td class="rank"><img src="../img/bronze.png" class="rankimg"></td>
                             <td class="team"><%= id3 %> </td>
                             <td class="points"><%= credit3 %></td>
+                            <td class="level"><img src=<%= level3 %>></td>
 
                         </tr>
-                        <tr>
+                        <tr id="rank4"> 
                             <td class="rank"><img src="../img/four.png" class="rankimg"></td>
                             <td class="team"><%= id4 %> </td>
                             <td class="points"><%= credit4 %></td>
+                            <td class="level"><img src=<%= level4 %>></td>
 
                         </tr>
                         <tr>
                             <td class="rank"><img src="../img/five.png" class="rankimg"></td>
                             <td class="team"><%= id5 %> </td>
                             <td class="points"><%= credit5 %></td>
+                            <td class="level"><img src=<%= level5 %>></td>
 
                         </tr>
-                        <tr>
-                            <td></td>
-                            <td class="team"></td>
-                            <td class="points"></td>
-
-                        </tr>
-                        <tr style="background-color: gold;">
+                        
+                        <tr style="background-color: #b3b1b1;">
                             <td>나의 순위</td>
                             <td>나의 ID</td>
                             <td>보유 비트</td>
+                            <td>레벨</td>
 
                         </tr>
 
-                        <tr style='background-color: goldenrod;'>
+                        <tr style='background-color: #e6e6e6;'>
                             <td class="rank"><%= ranking %></td>
                             <td class="team"><%= id %></td>
                             <td class="points"><%= credit %></td>
+                            <td class="level"><img src=<%= level %>></td>
 
                         </tr>
                         </tbody>
@@ -154,56 +209,7 @@ Header
                 </div>
             </div>
 
-            <div class="level_container">
-                <div class="wrapper" id="level_wrapper">
-                    <header>
-                        <h1>Level</h1>
-                    </header>
-
-                    <table>
-                        <thead>
-                        <tr>
-                            <th>아이콘</th>
-                            <th>레벨</th>
-                            <th>필요 비트</th>
-
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr id="rank1">
-                            <td class="rank"><img src="../img/petabyte.png"></td>
-                            <td class="team">페타바이트</td>
-                            <td class="points">10000</td>
-                        </tr>
-                        <tr id="rank2">
-                            <td class="rank"><img src="../img/terabyte.png"></td>
-                            <td class="team">테라바이트</td>
-                            <td class="points">6000</td>
-                        </tr>
-                        <tr id="rank3">
-                            <td class="rank"><img src="../img/gigabyte.png"></td>
-                            <td class="team">기가바이트</td>
-                            <td class="points">3500</td>
-                        </tr>
-                        <tr id="rank4">
-                            <td class="rank"><img src="../img/megabyte.png"></td>
-                            <td class="team">메가바이트</td>
-                            <td class="points">1500</td>
-
-                        </tr>
-                        <tr>
-                            <td class="rank"><img src="../img/byte.png"></td>
-                            <td class="team">바이트</td>
-                            <td class="points">0</td>
-
-                        </tr>
-
-
-                        </tbody>
-                    </table>
-                </div>
-
-            </div>
+            
         </div>
 
 
@@ -289,6 +295,7 @@ Header
 <script src="js/main.js"></script>
 <script src="js/header.js"></script>
 <script src="js/footer.js"></script>
+<script src="js/ranking.js"></script>
 
 
 </body>

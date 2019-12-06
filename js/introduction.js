@@ -11,10 +11,13 @@ $(document).ready(function(){
             appearTime+=800;
         })
     })
-    var bannerHeight = $(".subMainTitle").width();
+    var bannerHeight = $(".mainTitle ").offset().top;
+    var imageHeigth = $(".mainTitle").height();
+    console.log(bannerHeight);
     console.log(bannerHeight+250-$(window).height());
     $(window).scroll(function() {
-        if ($(this).scrollTop() > bannerHeight+150-$(window).height()) {
+        console.log($(this).scrollTop());   
+        if ($(this).scrollTop() > bannerHeight-imageHeigth/2) {
             
             $(".mainTitle").addClass("active");
         } else {

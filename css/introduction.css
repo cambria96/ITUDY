@@ -3,9 +3,27 @@
 @import url('https://fonts.googleapis.com/css?family=Black+Han+Sans|Jua|Nanum+Brush+Script|Nanum+Myeongjo:400,700,800|Noto+Serif+KR:200,300,400,500,600,700,900|Song+Myung&display=swap&subset=korean');
 
 
-.topBar{
+.topBarBanner{
     font-family: 'Godo', serif;
     text-align: center;
+}
+#tab-3 .text {
+    width: 70%;
+    margin: 0 auto;
+    border: 3px double #dfaa32;
+    font-size: 20px;
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 5em;
+}
+#tab-2 .text {
+    width: 70%;
+    margin: 0 auto;
+    border: 3px double #dfaa32;
+    font-size: 20px;
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 5em;
 }
 @media(min-width: 992px) {
     .introduction{
@@ -15,7 +33,7 @@
         font-family: 'Godo', serif;
         scroll-snap-type : y mandatory;
     }
-    .topBar{
+    .topBarBanner{
         margin-top: 1em;
         font-size : 2em;
     }
@@ -109,7 +127,7 @@
         font-family: 'Godo', serif;
         scroll-snap-type : y mandatory;
     }
-    .topBar{
+    .topBarBanner{
         font-size : 1.8em;
         margin-top: 0.5em;
     }
@@ -169,6 +187,7 @@
 
     .rightbox{
         margin-bottom: 2rem;
+        text-align: center;
     }
     .tab-content{
         display: none;
@@ -185,11 +204,29 @@
         margin-bottom:3em;
     }
 }
+@media(max-width:768px){
+    #tab-3 .text {
+        width: 100%;
+   
+    }
+    #tab-2 .text {
+        width: 100%;
+
+    }
+}
 
 @media(max-width: 450px){
-    .topBar{
+    .topBarBanner{
         font-size : 0.9em;
         margin-top: 0.5em;
+    }
+    #tab-2 .text {
+        font-size: 1em;
+
+    }
+    #tab-3 .text {
+        font-size: 1em;
+
     }
 }
 
