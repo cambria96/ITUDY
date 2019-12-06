@@ -6,6 +6,7 @@ $(document).ready(function () {
     footerBtn();
     profileBtn();
     
+    
 })
 var loginUser;
 function initial(){
@@ -139,3 +140,4 @@ function profileBtn(){
         }
     })
 }
+

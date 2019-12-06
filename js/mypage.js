@@ -11,6 +11,12 @@ $(document).ready(function(){
     requestConfirm();
     deleteConfirm();
     profileDetail();
+
+
+    
+
+
+
 });
 var loginUser;
 var userClass;
