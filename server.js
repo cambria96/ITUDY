@@ -281,7 +281,6 @@ app.post("/mail",function(req,res){
   
     connection.query('insert into userinfo set ?',user,function(err,result){
         if(!err){
- 
             console.log('디비 저장 완료');
             
         }
