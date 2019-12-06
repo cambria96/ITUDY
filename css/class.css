@@ -363,3 +363,9 @@
     
     }
 }
+
+.pageBtn{
+    border:none!important;
+    border-radius:15px !important;
+    color: #dfaa32 !important;
+}

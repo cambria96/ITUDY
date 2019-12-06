@@ -301,13 +301,13 @@
 
                 <% if(curPage == 1){ %>
                     <li value=<%=curPage%> class="previous">
-                        <a href='/studies/<%=curPage%>'>첫번째페이지</a>
+                        <a href='/studies/<%=curPage%>' class="pageBtn">첫번째페이지</a>
                     </li>
 
                 <% }else if(curPage > 1){
                 %>
                     <li value=<%=curPage -1%> class="previous">
-                        <a href='/studies/<%=curPage - 1%>'>이전페이지</a>
+                        <a href='/studies/<%=curPage - 1%>' class="pageBtn">이전페이지</a>
                     </li>
 
                 <%
@@ -323,7 +323,7 @@
                 if(i == curPage){
                 %>
                     <li value=<%= i %> class=''>
-                        <a href='/studies/<%= i %>' style="background-color:#337ab7; color:white;">
+                        <a href='/studies/<%= i %>' style="background-color:#dfaa32; color:white">
                             <%= i %>
                         </a>
                     </li>
@@ -333,7 +333,7 @@
                 %>
 
                     <li value=<%= i %> class='active'>
-                        <a href='/studies/<%= i %>'>
+                        <a href='/studies/<%= i %>' class="pageBtn">
                             <%= i %>
                         </a>
                     </li>
@@ -350,13 +350,13 @@
                 if(curPage < totalPage){
                 %>
                     <li value="<%curPage + 1%>" class="next">
-                        <a href='/studies/<%=curPage + 1%>'>다음페이지</a>
+                        <a href='/studies/<%=curPage + 1%>' class="pageBtn">다음페이지</a>
                     </li>
                 <%
                 }else if(curPage == totalPage){
                 %>
                     <li value=<%=curPage%> class="next">
-                        <a href='/studies/<%=curPage%>'>마지막페이지</a>
+                        <a href='/studies/<%=curPage%>' class="pageBtn">마지막페이지</a>
                     </li>
                 <% } %>
 

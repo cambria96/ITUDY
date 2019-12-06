@@ -11,9 +11,11 @@
         font-family: 'Godo', serif;
         scroll-snap-type : y mandatory;
     }
-    .sideBar{
+    .topBar{
+        margin-top: 1em;
+        font-family: 'Godo', serif;
         text-align: center;
-        font-size : 1.8em;
+        font-size : 2em;
     }
     ul.tabs li{
 
@@ -58,7 +60,7 @@
         display : flex;
         margin : auto;
         align-items: center;
-        padding-bottom : 15em;
+        padding-bottom : 3em;
     }
     .leftbox{
 
@@ -105,17 +107,19 @@
         font-family: 'Godo', serif;
         scroll-snap-type : y mandatory;
     }
-    .sideBar{
+    .topBar{
+        font-family: 'Godo', serif;
         text-align: center;
-        font-size : 0.99em;
+        font-size : 90%;
+        margin-top: 0.5em;
     }
     .logo{
         width: 100%;
     }
     ul.tabs li{
-
         display: inline-block;
-        padding: 5px 0.2em;
+        padding: 5px 0.8em;
+        margin-top:10px;
         cursor: pointer;
         color: #222;
         text-decoration: none;
@@ -128,6 +132,7 @@
                 #000 50%);
         background-size: 200% 100%;
         background-position: 100%;
+        font-family: 'Godo', serif;
 
     }
     #tab-4 .text{
@@ -220,6 +225,7 @@ ul.tabs{
 #tab-2{
     width:100%;
     height:100%;
+    margin-bottom: 20%
 }
 #tab-2 .title{
     text-align: center;
