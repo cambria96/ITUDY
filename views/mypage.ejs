@@ -58,7 +58,7 @@ Header
         <nav class="main-nav d-none d-lg-block" >
             <ul class="infoBar">
                 <li><a href = '/mypage' class="mypageLink"><span class="accoutName"><%= loginInfo.name %></span> 님 환영합니다.</a></li>
-                <li><a href="#credit"><img src="../img/coin.png">  <span><%= loginInfo.credit %></span></a></li>
+                <li><a href="#credit"><img src="../img/coin.png" style="width:24px; height:24px">  <span><%= loginInfo.credit %></span></a></li>
                 <li class="logoutBtn1"><a href='/logout'>Log Out</a></li>
             </ul>
             <ul class="centerBar">
@@ -292,7 +292,7 @@ Header
                                 <div class="detailCover"  value="/detail_class/<%= classList[n].id %>"></div>
                                 <div class="partyTitle" value="/detail_class/<%= classList[n].id %>"><span><%=classList[n].title%></span></div>
                                 <div class="subContentBox">
-                                    <div class="partyCredit"><img src="../img/coin.png"> <%=classList[n].credit%></div>
+                                    <div class="partyCredit"><img src="../img/coin.png" style="width:24px; height:24px"> <%=classList[n].credit%></div>
                                     <div class="partyTime">
                                         <%
                                             var timeList = classList[n].time.split(",");
@@ -328,7 +328,7 @@ Header
                             <div class="partyContent typeStudy"  >
                                 <div class="partyTitle" value="/detail_study/<%= studyList[n].id %>"><span><%=studyList[n].title%></span></div>
                                 <div class="subContentBox">
-                                    <div class="partyCredit studyCredit"><img src="../img/coin.png"> <%=studyList[n].credit%></div>
+                                    <div class="partyCredit studyCredit"><img src="../img/coin.png" style="width:24px; height:24px"> <%=studyList[n].credit%></div>
                                     <div class="partyTime">
                                         <%
                                             var timeList = studyList[n].time.split(",");

@@ -56,7 +56,7 @@
         <nav class="main-nav d-none d-lg-block" >
             <ul>
                 <li><a href='/mypage' class="mypageLink"><span class="accoutName"><%= name %></span> 님 환영합니다.</a></li>
-                <li><a href="#credit"><img src="../img/coin.png"> <span><%= credit %></span></a></li>
+                <li><a href="#credit"><img src="../img/coin.png" style="width:24px; height:24px"> <span><%= credit %></span></a></li>
                 <li class="logoutBtn1"><a href='/logout'>Log Out</a></li>
             </ul>
             <ul class="centerBar">
@@ -302,14 +302,14 @@
                 %>
 
                 <% if(curPage == 1){ %>
-                    <li value=(curPage) class="previous">
-                        <a href='/classes/<%= (curPage) %>'>첫번째페이지</a>
+                    <li value=<%=curPage%> class="previous">
+                        <a href='/studies/<%=curPage%>'>첫번째페이지</a>
                     </li>
 
                 <% }else if(curPage > 1){
                 %>
-                    <li value=(curPage -1) class="previous">
-                        <a href='/classes/<%= (curPage - 1) %>'>이전페이지</a>
+                    <li value=<%=curPage -1%> class="previous">
+                        <a href='/studies/<%=curPage - 1%>'>이전페이지</a>
                     </li>
 
                 <%
@@ -325,7 +325,7 @@
                 if(i == curPage){
                 %>
                     <li value=<%= i %> class=''>
-                        <a href='/classes/<%= i %>'>
+                        <a href='/studies/<%= i %>' style="background-color:#337ab7; color:white;">
                             <%= i %>
                         </a>
                     </li>
@@ -335,7 +335,7 @@
                 %>
 
                     <li value=<%= i %> class='active'>
-                        <a href='/classes/<%= i %>'>
+                        <a href='/studies/<%= i %>'>
                             <%= i %>
                         </a>
                     </li>
@@ -351,14 +351,14 @@
                 <%
                 if(curPage < totalPage){
                 %>
-                    <li value=( curPage + 1) class="next">
-                        <a href='/classes/<%= (curPage + 1) %>'>다음페이지</a>
+                    <li value="<%curPage + 1%>" class="next">
+                        <a href='/studies/<%=curPage + 1%>'>다음페이지</a>
                     </li>
                 <%
                 }else if(curPage == totalPage){
                 %>
-                    <li value=( curPage) class="next">
-                        <a href='/classes/<%= (curPage) %>'>마지막페이지</a>
+                    <li value=<%=curPage%> class="next">
+                        <a href='/studies/<%=curPage%>'>마지막페이지</a>
                     </li>
                 <% } %>
 
