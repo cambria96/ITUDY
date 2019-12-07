@@ -68,83 +68,121 @@ h6 {
 
 /* Prelaoder */
 
-#preloader {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 9999;
-  overflow: hidden;
-  background: #fff;
-}
-
-#preloader:before {
-  content: "";
-  position: fixed;
-  top: calc(50% - 30px);
-  left: calc(50% - 30px);
-  border: 6px solid #f2f2f2;
-  border-top: 6px solid #1bb1dc;
-  border-radius: 50%;
-  width: 60px;
+.book {
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  margin: 0 auto;
+  border: 5px solid #ecf0f1;
+  width: 100px;
   height: 60px;
-  -webkit-animation: animate-preloader 1s linear infinite;
-  animation: animate-preloader 1s linear infinite;
+  background: #dfaa32;
+
 }
 
-@-webkit-keyframes animate-preloader {
+.book__page {
+  position: absolute;
+  left: 50%;
+  top: -5px;
+  margin: 0 auto;
+  border-top: 5px solid #ecf0f1;
+  border-bottom: 5px solid #ecf0f1;
+  border-right: 5px solid #ecf0f1;
+  background: #dfaa32;
+  width: 50px;
+  height: 60px;
+  -webkit-transform-origin: 0% 50%;
+          transform-origin: 0% 50%;
+  -webkit-animation: flip 1.8s infinite linear;
+          animation: flip 1.8s infinite linear;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+.book__page:nth-child(1) {
+  z-index: -1;
+  -webkit-animation-delay: 0s;
+          animation-delay: 0s;
+}
+.book__page:nth-child(2) {
+  z-index: -2;
+  -webkit-animation-delay: 1s;
+          animation-delay: 1s;
+}
+.book__page:nth-child(3) {
+  z-index: -3;
+  -webkit-animation-delay: 2s;
+          animation-delay: 2s;
+}
+
+@-webkit-keyframes flip {
   0% {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
+    
+    -webkit-transform: perspective(600px) rotateY(0deg);
+            transform: perspective(600px) rotateY(0deg);
   }
-
+  20% {
+    background: #dfaa32;
+  }
+  29.9% {
+    background: #dfaa32;
+  }
+  30% {
+    -webkit-transform: perspective(200px) rotateY(-90deg);
+            transform: perspective(200px) rotateY(-90deg);
+    background: #ffca51;
+  }
+  54.999% {
+    opacity: 1;
+  }
+  55% {
+    opacity: 0;
+  }
+  60% {
+    -webkit-transform: perspective(200px) rotateY(-180deg);
+            transform: perspective(200px) rotateY(-180deg);
+    background: #ffca51;
+  }
   100% {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
+    -webkit-transform: perspective(200px) rotateY(-180deg);
+            transform: perspective(200px) rotateY(-180deg);
+    background: #ffca51;
   }
 }
 
-@keyframes animate-preloader {
+@keyframes flip {
   0% {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
+    -webkit-transform: perspective(600px) rotateY(0deg);
+            transform: perspective(600px) rotateY(0deg);
   }
-
+  20% {
+    background: #dfaa32;
+  }
+  29.9% {
+    background: #dfaa32;
+  }
+  30% {
+    -webkit-transform: perspective(200px) rotateY(-90deg);
+            transform: perspective(200px) rotateY(-90deg);
+    background: #ffca51;
+  }
+  54.999% {
+    opacity: 1;
+  }
+  55% {
+    opacity: 0;
+  }
+  60% {
+    -webkit-transform: perspective(200px) rotateY(-180deg);
+            transform: perspective(200px) rotateY(-180deg);
+    background: #ffca51;
+  }
   100% {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
+    -webkit-transform: perspective(200px) rotateY(-180deg);
+            transform: perspective(200px) rotateY(-180deg);
+    background: #ffca51;
   }
 }
 
-/*--------------------------------------------------------------
-# Top Bar
---------------------------------------------------------------*/
-
-#topbar {
-  padding: 0 0 10px 0;
-  font-size: 14px;
-  transition: all 0.5s;
-}
-
-#topbar .social-links {
-  text-align: right;
-}
-
-#topbar .social-links a {
-  color: #535074;
-  padding: 4px 12px;
-  display: inline-block;
-  line-height: 1px;
-}
-
-#topbar .social-links a:hover {
-  color: #1bb1dc;
-}
-
-#topbar .social-links a:first-child {
-  border-left: 0;
-}
 
 /*--------------------------------------------------------------
 # Header
@@ -1640,5 +1678,10 @@ text-decoration: none;
   #intro .intro-info h2 {
     font-size: 1.8em;
     margin-bottom:10px;
+  }
+  .word {
+
+    left: 30%;
+   
   }
 }

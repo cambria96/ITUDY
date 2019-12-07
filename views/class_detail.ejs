@@ -19,7 +19,7 @@
 
 <body>
     
-    <div class="container">
+    <div class="container_detail">
             <p class="content_id" style="display:none"><%=class_info.id%></p>
             <p class="groupTitle"><%=class_info.title%></p>
             <%
@@ -65,15 +65,15 @@
                                 </tr>
                                 <tr>
                                     <td>멘토활동 횟수</td>
-                                    <td><%=author_info.mento%></td>
+                                    <td><%=author_info.mento%> 회</td>
                                 </tr>
                                 <tr>
                                     <td>멘티활동 횟수</td>
-                                    <td><%=author_info.mentee%></td>
+                                    <td><%=author_info.mentee%> 회</td>
                                 </tr>
                                 <tr>
                                     <td>스터디활동 횟수</td>
-                                    <td><%=author_info.study%></td>
+                                    <td><%=author_info.study%> 회</td>
                                 </tr>
                             </table>
                         </div>
@@ -297,12 +297,13 @@
                     
                     </table>
             </div>
+            <%if(loginUser.id == class_info.author_id){%>
+                <div class="footerBtnBox">
+                    <button class="deleteBtn">삭제</button>
+                </div>
+            <%}%>
     </div>
-    <%if(loginUser.id == class_info.author_id){%>
-        <div class="footerBtnBox">
-            <button class="deleteBtn">삭제</button>
-        </div>
-    <%}%>
+    
     
 
 </body>

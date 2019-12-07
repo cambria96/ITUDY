@@ -3,28 +3,64 @@ body {
 	color: #121312;
 }
 
+.topThreeBox{
+    display: flex;
+    width: 70%;
+    margin: auto;
+    padding: 50px 0px;
+    justify-content: space-between;
+
+}
+.topThree{
+    box-shadow: 0px 0px 9px 3px rgba(0,0,0,.12);
+    background: #fff;
+}
+
+.specificRank{
+
+}
+
+.questionMark{
+    position: relative;
+    width: 25px;
+    border: 1px solid #fff;
+    border-radius: 15px;
+    margin-left: 10px;
+    cursor: pointer;
+    z-index: 1;
+
+}
+
 @media(min-width:992px){
     .bottombox{
         display : flex;
+        
         padding-bottom : 20px;
     }
     .wrapper {
+    
         line-height: 0.8em;
-        margin: 0 auto;
         padding: 2em 0 3em;
-        width: 70%;
+        width: 100%;
         max-width: 2000px;
         overflow: hidden;
     }
     .rank_container{
-        width:50%
+        position: relative;
+        margin: auto;
+        width: 70%;
     }
     .level_container{
-        width : 50%;
-        text-align : center;
+        display: none;
+        position: absolute;
+        width: 30%;
+        bottom: 0;
+        right: 0;
+        text-align: center;
     }
     .level_container > .wrapper{
-        width: 50%;
+        width: 100%;
+
     }
 }
 @media(max-width:991px){
@@ -62,29 +98,52 @@ body {
 	font-size: 3em;
 	margin: 0;
 }
+.level img{
+    width:25px;
+}
 
 
 table {
+    box-shadow: 0px 0px 9px 3px rgba(0,0,0,.12);
+    border: 1px solid #000;
+
     border-collapse: collapse;
     width: 100%;
     background: #fff;
 
+}
+.paddingR{
+    padding: 0.7em 10px;
+}
+#level_wrapper table{
+    box-shadow: none;
+    border: none;
+    border-collapse: collapse;
+    width: 100%;
+    background: #fff;
 }
 .level_container > .wrapper > td, th{
     padding: 0.5em 0.5em;
     text-align: center;
 } 
 #rank1 {
-    background : #f3b427;
+    background : #ffb2b2;
 }
 #rank2{
-    background : #ffd28f;
+    background : #fecbcb;
 }
 #rank3{
-    background : #f9e6ca;
+    background : #ffe4e4;
+}
+#rank4{
+    background: #fff2f2;
+
+}
+#rank5{
+
 }
  th {
-    background-color: #50360c;
+    background-color: #bf4040;
     font-weight: bold;
     color: #fff;
 }
@@ -100,7 +159,7 @@ td, th {
 
 
 tbody tr:nth-child(2n-1) {
-    background-color: #f5f5f5;
+    background-color: #fff;
     transition: all .125s ease-in-out;
 }
 /* tbody tr:hover {
@@ -117,4 +176,16 @@ td.rank {
 
 .rank img {
 	width:30px;
+}
+@media(max-width:768px){
+    .rank_container {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column-reverse;
+    }
+    .level_container {
+        display:none;
+        margin-top: 20px;
+    }
 }

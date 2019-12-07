@@ -11,6 +11,12 @@ $(document).ready(function(){
     requestConfirm();
     deleteConfirm();
     profileDetail();
+
+
+    
+
+
+
 });
 var loginUser;
 var userClass;
@@ -610,47 +616,55 @@ function requestConfirm(){
                     for(var n=0;n<memberName.length;n++){
                         if(n==0){
                             if(memberName[n] == data.loginUser.name){
-                                dynamicLi +=' <li class="confirmGroupList"><span class="name" value='+memberID[n]+'>'+memberID[n]+' &nbsp; <img class = "crown" src = "../img/crown.png">'+'</span><span class="email">'+memberEmail[n]+'</span><span class="phone">'+memberPhone[n]+'</span><button class="reportBtn" id="reportLink" style="pointer-events:none; opacity:0;">신고하기</button><div style="position: relative"><button class="profileBtn" value='+memberID[n]+'>프로필 보기</button>'
+                                dynamicLi +=' <li class="confirmGroupList"><span class="name" value='+memberID[n]+'>'+memberID[n]+' &nbsp; <img class = "crown" src = "../img/crown.png">'+'</span><span class="email pcText">'+memberEmail[n]+'</span><span class="phone pcText">'+memberPhone[n]+'</span><div class="button"><button class="reportBtn" id="reportLink" style="pointer-events:none; opacity:0;">신고하기</button><div style="position: relative"><button class="profileBtn" value='+memberID[n]+'>프로필 보기</button>'
                                 +'<ul class="profileDetail">'
                                 +'<li>'+memberID[n]+' 님의 프로필</li>'
                                 +'<li><p>레벨</p><p><img src="" class="levelIcon"></p></li>'
                                 +'<li><p>멘토 횟수</p><p class="mentoCount"></p></li>'
                                 +'<li><p>멘티 횟수</p><p class="menteeCount"></p></li>'
                                 +'<li><p>스터디 횟수</p><p class="studyCount"></p></li>'
-                                +'</ul></div></li>'
+                                +'<li class="userPhoneLi"><p>전화번호</p><p class="userPhone"></p></li>'
+                                +'<li class="userEmailLi"><p>이메일</p><p class="userEmail"></p></li>'
+                                +'</ul></div></div></li>'
                             }
                             else{
-                                dynamicLi +=' <li class="confirmGroupList"><span class="name" value='+memberID[n]+'>'+memberID[n]+' &nbsp; <img class = "crown" src = "../img/crown.png">'+'</span><span class="email">'+memberEmail[n]+'</span><span class="phone">'+memberPhone[n]+'</span><button class="reportBtn" id="reportLink">신고하기</button><div style="position: relative"><button class="profileBtn" value='+memberID[n]+'>프로필 보기</button>'
+                                dynamicLi +=' <li class="confirmGroupList"><span class="name" value='+memberID[n]+'>'+memberID[n]+' &nbsp; <img class = "crown" src = "../img/crown.png">'+'</span><span class="email pcText">'+memberEmail[n]+'</span><span class="phone pcText">'+memberPhone[n]+'</span><div class="button"><button class="reportBtn" id="reportLink">신고하기</button><div style="position: relative"><button class="profileBtn" value='+memberID[n]+'>프로필 보기</button>'
                                 +'<ul class="profileDetail">'
                                 +'<li>'+memberID[n]+' 님의 프로필</li>'
                                 +'<li><p>레벨</p><p><img src="" class="levelIcon"></p></li>'
                                 +'<li><p>멘토 횟수</p><p class="mentoCount"></p></li>'
                                 +'<li><p>멘티 횟수</p><p class="menteeCount"></p></li>'
                                 +'<li><p>스터디 횟수</p><p class="studyCount"></p></li>'
-                                +'</ul></div></li>'
+                                +'<li class="userPhoneLi"><p>전화번호</p><p class="userPhone"></p></li>'
+                                +'<li class="userEmailLi"><p>이메일</p><p class="userEmail"></p></li>'
+                                +'</ul></div></div></li>'
                             }
                             
         
                         }
                         else if(memberName[n] == data.loginUser.name){
-                            dynamicLi +=' <li class="confirmGroupList"><span class="name" value='+memberID[n]+'>'+memberID[n]+' &nbsp;'+'</span><span class="email">'+memberEmail[n]+'</span><span class="phone">'+memberPhone[n]+'</span><button class="reportBtn" id="reportLink" style="pointer-events:none; opacity:0;">신고하기</button><div style="position: relative"><button class="profileBtn" value='+memberID[n]+'>프로필 보기</button>'
+                            dynamicLi +=' <li class="confirmGroupList"><span class="name" value='+memberID[n]+'>'+memberID[n]+' &nbsp;'+'</span><span class="email pcText">'+memberEmail[n]+'</span><span class="phone pcText">'+memberPhone[n]+'</span><div class="button"><button class="reportBtn" id="reportLink" style="pointer-events:none; opacity:0;">신고하기</button><div style="position: relative"><button class="profileBtn" value='+memberID[n]+'>프로필 보기</button>'
                             +'<ul class="profileDetail">'
                             +'<li>'+memberID[n]+' 님의 프로필</li>'
                             +'<li><p>레벨</p><p><img src="" class="levelIcon"></p></li>'
                             +'<li><p>멘토 횟수</p><p class="mentoCount"></p></li>'
                             +'<li><p>멘티 횟수</p><p class="menteeCount"></p></li>'
                             +'<li><p>스터디 횟수</p><p class="studyCount"></p></li>'
-                            +'</ul></div></li>'
+                            +'<li class="userPhoneLi"><p>전화번호</p><p class="userPhone"></p></li>'
+                            +'<li class="userEmailLi"><p>이메일</p><p class="userEmail"></p></li>'
+                            +'</ul></div></div></li>'
                         }
                         else{
-                            dynamicLi +=' <li class="confirmGroupList"><span class="name"value='+memberName[n]+'>'+memberName[n]+'</span><span class="email">'+memberEmail[n]+'</span><span class="phone">'+memberPhone[n]+'</span><button class="profileBtn" id="reportLink">신고하기</button><div style="position: relative"><button class="profileBtn" value='+memberID[n]+'>프로필 보기</button>'
+                            dynamicLi +=' <li class="confirmGroupList"><span class="name"value='+memberName[n]+'>'+memberName[n]+'</span><span class="email pcText">'+memberEmail[n]+'</span><span class="phone pcText">'+memberPhone[n]+'</span><div class="button"><button class="profileBtn" id="reportLink">신고하기</button><div style="position: relative"><button class="profileBtn" value='+memberID[n]+'>프로필 보기</button>'
                             +'<ul class="profileDetail">'
                             +'<li>'+memberID[n]+' 님의 프로필</li>'
                             +'<li><p>레벨</p><p><img src="" class="levelIcon"></p></li>'
                             +'<li><p>멘토 횟수</p><p class="mentoCount"></p></li>'
                             +'<li><p>멘티 횟수</p><p class="menteeCount"></p></li>'
                             +'<li><p>스터디 횟수</p><p class="studyCount"></p></li>'
-                            +'</ul></div></li>'
+                            +'<li class="userPhoneLi"><p>전화번호</p><p class="userPhone"></p></li>'
+                            +'<li class="userEmailLi"><p>이메일</p><p class="userEmail"></p></li>'
+                            +'</ul></div></div></li>'
                         }
                     }
                     var agreeList = memberList[m].agree.split(",");
@@ -663,10 +677,10 @@ function requestConfirm(){
                     }
                     if(agreeList.indexOf(loginUser.id)){
                         
-                        var dynamicBtn = '<li class="confirmGroupList"><p>'+memberList[m].title+' <span class="detailLink" value="'+dynamicType+memberList[m].content_id+'">자세히 보기</span></p><p class="deleteConfirm" value='+memberList[m].content_id+'><i class="fa fa-close"></i></p></li>'
+                        var dynamicBtn = '<li class="confirmGroupList"><div style="display:flex;"><span class="detailTitle">'+memberList[m].title+'</span> <span class="detailLink" value="'+dynamicType+memberList[m].content_id+'">자세히 보기</span></div><p class="deleteConfirm" value='+memberList[m].content_id+'><i class="fa fa-close"></i></p></li>'
 
                     }else{
-                        var dynamicBtn = '<li class="confirmGroupList"><p>'+memberList[m].title+' <span class="detailLink" value="'+dynamicType+memberList[m].content_id+'">자세히 보기</span></p><p class="deleteConfirm" value='+memberList[m].content_id+'><i class="fa fa-ellipsis-h"></i></p></li>'
+                        var dynamicBtn = '<li class="confirmGroupList"><div style="display:flex;><span class="detailTitle">'+memberList[m].title+'</span> <span class="detailLink" value="'+dynamicType+memberList[m].content_id+'">자세히 보기</span></div><p class="deleteConfirm" value='+memberList[m].content_id+'><i class="fa fa-ellipsis-h"></i></p></li>'
                     }
 
                     var dynamicMember = '<div class="confirmBox" value='+memberList[m].agree+'>'
@@ -676,8 +690,11 @@ function requestConfirm(){
                         +'</ul>'
                      +'</div>'
                     
-
+                    
                     $(".lastBox").append(dynamicMember);
+                    // var winWidth = $(window).innerWidth();
+                    // var textWidth = $(".detailTitle").width();
+                    // $(".detailTitle").css("width",textWidth);
                 }
             },
             error: function(request,error,status){
@@ -754,6 +771,7 @@ function deleteConfirm(){
 }
 
 function profileDetail(){
+    
     $("html").click(function(e){
         if(!$(e.target).parents().hasClass("profileDetail")){
             $(".profileDetail").slideUp("fast");
@@ -762,6 +780,7 @@ function profileDetail(){
     $(document).on("click",".profileBtn",function(){
         var userID = $(this).val();
         var profileBtn =$(this);
+        console.log(profileBtn);
         if( $(this).siblings(".profileDetail").is(":visible")){
             $(this).siblings(".profileDetail").slideUp("fast");
         }
@@ -781,6 +800,8 @@ function profileDetail(){
                 profileBtn.siblings(".profileDetail").find(".mentoCount").text(data.userInfo.mento+"회");
                 profileBtn.siblings(".profileDetail").find(".menteeCount").text(data.userInfo.mentee+"회");
                 profileBtn.siblings(".profileDetail").find(".studyCount").text(data.userInfo.study+"회");
+                profileBtn.siblings(".profileDetail").find(".userPhone").text(data.userInfo.phone);
+                profileBtn.siblings(".profileDetail").find(".userEmail").text(data.userInfo.email);
 
             },
             error: function(request,error,status){

@@ -8,6 +8,7 @@ $(document).ready(function () {
     mobileMoreInfo();
     closeMobileMoreInfo();
     
+    
 })
 var loginUser;
 function initial(){

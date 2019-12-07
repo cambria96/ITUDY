@@ -182,7 +182,6 @@ router.get("/studies/:cur", function (req, res) {
 
 //메인화면
 router.get("/study", function (req, res) {
-    console.log("메인화면")
 
 //class 으로 들어오면 바로 페이징 처리
     res.redirect('/studies/' + 1)
@@ -279,13 +278,16 @@ router.get("/detail_study/:id", function (req, res) {
                         if(error){
                             console.log(error);
                         }
-                        res.send(ejs.render(data, {
-                            "study_info": study_info[0],
-                            "author_info":author_info[0],
-                            "positions": positions,
-                            "loginUser" : req.session.loginUser,
-                            "participants":participants
-                        }))
+                        
+                        setTimeout(function(){
+                            res.send(ejs.render(data, {
+                                "study_info": study_info[0],
+                                "author_info":author_info[0],
+                                "positions": positions,
+                                "loginUser" : req.session.loginUser,
+                                "participants":participants
+                            }))
+                        },Math.floor(Math.random()*(1500-500+1)) + 1000);
                     })
                 })
 
@@ -314,13 +316,16 @@ router.get("/detail_study_history/:id", function (req, res) {
                         if(error){
                             console.log(error);
                         }
-                        res.send(ejs.render(data, {
-                            "study_info": class_info[0],
-                            "author_info":author_info[0],
-                            "positions": positions,
-                            "loginUser" : req.session.loginUser,
-                            "participants":participants
-                        }))
+                        
+                        setTimeout(function(){
+                            res.send(ejs.render(data, {
+                                "study_info": class_info[0],
+                                "author_info":author_info[0],
+                                "positions": positions,
+                                "loginUser" : req.session.loginUser,
+                                "participants":participants
+                            }))
+                        },Math.floor(Math.random()*(1500-500+1)) + 1000);
                     })
                 })
 

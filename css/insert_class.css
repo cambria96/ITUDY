@@ -3,9 +3,12 @@ ul{
     font-family: "Godo";
 }
 
+
+
+
 .container{
     margin: 50px auto;
-    border: 3px dashed #dfaa32;
+    border: 3px solid #dfaa32;
     border-radius: 15px;
     padding: 40px;
     max-width: 1200px;
@@ -216,7 +219,6 @@ ul{
   font-style: normal;
   font-weight: normal;
   line-height: 1;
-  -webkit-font-smoothing: antialiased;
   background: #fff;
   color: #dfaa32;
   width: 25px;
@@ -334,6 +336,9 @@ ul{
   display: inline-block;
   width:49%;
 }
+.halfBox img{
+  width:25px;
+}
 .iconWrap{
   display: flex;
   align-items: center;
@@ -425,14 +430,21 @@ ul{
     padding: 5px;
     border-radius:5px;
   }
-
   .image{
     width:10%;
   }  
   .divBox{
     width:100%;
   }
+  .roleAddBtn:hover {
+    box-shadow: inset 0 0 0 2em #fff;
+    color: #dfaa32;
+    
+  }
+  
+
 }
+
 
 @media(max-width : 455px){
 .container{

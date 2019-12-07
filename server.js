@@ -61,9 +61,9 @@ http.createServer(app).listen(app.get('port'),function(){
 })
 
 
-app.get('/',function(req,res){
-    res.render("main.html");
-})
+
+
+
 
 
 app.use(session({
@@ -73,6 +73,17 @@ app.use(session({
     saveUninitialized : false,
     store : new MySQLStore(options)
 }));
+app.get('/',function(req,res){
+    if(req.session.loginUser !=undefined){
+        res.render('after_login.ejs',{loginInfo:req.session.loginUser});
+    }
+    else{
+        res.render("main.html");
+    }
+    
+})
+
+
 
 var loginUser;
 app.post("/modify",function(req,res){
@@ -140,6 +151,7 @@ app.post('/success',function(req,res){
         res.write("history.back();");
         res.write("</script>");
         console.log("인증실패")
+        res.send();
         
     }
     else{
@@ -149,10 +161,30 @@ app.post('/success',function(req,res){
         res.write("history.back();");
         res.write("</script>");
         console.log('로그인 실패');
-
+        res.send();
     }
 
 });
+
+app.use(function(req, res, next) {
+    if(req.session.loginUser){
+        if(req.path != "/logout"){
+            connection.query("select * from userinfo where id = ?",req.session.loginUser.id,function(err,rows){
+
+                if(!err){
+                    req.session.loginUser = rows[0];
+                }
+                else{
+                    console.log(err);
+                }
+            })
+        }
+        
+    }
+
+    next();
+    
+ });
 
 app.get('/home',function(req,res){
     
@@ -373,9 +405,10 @@ app.get('/ranking', function(req,res){
                 }
         
                 res.render('ranking.ejs',{name:req.session.loginUser.name,credit:req.session.loginUser.credit, 
-                    id:req.session.loginUser.id, ranking : k+1, 
+                    id:req.session.loginUser.id,level:req.session.loginUser.level, ranking : k+1, 
                     id1:info[0].id, id2:info[1].id, id3: info[2].id, id4: info[3].id, id5: info[4].id,
-                    credit1:info[0].credit, credit2 : info[1].credit, credit3: info[2].credit, credit4 : info[3].credit,credit5 : info[4].credit});
+                    credit1:info[0].credit, credit2 : info[1].credit, credit3: info[2].credit, credit4 : info[3].credit,credit5 : info[4].credit,
+                    level1:info[0].level,level2:info[1].level,level3:info[2].level,level4:info[3].level,level5:info[4].level});
                 }
             else{
                 console.log('Error while performing Query.',err);
@@ -687,6 +720,9 @@ app.post("/insert_confirm",function(req,res){
                     confirmData["phonenum"] = userPhone;
                     confirmData["number"] = req.body.number;
                     confirmData["type"] = req.body.type;
+                    
+                    
+                    
 
 
                     connection.query("insert into confirm set ?",confirmData,function(err,result){

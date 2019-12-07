@@ -1,6 +1,23 @@
 /* The Modal (background) */
 @import url("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css");
+.container_detail
+{
 
+  width: 100% !important;
+  background: #fff;
+  border: 3px double #dfaa32;
+  border-radius: 15px;
+  padding: 25px;
+  
+  max-width: 1200px;
+  width: 90%;
+  font-size: 1.5em;
+
+
+}
+button.close{
+  display: none;
+}
 .fade-scale {
   transform: scale(0);
   opacity: 0;
@@ -28,14 +45,17 @@
 
 /* Modal Content */
 .modal-content {
-    background-color: #fefefe;
-    border: 1px solid #888;
+    background-color: transparent;
+    border: none;
     width: 80%;
     height: auto;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
+    max-width: 1200px;
+    box-shadow: none;
+
 }
 
 /* The Close Button */
@@ -53,4 +73,14 @@
     color: #000;
     text-decoration: none;
     cursor: pointer;
+}
+
+@media(max-width:768px){
+  button.close{
+    display: block;
+    position: absolute;
+    top: 10px;
+    color:#000;
+    font-size: 2em;
+  }
 }

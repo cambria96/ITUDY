@@ -114,10 +114,17 @@
   .mainWrap{
     max-width: 100%;
     text-align: center;
+    font-size: 1.5em;
   }
   .mainWrapper {
     flex-direction: column;
     
-}
+  }
 
+}
+@media(max-width:480px){
+  .mainWrap{
+    
+    font-size: 1.1em;
+  }
 }

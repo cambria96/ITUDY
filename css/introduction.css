@@ -3,6 +3,28 @@
 @import url('https://fonts.googleapis.com/css?family=Black+Han+Sans|Jua|Nanum+Brush+Script|Nanum+Myeongjo:400,700,800|Noto+Serif+KR:200,300,400,500,600,700,900|Song+Myung&display=swap&subset=korean');
 
 
+.topBarBanner{
+    font-family: 'Godo', serif;
+    text-align: center;
+}
+#tab-3 .text {
+    width: 70%;
+    margin: 0 auto;
+    border: 3px double #dfaa32;
+    font-size: 20px;
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 5em;
+}
+#tab-2 .text {
+    width: 70%;
+    margin: 0 auto;
+    border: 3px double #dfaa32;
+    font-size: 20px;
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 5em;
+}
 @media(min-width: 992px) {
     .introduction{
         padding : 3em;
@@ -11,9 +33,9 @@
         font-family: 'Godo', serif;
         scroll-snap-type : y mandatory;
     }
-    .sideBar{
-        text-align: center;
-        font-size : 1.8em;
+    .topBarBanner{
+        margin-top: 1em;
+        font-size : 2em;
     }
     ul.tabs li{
 
@@ -58,7 +80,7 @@
         display : flex;
         margin : auto;
         align-items: center;
-        padding-bottom : 15em;
+        padding-bottom : 3em;
     }
     .leftbox{
 
@@ -105,17 +127,17 @@
         font-family: 'Godo', serif;
         scroll-snap-type : y mandatory;
     }
-    .sideBar{
-        text-align: center;
-        font-size : 0.99em;
+    .topBarBanner{
+        font-size : 1.8em;
+        margin-top: 0.5em;
     }
     .logo{
         width: 100%;
     }
     ul.tabs li{
-
         display: inline-block;
-        padding: 5px 0.2em;
+        padding: 5px 0.8em;
+        margin-top:10px;
         cursor: pointer;
         color: #222;
         text-decoration: none;
@@ -128,6 +150,7 @@
                 #000 50%);
         background-size: 200% 100%;
         background-position: 100%;
+        font-family: 'Godo', serif;
 
     }
     #tab-4 .text{
@@ -164,6 +187,7 @@
 
     .rightbox{
         margin-bottom: 2rem;
+        text-align: center;
     }
     .tab-content{
         display: none;
@@ -178,6 +202,31 @@
         font-size : 20px;
         border-radius: 15px;
         margin-bottom:3em;
+    }
+}
+@media(max-width:768px){
+    #tab-3 .text {
+        width: 100%;
+   
+    }
+    #tab-2 .text {
+        width: 100%;
+
+    }
+}
+
+@media(max-width: 450px){
+    .topBarBanner{
+        font-size : 0.9em;
+        margin-top: 0.5em;
+    }
+    #tab-2 .text {
+        font-size: 1em;
+
+    }
+    #tab-3 .text {
+        font-size: 1em;
+
     }
 }
 
@@ -220,6 +269,7 @@ ul.tabs{
 #tab-2{
     width:100%;
     height:100%;
+    margin-bottom: 20%
 }
 #tab-2 .title{
     text-align: center;

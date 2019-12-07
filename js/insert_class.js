@@ -31,7 +31,7 @@ function clickEvnet(){
       })
     })
     $(".roleAddBtn").click(function(){
-      var dynamicList = '<li class="participantList"><span class ="roleList firstLine">필요 분야: </span><input class="roleListInput searchInput"><br><span class ="roleList">모집 인원: </span><input type="text" class="roleListInput howMany numberOnly" value="1" maxlength="3"><span> 명</span><br><span class ="roleList">요건 상세 설명: </span><input type="text" class="roleListInput detailInput"></li>'
+      var dynamicList = '<li class="participantList"><span class ="roleList firstLine">필요 분야: </span><input class="roleListInput searchInput"><br><span class ="roleList">모집 인원: </span><input type="tel" class="roleListInput howMany numberOnly" value="1" maxlength="2"><span> 명</span><br><span class ="roleList">요건 상세 설명: </span><input type="text" class="roleListInput detailInput"></li>'
       $(".participantBox").append(dynamicList);
     })
 
@@ -268,7 +268,9 @@ function autoComplete(){
 }
 
 function numberInput(){
-
+    $(".creditLine").focus(function(){
+      $(this).val("");
+    })
     $(document).on("keyup",".numberOnly",function(){
         $(this).val($(this).val().replace(/[^0-9]/g,""));
       })
