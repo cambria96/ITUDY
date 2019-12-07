@@ -27,6 +27,9 @@ body{
 .divideWrap{
     display: flex;
 }
+/* .divideWrap.tr{
+  width:10px;
+} */
 #divideWrapForPC{
   display: flex;
 }
@@ -55,7 +58,11 @@ body{
     width: 100%;
 }
 table{
-    width:100%;
+    width:100% !important;
+    table-layout: fixed;
+}
+#hihi{
+  width:20px;
 }
 .completeBtn{
     border: none;
@@ -218,6 +225,12 @@ th:last-child,td:last-child{
   width:20px;
 }
 
+.triangleBtn {
+  width : 20px;
+  height : 20px;
+ 
+}
+
 @media(max-width : 455px){
   .container{
     padding : 10px;
@@ -265,11 +278,53 @@ th:last-child,td:last-child{
   #divideWrapForMOBILE{
     display : flex;
   }
+  
+  .new_mobile_box{
+    display : none;
+    font-size : 12px;
+    margin : 5px;
+    border : 1px solid #dfaa32;
+    border-radius: 10px;
+  }
+  .new_mobile_box.actives{
+    display: flex;
+  }
   .condition{
     width : 100px;
     overflow : hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+  }
+  .partyBtn{
+    padding:0px,5px;
+    border-radius : 10px;
+  }
+  .mobilemoreinfo,
+  .mobilemoreinfo_close{
+  
+    background:none;
+    border:none;
+    transition: all ease 0.5s;
+    outline: none;
+  }
+  #tdbtn{
+    width:25px;
+  }
+  .mobilemoreinfo.active{
+    border:none;
+    outline: none;
+    transform: rotate(180deg);
+  }
+  .mobilemoreinfo_close.active{
+    border:none;
+    outline: none;
+    transform: rotate(180deg);
+  }
+  .mobilemoreinfo:active{
+    outline: none;
+  }
+  .mobilemoreinfo_close:active{
+    outline: none;
   }
 
 }

@@ -133,7 +133,7 @@
             <div class="middleLine">모집 인원</div>
             <div class="divideWrap" id="divideWrapForPC">
                 <table>
-                    <thead>
+                  
                         <tr>
                             <th></th>
                             <th>필요 분야</th>
@@ -141,8 +141,7 @@
                             <th>모집 인원</th>
                             <th>가능 여부<button class="fakeBtn">취소</button></th>
                         </tr>
-                    </thead>
-                    <tbody>
+          
                         <% for (var m=0;m<positions.length;m++){%>
                             <tr>
                                 <th><%=m+1%>.</th>
@@ -205,26 +204,26 @@
                         <% } %>   
                         
 
-                    </tbody>
+               
                     </table>
             </div>
             <div class="divideWrap" id="divideWrapForMOBILE">
                 <table>
-                    <thead>
+                   
                         <tr>
-                            <th></th>
-                            <th>필요 분야</th>
-                            
-                            
-                            <th>가능 여부<button class="fakeBtn">취소</button></th>
+                            <td id = "hihi"></td>
+                            <td>필요 분야</td>
+                            <td id="tdbtn"></td>
+                            <td>가능 여부<button class="fakeBtn">취소</button></td>
                         </tr>
-                    </thead>
-                    <tbody>
+
                         <% for (var m=0;m<positions.length;m++){%>
                             <tr>
-                                <th><%=m+1%>.</th>
-                                <td class="condition"><%=conditionList[m]%></td>
-                               
+                                <td id = "hihi"><%=m+1%>.</td>
+                                <td  class="condition"><%=conditionList[m]%></td>
+                                <td id="tdbtn" ><button class ="mobilemoreinfo"><img class = "triangleBtn" src = "../img/triangle.png"></button></td>
+                                
+                                
                                 <% var checkbit=0;
                                    var conditionCheckBit=0;
         
@@ -261,7 +260,9 @@
                                     
                                   %>
                                 <% if (checkbit ==1){%>
-                                    <td><button class="partyBtn">신청 하기</button><button class="fakeBtn">취소</button></td>
+                                    <td><button class="partyBtn">신청 하기</button><button class="fakeBtn">취소</button>
+                                        <
+                                    </td>
                                 <% }else if(checkbit==2){ %>
                                     <td><button class="completeBtn">신청 완료</button><button class="cancelBtn">취소</button></td>
                                 <% }else{ %>
@@ -273,10 +274,27 @@
                                     <% } %>
                                 <% } %>
                             </tr>
+                            <tr class ="new_mobile_box">
+                                <td id = "hihi" ></td>
+                                
+                                <td colspan="2" class = "new_mobile"><% if(positions[m].description==""){ %>
+                                    <span>-</span>
+                                    <%}else{%>
+                                        <%=positions[m].description%>
+                                    <%}%>
+                                </td>
+                                
+                                
+                                <td  class="totalNumber new_mobile">모집인원 : <%=positions[m].number%> 명</td>
+
+                            
+                            </tr>
+                            
+                           
                         <% } %>   
                         
 
-                    </tbody>
+                    
                     </table>
             </div>
     </div>

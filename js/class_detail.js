@@ -5,6 +5,8 @@ $(document).ready(function () {
     cancelBtn();
     footerBtn();
     profileBtn();
+    mobileMoreInfo();
+    closeMobileMoreInfo();
     
 })
 var loginUser;
@@ -137,5 +139,33 @@ function profileBtn(){
             $(this).addClass("active");
             $(this).text("프로필 보기 X");
         }
+    })
+}
+
+function mobileMoreInfo(){
+    $(document).on("click",".mobilemoreinfo",function(){
+        console.log("눌림!!!!");
+        console.log($(this).parent().parent().next())
+        $(this).parent().parent().next().slideDown();
+        // $(this).parent().parent().next().children(".new_mobile").toggleClass("actives");
+
+        $(this).removeClass("mobilemoreinfo");
+        // $(this).addClass("mobilemoreinfo_close");
+        $(this).toggleClass("mobilemoreinfo_close active");
+        
+    })
+}
+
+function closeMobileMoreInfo(){
+    $(document).on("click",".mobilemoreinfo_close",function(){
+        console.log("닫힘버튼눌림");
+        console.log($(this).parent().parent().next())
+        $(this).parent().parent().next().slideUp();
+        // $(this).parent().parent().next().children(".new_mobile").toggleClass("actives");
+
+        $(this).removeClass("mobilemoreinfo_close");
+        // $(this).addClass("mobilemoreinfoy_close");
+        $(this).toggleClass("mobilemoreinfo active");
+
     })
 }
