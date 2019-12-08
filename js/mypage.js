@@ -607,6 +607,10 @@ function requestConfirm(){
             success: function(data){
                 var memberList = data.confirmList;
                 $(".lastBox").html('<p class="contentTitle">참여중인 그룹</p>');
+                if(memberList.length==0){
+                    $(".lastBox").append("<div style='text-align: center;color: #848484;margin-top: 75px;'>현재 참여중인 그룹이 없습니다.<br>그룹 찾기를 통해 새로운 그룹에 들어가보세요!</div>")
+                    return;
+                }
                 for(var m=0; m<memberList.length;m++){
                     var memberID = memberList[m].users.split(",");
                     var memberName=memberList[m].username.split(",");
