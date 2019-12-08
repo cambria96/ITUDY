@@ -1687,11 +1687,11 @@ text-decoration: none;
 
 @media (max-width: 480px){
   .container {
-    padding-right: 5px;
-    padding-left: 5px;
+    padding-right: 5px !important;
+    padding-left: 5px !important;
 }
 .author {
-  width: 62%;
+  width: 62% !important;
 }
   #content-detail{
     height: 60vh;
