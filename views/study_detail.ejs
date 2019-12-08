@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>클래스 상세설명</title>
+    <title>스터디 상세설명</title>
     <meta charset="utf-8">
     <meta title="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -53,7 +53,7 @@
             <div class="divideWrap">
                 <div class="divideBox">
                     <p class="groupSubTitle">작성자</p>
-                    <span class ="groupContent"><%=study_info.author_id%></span>
+                    <span class ="groupContent" id=groupcontent_id><%=study_info.author_id%></span>
                     <button class="profileBtn">프로필 보기</button>
                     <div class="profileContent" style="width:20%;">
                         <div style="text-align: center;border-bottom: 1px solid #dfaa32; margin-bottom: 10px;"><%=study_info.author_id%> 님의 프로필</div>
@@ -66,15 +66,15 @@
                                 </tr>
                                 <tr>
                                     <td>멘토활동 횟수</td>
-                                    <td><%=author_info.mento%></td>
+                                    <td><%=author_info.mento%> 회</td>
                                 </tr>
                                 <tr>
                                     <td>멘티활동 횟수</td>
-                                    <td><%=author_info.mentee%></td>
+                                    <td><%=author_info.mentee%> 회</td>
                                 </tr>
                                 <tr>
                                     <td>스터디활동 횟수</td>
-                                    <td><%=author_info.mentee%></td>
+                                    <td><%=author_info.mentee%> 회</td>
                                 </tr>
                             </table>
                         </div>
@@ -114,21 +114,24 @@
             <div class="middleLine">모집 인원</div>
             <div class="divideWrap" id="divideWrapForPC">
                 <table>
-                    <thead>
+                 
                         <tr>
-                            <th></th>
+                            <th id = "hihi"></th>
                             <th>필요 분야</th>
-                            <th>상세 역량</th>
+                            <th style = "width:50%">상세 역량</th>
                             <th>모집 인원</th>
                             <th>가능 여부<button class="fakeBtn">취소</button></th>
                         </tr>
-                    </thead>
-                    <tbody>
+                    
                         <% for (var m=0;m<positions.length;m++){%>
                             <tr>
                                 <th><%=m+1%>.</th>
                                 <td class="condition"><%=conditionList[m]%></td>
-                                <td><%=positions[m].description%></td>
+                                <td><% if(positions[m].description==""){ %>
+                                    <span>-</span>
+                                    <%}else{%>
+                                        <%=positions[m].description%>
+                                    <%}%></td>
                                 <td class="totalNumber"><%=positions[m].number%> 명</td>
                                 <% var checkbit=0;
                                    var applyCheckBit=0;
@@ -168,23 +171,21 @@
                         <% } %>   
                         
 
-                    </tbody>
+                    
                     </table>
 
             </div>
 
             <div class = "divideWrap" id="divideWrapForMOBILE">
                 <table>
-                    <thead>
+                    
                         <tr>
                             <td id="hihi"></td>
                             <td>필요 분야</td>
-                            <td></td>
-                            <td></td>
+                            <td id="tdbtn"></td>
                             <td>가능 여부<button class="fakeBtn">취소</button></td>
                         </tr>
-                    </thead>
-                    <tbody>
+                    
                         <% for (var m=0;m<positions.length;m++){%>
                             <tr>
                                 <td id="hihi"><%=m+1%>.</td>
@@ -224,13 +225,28 @@
                                 <% }else if(checkbit==2){ %>
                                     <td><button class="completeBtn">신청 완료</button><button class="cancelBtn">취소</button></td>
                                 <% }else{ %>
-                                    <td><button class="partyBtnNot">신청 불가</button><button class="fakeBtn">취소</button></td>
+                                    <td><button class="partyBtnNot">조건 미충족</button><button class="fakeBtn">취소</button></td>
                                 <% } %>
+                            </tr>
+                            <tr class ="new_mobile_box">
+                                <td id = "hihi" ></td>
+                                
+                                <td colspan="2" class = "new_mobile"><% if(positions[m].description==""){ %>
+                                    <span>-</span>
+                                    <%}else{%>
+                                        <%=positions[m].description%>
+                                    <%}%>
+                                </td>
+                                
+                                
+                                <td  class="totalNumber new_mobile">모집인원 : <%=positions[m].number%> 명</td>
+
+                            
                             </tr>
                         <% } %>   
                         
 
-                    </tbody>
+           
                     </table>
             </div>
 
