@@ -677,10 +677,10 @@ function requestConfirm(){
                     }
                     if(agreeList.indexOf(loginUser.id)){
                         
-                        var dynamicBtn = '<li class="confirmGroupList"><div style="display:flex;"><span class="detailTitle">'+memberList[m].title+'</span> <span class="detailLink" value="'+dynamicType+memberList[m].content_id+'">자세히 보기</span></div><p class="deleteConfirm" value='+memberList[m].content_id+'><i class="fa fa-close"></i></p></li>'
+                        var dynamicBtn = '<li class="confirmGroupList"><div style="display:flex; width:90%;"><span class="detailTitle">'+memberList[m].title+'</span> <span class="detailLink" value="'+dynamicType+memberList[m].content_id+'">자세히 보기</span></div><p class="deleteConfirm" value='+memberList[m].content_id+'><i class="fa fa-close"></i></p></li>'
 
                     }else{
-                        var dynamicBtn = '<li class="confirmGroupList"><div style="display:flex;><span class="detailTitle">'+memberList[m].title+'</span> <span class="detailLink" value="'+dynamicType+memberList[m].content_id+'">자세히 보기</span></div><p class="deleteConfirm" value='+memberList[m].content_id+'><i class="fa fa-ellipsis-h"></i></p></li>'
+                        var dynamicBtn = '<li class="confirmGroupList"><div style="display:flex; width:90%;><span class="detailTitle">'+memberList[m].title+'</span> <span class="detailLink" value="'+dynamicType+memberList[m].content_id+'">자세히 보기</span></div><p class="deleteConfirm" value='+memberList[m].content_id+'><i class="fa fa-ellipsis-h"></i></p></li>'
                     }
 
                     var dynamicMember = '<div class="confirmBox" value='+memberList[m].agree+'>'
