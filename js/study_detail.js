@@ -116,6 +116,15 @@ function footerBtn(){
 }
 
 function profileBtn(){
+    $("html").click(function(e){
+
+        if(!($(e.target).parents().hasClass("profileContent") || $(e.target).hasClass("profileBtn"))){
+            $(".profileContent").removeClass('is-active');
+            $(".profileBtn").removeClass("active");
+            $(".profileBtn").text("프로필 보기");
+        }
+     
+    })
     $(".profileBtn").on("click",function(){
         if($(".profileContent").hasClass("is-active")){
             $(".profileContent").removeClass("is-active");

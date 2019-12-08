@@ -119,8 +119,7 @@ function footerBtn(){
 
 function profileBtn(){
     $("html").click(function(e){
-        console.log($(e.target).hasClass("profileContent"));
-        console.log($(e.target).hasClass("profileBtn"));
+
         if(!($(e.target).parents().hasClass("profileContent") || $(e.target).hasClass("profileBtn"))){
             $(".profileContent").removeClass('is-active');
             $(".profileBtn").removeClass("active");
