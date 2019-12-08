@@ -1686,6 +1686,13 @@ text-decoration: none;
 }
 
 @media (max-width: 480px){
+  .container {
+    padding-right: 5px;
+    padding-left: 5px;
+}
+.author {
+  width: 62%;
+}
   #content-detail{
     height: 60vh;
     border:0;
