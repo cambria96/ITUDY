@@ -1584,6 +1584,8 @@ text-decoration: none;
   #header {
     height: 70px;
     padding: 15px 0;
+    justify-content: center;
+
   }
   #header:hover {
     background:none;

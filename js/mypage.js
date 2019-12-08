@@ -12,9 +12,7 @@ $(document).ready(function(){
     deleteConfirm();
     profileDetail();
 
-
-    
-
+    $(".sideBar").find(".sideContent").eq(location.hash.split("#")[1]).children("span").trigger("click");
 
 
 });

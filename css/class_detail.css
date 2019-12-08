@@ -72,6 +72,10 @@ body{
     padding: 10px;
 }
 .detailContent{
+  width: 100%;
+  background: none;
+  border: none;
+  font-family: "Godo";
 }
 .fullBox{
     width: 100%;

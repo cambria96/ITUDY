@@ -54,9 +54,13 @@
     }
 }
 @media(max-width:991px){
+    .headerContainer {
+        display: none;
+        
+    }
     .logo.mobile-logo{
-        width: 250px;
-        height:50px;
+        width: 170px;
+        height: 60px;
         margin-left:10px;
         background: url("../img/new_logo.png") center no-repeat;
         background-size: cover;

@@ -70,7 +70,15 @@
                       </ul>
                   </li>
                   <li><a href = "/ranking"> 랭킹 </a></li>
-                  <li><a href = "/mypage"> 마이페이지 </a></li>
+                  <li class="drop-down"><a href = "/mypage"> 마이페이지 </a>
+                    <ul>
+                        <li><a href="/mypage#0">기본정보</a></li>
+                        <li><a href="/mypage#1">분야확인/수정</a></li>
+                        <li><a href="/mypage#2">내가올린그룹</a></li>
+                        <li><a href="/mypage#3">신청중인그룹</a></li>
+                        <li><a href="/mypage#4">참여중인그룹</a></li>
+                    </ul>
+                </li>
 
                   <li class="logoutBtn2"><a href='/logout'>Log Out</a></li>
               </ul>
@@ -119,24 +127,6 @@
                                     <div class="sel sel--black-panther">
                                         <select name="select-end" id="select-start" value="미설정">
                                             <option value="미설정" >시작시간</option>
-                                            <option value="00:00">오전 12:00</option>
-                                            <option value="00:30">오전 12:30</option>
-                                            <option value="01:00">오전 1:00</option>
-                                            <option value="01:30">오전 1:30</option>
-                                            <option value="02:00">오전 2:00</option>
-                                            <option value="02:30">오전 2:30</option>
-                                            <option value="03:00">오전 3:00</option>
-                                            <option value="03:30">오전 3:30</option>
-                                            <option value="04:00">오전 4:00</option>
-                                            <option value="04:30">오전 4:30</option>
-                                            <option value="05:00">오전 5:00</option>
-                                            <option value="05:30">오전 5:30</option>
-                                            <option value="06:00">오전 6:00</option>
-                                            <option value="06:30">오전 6:30</option>
-                                            <option value="07:00">오전 7:00</option>
-                                            <option value="07:30">오전 7:30</option>
-                                            <option value="08:00">오전 8:00</option>
-                                            <option value="08:30">오전 8:30</option>
                                             <option value="09:00">오전 9:00</option>
                                             <option value="09:30">오전 9:30</option>
                                             <option value="10:00">오전 10:00</option>
@@ -167,30 +157,30 @@
                                             <option value="22:30">오후 10:30</option>
                                             <option value="23:00">오후 11:00</option>
                                             <option value="23:30">오후 11:30</option>
+                                            <option value="00:00">오전 12:00</option>
+                                            <option value="00:30">오전 12:30</option>
+                                            <option value="01:00">오전 1:00</option>
+                                            <option value="01:30">오전 1:30</option>
+                                            <option value="02:00">오전 2:00</option>
+                                            <option value="02:30">오전 2:30</option>
+                                            <option value="03:00">오전 3:00</option>
+                                            <option value="03:30">오전 3:30</option>
+                                            <option value="04:00">오전 4:00</option>
+                                            <option value="04:30">오전 4:30</option>
+                                            <option value="05:00">오전 5:00</option>
+                                            <option value="05:30">오전 5:30</option>
+                                            <option value="06:00">오전 6:00</option>
+                                            <option value="06:30">오전 6:30</option>
+                                            <option value="07:00">오전 7:00</option>
+                                            <option value="07:30">오전 7:30</option>
+                                            <option value="08:00">오전 8:00</option>
+                                            <option value="08:30">오전 8:30</option>
                                         </select>
                                     </div>
                                     ~
                                     <div class="sel sel--black-superman">
                                         <select name="select-end" id="select-end" value="미설정">
                                             <option value="미설정" >종료시간</option>
-                                            <option value="00:00">오전 12:00</option>
-                                            <option value="00:30">오전 12:30</option>
-                                            <option value="01:00">오전 1:00</option>
-                                            <option value="01:30">오전 1:30</option>
-                                            <option value="02:00">오전 2:00</option>
-                                            <option value="02:30">오전 2:30</option>
-                                            <option value="03:00">오전 3:00</option>
-                                            <option value="03:30">오전 3:30</option>
-                                            <option value="04:00">오전 4:00</option>
-                                            <option value="04:30">오전 4:30</option>
-                                            <option value="05:00">오전 5:00</option>
-                                            <option value="05:30">오전 5:30</option>
-                                            <option value="06:00">오전 6:00</option>
-                                            <option value="06:30">오전 6:30</option>
-                                            <option value="07:00">오전 7:00</option>
-                                            <option value="07:30">오전 7:30</option>
-                                            <option value="08:00">오전 8:00</option>
-                                            <option value="08:30">오전 8:30</option>
                                             <option value="09:00">오전 9:00</option>
                                             <option value="09:30">오전 9:30</option>
                                             <option value="10:00">오전 10:00</option>
@@ -221,6 +211,24 @@
                                             <option value="22:30">오후 10:30</option>
                                             <option value="23:00">오후 11:00</option>
                                             <option value="23:30">오후 11:30</option>
+                                            <option value="00:00">오전 12:00</option>
+                                            <option value="00:30">오전 12:30</option>
+                                            <option value="01:00">오전 1:00</option>
+                                            <option value="01:30">오전 1:30</option>
+                                            <option value="02:00">오전 2:00</option>
+                                            <option value="02:30">오전 2:30</option>
+                                            <option value="03:00">오전 3:00</option>
+                                            <option value="03:30">오전 3:30</option>
+                                            <option value="04:00">오전 4:00</option>
+                                            <option value="04:30">오전 4:30</option>
+                                            <option value="05:00">오전 5:00</option>
+                                            <option value="05:30">오전 5:30</option>
+                                            <option value="06:00">오전 6:00</option>
+                                            <option value="06:30">오전 6:30</option>
+                                            <option value="07:00">오전 7:00</option>
+                                            <option value="07:30">오전 7:30</option>
+                                            <option value="08:00">오전 8:00</option>
+                                            <option value="08:30">오전 8:30</option>
                                         </select>
                                     </div>
                                 </li>
@@ -229,24 +237,6 @@
                                     <div class="sel sel--black-panther">
                                         <select name="select-end" id="select-start" value="미설정">
                                             <option value="미설정" >시작시간</option>
-                                            <option value="00:00">오전 12:00</option>
-                                            <option value="00:30">오전 12:30</option>
-                                            <option value="01:00">오전 1:00</option>
-                                            <option value="01:30">오전 1:30</option>
-                                            <option value="02:00">오전 2:00</option>
-                                            <option value="02:30">오전 2:30</option>
-                                            <option value="03:00">오전 3:00</option>
-                                            <option value="03:30">오전 3:30</option>
-                                            <option value="04:00">오전 4:00</option>
-                                            <option value="04:30">오전 4:30</option>
-                                            <option value="05:00">오전 5:00</option>
-                                            <option value="05:30">오전 5:30</option>
-                                            <option value="06:00">오전 6:00</option>
-                                            <option value="06:30">오전 6:30</option>
-                                            <option value="07:00">오전 7:00</option>
-                                            <option value="07:30">오전 7:30</option>
-                                            <option value="08:00">오전 8:00</option>
-                                            <option value="08:30">오전 8:30</option>
                                             <option value="09:00">오전 9:00</option>
                                             <option value="09:30">오전 9:30</option>
                                             <option value="10:00">오전 10:00</option>
@@ -277,30 +267,30 @@
                                             <option value="22:30">오후 10:30</option>
                                             <option value="23:00">오후 11:00</option>
                                             <option value="23:30">오후 11:30</option>
+                                            <option value="00:00">오전 12:00</option>
+                                            <option value="00:30">오전 12:30</option>
+                                            <option value="01:00">오전 1:00</option>
+                                            <option value="01:30">오전 1:30</option>
+                                            <option value="02:00">오전 2:00</option>
+                                            <option value="02:30">오전 2:30</option>
+                                            <option value="03:00">오전 3:00</option>
+                                            <option value="03:30">오전 3:30</option>
+                                            <option value="04:00">오전 4:00</option>
+                                            <option value="04:30">오전 4:30</option>
+                                            <option value="05:00">오전 5:00</option>
+                                            <option value="05:30">오전 5:30</option>
+                                            <option value="06:00">오전 6:00</option>
+                                            <option value="06:30">오전 6:30</option>
+                                            <option value="07:00">오전 7:00</option>
+                                            <option value="07:30">오전 7:30</option>
+                                            <option value="08:00">오전 8:00</option>
+                                            <option value="08:30">오전 8:30</option>
                                         </select>
                                     </div>
                                     ~
                                     <div class="sel sel--black-superman">
                                         <select name="select-end" id="select-end" value="미설정">
                                             <option value="미설정" >종료시간</option>
-                                            <option value="00:00">오전 12:00</option>
-                                            <option value="00:30">오전 12:30</option>
-                                            <option value="01:00">오전 1:00</option>
-                                            <option value="01:30">오전 1:30</option>
-                                            <option value="02:00">오전 2:00</option>
-                                            <option value="02:30">오전 2:30</option>
-                                            <option value="03:00">오전 3:00</option>
-                                            <option value="03:30">오전 3:30</option>
-                                            <option value="04:00">오전 4:00</option>
-                                            <option value="04:30">오전 4:30</option>
-                                            <option value="05:00">오전 5:00</option>
-                                            <option value="05:30">오전 5:30</option>
-                                            <option value="06:00">오전 6:00</option>
-                                            <option value="06:30">오전 6:30</option>
-                                            <option value="07:00">오전 7:00</option>
-                                            <option value="07:30">오전 7:30</option>
-                                            <option value="08:00">오전 8:00</option>
-                                            <option value="08:30">오전 8:30</option>
                                             <option value="09:00">오전 9:00</option>
                                             <option value="09:30">오전 9:30</option>
                                             <option value="10:00">오전 10:00</option>
@@ -331,6 +321,24 @@
                                             <option value="22:30">오후 10:30</option>
                                             <option value="23:00">오후 11:00</option>
                                             <option value="23:30">오후 11:30</option>
+                                            <option value="00:00">오전 12:00</option>
+                                            <option value="00:30">오전 12:30</option>
+                                            <option value="01:00">오전 1:00</option>
+                                            <option value="01:30">오전 1:30</option>
+                                            <option value="02:00">오전 2:00</option>
+                                            <option value="02:30">오전 2:30</option>
+                                            <option value="03:00">오전 3:00</option>
+                                            <option value="03:30">오전 3:30</option>
+                                            <option value="04:00">오전 4:00</option>
+                                            <option value="04:30">오전 4:30</option>
+                                            <option value="05:00">오전 5:00</option>
+                                            <option value="05:30">오전 5:30</option>
+                                            <option value="06:00">오전 6:00</option>
+                                            <option value="06:30">오전 6:30</option>
+                                            <option value="07:00">오전 7:00</option>
+                                            <option value="07:30">오전 7:30</option>
+                                            <option value="08:00">오전 8:00</option>
+                                            <option value="08:30">오전 8:30</option>
                                         </select>
                                     </div>
                                 </li>
@@ -339,24 +347,6 @@
                                     <div class="sel sel--black-panther">
                                         <select name="select-end" id="select-start" value="미설정">
                                             <option value="미설정" >시작시간</option>
-                                            <option value="00:00">오전 12:00</option>
-                                            <option value="00:30">오전 12:30</option>
-                                            <option value="01:00">오전 1:00</option>
-                                            <option value="01:30">오전 1:30</option>
-                                            <option value="02:00">오전 2:00</option>
-                                            <option value="02:30">오전 2:30</option>
-                                            <option value="03:00">오전 3:00</option>
-                                            <option value="03:30">오전 3:30</option>
-                                            <option value="04:00">오전 4:00</option>
-                                            <option value="04:30">오전 4:30</option>
-                                            <option value="05:00">오전 5:00</option>
-                                            <option value="05:30">오전 5:30</option>
-                                            <option value="06:00">오전 6:00</option>
-                                            <option value="06:30">오전 6:30</option>
-                                            <option value="07:00">오전 7:00</option>
-                                            <option value="07:30">오전 7:30</option>
-                                            <option value="08:00">오전 8:00</option>
-                                            <option value="08:30">오전 8:30</option>
                                             <option value="09:00">오전 9:00</option>
                                             <option value="09:30">오전 9:30</option>
                                             <option value="10:00">오전 10:00</option>
@@ -387,30 +377,30 @@
                                             <option value="22:30">오후 10:30</option>
                                             <option value="23:00">오후 11:00</option>
                                             <option value="23:30">오후 11:30</option>
+                                            <option value="00:00">오전 12:00</option>
+                                            <option value="00:30">오전 12:30</option>
+                                            <option value="01:00">오전 1:00</option>
+                                            <option value="01:30">오전 1:30</option>
+                                            <option value="02:00">오전 2:00</option>
+                                            <option value="02:30">오전 2:30</option>
+                                            <option value="03:00">오전 3:00</option>
+                                            <option value="03:30">오전 3:30</option>
+                                            <option value="04:00">오전 4:00</option>
+                                            <option value="04:30">오전 4:30</option>
+                                            <option value="05:00">오전 5:00</option>
+                                            <option value="05:30">오전 5:30</option>
+                                            <option value="06:00">오전 6:00</option>
+                                            <option value="06:30">오전 6:30</option>
+                                            <option value="07:00">오전 7:00</option>
+                                            <option value="07:30">오전 7:30</option>
+                                            <option value="08:00">오전 8:00</option>
+                                            <option value="08:30">오전 8:30</option>
                                         </select>
                                     </div>
                                     ~
                                     <div class="sel sel--black-superman">
                                         <select name="select-end" id="select-end" value="미설정">
                                             <option value="미설정" >종료시간</option>
-                                            <option value="00:00">오전 12:00</option>
-                                            <option value="00:30">오전 12:30</option>
-                                            <option value="01:00">오전 1:00</option>
-                                            <option value="01:30">오전 1:30</option>
-                                            <option value="02:00">오전 2:00</option>
-                                            <option value="02:30">오전 2:30</option>
-                                            <option value="03:00">오전 3:00</option>
-                                            <option value="03:30">오전 3:30</option>
-                                            <option value="04:00">오전 4:00</option>
-                                            <option value="04:30">오전 4:30</option>
-                                            <option value="05:00">오전 5:00</option>
-                                            <option value="05:30">오전 5:30</option>
-                                            <option value="06:00">오전 6:00</option>
-                                            <option value="06:30">오전 6:30</option>
-                                            <option value="07:00">오전 7:00</option>
-                                            <option value="07:30">오전 7:30</option>
-                                            <option value="08:00">오전 8:00</option>
-                                            <option value="08:30">오전 8:30</option>
                                             <option value="09:00">오전 9:00</option>
                                             <option value="09:30">오전 9:30</option>
                                             <option value="10:00">오전 10:00</option>
@@ -441,6 +431,24 @@
                                             <option value="22:30">오후 10:30</option>
                                             <option value="23:00">오후 11:00</option>
                                             <option value="23:30">오후 11:30</option>
+                                            <option value="00:00">오전 12:00</option>
+                                            <option value="00:30">오전 12:30</option>
+                                            <option value="01:00">오전 1:00</option>
+                                            <option value="01:30">오전 1:30</option>
+                                            <option value="02:00">오전 2:00</option>
+                                            <option value="02:30">오전 2:30</option>
+                                            <option value="03:00">오전 3:00</option>
+                                            <option value="03:30">오전 3:30</option>
+                                            <option value="04:00">오전 4:00</option>
+                                            <option value="04:30">오전 4:30</option>
+                                            <option value="05:00">오전 5:00</option>
+                                            <option value="05:30">오전 5:30</option>
+                                            <option value="06:00">오전 6:00</option>
+                                            <option value="06:30">오전 6:30</option>
+                                            <option value="07:00">오전 7:00</option>
+                                            <option value="07:30">오전 7:30</option>
+                                            <option value="08:00">오전 8:00</option>
+                                            <option value="08:30">오전 8:30</option>
                                         </select>
                                     </div>
                                 </li>
@@ -449,24 +457,6 @@
                                     <div class="sel sel--black-panther">
                                         <select name="select-end" id="select-start" value="미설정">
                                             <option value="미설정" >시작시간</option>
-                                            <option value="00:00">오전 12:00</option>
-                                            <option value="00:30">오전 12:30</option>
-                                            <option value="01:00">오전 1:00</option>
-                                            <option value="01:30">오전 1:30</option>
-                                            <option value="02:00">오전 2:00</option>
-                                            <option value="02:30">오전 2:30</option>
-                                            <option value="03:00">오전 3:00</option>
-                                            <option value="03:30">오전 3:30</option>
-                                            <option value="04:00">오전 4:00</option>
-                                            <option value="04:30">오전 4:30</option>
-                                            <option value="05:00">오전 5:00</option>
-                                            <option value="05:30">오전 5:30</option>
-                                            <option value="06:00">오전 6:00</option>
-                                            <option value="06:30">오전 6:30</option>
-                                            <option value="07:00">오전 7:00</option>
-                                            <option value="07:30">오전 7:30</option>
-                                            <option value="08:00">오전 8:00</option>
-                                            <option value="08:30">오전 8:30</option>
                                             <option value="09:00">오전 9:00</option>
                                             <option value="09:30">오전 9:30</option>
                                             <option value="10:00">오전 10:00</option>
@@ -497,30 +487,30 @@
                                             <option value="22:30">오후 10:30</option>
                                             <option value="23:00">오후 11:00</option>
                                             <option value="23:30">오후 11:30</option>
+                                            <option value="00:00">오전 12:00</option>
+                                            <option value="00:30">오전 12:30</option>
+                                            <option value="01:00">오전 1:00</option>
+                                            <option value="01:30">오전 1:30</option>
+                                            <option value="02:00">오전 2:00</option>
+                                            <option value="02:30">오전 2:30</option>
+                                            <option value="03:00">오전 3:00</option>
+                                            <option value="03:30">오전 3:30</option>
+                                            <option value="04:00">오전 4:00</option>
+                                            <option value="04:30">오전 4:30</option>
+                                            <option value="05:00">오전 5:00</option>
+                                            <option value="05:30">오전 5:30</option>
+                                            <option value="06:00">오전 6:00</option>
+                                            <option value="06:30">오전 6:30</option>
+                                            <option value="07:00">오전 7:00</option>
+                                            <option value="07:30">오전 7:30</option>
+                                            <option value="08:00">오전 8:00</option>
+                                            <option value="08:30">오전 8:30</option>
                                         </select>
                                     </div>
                                     ~
                                     <div class="sel sel--black-superman">
                                         <select name="select-end" id="select-end" value="미설정">
                                             <option value="미설정" >종료시간</option>
-                                            <option value="00:00">오전 12:00</option>
-                                            <option value="00:30">오전 12:30</option>
-                                            <option value="01:00">오전 1:00</option>
-                                            <option value="01:30">오전 1:30</option>
-                                            <option value="02:00">오전 2:00</option>
-                                            <option value="02:30">오전 2:30</option>
-                                            <option value="03:00">오전 3:00</option>
-                                            <option value="03:30">오전 3:30</option>
-                                            <option value="04:00">오전 4:00</option>
-                                            <option value="04:30">오전 4:30</option>
-                                            <option value="05:00">오전 5:00</option>
-                                            <option value="05:30">오전 5:30</option>
-                                            <option value="06:00">오전 6:00</option>
-                                            <option value="06:30">오전 6:30</option>
-                                            <option value="07:00">오전 7:00</option>
-                                            <option value="07:30">오전 7:30</option>
-                                            <option value="08:00">오전 8:00</option>
-                                            <option value="08:30">오전 8:30</option>
                                             <option value="09:00">오전 9:00</option>
                                             <option value="09:30">오전 9:30</option>
                                             <option value="10:00">오전 10:00</option>
@@ -551,6 +541,24 @@
                                             <option value="22:30">오후 10:30</option>
                                             <option value="23:00">오후 11:00</option>
                                             <option value="23:30">오후 11:30</option>
+                                            <option value="00:00">오전 12:00</option>
+                                            <option value="00:30">오전 12:30</option>
+                                            <option value="01:00">오전 1:00</option>
+                                            <option value="01:30">오전 1:30</option>
+                                            <option value="02:00">오전 2:00</option>
+                                            <option value="02:30">오전 2:30</option>
+                                            <option value="03:00">오전 3:00</option>
+                                            <option value="03:30">오전 3:30</option>
+                                            <option value="04:00">오전 4:00</option>
+                                            <option value="04:30">오전 4:30</option>
+                                            <option value="05:00">오전 5:00</option>
+                                            <option value="05:30">오전 5:30</option>
+                                            <option value="06:00">오전 6:00</option>
+                                            <option value="06:30">오전 6:30</option>
+                                            <option value="07:00">오전 7:00</option>
+                                            <option value="07:30">오전 7:30</option>
+                                            <option value="08:00">오전 8:00</option>
+                                            <option value="08:30">오전 8:30</option>
                                         </select>
                                     </div>
                                 </li>
@@ -559,24 +567,6 @@
                                     <div class="sel sel--black-panther">
                                         <select name="select-end" id="select-start" value="미설정">
                                             <option value="미설정" >시작시간</option>
-                                            <option value="00:00">오전 12:00</option>
-                                            <option value="00:30">오전 12:30</option>
-                                            <option value="01:00">오전 1:00</option>
-                                            <option value="01:30">오전 1:30</option>
-                                            <option value="02:00">오전 2:00</option>
-                                            <option value="02:30">오전 2:30</option>
-                                            <option value="03:00">오전 3:00</option>
-                                            <option value="03:30">오전 3:30</option>
-                                            <option value="04:00">오전 4:00</option>
-                                            <option value="04:30">오전 4:30</option>
-                                            <option value="05:00">오전 5:00</option>
-                                            <option value="05:30">오전 5:30</option>
-                                            <option value="06:00">오전 6:00</option>
-                                            <option value="06:30">오전 6:30</option>
-                                            <option value="07:00">오전 7:00</option>
-                                            <option value="07:30">오전 7:30</option>
-                                            <option value="08:00">오전 8:00</option>
-                                            <option value="08:30">오전 8:30</option>
                                             <option value="09:00">오전 9:00</option>
                                             <option value="09:30">오전 9:30</option>
                                             <option value="10:00">오전 10:00</option>
@@ -607,30 +597,30 @@
                                             <option value="22:30">오후 10:30</option>
                                             <option value="23:00">오후 11:00</option>
                                             <option value="23:30">오후 11:30</option>
+                                            <option value="00:00">오전 12:00</option>
+                                            <option value="00:30">오전 12:30</option>
+                                            <option value="01:00">오전 1:00</option>
+                                            <option value="01:30">오전 1:30</option>
+                                            <option value="02:00">오전 2:00</option>
+                                            <option value="02:30">오전 2:30</option>
+                                            <option value="03:00">오전 3:00</option>
+                                            <option value="03:30">오전 3:30</option>
+                                            <option value="04:00">오전 4:00</option>
+                                            <option value="04:30">오전 4:30</option>
+                                            <option value="05:00">오전 5:00</option>
+                                            <option value="05:30">오전 5:30</option>
+                                            <option value="06:00">오전 6:00</option>
+                                            <option value="06:30">오전 6:30</option>
+                                            <option value="07:00">오전 7:00</option>
+                                            <option value="07:30">오전 7:30</option>
+                                            <option value="08:00">오전 8:00</option>
+                                            <option value="08:30">오전 8:30</option>
                                         </select>
                                     </div>
                                     ~
                                     <div class="sel sel--black-superman">
                                         <select name="select-end" id="select-end" value="미설정">
                                             <option value="미설정" >종료시간</option>
-                                            <option value="00:00">오전 12:00</option>
-                                            <option value="00:30">오전 12:30</option>
-                                            <option value="01:00">오전 1:00</option>
-                                            <option value="01:30">오전 1:30</option>
-                                            <option value="02:00">오전 2:00</option>
-                                            <option value="02:30">오전 2:30</option>
-                                            <option value="03:00">오전 3:00</option>
-                                            <option value="03:30">오전 3:30</option>
-                                            <option value="04:00">오전 4:00</option>
-                                            <option value="04:30">오전 4:30</option>
-                                            <option value="05:00">오전 5:00</option>
-                                            <option value="05:30">오전 5:30</option>
-                                            <option value="06:00">오전 6:00</option>
-                                            <option value="06:30">오전 6:30</option>
-                                            <option value="07:00">오전 7:00</option>
-                                            <option value="07:30">오전 7:30</option>
-                                            <option value="08:00">오전 8:00</option>
-                                            <option value="08:30">오전 8:30</option>
                                             <option value="09:00">오전 9:00</option>
                                             <option value="09:30">오전 9:30</option>
                                             <option value="10:00">오전 10:00</option>
@@ -661,6 +651,24 @@
                                             <option value="22:30">오후 10:30</option>
                                             <option value="23:00">오후 11:00</option>
                                             <option value="23:30">오후 11:30</option>
+                                            <option value="00:00">오전 12:00</option>
+                                            <option value="00:30">오전 12:30</option>
+                                            <option value="01:00">오전 1:00</option>
+                                            <option value="01:30">오전 1:30</option>
+                                            <option value="02:00">오전 2:00</option>
+                                            <option value="02:30">오전 2:30</option>
+                                            <option value="03:00">오전 3:00</option>
+                                            <option value="03:30">오전 3:30</option>
+                                            <option value="04:00">오전 4:00</option>
+                                            <option value="04:30">오전 4:30</option>
+                                            <option value="05:00">오전 5:00</option>
+                                            <option value="05:30">오전 5:30</option>
+                                            <option value="06:00">오전 6:00</option>
+                                            <option value="06:30">오전 6:30</option>
+                                            <option value="07:00">오전 7:00</option>
+                                            <option value="07:30">오전 7:30</option>
+                                            <option value="08:00">오전 8:00</option>
+                                            <option value="08:30">오전 8:30</option>
                                         </select>
                                     </div>
                                 </li>
@@ -669,24 +677,6 @@
                                     <div class="sel sel--black-panther">
                                         <select name="select-end" id="select-start" value="미설정">
                                             <option value="미설정" >시작시간</option>
-                                            <option value="00:00">오전 12:00</option>
-                                            <option value="00:30">오전 12:30</option>
-                                            <option value="01:00">오전 1:00</option>
-                                            <option value="01:30">오전 1:30</option>
-                                            <option value="02:00">오전 2:00</option>
-                                            <option value="02:30">오전 2:30</option>
-                                            <option value="03:00">오전 3:00</option>
-                                            <option value="03:30">오전 3:30</option>
-                                            <option value="04:00">오전 4:00</option>
-                                            <option value="04:30">오전 4:30</option>
-                                            <option value="05:00">오전 5:00</option>
-                                            <option value="05:30">오전 5:30</option>
-                                            <option value="06:00">오전 6:00</option>
-                                            <option value="06:30">오전 6:30</option>
-                                            <option value="07:00">오전 7:00</option>
-                                            <option value="07:30">오전 7:30</option>
-                                            <option value="08:00">오전 8:00</option>
-                                            <option value="08:30">오전 8:30</option>
                                             <option value="09:00">오전 9:00</option>
                                             <option value="09:30">오전 9:30</option>
                                             <option value="10:00">오전 10:00</option>
@@ -717,30 +707,30 @@
                                             <option value="22:30">오후 10:30</option>
                                             <option value="23:00">오후 11:00</option>
                                             <option value="23:30">오후 11:30</option>
+                                            <option value="00:00">오전 12:00</option>
+                                            <option value="00:30">오전 12:30</option>
+                                            <option value="01:00">오전 1:00</option>
+                                            <option value="01:30">오전 1:30</option>
+                                            <option value="02:00">오전 2:00</option>
+                                            <option value="02:30">오전 2:30</option>
+                                            <option value="03:00">오전 3:00</option>
+                                            <option value="03:30">오전 3:30</option>
+                                            <option value="04:00">오전 4:00</option>
+                                            <option value="04:30">오전 4:30</option>
+                                            <option value="05:00">오전 5:00</option>
+                                            <option value="05:30">오전 5:30</option>
+                                            <option value="06:00">오전 6:00</option>
+                                            <option value="06:30">오전 6:30</option>
+                                            <option value="07:00">오전 7:00</option>
+                                            <option value="07:30">오전 7:30</option>
+                                            <option value="08:00">오전 8:00</option>
+                                            <option value="08:30">오전 8:30</option>
                                         </select>
                                     </div>
                                     ~
                                     <div class="sel sel--black-superman">
                                         <select name="select-end" id="select-end" value="미설정">
                                             <option value="미설정" >종료시간</option>
-                                            <option value="00:00">오전 12:00</option>
-                                            <option value="00:30">오전 12:30</option>
-                                            <option value="01:00">오전 1:00</option>
-                                            <option value="01:30">오전 1:30</option>
-                                            <option value="02:00">오전 2:00</option>
-                                            <option value="02:30">오전 2:30</option>
-                                            <option value="03:00">오전 3:00</option>
-                                            <option value="03:30">오전 3:30</option>
-                                            <option value="04:00">오전 4:00</option>
-                                            <option value="04:30">오전 4:30</option>
-                                            <option value="05:00">오전 5:00</option>
-                                            <option value="05:30">오전 5:30</option>
-                                            <option value="06:00">오전 6:00</option>
-                                            <option value="06:30">오전 6:30</option>
-                                            <option value="07:00">오전 7:00</option>
-                                            <option value="07:30">오전 7:30</option>
-                                            <option value="08:00">오전 8:00</option>
-                                            <option value="08:30">오전 8:30</option>
                                             <option value="09:00">오전 9:00</option>
                                             <option value="09:30">오전 9:30</option>
                                             <option value="10:00">오전 10:00</option>
@@ -771,6 +761,24 @@
                                             <option value="22:30">오후 10:30</option>
                                             <option value="23:00">오후 11:00</option>
                                             <option value="23:30">오후 11:30</option>
+                                            <option value="00:00">오전 12:00</option>
+                                            <option value="00:30">오전 12:30</option>
+                                            <option value="01:00">오전 1:00</option>
+                                            <option value="01:30">오전 1:30</option>
+                                            <option value="02:00">오전 2:00</option>
+                                            <option value="02:30">오전 2:30</option>
+                                            <option value="03:00">오전 3:00</option>
+                                            <option value="03:30">오전 3:30</option>
+                                            <option value="04:00">오전 4:00</option>
+                                            <option value="04:30">오전 4:30</option>
+                                            <option value="05:00">오전 5:00</option>
+                                            <option value="05:30">오전 5:30</option>
+                                            <option value="06:00">오전 6:00</option>
+                                            <option value="06:30">오전 6:30</option>
+                                            <option value="07:00">오전 7:00</option>
+                                            <option value="07:30">오전 7:30</option>
+                                            <option value="08:00">오전 8:00</option>
+                                            <option value="08:30">오전 8:30</option>
                                         </select>
                                     </div>
                                 </li>
@@ -779,24 +787,6 @@
                                     <div class="sel sel--black-panther">
                                         <select name="select-end" id="select-start" value="미설정">
                                             <option value="미설정" >시작시간</option>
-                                            <option value="00:00">오전 12:00</option>
-                                            <option value="00:30">오전 12:30</option>
-                                            <option value="01:00">오전 1:00</option>
-                                            <option value="01:30">오전 1:30</option>
-                                            <option value="02:00">오전 2:00</option>
-                                            <option value="02:30">오전 2:30</option>
-                                            <option value="03:00">오전 3:00</option>
-                                            <option value="03:30">오전 3:30</option>
-                                            <option value="04:00">오전 4:00</option>
-                                            <option value="04:30">오전 4:30</option>
-                                            <option value="05:00">오전 5:00</option>
-                                            <option value="05:30">오전 5:30</option>
-                                            <option value="06:00">오전 6:00</option>
-                                            <option value="06:30">오전 6:30</option>
-                                            <option value="07:00">오전 7:00</option>
-                                            <option value="07:30">오전 7:30</option>
-                                            <option value="08:00">오전 8:00</option>
-                                            <option value="08:30">오전 8:30</option>
                                             <option value="09:00">오전 9:00</option>
                                             <option value="09:30">오전 9:30</option>
                                             <option value="10:00">오전 10:00</option>
@@ -827,30 +817,30 @@
                                             <option value="22:30">오후 10:30</option>
                                             <option value="23:00">오후 11:00</option>
                                             <option value="23:30">오후 11:30</option>
+                                            <option value="00:00">오전 12:00</option>
+                                            <option value="00:30">오전 12:30</option>
+                                            <option value="01:00">오전 1:00</option>
+                                            <option value="01:30">오전 1:30</option>
+                                            <option value="02:00">오전 2:00</option>
+                                            <option value="02:30">오전 2:30</option>
+                                            <option value="03:00">오전 3:00</option>
+                                            <option value="03:30">오전 3:30</option>
+                                            <option value="04:00">오전 4:00</option>
+                                            <option value="04:30">오전 4:30</option>
+                                            <option value="05:00">오전 5:00</option>
+                                            <option value="05:30">오전 5:30</option>
+                                            <option value="06:00">오전 6:00</option>
+                                            <option value="06:30">오전 6:30</option>
+                                            <option value="07:00">오전 7:00</option>
+                                            <option value="07:30">오전 7:30</option>
+                                            <option value="08:00">오전 8:00</option>
+                                            <option value="08:30">오전 8:30</option>
                                         </select>
                                     </div>
                                     ~
                                     <div class="sel sel--black-superman">
                                         <select name="select-end" id="select-end" value="미설정">
                                             <option value="미설정" >종료시간</option>
-                                            <option value="00:00">오전 12:00</option>
-                                            <option value="00:30">오전 12:30</option>
-                                            <option value="01:00">오전 1:00</option>
-                                            <option value="01:30">오전 1:30</option>
-                                            <option value="02:00">오전 2:00</option>
-                                            <option value="02:30">오전 2:30</option>
-                                            <option value="03:00">오전 3:00</option>
-                                            <option value="03:30">오전 3:30</option>
-                                            <option value="04:00">오전 4:00</option>
-                                            <option value="04:30">오전 4:30</option>
-                                            <option value="05:00">오전 5:00</option>
-                                            <option value="05:30">오전 5:30</option>
-                                            <option value="06:00">오전 6:00</option>
-                                            <option value="06:30">오전 6:30</option>
-                                            <option value="07:00">오전 7:00</option>
-                                            <option value="07:30">오전 7:30</option>
-                                            <option value="08:00">오전 8:00</option>
-                                            <option value="08:30">오전 8:30</option>
                                             <option value="09:00">오전 9:00</option>
                                             <option value="09:30">오전 9:30</option>
                                             <option value="10:00">오전 10:00</option>
@@ -881,6 +871,24 @@
                                             <option value="22:30">오후 10:30</option>
                                             <option value="23:00">오후 11:00</option>
                                             <option value="23:30">오후 11:30</option>
+                                            <option value="00:00">오전 12:00</option>
+                                            <option value="00:30">오전 12:30</option>
+                                            <option value="01:00">오전 1:00</option>
+                                            <option value="01:30">오전 1:30</option>
+                                            <option value="02:00">오전 2:00</option>
+                                            <option value="02:30">오전 2:30</option>
+                                            <option value="03:00">오전 3:00</option>
+                                            <option value="03:30">오전 3:30</option>
+                                            <option value="04:00">오전 4:00</option>
+                                            <option value="04:30">오전 4:30</option>
+                                            <option value="05:00">오전 5:00</option>
+                                            <option value="05:30">오전 5:30</option>
+                                            <option value="06:00">오전 6:00</option>
+                                            <option value="06:30">오전 6:30</option>
+                                            <option value="07:00">오전 7:00</option>
+                                            <option value="07:30">오전 7:30</option>
+                                            <option value="08:00">오전 8:00</option>
+                                            <option value="08:30">오전 8:30</option>
                                         </select>
                                     </div>
                                 </li>
@@ -939,7 +947,7 @@
                 <li class="listBox">
                     <div class="roleControlBox">
                         <span class="subTitle">참가 인원</span> <button type="button" class="roleAddBtn fa-plus"></button>
-                        
+                        <button type="button" class="roleSubBtn fa-minus"></button>
                     </div>
                     <ul class="participantBox">
  

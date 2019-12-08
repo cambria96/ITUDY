@@ -29,6 +29,9 @@ function clickEvnet(){
       var dynamicList = '<li class="participantList"><span class ="roleList firstLine">필요 분야: </span><input class="roleListInput searchInput"><br><span class ="roleList">모집 인원: </span><input type="text" class="roleListInput howMany numberOnly" value="1" maxlength="3"><span> 명</span><br><span class ="roleList">요건 상세 설명: </span><input type="text" class="roleListInput detailInput"></li>'
       $(".participantBox").append(dynamicList);
     })
+    $(".roleSubBtn").click(function(){
+      $(".participantBox").children(".participantList:last").remove();
+    })
 
     $(".submitBtn").click(function(){
         var studyInfo={};

@@ -213,7 +213,8 @@ ul{
   display: flex;
   align-items: center;
 }
-.roleAddBtn{
+.roleAddBtn,
+.roleSubBtn{
   display: inline-block;
   font-family: FontAwesome;
   font-style: normal;
@@ -228,10 +229,12 @@ ul{
   margin-left: 10px;
   transition: all ease 0.3s;
 }
-.roleAddBtn:focus{
+.roleAddBtn:focus,
+.roleSubBtn:focus{
   outline:none;
 }
-.roleAddBtn:hover{
+.roleAddBtn:hover,
+.roleSubBtn:hover{
   box-shadow: inset 0 0 0 2em #dfaa32;
   color: #fff;
 }
