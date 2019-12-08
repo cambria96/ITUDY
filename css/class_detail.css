@@ -258,6 +258,12 @@ table{
   .partyBtn{
     padding: 0px 5px;
   }
+  .completeBtn{
+    padding:0px;
+  }
+  .partyBtnNot{
+    padding:0px;
+  }
 }
 @media(max-width : 455px){
   
