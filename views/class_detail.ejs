@@ -54,7 +54,7 @@
                     <p class="groupSubTitle">작성자</p>
                     <span class ="groupContent" id=groupcontent_id><%=class_info.author_id%></span>
                     <button class="profileBtn">프로필 보기</button>
-                    <div class="profileContent">
+                    <div class="profileContent" style="width:20%;">
                         <div style="text-align: center;border-bottom: 1px solid #dfaa32; margin-bottom: 10px;"><%=class_info.author_id%> 님의 프로필</div>
                         <div style="font-size:2rem;">
                             <table>
@@ -261,7 +261,7 @@
                                   %>
                                 <% if (checkbit ==1){%>
                                     <td><button class="partyBtn">신청 하기</button><button class="fakeBtn">취소</button>
-                                        <
+                                        
                                     </td>
                                 <% }else if(checkbit==2){ %>
                                     <td><button class="completeBtn">신청 완료</button><button class="cancelBtn">취소</button></td>

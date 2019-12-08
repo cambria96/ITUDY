@@ -147,7 +147,7 @@ function mobileMoreInfo(){
     $(document).on("click",".mobilemoreinfo",function(){
         console.log("눌림!!!!");
         console.log($(this).parent().parent().next())
-        $(this).parent().parent().next().slideDown();
+        $(this).parent().parent().next().slideDown(500);
         // $(this).parent().parent().next().children(".new_mobile").toggleClass("actives");
 
         $(this).removeClass("mobilemoreinfo");
@@ -161,7 +161,7 @@ function closeMobileMoreInfo(){
     $(document).on("click",".mobilemoreinfo_close",function(){
         console.log("닫힘버튼눌림");
         console.log($(this).parent().parent().next())
-        $(this).parent().parent().next().slideUp();
+        $(this).parent().parent().next().slideUp(200);
         // $(this).parent().parent().next().children(".new_mobile").toggleClass("actives");
 
         $(this).removeClass("mobilemoreinfo_close");

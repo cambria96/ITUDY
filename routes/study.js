@@ -124,7 +124,7 @@ router.get("/studies/:cur", function (req, res) {
                             for(var j=0;j<index.length;j++) {
                                 var column = index[j]
                                 if (rows2[i][column] === '1') {
-                                    if (loginUser[column] == '1') {
+                                    if (req.session.loginUser[column] == '1') {
                                         for (var l = 0; l < rows1.length; l++) {
                                             if (rows2[i].content_id === params[l]) {
                                                 can[l] = 1;

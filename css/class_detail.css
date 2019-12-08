@@ -13,7 +13,7 @@ body{
   background: #fff;
   border: 3px double #dfaa32;
   border-radius: 15px;
-  padding: 25px;
+  padding: 8px;
   max-width: 1200px;
   width: 90%;
   font-size: 1.5em;
@@ -311,8 +311,11 @@ th:last-child,td:last-child{
     white-space: nowrap;
   }
   .partyBtn{
-    padding:0px,5px;
+    padding: 0px 5px;
     border-radius : 10px;
+  }
+  .completeBtn{
+    padding : 0px 3px;
   }
   .mobilemoreinfo,
   .mobilemoreinfo_close{
@@ -323,7 +326,7 @@ th:last-child,td:last-child{
     outline: none;
   }
   #tdbtn{
-    width:25px;
+    width:40px;
   }
   .mobilemoreinfo.active{
     border:none;
