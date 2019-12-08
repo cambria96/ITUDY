@@ -76,6 +76,8 @@ body{
   background: none;
   border: none;
   font-family: "Godo";
+  white-space: pre-wrap;
+
 }
 .fullBox{
     width: 100%;
