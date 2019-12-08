@@ -34,7 +34,7 @@ function participate(){
             var participant ={};
             participant["type"] =1;
             participant["content_id"] =$(".content_id").text();
-            participant["position_id"] =$(this).parents("tr").index();
+            participant["position_id"] =$(this).parents("tr").index()-1;
             participant["participant_id"] =loginUser.id;
             if($(".groupContent").first().text() ==loginUser.id){
                 alert("모집자는 신청이 불가능 합니다.");
@@ -69,7 +69,7 @@ function cancelBtn(){
             var cancelInfo ={};
             cancelInfo["type"] =1;
             cancelInfo["content_id"] =$(".content_id").text();
-            cancelInfo["position_id"] = $(this).parents("tr").index();
+            cancelInfo["position_id"] = $(this).parents("tr").index()-1;
             cancelInfo["participant_id"] = loginUser.id;
     
             $.ajax({

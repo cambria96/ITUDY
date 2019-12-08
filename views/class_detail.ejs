@@ -144,7 +144,8 @@
                             <th>가능 여부<button class="fakeBtn">취소</button></th>
                         </tr>
           
-                        <% for (var m=0;m<positions.length;m++){%>
+                        <% 
+                        for (var m=0;m<positions.length;m++){%>
                             <tr>
                                 <th><%=m+1%>.</th>
                                 <td class="condition"><%=conditionList[m]%></td>
@@ -159,9 +160,8 @@
                                    var conditionCheckBit=0;
         
                                 %>
-                                <% 
-                                    
-                                    
+                                <%    
+                                console.log("dfdf"+m);                                 
                                     var conditionCheck = [];
                                     conditionCheck = conditionList[m].split(",");
                                     for(var i=0;i<conditionCheck.length;i++){
@@ -175,7 +175,9 @@
                                         }
                                     }
                                     for(var h=0;h<participants.length;h++){
+                                       console.log(participants[h]);
                                         if(participants[h].position_id == m){
+                                            
                                             if(participants[h].participant_id==loginUser.id){
                                                 checkbit=2;
                                             }
@@ -188,7 +190,6 @@
                                             conditionCheckBit=1;
                                         }
                                     }
-                                    
                                   %>
                                 <% if (checkbit ==1){%>
                                     <td><button class="partyBtn">신청 하기</button><button class="fakeBtn">취소</button></td>
