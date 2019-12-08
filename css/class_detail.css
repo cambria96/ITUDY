@@ -13,7 +13,7 @@ body{
   background: #fff;
   border: 3px double #dfaa32;
   border-radius: 15px;
-  padding: 8px;
+  padding: 19px;
   max-width: 1200px;
   width: 90%;
   font-size: 1.5em;
@@ -75,7 +75,7 @@ body{
 }
 table{
     width:100% !important;
-    table-layout: fixed;
+    
 }
 #hihi{
   width:20px;
@@ -134,10 +134,12 @@ th,td{
 .condition{
   white-space: nowrap;
 }
-th:nth-child(4),td:nth-child(4){
+th:nth-child(4),td:nth-child(4),
+th:nth-child(2),td:nth-child(2){
 
   white-space: nowrap;
 }
+
 th:last-child,td:last-child{
     text-align: center;
     position: relative;
@@ -245,11 +247,23 @@ th:last-child,td:last-child{
   height : 20px;
  
 }
+table{
 
+  table-layout: fixed;
+}
+@media(max-width : 768px){
+  .partyBtn{
+    padding: 0px 5px;
+  }
+}
 @media(max-width : 455px){
+  
   .container{
     padding : 10px;
     font-size :1.25em;
+  }
+  .container_detail{
+    padding : 8px;
   }
   .groupSubTitle{
    width : 40%;
