@@ -107,12 +107,15 @@
   
   /* The Close Button */
   .close {
+
       margin-right: 10px;
       color: #aaaaaa;
       float: right;
       font-weight: bold;
       position: absolute;
       right: 0;
+      top: 10px;
+
   }
   
   .close:hover,

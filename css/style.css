@@ -3,7 +3,11 @@
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
-
+#content-detail{
+  height: 80vh;
+  border:0;
+  max-height: 600px;
+}
 body {
   background: #fff;
   color: #444;
@@ -1607,6 +1611,11 @@ text-decoration: none;
 }
 
 @media (max-width: 768px) {
+  #content-detail{
+    height: 70vh;
+    border:0;
+    max-height: 600px;
+  }
   .back-to-top {
     bottom: 15px;
   }
@@ -1675,6 +1684,11 @@ text-decoration: none;
 }
 
 @media (max-width: 480px){
+  #content-detail{
+    height: 60vh;
+    border:0;
+    max-height: 500px;
+  }
   #intro .intro-info h2 {
     font-size: 1.8em;
     margin-bottom:10px;
