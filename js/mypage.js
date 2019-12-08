@@ -56,7 +56,7 @@ function initial_mypage(){
                         
         
                     }
-                    var datetimearr = datetime.join(' | ');
+                    var datetimearr = datetime.join('<br> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp ');
                     
                     var dynamicList = '<div class="specificTitle">'
                                     + '<span ><span class="realTitle">'+userClass[m].title+'</span>  '
@@ -126,7 +126,7 @@ function initial_mypage(){
                         datetime[dl] =  datearr[dl] + ' : ' +  timearr[dl];
                         
                     }
-                    var datetimearr = datetime.join(' | ');
+                    var datetimearr = datetime.join('<br> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp ');
                     
                     var dynamicList = '<div class="specificTitle">'
                                     + '<span ><span class="realTitle">'+userStudy[m].title+'</span>  '
