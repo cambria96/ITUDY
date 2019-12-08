@@ -27,10 +27,10 @@ function findBtn(){
         console.log("눌림");
         $(".initial_tags").slideDown();
         $(".initial_tags").addClass("actives");
+        $(this).children(".rotateBar").addClass("active");
+        $(this).children(".circleBar").addClass("active");
         $(this).removeClass("finder");
         $(this).addClass("finder_close");
-        $(".finderimg").attr('src', "../img/close.png");
-        $(".finderimg").attr('class','closeimg');
     })
 }
 
@@ -40,11 +40,10 @@ function closeFindBtn(){
         $(".initial_tags").slideUp(function(){
             $(".initial_tags").removeClass("actives");
         });
-        
+        $(this).children(".rotateBar").removeClass("active");
+        $(this).children(".circleBar").removeClass("active");
         $(this).removeClass("finder_close");
         $(this).addClass("finder");
-        $(".closeimg").attr('src', "../img/finder.png");
-        $(".closeimg").attr('class','finderimg');
 
     })
 }
