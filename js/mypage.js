@@ -259,7 +259,13 @@ function initial_mypage(){
                             var condition = $("#"+userClass[q].id).parent(".rightbox").siblings(".leftbox").find(".conditionList").eq(participants[p].position_id).text();
                             
                             // 수정한 부분
-                            $("#"+userClass[q].id).children().children('tbody').append('<tr class='+participants[p].position_id+'><td>'+condition+'</td><td>'+ partiList +'</td>'+'<td> <button class = "acceptBtn">수락 하기</button></td></tr>');                            
+                            $("#"+userClass[q].id).children().children('tbody').append('<tr class='+participants[p].position_id+'><td>'+condition+'</td><td><span class="dldmsckdsha">'+ partiList +'</span><div style="position: relative; display:inline-block;"><button class="profileBtn profileDetailBtn" value='+partiList+'>프로필 보기</button>'+'<ul class="profileDetail profileDetail2">'
+                            +'<li>'+partiList+' 님의 프로필</li>'
+                            +'<li><p>레벨</p><p><img src="" class="levelIcon"></p></li>'
+                            +'<li><p>멘토 횟수</p><p class="mentoCount"></p></li>'
+                            +'<li><p>멘티 횟수</p><p class="menteeCount"></p></li>'
+                            +'<li><p>스터디 횟수</p><p class="studyCount"></p></li>'
+                            +'</ul></div>'+'</td>'+'<td> <button class = "acceptBtn">수락 하기</button></td></tr>');                            
                         }
                     }
                     
@@ -280,7 +286,13 @@ function initial_mypage(){
                             var condition = $("#"+userStudy[q].id+"_s").parent(".rightbox").siblings(".leftbox").find(".conditionList").eq(participants[p].position_id).text();
                            
                             // 수정한 부분
-                            $("#"+userStudy[q].id+"_s").children().children('tbody').append('<tr class='+participants[p].position_id+'><td>'+condition+'</td><td>'+ partiList +'</td>'+'<td> <button class = "acceptBtn">수락 하기</button></td></tr>');                            
+                            $("#"+userStudy[q].id+"_s").children().children('tbody').append('<tr class='+participants[p].position_id+'><td>'+condition+'</td><td><span class="dldmsckdsha">'+ partiList +'</span><div style="position: relative;display:inline-block;"><button class="profileBtn profileDetailBtn" value='+partiList+'>프로필 보기</button>'+'<ul class="profileDetail profileDetail2">'
+                            +'<li>'+partiList+' 님의 프로필</li>'
+                            +'<li><p>레벨</p><p><img src="" class="levelIcon"></p></li>'
+                            +'<li><p>멘토 횟수</p><p class="mentoCount"></p></li>'
+                            +'<li><p>멘티 횟수</p><p class="menteeCount"></p></li>'
+                            +'<li><p>스터디 횟수</p><p class="studyCount"></p></li>'
+                            +'</ul></div>'+'</td>'+'<td> <button class = "acceptBtn">수락 하기</button></td></tr>');                            
                             
                         }
                     }
@@ -474,7 +486,7 @@ function cancelParticipant(){
 
 function user2group(){
     $(document).on("click",".acceptBtn",function(){
-        var partiname = $(this).parent().prev().text();
+        var partiname = $(this).parent().prev().children(".dldmsckdsha").text();
         var positionname = $(this).parent().parent().attr('class');
         var classnum = $(this).parent().parent().parent().parent().parent().attr('id');
         var target = positionname*2 +1;
@@ -522,7 +534,7 @@ function group2user(){
         
         var positionname = $(this).parent().parent().attr('class');
         var classnum = $(this).parent().parent().parent().parent().parent().attr('id');
-        var cancelTarget  = $(this).parent().prev().text();
+        var cancelTarget  = $(this).parent().prev().children(".dldmsckdsha").text();
         var target = positionname*2 +1;
         $("#member"+classnum).children('li').eq(target-1).find(".colortext").css("color","black");
         $("#member"+classnum).children('li').eq(target).find(".confirmList").each(function (){      

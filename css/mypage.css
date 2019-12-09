@@ -255,8 +255,31 @@ label {
     background-color: #fff;
     border-radius: .5rem;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,.12);
-}
+    overflow: visible;
 
+}
+.profileDetail2{
+    right: 0 !important;
+    top: unset !important;
+    left: 10px !important;
+    width: 250% !important;
+
+}
+.profileDetailBtn{
+    color: #848484 !important;
+    border: none !important;
+    font-size: 0.8em !important;
+    padding: unset !important;
+}
+.profileDetailBtn:hover,
+.profileDetailBtn:focus{
+    color: #848484 !important;
+    border: none !important;
+    font-size: 0.8em !important;
+    padding: unset !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
 
 .leftbox{
 
