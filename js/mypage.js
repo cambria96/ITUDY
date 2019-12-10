@@ -630,7 +630,7 @@ function requestConfirm(){
                     for(var n=0;n<memberName.length;n++){
                         if(n==0){
                             if(memberName[n] == data.loginUser.name){
-                                dynamicLi +=' <li class="confirmGroupList"><span class="name" value='+memberID[n]+'>'+memberID[n]+' &nbsp; <img class = "crown" src = "../img/crown.png">'+'</span><span class="email pcText">'+memberEmail[n]+'</span><span class="phone pcText">'+memberPhone[n]+'</span><div class="button"><button class="reportBtn" id="reportLink" style="pointer-events:none; opacity:0;">신고하기</button><div style="position: relative"><button class="profileBtn" value='+memberID[n]+'>프로필 보기</button>'
+                                dynamicLi +=' <li class="confirmGroupList"><span class="name" value='+memberName[n]+'>'+memberID[n]+' &nbsp; <img class = "crown" src = "../img/crown.png">'+'</span><span class="email pcText">'+memberEmail[n]+'</span><span class="phone pcText">'+memberPhone[n]+'</span><div class="button"><button class="reportBtn" id="reportLink" style="pointer-events:none; opacity:0;">신고하기</button><div style="position: relative"><button class="profileBtn" value='+memberID[n]+'>프로필 보기</button>'
                                 +'<ul class="profileDetail">'
                                 +'<li>'+memberID[n]+' 님의 프로필</li>'
                                 +'<li><p>레벨</p><p><img src="" class="levelIcon"></p></li>'
@@ -642,7 +642,7 @@ function requestConfirm(){
                                 +'</ul></div></div></li>'
                             }
                             else{
-                                dynamicLi +=' <li class="confirmGroupList"><span class="name" value='+memberID[n]+'>'+memberID[n]+' &nbsp; <img class = "crown" src = "../img/crown.png">'+'</span><span class="email pcText">'+memberEmail[n]+'</span><span class="phone pcText">'+memberPhone[n]+'</span><div class="button"><button class="reportBtn" id="reportLink">신고하기</button><div style="position: relative"><button class="profileBtn" value='+memberID[n]+'>프로필 보기</button>'
+                                dynamicLi +=' <li class="confirmGroupList"><span class="name" value='+memberName[n]+'>'+memberID[n]+' &nbsp; <img class = "crown" src = "../img/crown.png">'+'</span><span class="email pcText">'+memberEmail[n]+'</span><span class="phone pcText">'+memberPhone[n]+'</span><div class="button"><button class="reportBtn" id="reportLink">신고하기</button><div style="position: relative"><button class="profileBtn" value='+memberID[n]+'>프로필 보기</button>'
                                 +'<ul class="profileDetail">'
                                 +'<li>'+memberID[n]+' 님의 프로필</li>'
                                 +'<li><p>레벨</p><p><img src="" class="levelIcon"></p></li>'
@@ -657,7 +657,7 @@ function requestConfirm(){
         
                         }
                         else if(memberName[n] == data.loginUser.name){
-                            dynamicLi +=' <li class="confirmGroupList"><span class="name" value='+memberID[n]+'>'+memberID[n]+' &nbsp;'+'</span><span class="email pcText">'+memberEmail[n]+'</span><span class="phone pcText">'+memberPhone[n]+'</span><div class="button"><button class="reportBtn" id="reportLink" style="pointer-events:none; opacity:0;">신고하기</button><div style="position: relative"><button class="profileBtn" value='+memberID[n]+'>프로필 보기</button>'
+                            dynamicLi +=' <li class="confirmGroupList"><span class="name" value='+memberName[n]+'>'+memberID[n]+' &nbsp;'+'</span><span class="email pcText">'+memberEmail[n]+'</span><span class="phone pcText">'+memberPhone[n]+'</span><div class="button"><button class="reportBtn" id="reportLink" style="pointer-events:none; opacity:0;">신고하기</button><div style="position: relative"><button class="profileBtn" value='+memberID[n]+'>프로필 보기</button>'
                             +'<ul class="profileDetail">'
                             +'<li>'+memberID[n]+' 님의 프로필</li>'
                             +'<li><p>레벨</p><p><img src="" class="levelIcon"></p></li>'
