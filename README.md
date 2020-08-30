@@ -1,1 +1,1 @@
-새로운 페이지 만들 때 default.html에 있는 코드 복붙하고 내용 추가하면 됩니다.
+![image](https://user-images.githubusercontent.com/52390482/91658171-d177b780-eb01-11ea-9f79-5a83cd8592a8.png)
