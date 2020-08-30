@@ -1,9 +1,7 @@
 
-##### ScreenShots
+# ScreenShots
 ---
-1.
 ![image](https://user-images.githubusercontent.com/52390482/91658171-d177b780-eb01-11ea-9f79-5a83cd8592a8.png)
-2.
 ![image](https://user-images.githubusercontent.com/52390482/91658198-169be980-eb02-11ea-93bd-1d66af89a72d.png)
 ![image](https://user-images.githubusercontent.com/52390482/91658202-1e5b8e00-eb02-11ea-84b0-4b46297008e7.png)
 ![image](https://user-images.githubusercontent.com/52390482/91658206-26b3c900-eb02-11ea-9147-bca2b1b48dd1.png)
