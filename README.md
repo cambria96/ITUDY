@@ -33,12 +33,3 @@
 ![image](https://user-images.githubusercontent.com/52390482/92305556-54e24e80-efc3-11ea-9601-3a84e126c99c.png)
 
 랭킹 페이지를 통해 서비스 내에서 사용되는 가상화폐로 사용자들의 순위를 설정함으로서 사용자들간의 경쟁심을 유발시키고자 했다. 또한 칭호 시스템을 통해 해당 사용자가 얼마나 많은 활동을 했는지 판단하는 하나의 지표를 만들었다.
-
-# Affinity Diagram
-![image](https://user-images.githubusercontent.com/52390482/92305569-7e9b7580-efc3-11ea-825d-9b45190fd5fa.png)
-![image](https://user-images.githubusercontent.com/52390482/92305577-89560a80-efc3-11ea-86c6-cf24dbfaa29c.png) {:.alignright}
-
-설문조사와 인터뷰를 통해 얻은 정성적, 정량적 데이터 분석과 피드백들을 바탕으로 서비스의 목적성과 서비스에 필요한 핵심적인 요소들을 찾기 위해, 초기에 설정한 Target User들이 겪는 문제점들을 비롯해 서비스와 관련된 여러가지 아이디어를 나열하였다. 이를 통해 서비스에 필요한 기능을 정리하였다.
-
-
-
