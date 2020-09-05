@@ -1,10 +1,9 @@
 # 프로젝트 소개 
----
-### 본 프로젝트는 HCI를 활용해 서비스의 사용성을 높이고자 하였다.
+
+### 본 프로젝트는 HCI를 활용해 서비스의 사용성을 높였다
 기존의 스터디 관련 서비스는 시간, 장소, 관심사 등 개인적인 제약들 때문에 사용자에게 적합한 스터디를 구하는데 어려움있다. 따라서 이를 해결하기 위해 IT관련 공부를 희망하는 사람들을 대상으로 조건에 맞는 스터디 그룹을 매칭해주는 서비스를 제공하는 ITUDY(IT+STUDY)를 기획하였다. 
 
 # 프로젝트 특징
----
 1. 사용자 중심 디자인 적용(UCD)
 2. Survey 및 Interview를 통한 needs파악
 3. Affinity diagram 제작
@@ -14,7 +13,6 @@
 ![image](https://user-images.githubusercontent.com/52390482/92305470-beae2880-efc2-11ea-90f9-f4fa823e3bf5.png)
 
 # 프로젝트 결과
----
 ### 1. 회원가입
 ![image](https://user-images.githubusercontent.com/52390482/92305484-ddacba80-efc2-11ea-9fe5-067bd110ac8d.png)
 
@@ -37,7 +35,6 @@
 랭킹 페이지를 통해 서비스 내에서 사용되는 가상화폐로 사용자들의 순위를 설정함으로서 사용자들간의 경쟁심을 유발시키고자 했다. 또한 칭호 시스템을 통해 해당 사용자가 얼마나 많은 활동을 했는지 판단하는 하나의 지표를 만들었다.
 
 # Affinity Diagram
----
 ![image](https://user-images.githubusercontent.com/52390482/92305569-7e9b7580-efc3-11ea-825d-9b45190fd5fa.png)
 ![image](https://user-images.githubusercontent.com/52390482/92305577-89560a80-efc3-11ea-86c6-cf24dbfaa29c.png)
 
